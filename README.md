@@ -1,1 +1,1 @@
-# VuetifyImageUpload
+# VuetifyImageInput

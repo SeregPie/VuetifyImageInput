@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		/>
+		<title>VuetifyImageInput</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.0-beta.1/vuetify.min.css"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.0-beta.1/vuetify.min.js"></script>
+		<script src="https://unpkg.com/paperduck@18.6.3"></script>
+		<script src="VuetifyImageInput.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		/>
+		<script src="https://unpkg.com/@seregpie/vueflex@18.5.11"></script>
+	</head>
+	<body>
+		<v-app
+			v-cloak
+			id="App"
+		>
+			<v-toolbar
+				color="pink accent-4"
+				dark
+				clipped-left
+				app
+			>
+				<v-toolbar-title>
+					VuetifyImageInput
+				</v-toolbar-title>
+				<v-spacer></v-spacer>
+				<v-btn
+					href="https://github.com/SeregPie/VuetifyImageInput"
+					target="_blank"
+					icon
+				>
+					<v-icon>
+						fab fa-github
+					</v-icon>
+				</v-btn>
+			</v-toolbar>
+			<v-content fill-height>
+				<div
+					style="
+						width: 100%;
+						height: 100%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					"
+				>
+					<v-image-input
+						v-model="image"
+						clearable
+					></v-image-input>
+				</div>
+			</v-content>
+		</v-app>
+		<script src="demo/index.js"></script>
+	</body>
+</html>

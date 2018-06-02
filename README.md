@@ -1,1 +1,1 @@
-# VuetifyImageInput
+# vuetify.ImageInput

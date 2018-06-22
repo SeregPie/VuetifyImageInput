@@ -2,66 +2,30 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 		<title>VuetifyImageInput</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
-		<style>
-			[v-cloak] {
-				display: none;
-			}
-		</style>
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.0-rc.2/vuetify.min.css"
-		/>
+		<style>[v-cloak] {display: none;}</style>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.0-rc.2/vuetify.min.css"/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.1.0-rc.2/vuetify.min.js"></script>
 		<script src="https://unpkg.com/paperduck@18.6.3"></script>
 		<script src="VuetifyImageInput.js"></script>
-		<script src="https://unpkg.com/@seregpie/vueflex@18.5.11"></script>
 	</head>
 	<body>
-		<v-app
-			v-cloak
-			id="app"
-		>
-			<v-toolbar
-				dark
-				dense
-				app
-			>
+		<v-app v-cloak id="app">
+			<v-toolbar dark dense app>
 				<v-toolbar-title>VuetifyImageInput</v-toolbar-title>
 				<v-spacer></v-spacer>
-				<v-btn
-					href="https://github.com/SeregPie/VuetifyImageInput"
-					target="_blank"
-					icon
-				>
+				<v-btn href="https://github.com/SeregPie/VuetifyImageInput" target="_blank" icon>
 					<v-icon>fab fa-github</v-icon>
 				</v-btn>
 			</v-toolbar>
 			<v-content>
-				<v-container
-					fill-height
-					justify-center
-				>
-					<v-image-input
-						v-model="image"
-						clearable
-						rotatable
-						flippable
-					></v-image-input>
+				<v-container fill-height justify-center>
+					<v-image-input v-model="image" clearable rotatable flippable></v-image-input>
 				</v-container>
 			</v-content>
 		</v-app>

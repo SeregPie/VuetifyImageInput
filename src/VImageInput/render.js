@@ -215,7 +215,9 @@ export default function(createElement) {
 				'div',
 				{
 					style: {
-						display: 'inline-flex',
+						width: 'fit-content',
+						height: 'fit-content',
+						display: 'flex',
 					},
 				},
 				[
@@ -251,7 +253,7 @@ export default function(createElement) {
 				border: '1px dashed #bdbdbd',
 				borderRadius: '8px',
 				backgroundColor: '#eeeeee',
-				display: 'inline-flex',
+				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
 			},

@@ -211,12 +211,10 @@ export default function(createElement) {
 				},
 				[imageElement],
 			);
-			let mainElement = createElement(
+			let layoutElement = createElement(
 				'div',
 				{
 					style: {
-						width: 'fit-content',
-						height: 'fit-content',
 						display: 'flex',
 					},
 				},
@@ -225,7 +223,16 @@ export default function(createElement) {
 					buttonsContainerElement,
 				],
 			);
-			return mainElement;
+			let wrapperElement = createElement(
+				'div',
+				{
+					style: {
+						display: 'table',
+					},
+				},
+				[layoutElement],
+			);
+			return wrapperElement;
 		}
 		return imageElement;
 	}

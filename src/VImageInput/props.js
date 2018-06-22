@@ -11,6 +11,13 @@ export default {
 		default: 256,
 	},
 
+	imageFormat: {
+		type: String,
+		default: 'png',
+	},
+
+	encoderOptions: {},
+
 	minImageWidth: {
 		type: Number,
 		default: 0,

@@ -1,7 +1,15 @@
 import clear from './clear';
-import uploadImage from './uploadImage';
+import flipHorizontally from './flipHorizontally';
+import flipVertically from './flipVertically';
+import rotateClockwise from './rotateClockwise';
+import rotateCounterclockwise from './rotateCounterclockwise';
+import upload from './upload';
 
 export default {
 	clear,
-	uploadImage,
+	flipHorizontally,
+	flipVertically,
+	rotateClockwise,
+	rotateCounterclockwise,
+	upload,
 };

@@ -1,10 +1,3 @@
-export default {
-	get() {
-		return this.lazyValue;
-	},
-
-	set(value) {
-		this.lazyValue = value;
-		this.$emit('input', value);
-	},
-};
+export default function() {
+	return this.image ? this.image.toDataURL(`image/${this.imageFormat}`, this.encoderOptions) : null;
+}

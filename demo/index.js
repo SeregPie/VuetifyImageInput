@@ -1,7 +1,7 @@
 (function() {
 
 	new Vue({
-		el: '#App',
+		el: '#app',
 
 		data: function() {
 			return {

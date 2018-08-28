@@ -48,22 +48,22 @@ export default {
 		default: false,
 	},
 
-	movable: {
+	notMovable: {
 		type: Boolean,
 		default: false,
 	},
 
-	flippable: {
+	notFlippable: {
 		type: Boolean,
 		default: false,
 	},
 
-	rotatable: {
+	notRotatable: {
 		type: Boolean,
 		default: false,
 	},
 
-	zoomable: {
+	notZoomable: {
 		type: Boolean,
 		default: false,
 	},

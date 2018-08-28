@@ -1,13 +1,12 @@
 export default function(createElement) {
 	let {
 		clearable,
-		flippable,
 		image,
 		imageHeight,
 		imageWidth,
-		rotatable,
+		notFlippable,
+		notRotatable,
 	} = this;
-
 	if (image) {
 		let imageElement = createElement(
 			'img',
@@ -39,7 +38,7 @@ export default function(createElement) {
 				spacerElement,
 			);
 		}
-		if (flippable) {
+		if (!notFlippable) {
 			let flipHorizontallyIconElement = createElement(
 				'v-icon',
 				{
@@ -115,7 +114,7 @@ export default function(createElement) {
 				flipVerticallyTooltip,
 			);
 		}
-		if (rotatable) {
+		if (!notRotatable) {
 			let rotateClockwiseIconElement = createElement(
 				'v-icon',
 				{
@@ -227,7 +226,7 @@ export default function(createElement) {
 				'div',
 				{
 					style: {
-						display: 'table',
+						display: 'inline',
 					},
 				},
 				[layoutElement],
@@ -260,7 +259,7 @@ export default function(createElement) {
 				border: '1px dashed #bdbdbd',
 				borderRadius: '8px',
 				backgroundColor: '#eeeeee',
-				display: 'flex',
+				display: 'inline-flex',
 				justifyContent: 'center',
 				alignItems: 'center',
 			},

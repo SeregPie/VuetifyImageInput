@@ -1,3 +1,5 @@
+import checkeredBackgroundImage from './shared/checkeredBackgroundImage';
+
 export default function(createElement) {
 	let {
 		clearable,
@@ -202,7 +204,9 @@ export default function(createElement) {
 					style: {
 						width: `${imageWidth}px`,
 						height: `${imageHeight}px`,
-						backgroundColor: '#000000',
+						backgroundImage: checkeredBackgroundImage,
+						backgroundSize: '16px 16px',
+						backgroundRepeat: 'repeat',
 						display: 'flex',
 						justifyContent: 'center',
 						alignItems: 'center',

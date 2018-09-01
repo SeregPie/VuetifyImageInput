@@ -43,13 +43,13 @@ export default function($createElement) {
 		if (!hideActions) {
 			let {
 				flipHorizontally,
-				flipHorizontallyTooltip,
+				flipHorizontallyText,
 				flipVertically,
-				flipVerticallyTooltip,
+				flipVerticallyText,
 				rotateClockwise,
-				rotateClockwiseTooltip,
+				rotateClockwiseText,
 				rotateCounterclockwise,
-				rotateCounterclockwiseTooltip,
+				rotateCounterclockwiseText,
 			} = this;
 			let flipHorizontallyButtonElement = $createElement(
 				'v-icon',
@@ -83,7 +83,7 @@ export default function($createElement) {
 				},
 				[
 					flipHorizontallyButtonElement,
-					$createElement('span', flipHorizontallyTooltip),
+					$createElement('span', flipHorizontallyText),
 				],
 			);
 			let flipVerticallyButtonElement = $createElement(
@@ -118,7 +118,7 @@ export default function($createElement) {
 				},
 				[
 					flipVerticallyButtonElement,
-					$createElement('span', flipVerticallyTooltip),
+					$createElement('span', flipVerticallyText),
 				],
 			);
 			buttonElements.push(
@@ -157,7 +157,7 @@ export default function($createElement) {
 				},
 				[
 					rotateClockwiseButtonElement,
-					$createElement('span', rotateClockwiseTooltip),
+					$createElement('span', rotateClockwiseText),
 				],
 			);
 			let rotateCounterclockwiseButtonElement = $createElement('v-icon', 'rotate_90_degrees_ccw');
@@ -184,7 +184,7 @@ export default function($createElement) {
 				},
 				[
 					rotateCounterclockwiseButtonElement,
-					$createElement('span', rotateCounterclockwiseTooltip),
+					$createElement('span', rotateCounterclockwiseText),
 				],
 			);
 			buttonElements.push(

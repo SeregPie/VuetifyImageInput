@@ -4,12 +4,12 @@ export default {
 		default: false,
 	},
 
-	flipHorizontallyTooltip: {
+	flipHorizontallyText: {
 		type: String,
 		default: 'flip horizontally',
 	},
 
-	flipVerticallyTooltip: {
+	flipVerticallyText: {
 		type: String,
 		default: 'flip vertically',
 	},
@@ -41,12 +41,12 @@ export default {
 		default: false,
 	},
 
-	rotateClockwiseTooltip: {
+	rotateClockwiseText: {
 		type: String,
 		default: 'rotate clockwise',
 	},
 
-	rotateCounterclockwiseTooltip: {
+	rotateCounterclockwiseText: {
 		type: String,
 		default: 'rotate counterclockwise',
 	},

@@ -33,16 +33,16 @@
 							<v-checkbox v-model="hideActions" class="ma-0" hide-details label="hide-actions"></v-checkbox>
 						</v-flex>
 						<v-flex>
-							<v-text-field v-model="flipHorizontallyTooltip" box hide-details label="flip-horizontally-tooltip"></v-text-field>
+							<v-text-field v-model="flipHorizontallyText" box hide-details label="flip-horizontally-text"></v-text-field>
 						</v-flex>
 						<v-flex>
-							<v-text-field v-model="flipVerticallyTooltip" box hide-details label="flip-vertically-tooltip"></v-text-field>
+							<v-text-field v-model="flipVerticallyText" box hide-details label="flip-vertically-text"></v-text-field>
 						</v-flex>
 						<v-flex>
-							<v-text-field v-model="rotateClockwiseTooltip" box hide-details label="rotate-clockwise-tooltip"></v-text-field>
+							<v-text-field v-model="rotateClockwiseText" box hide-details label="rotate-clockwise-text"></v-text-field>
 						</v-flex>
 						<v-flex>
-							<v-text-field v-model="rotateCounterclockwiseTooltip" box hide-details label="rotate-counterclockwise-tooltip"></v-text-field>
+							<v-text-field v-model="rotateCounterclockwiseText" box hide-details label="rotate-counterclockwise-text"></v-text-field>
 						</v-flex>
 					</v-layout>
 				</v-container>
@@ -60,11 +60,11 @@
 					<v-image-input
 						v-model="value"
 						:clearable="clearable"
-						:flip-horizontally-tooltip="flipHorizontallyTooltip"
-						:flip-vertically-tooltip="flipVerticallyTooltip"
+						:flip-horizontally-text="flipHorizontallyText"
+						:flip-vertically-text="flipVerticallyText"
 						:hide-actions="hideActions"
-						:rotate-clockwise-tooltip="rotateClockwiseTooltip"
-						:rotate-counterclockwise-tooltip="rotateCounterclockwiseTooltip"
+						:rotate-clockwise-text="rotateClockwiseText"
+						:rotate-counterclockwise-text="rotateCounterclockwiseText"
 					></v-image-input>
 				</v-container>
 			</v-content>

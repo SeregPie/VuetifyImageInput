@@ -5,7 +5,7 @@
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
 		<title>VuetifyImageInput</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
 		<style>
 			[v-cloak] {
 				display: none;
@@ -24,16 +24,28 @@
 				<v-container fluid grid-list-md>
 					<v-layout column>
 						<v-flex>
-							<v-switch v-model="dark" class="ma-0" label="dark" hide-details></v-switch>
+							<v-switch v-model="dark" class="ma-0" hide-details label="dark"></v-switch>
 						</v-flex>
 						<v-flex>
-							<v-checkbox v-model="clearable" class="ma-0" label="clearable" hide-details></v-checkbox>
+							<v-checkbox v-model="clearable" class="ma-0" hide-details label="clearable"></v-checkbox>
 						</v-flex>
 						<v-flex>
-							<v-checkbox v-model="notFlippable" class="ma-0" label="not-flippable" hide-details></v-checkbox>
+							<v-checkbox v-model="notFlippable" class="ma-0" hide-details label="not-flippable"></v-checkbox>
 						</v-flex>
 						<v-flex>
-							<v-checkbox v-model="notRotatable" class="ma-0" label="not-rotatable" hide-details></v-checkbox>
+							<v-text-field v-model="flipHorizontallyTooltip" box hide-details label="flip-horizontally-tooltip"></v-text-field>
+						</v-flex>
+						<v-flex>
+							<v-text-field v-model="flipVerticallyTooltip" box hide-details label="flip-vertically-tooltip"></v-text-field>
+						</v-flex>
+						<v-flex>
+							<v-checkbox v-model="notRotatable" class="ma-0" hide-details label="not-rotatable"></v-checkbox>
+						</v-flex>
+						<v-flex>
+							<v-text-field v-model="rotateClockwiseTooltip" box hide-details label="rotate-clockwise-tooltip"></v-text-field>
+						</v-flex>
+						<v-flex>
+							<v-text-field v-model="rotateCounterclockwiseTooltip" box hide-details label="rotate-counterclockwise-tooltip"></v-text-field>
 						</v-flex>
 					</v-layout>
 				</v-container>
@@ -51,8 +63,12 @@
 					<v-image-input
 						v-model="value"
 						:clearable="clearable"
+						:flip-horizontally-tooltip="flipHorizontallyTooltip"
+						:flip-vertically-tooltip="flipVerticallyTooltip"
 						:not-flippable="notFlippable"
 						:not-rotatable="notRotatable"
+						:rotate-clockwise-tooltip="rotateClockwiseTooltip"
+						:rotate-counterclockwise-tooltip="rotateCounterclockwiseTooltip"
 					></v-image-input>
 				</v-container>
 			</v-content>

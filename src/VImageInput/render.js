@@ -20,8 +20,9 @@ export default function($createElement) {
 		);
 		let buttonElements = [];
 		if (clearable) {
-			let clearIconElement = $createElement('v-icon', 'clear');
-			let clearButtonElement = $createElement(
+			let {clear} = this;
+			let clearButtonElement = $createElement('v-icon', 'clear');
+			clearButtonElement = $createElement(
 				'v-btn',
 				{
 					props: {
@@ -29,10 +30,10 @@ export default function($createElement) {
 						icon: true,
 					},
 					on: {
-						click: this.clear,
+						click: clear,
 					},
 				},
-				[clearIconElement],
+				[clearButtonElement],
 			);
 			let spacerElement = $createElement('v-spacer');
 			buttonElements.push(
@@ -41,7 +42,13 @@ export default function($createElement) {
 			);
 		}
 		if (!notFlippable) {
-			let flipHorizontallyIconElement = $createElement(
+			let {
+				flipHorizontally,
+				flipHorizontallyTooltip,
+				flipVertically,
+				flipVerticallyTooltip,
+			} = this;
+			let flipHorizontallyButtonElement = $createElement(
 				'v-icon',
 				{
 					style: {
@@ -50,7 +57,7 @@ export default function($createElement) {
 				},
 				'flip',
 			);
-			let flipHorizontallyButtonElement = $createElement(
+			flipHorizontallyButtonElement = $createElement(
 				'v-btn',
 				{
 					slot: 'activator',
@@ -59,12 +66,12 @@ export default function($createElement) {
 						icon: true,
 					},
 					on: {
-						click: this.flipHorizontally,
+						click: flipHorizontally,
 					},
 				},
-				[flipHorizontallyIconElement],
+				[flipHorizontallyButtonElement],
 			);
-			let flipHorizontallyTooltip = $createElement(
+			flipHorizontallyButtonElement = $createElement(
 				'v-tooltip',
 				{
 					props: {
@@ -73,10 +80,10 @@ export default function($createElement) {
 				},
 				[
 					flipHorizontallyButtonElement,
-					$createElement('span', 'flip horizontally'),
+					$createElement('span', flipHorizontallyTooltip),
 				],
 			);
-			let flipVerticallyIconElement = $createElement(
+			let flipVerticallyButtonElement = $createElement(
 				'v-icon',
 				{
 					style: {
@@ -85,7 +92,7 @@ export default function($createElement) {
 				},
 				'flip',
 			);
-			let flipVerticallyButtonElement = $createElement(
+			flipVerticallyButtonElement = $createElement(
 				'v-btn',
 				{
 					slot: 'activator',
@@ -94,12 +101,12 @@ export default function($createElement) {
 						icon: true,
 					},
 					on: {
-						click: this.flipVertically,
+						click: flipVertically,
 					},
 				},
-				[flipVerticallyIconElement],
+				[flipVerticallyButtonElement],
 			);
-			let flipVerticallyTooltip = $createElement(
+			flipVerticallyButtonElement = $createElement(
 				'v-tooltip',
 				{
 					props: {
@@ -108,16 +115,22 @@ export default function($createElement) {
 				},
 				[
 					flipVerticallyButtonElement,
-					$createElement('span', 'flip vertically'),
+					$createElement('span', flipVerticallyTooltip),
 				],
 			);
 			buttonElements.push(
-				flipHorizontallyTooltip,
-				flipVerticallyTooltip,
+				flipHorizontallyButtonElement,
+				flipVerticallyButtonElement,
 			);
 		}
 		if (!notRotatable) {
-			let rotateClockwiseIconElement = $createElement(
+			let {
+				rotateClockwise,
+				rotateClockwiseTooltip,
+				rotateCounterclockwise,
+				rotateCounterclockwiseTooltip,
+			} = this;
+			rotateClockwiseButtonElement = $createElement(
 				'v-icon',
 				{
 					style: {
@@ -135,12 +148,12 @@ export default function($createElement) {
 						icon: true,
 					},
 					on: {
-						click: this.rotateClockwise,
+						click: rotateClockwise,
 					},
 				},
-				[rotateClockwiseIconElement],
+				[rotateClockwiseButtonElement],
 			);
-			let rotateClockwiseTooltip = $createElement(
+			rotateClockwiseButtonElement = $createElement(
 				'v-tooltip',
 				{
 					props: {
@@ -149,11 +162,11 @@ export default function($createElement) {
 				},
 				[
 					rotateClockwiseButtonElement,
-					$createElement('span', 'rotate clockwise'),
+					$createElement('span', rotateClockwiseTooltip),
 				],
 			);
-			let rotateCounterclockwiseIconElement = $createElement('v-icon', 'rotate_90_degrees_ccw');
-			let rotateCounterclockwiseButtonElement = $createElement(
+			let rotateCounterclockwiseButtonElement = $createElement('v-icon', 'rotate_90_degrees_ccw');
+			rotateCounterclockwiseButtonElement = $createElement(
 				'v-btn',
 				{
 					slot: 'activator',
@@ -162,12 +175,12 @@ export default function($createElement) {
 						icon: true,
 					},
 					on: {
-						click: this.rotateCounterclockwise,
+						click: rotateCounterclockwise,
 					},
 				},
-				[rotateCounterclockwiseIconElement],
+				[rotateCounterclockwiseButtonElement],
 			);
-			let rotateCounterclockwiseTooltip = $createElement(
+			rotateCounterclockwiseButtonElement = $createElement(
 				'v-tooltip',
 				{
 					props: {
@@ -176,12 +189,12 @@ export default function($createElement) {
 				},
 				[
 					rotateCounterclockwiseButtonElement,
-					$createElement('span', 'rotate counterclockwise'),
+					$createElement('span', rotateCounterclockwiseTooltip),
 				],
 			);
 			buttonElements.push(
-				rotateClockwiseTooltip,
-				rotateCounterclockwiseTooltip,
+				rotateClockwiseButtonElement,
+				rotateCounterclockwiseButtonElement,
 			);
 		}
 		if (buttonElements.length > 0) {

@@ -61,10 +61,14 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | property | type | default |
 | ---: | :--- | :--- |
 | `clearable` | `Boolean` | `false` |
+| `flipHorizontallyTooltip` | `String` | `'flip horizontally'` |
+| `flipVerticallyTooltip` | `String` | `'flip vertically'` |
 | `imageEncoderOptions` | | |
 | `imageHeight` | `Number` | `256` |
 | `imageType` | `String` | `'png'` |
 | `imageWidth` | `Number` | `256` |
 | `notFlippable` | `Boolean` | `false` |
 | `notRotatable` | `Boolean` | `false` |
+| `rotateClockwiseTooltip` | `String` | `'rotate clockwise'` |
+| `rotateCounterclockwiseTooltip` | `String` | `'rotate counterclockwise'` |
 | `value` | `String` | |

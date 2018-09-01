@@ -5,7 +5,8 @@
 
 		data: function() {
 			return {
-				image: null,
+				dialog: false,
+				value: null,
 			};
 		},
 	});

@@ -29,9 +29,25 @@
 			</v-toolbar>
 			<v-content>
 				<v-container fill-height justify-center>
-					<v-image-input v-model="image" clearable></v-image-input>
+					<v-image-input v-model="value" clearable></v-image-input>
 				</v-container>
 			</v-content>
+			<v-dialog v-model="dialog" max-width="500px">
+				<v-btn slot="activator" :disabled="!value" bottom dark fab fixed right>
+					<v-icon>image</v-icon>
+				</v-btn>
+				<v-card>
+					<v-card-title class="justify-center">
+						<img :src="value"/>
+					</v-card-title>
+					<v-card-actions>
+						<v-spacer></v-spacer>
+						<v-btn flat @click="dialog = false">
+							close
+						</v-btn>
+					</v-card-actions>
+				</v-card>
+			</v-dialog>
 		</v-app>
 		<script src="demo/index.js"></script>
 	</body>

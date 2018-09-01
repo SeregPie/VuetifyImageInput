@@ -19,8 +19,27 @@
 		<script src="VuetifyImageInput.js"></script>
 	</head>
 	<body>
-		<v-app v-cloak id="app">
-			<v-toolbar app dark dense>
+		<v-app v-cloak id="app" :dark="dark">
+			<v-navigation-drawer v-model="drawer" app clipped>
+				<v-container fluid grid-list-md>
+					<v-layout column>
+						<v-flex>
+							<v-switch v-model="dark" class="ma-0" label="dark" hide-details></v-switch>
+						</v-flex>
+						<v-flex>
+							<v-checkbox v-model="clearable" class="ma-0" label="clearable" hide-details></v-checkbox>
+						</v-flex>
+						<v-flex>
+							<v-checkbox v-model="notFlippable" class="ma-0" label="not-flippable" hide-details></v-checkbox>
+						</v-flex>
+						<v-flex>
+							<v-checkbox v-model="notRotatable" class="ma-0" label="not-rotatable" hide-details></v-checkbox>
+						</v-flex>
+					</v-layout>
+				</v-container>
+			</v-navigation-drawer>
+			<v-toolbar app color="primary" clipped-left dark dense>
+				<v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
 				<v-toolbar-title>VuetifyImageInput</v-toolbar-title>
 				<v-spacer></v-spacer>
 				<v-btn href="https://github.com/SeregPie/VuetifyImageInput" icon target="_blank">
@@ -29,11 +48,16 @@
 			</v-toolbar>
 			<v-content>
 				<v-container fill-height justify-center>
-					<v-image-input v-model="value" clearable></v-image-input>
+					<v-image-input
+						v-model="value"
+						:clearable="clearable"
+						:not-flippable="notFlippable"
+						:not-rotatable="notRotatable"
+					></v-image-input>
 				</v-container>
 			</v-content>
 			<v-dialog v-model="dialog" max-width="500px">
-				<v-btn slot="activator" :disabled="!value" bottom dark fab fixed right>
+				<v-btn slot="activator" :disabled="!value" color="accent" bottom dark fab fixed right>
 					<v-icon>image</v-icon>
 				</v-btn>
 				<v-card>

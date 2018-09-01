@@ -1,3 +1,5 @@
+import Function_cast from '/utils/Function/cast';
+
 import checkeredBackgroundImage from './shared/checkeredBackgroundImage';
 
 export default function($createElement) {
@@ -19,8 +21,12 @@ export default function($createElement) {
 		);
 		let buttonElements = [];
 		if (clearable) {
-			let {clear} = this;
-			let clearButtonElement = $createElement('v-icon', 'clear');
+			let {
+				clear,
+				clearIcon,
+			} = this;
+			clearIcon = Function_cast(clearIcon).call(this);
+			let clearButtonElement = $createElement('v-icon', clearIcon);
 			clearButtonElement = $createElement(
 				'v-btn',
 				{
@@ -43,22 +49,36 @@ export default function($createElement) {
 		if (!hideActions) {
 			let {
 				flipHorizontally,
+				flipHorizontallyIcon,
+				flipHorizontallyIconStyle,
 				flipHorizontallyText,
 				flipVertically,
+				flipVerticallyIcon,
+				flipVerticallyIconStyle,
 				flipVerticallyText,
 				rotateClockwise,
+				rotateClockwiseIcon,
+				rotateClockwiseIconStyle,
 				rotateClockwiseText,
 				rotateCounterclockwise,
+				rotateCounterclockwiseIcon,
+				rotateCounterclockwiseIconStyle,
 				rotateCounterclockwiseText,
 			} = this;
+			flipHorizontallyIcon = Function_cast(flipHorizontallyIcon).call(this);
+			flipVerticallyIcon = Function_cast(flipVerticallyIcon).call(this);
+			rotateClockwiseIcon = Function_cast(rotateClockwiseIcon).call(this);
+			rotateCounterclockwiseIcon = Function_cast(rotateCounterclockwiseIcon).call(this);
+			flipHorizontallyIconStyle = Function_cast(flipHorizontallyIconStyle).call(this);
+			flipVerticallyIconStyle = Function_cast(flipVerticallyIconStyle).call(this);
+			rotateClockwiseIconStyle = Function_cast(rotateClockwiseIconStyle).call(this);
+			rotateCounterclockwiseIconStyle = Function_cast(rotateCounterclockwiseIconStyle).call(this);
 			let flipHorizontallyButtonElement = $createElement(
 				'v-icon',
 				{
-					style: {
-						transform: 'rotate(180deg)',
-					},
+					style: flipHorizontallyIconStyle,
 				},
-				'flip',
+				flipHorizontallyIcon,
 			);
 			flipHorizontallyButtonElement = $createElement(
 				'v-btn',
@@ -89,11 +109,9 @@ export default function($createElement) {
 			let flipVerticallyButtonElement = $createElement(
 				'v-icon',
 				{
-					style: {
-						transform: 'rotate(90deg)',
-					},
+					style: flipVerticallyIconStyle,
 				},
-				'flip',
+				flipVerticallyIcon,
 			);
 			flipVerticallyButtonElement = $createElement(
 				'v-btn',
@@ -128,11 +146,9 @@ export default function($createElement) {
 			rotateClockwiseButtonElement = $createElement(
 				'v-icon',
 				{
-					style: {
-						transform: 'rotate(180deg)',
-					},
+					style: rotateClockwiseIconStyle,
 				},
-				'rotate_90_degrees_ccw',
+				rotateClockwiseIcon,
 			);
 			let rotateClockwiseButtonElement = $createElement(
 				'v-btn',
@@ -160,7 +176,13 @@ export default function($createElement) {
 					$createElement('span', rotateClockwiseText),
 				],
 			);
-			let rotateCounterclockwiseButtonElement = $createElement('v-icon', 'rotate_90_degrees_ccw');
+			let rotateCounterclockwiseButtonElement = $createElement(
+				'v-icon',
+				{
+					style: rotateCounterclockwiseIconStyle,
+				},
+				rotateCounterclockwiseIcon,
+			);
 			rotateCounterclockwiseButtonElement = $createElement(
 				'v-btn',
 				{

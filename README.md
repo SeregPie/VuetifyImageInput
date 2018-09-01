@@ -60,14 +60,23 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 
 | property | type | default |
 | ---: | :--- | :--- |
+| `clear-icon` | [`Function`, `String`] | `$vuetify.icons.clear` |
 | `clearable` | `Boolean` | `false` |
-| `flip-horizontally-text` | `String` | `'flip horizontally'` |
-| `flip-vertically-text` | `String` | `'flip vertically'` |
+| `flip-horizontally-icon-style` | [`Function`, `Object`] | |
+| `flip-horizontally-icon` | [`Function`, `String`] | `'flip'` |
+| `flip-horizontally-text` | [`Function`, `String`] | `'flip horizontally'` |
+| `flip-vertically-icon-style` | [`Function`, `Object`] | `{transform: 'rotate(90deg)'}` |
+| `flip-vertically-icon` | [`Function`, `String`] | `'flip'` |
+| `flip-vertically-text` | [`Function`, `String`] | `'flip vertically'` |
 | `hide-actions` | `Boolean` | `false` |
 | `image-encoder-options` | | |
 | `image-height` | `Number` | `256` |
 | `image-type` | `String` | `'png'` |
 | `image-width` | `Number` | `256` |
-| `rotate-clockwise-text` | `String` | `'rotate clockwise'` |
-| `rotate-counterclockwise-text` | `String` | `'rotate counterclockwise'` |
+| `rotate-clockwise-icon-style` | [`Function`, `Object`] | `{transform: 'scaleX(-1)'}` |
+| `rotate-clockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` |
+| `rotate-clockwise-text` | [`Function`, `String`] | `'rotate clockwise'` |
+| `rotate-counterclockwise-icon-style` | [`Function`, `Object`] | |
+| `rotate-counterclockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` |
+| `rotate-counterclockwise-text` | [`Function`, `String`] | `'rotate counterclockwise'` |
 | `value` | `String` | |

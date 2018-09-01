@@ -5,12 +5,12 @@ export default {
 	},
 
 	flipHorizontallyText: {
-		type: String,
+		type: [Function, String],
 		default: 'flip horizontally',
 	},
 
 	flipVerticallyText: {
-		type: String,
+		type: [Function, String],
 		default: 'flip vertically',
 	},
 
@@ -42,12 +42,12 @@ export default {
 	},
 
 	rotateClockwiseText: {
-		type: String,
+		type: [Function, String],
 		default: 'rotate clockwise',
 	},
 
 	rotateCounterclockwiseText: {
-		type: String,
+		type: [Function, String],
 		default: 'rotate counterclockwise',
 	},
 

@@ -74,7 +74,7 @@ export default function($createElement) {
 					{
 						style: iconStyle,
 					},
-					flipHorizontallyIcon,
+					icon,
 				);
 				let buttonElementOptions = {
 					props: {
@@ -86,13 +86,16 @@ export default function($createElement) {
 					},
 				};
 				let buttonElement;
-				if (text) {
-					buttonElementOptions.slot = 'activator';
+				let setButtonElement = (() => {
 					buttonElement = $createElement(
 						'v-btn',
 						buttonElementOptions,
 						[iconElement],
 					);
+				})
+				if (text) {
+					buttonElementOptions.slot = 'activator';
+					setButtonElement();
 					buttonElement = $createElement(
 						'v-tooltip',
 						{
@@ -106,11 +109,7 @@ export default function($createElement) {
 						],
 					);
 				} else {
-					buttonElement = $createElement(
-						'v-btn',
-						buttonElementOptions,
-						[iconElement],
-					);
+					setButtonElement();
 				}
 				return buttonElement;
 			});

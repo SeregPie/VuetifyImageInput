@@ -5,7 +5,7 @@
 	"main": "VuetifyImageInput.js",
 	"scripts": {
 		"build": "rollup -c",
-		"dev": "rollup -c -w | http-server -o",
+		"dev": "rollup -c -w | http-server -o -c-1",
 		"prepublishOnly": "npm run build"
 	},
 	"repository": "https://github.com/SeregPie/VuetifyImageInput.git",

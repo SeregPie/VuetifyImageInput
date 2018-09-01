@@ -19,15 +19,15 @@ export default function($createElement) {
 				},
 			},
 		);
-		let buttonElements = [];
+		let actionButtonElements = [];
 		if (clearable) {
 			let {
 				clear,
 				clearIcon,
 			} = this;
 			clearIcon = Function_cast(clearIcon).call(this);
-			let clearButtonElement = $createElement('v-icon', clearIcon);
-			clearButtonElement = $createElement(
+			let clearIconElement = $createElement('v-icon', clearIcon);
+			let clearButtonElement = $createElement(
 				'v-btn',
 				{
 					props: {
@@ -38,10 +38,10 @@ export default function($createElement) {
 						click: clear,
 					},
 				},
-				[clearButtonElement],
+				[clearIconElement],
 			);
 			let spacerElement = $createElement('v-spacer');
-			buttonElements.push(
+			actionButtonElements.push(
 				clearButtonElement,
 				spacerElement,
 			);
@@ -65,157 +65,84 @@ export default function($createElement) {
 				rotateCounterclockwiseIconStyle,
 				rotateCounterclockwiseText,
 			} = this;
-			flipHorizontallyIcon = Function_cast(flipHorizontallyIcon).call(this);
-			flipVerticallyIcon = Function_cast(flipVerticallyIcon).call(this);
-			rotateClockwiseIcon = Function_cast(rotateClockwiseIcon).call(this);
-			rotateCounterclockwiseIcon = Function_cast(rotateCounterclockwiseIcon).call(this);
-			flipHorizontallyIconStyle = Function_cast(flipHorizontallyIconStyle).call(this);
-			flipVerticallyIconStyle = Function_cast(flipVerticallyIconStyle).call(this);
-			rotateClockwiseIconStyle = Function_cast(rotateClockwiseIconStyle).call(this);
-			rotateCounterclockwiseIconStyle = Function_cast(rotateCounterclockwiseIconStyle).call(this);
-			let flipHorizontallyButtonElement = $createElement(
-				'v-icon',
-				{
-					style: flipHorizontallyIconStyle,
-				},
-				flipHorizontallyIcon,
-			);
-			flipHorizontallyButtonElement = $createElement(
-				'v-btn',
-				{
-					slot: 'activator',
+			let createActionButtonElement = ((text, icon, iconStyle, action) => {
+				text = Function_cast(text).call(this);
+				icon = Function_cast(icon).call(this);
+				iconStyle = Function_cast(iconStyle).call(this);
+				let iconElement = $createElement(
+					'v-icon',
+					{
+						style: iconStyle,
+					},
+					flipHorizontallyIcon,
+				);
+				let buttonElementOptions = {
 					props: {
 						flat: true,
 						icon: true,
 					},
 					on: {
-						click: flipHorizontally,
+						click: action,
 					},
-				},
-				[flipHorizontallyButtonElement],
-			);
-			flipHorizontallyButtonElement = $createElement(
-				'v-tooltip',
-				{
-					props: {
-						right: true,
-					},
-				},
-				[
-					flipHorizontallyButtonElement,
-					$createElement('span', flipHorizontallyText),
-				],
-			);
-			let flipVerticallyButtonElement = $createElement(
-				'v-icon',
-				{
-					style: flipVerticallyIconStyle,
-				},
-				flipVerticallyIcon,
-			);
-			flipVerticallyButtonElement = $createElement(
-				'v-btn',
-				{
-					slot: 'activator',
-					props: {
-						flat: true,
-						icon: true,
-					},
-					on: {
-						click: flipVertically,
-					},
-				},
-				[flipVerticallyButtonElement],
-			);
-			flipVerticallyButtonElement = $createElement(
-				'v-tooltip',
-				{
-					props: {
-						right: true,
-					},
-				},
-				[
-					flipVerticallyButtonElement,
-					$createElement('span', flipVerticallyText),
-				],
-			);
-			buttonElements.push(
-				flipHorizontallyButtonElement,
-				flipVerticallyButtonElement,
-			);
-			rotateClockwiseButtonElement = $createElement(
-				'v-icon',
-				{
-					style: rotateClockwiseIconStyle,
-				},
-				rotateClockwiseIcon,
-			);
-			let rotateClockwiseButtonElement = $createElement(
-				'v-btn',
-				{
-					slot: 'activator',
-					props: {
-						flat: true,
-						icon: true,
-					},
-					on: {
-						click: rotateClockwise,
-					},
-				},
-				[rotateClockwiseButtonElement],
-			);
-			rotateClockwiseButtonElement = $createElement(
-				'v-tooltip',
-				{
-					props: {
-						right: true,
-					},
-				},
-				[
-					rotateClockwiseButtonElement,
-					$createElement('span', rotateClockwiseText),
-				],
-			);
-			let rotateCounterclockwiseButtonElement = $createElement(
-				'v-icon',
-				{
-					style: rotateCounterclockwiseIconStyle,
-				},
-				rotateCounterclockwiseIcon,
-			);
-			rotateCounterclockwiseButtonElement = $createElement(
-				'v-btn',
-				{
-					slot: 'activator',
-					props: {
-						flat: true,
-						icon: true,
-					},
-					on: {
-						click: rotateCounterclockwise,
-					},
-				},
-				[rotateCounterclockwiseButtonElement],
-			);
-			rotateCounterclockwiseButtonElement = $createElement(
-				'v-tooltip',
-				{
-					props: {
-						right: true,
-					},
-				},
-				[
-					rotateCounterclockwiseButtonElement,
-					$createElement('span', rotateCounterclockwiseText),
-				],
-			);
-			buttonElements.push(
-				rotateClockwiseButtonElement,
-				rotateCounterclockwiseButtonElement,
+				};
+				let buttonElement;
+				if (text) {
+					buttonElementOptions.slot = 'activator';
+					buttonElement = $createElement(
+						'v-btn',
+						buttonElementOptions,
+						[iconElement],
+					);
+					buttonElement = $createElement(
+						'v-tooltip',
+						{
+							props: {
+								right: true,
+							},
+						},
+						[
+							buttonElement,
+							$createElement('span', text),
+						],
+					);
+				} else {
+					buttonElement = $createElement(
+						'v-btn',
+						buttonElementOptions,
+						[iconElement],
+					);
+				}
+				return buttonElement;
+			});
+			actionButtonElements.push(
+				createActionButtonElement(
+					flipHorizontallyText,
+					flipHorizontallyIcon,
+					flipHorizontallyIconStyle,
+					flipHorizontally,
+				),
+				createActionButtonElement(
+					flipVerticallyText,
+					flipVerticallyIcon,
+					flipVerticallyIconStyle,
+					flipVertically,
+				),
+				createActionButtonElement(
+					rotateClockwiseText,
+					rotateClockwiseIcon,
+					rotateClockwiseIconStyle,
+					rotateClockwise,
+				),
+				createActionButtonElement(
+					rotateCounterclockwiseText,
+					rotateCounterclockwiseIcon,
+					rotateCounterclockwiseIconStyle,
+					rotateCounterclockwise,
+				),
 			);
 		}
-		if (buttonElements.length > 0) {
-			let buttonsContainerElement = $createElement(
+		if (actionButtonElements.length) {
+			let actionButtonsContainerElement = $createElement(
 				'div',
 				{
 					style: {
@@ -226,7 +153,7 @@ export default function($createElement) {
 						justifyContent: 'center',
 					},
 				},
-				buttonElements,
+				actionButtonElements,
 			);
 			let imageContainerElement = $createElement(
 				'div',
@@ -253,7 +180,7 @@ export default function($createElement) {
 				},
 				[
 					imageContainerElement,
-					buttonsContainerElement,
+					actionButtonsContainerElement,
 				],
 			);
 			let wrapperElement = $createElement(

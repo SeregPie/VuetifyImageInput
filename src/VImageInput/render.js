@@ -1,6 +1,6 @@
 import checkeredBackgroundImage from './shared/checkeredBackgroundImage';
 
-export default function(createElement) {
+export default function($createElement) {
 	let {
 		clearable,
 		image,
@@ -10,7 +10,7 @@ export default function(createElement) {
 		notRotatable,
 	} = this;
 	if (image) {
-		let imageElement = createElement(
+		let imageElement = $createElement(
 			'img',
 			{
 				attrs: {
@@ -20,8 +20,8 @@ export default function(createElement) {
 		);
 		let buttonElements = [];
 		if (clearable) {
-			let clearIconElement = createElement('v-icon', 'clear');
-			let clearButtonElement = createElement(
+			let clearIconElement = $createElement('v-icon', 'clear');
+			let clearButtonElement = $createElement(
 				'v-btn',
 				{
 					props: {
@@ -34,14 +34,14 @@ export default function(createElement) {
 				},
 				[clearIconElement],
 			);
-			let spacerElement = createElement('v-spacer');
+			let spacerElement = $createElement('v-spacer');
 			buttonElements.push(
 				clearButtonElement,
 				spacerElement,
 			);
 		}
 		if (!notFlippable) {
-			let flipHorizontallyIconElement = createElement(
+			let flipHorizontallyIconElement = $createElement(
 				'v-icon',
 				{
 					style: {
@@ -50,7 +50,7 @@ export default function(createElement) {
 				},
 				'flip',
 			);
-			let flipHorizontallyButtonElement = createElement(
+			let flipHorizontallyButtonElement = $createElement(
 				'v-btn',
 				{
 					slot: 'activator',
@@ -64,7 +64,7 @@ export default function(createElement) {
 				},
 				[flipHorizontallyIconElement],
 			);
-			let flipHorizontallyTooltip = createElement(
+			let flipHorizontallyTooltip = $createElement(
 				'v-tooltip',
 				{
 					props: {
@@ -73,10 +73,10 @@ export default function(createElement) {
 				},
 				[
 					flipHorizontallyButtonElement,
-					createElement('span', 'flip horizontally'),
+					$createElement('span', 'flip horizontally'),
 				],
 			);
-			let flipVerticallyIconElement = createElement(
+			let flipVerticallyIconElement = $createElement(
 				'v-icon',
 				{
 					style: {
@@ -85,7 +85,7 @@ export default function(createElement) {
 				},
 				'flip',
 			);
-			let flipVerticallyButtonElement = createElement(
+			let flipVerticallyButtonElement = $createElement(
 				'v-btn',
 				{
 					slot: 'activator',
@@ -99,7 +99,7 @@ export default function(createElement) {
 				},
 				[flipVerticallyIconElement],
 			);
-			let flipVerticallyTooltip = createElement(
+			let flipVerticallyTooltip = $createElement(
 				'v-tooltip',
 				{
 					props: {
@@ -108,7 +108,7 @@ export default function(createElement) {
 				},
 				[
 					flipVerticallyButtonElement,
-					createElement('span', 'flip vertically'),
+					$createElement('span', 'flip vertically'),
 				],
 			);
 			buttonElements.push(
@@ -117,7 +117,7 @@ export default function(createElement) {
 			);
 		}
 		if (!notRotatable) {
-			let rotateClockwiseIconElement = createElement(
+			let rotateClockwiseIconElement = $createElement(
 				'v-icon',
 				{
 					style: {
@@ -126,7 +126,7 @@ export default function(createElement) {
 				},
 				'rotate_90_degrees_ccw',
 			);
-			let rotateClockwiseButtonElement = createElement(
+			let rotateClockwiseButtonElement = $createElement(
 				'v-btn',
 				{
 					slot: 'activator',
@@ -140,7 +140,7 @@ export default function(createElement) {
 				},
 				[rotateClockwiseIconElement],
 			);
-			let rotateClockwiseTooltip = createElement(
+			let rotateClockwiseTooltip = $createElement(
 				'v-tooltip',
 				{
 					props: {
@@ -149,11 +149,11 @@ export default function(createElement) {
 				},
 				[
 					rotateClockwiseButtonElement,
-					createElement('span', 'rotate clockwise'),
+					$createElement('span', 'rotate clockwise'),
 				],
 			);
-			let rotateCounterclockwiseIconElement = createElement('v-icon', 'rotate_90_degrees_ccw');
-			let rotateCounterclockwiseButtonElement = createElement(
+			let rotateCounterclockwiseIconElement = $createElement('v-icon', 'rotate_90_degrees_ccw');
+			let rotateCounterclockwiseButtonElement = $createElement(
 				'v-btn',
 				{
 					slot: 'activator',
@@ -167,7 +167,7 @@ export default function(createElement) {
 				},
 				[rotateCounterclockwiseIconElement],
 			);
-			let rotateCounterclockwiseTooltip = createElement(
+			let rotateCounterclockwiseTooltip = $createElement(
 				'v-tooltip',
 				{
 					props: {
@@ -176,7 +176,7 @@ export default function(createElement) {
 				},
 				[
 					rotateCounterclockwiseButtonElement,
-					createElement('span', 'rotate counterclockwise'),
+					$createElement('span', 'rotate counterclockwise'),
 				],
 			);
 			buttonElements.push(
@@ -185,36 +185,36 @@ export default function(createElement) {
 			);
 		}
 		if (buttonElements.length > 0) {
-			let buttonsContainerElement = createElement(
+			let buttonsContainerElement = $createElement(
 				'div',
 				{
 					style: {
+						alignItems: 'center',
 						display: 'flex',
 						flexDirection: 'column',
 						flexWrap: 'wrap',
 						justifyContent: 'center',
-						alignItems: 'center',
 					},
 				},
 				buttonElements,
 			);
-			let imageContainerElement = createElement(
+			let imageContainerElement = $createElement(
 				'div',
 				{
 					style: {
-						width: `${imageWidth}px`,
-						height: `${imageHeight}px`,
-						backgroundImage: checkeredBackgroundImage,
-						backgroundSize: '16px 16px',
-						backgroundRepeat: 'repeat',
-						display: 'flex',
-						justifyContent: 'center',
 						alignItems: 'center',
+						backgroundImage: checkeredBackgroundImage,
+						backgroundRepeat: 'repeat',
+						backgroundSize: '16px 16px',
+						display: 'flex',
+						height: `${imageHeight}px`,
+						justifyContent: 'center',
+						width: `${imageWidth}px`,
 					},
 				},
 				[imageElement],
 			);
-			let layoutElement = createElement(
+			let layoutElement = $createElement(
 				'div',
 				{
 					style: {
@@ -226,7 +226,7 @@ export default function(createElement) {
 					buttonsContainerElement,
 				],
 			);
-			let wrapperElement = createElement(
+			let wrapperElement = $createElement(
 				'div',
 				{
 					style: {
@@ -239,8 +239,8 @@ export default function(createElement) {
 		}
 		return imageElement;
 	}
-	let uploadIconElement = createElement('v-icon', 'cloud_upload');
-	let uploadButtonElement = createElement(
+	let uploadIconElement = $createElement('v-icon', 'cloud_upload');
+	let uploadButtonElement = $createElement(
 		'v-btn',
 		{
 			props: {
@@ -254,18 +254,18 @@ export default function(createElement) {
 		},
 		[uploadIconElement],
 	);
-	let uploadButtonContainerElement = createElement(
+	let uploadButtonContainerElement = $createElement(
 		'div',
 		{
 			style: {
-				width: `${imageWidth}px`,
-				height: `${imageHeight}px`,
+				alignItems: 'center',
+				backgroundColor: '#eeeeee',
 				border: '1px dashed #bdbdbd',
 				borderRadius: '8px',
-				backgroundColor: '#eeeeee',
 				display: 'inline-flex',
+				height: `${imageHeight}px`,
 				justifyContent: 'center',
-				alignItems: 'center',
+				width: `${imageWidth}px`,
 			},
 		},
 		[uploadButtonElement],

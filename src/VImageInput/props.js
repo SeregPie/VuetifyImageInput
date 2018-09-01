@@ -1,56 +1,24 @@
 export default {
-	value: String,
-
-	imageWidth: {
-		type: Number,
-		default: 256,
+	clearable: {
+		type: Boolean,
+		default: false,
 	},
+
+	imageEncoderOptions: {},
 
 	imageHeight: {
 		type: Number,
 		default: 256,
 	},
 
-	imageFormat: {
+	imageType: {
 		type: String,
 		default: 'png',
 	},
 
-	encoderOptions: {},
-
-	minImageWidth: {
+	imageWidth: {
 		type: Number,
-		default: 0,
-	},
-
-	maxImageWidth: {
-		type: Number,
-		default: Infinity,
-	},
-
-	minImageHeight: {
-		type: Number,
-		default: 0,
-	},
-
-	maxImageHeight: {
-		type: Number,
-		default: Infinity,
-	},
-
-	clearable: {
-		type: Boolean,
-		default: false,
-	},
-
-	croppable: {
-		type: Boolean,
-		default: false,
-	},
-
-	notMovable: {
-		type: Boolean,
-		default: false,
+		default: 256,
 	},
 
 	notFlippable: {
@@ -63,10 +31,5 @@ export default {
 		default: false,
 	},
 
-	notZoomable: {
-		type: Boolean,
-		default: false,
-	},
-
-	// contain
+	value: String,
 };

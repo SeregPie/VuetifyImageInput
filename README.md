@@ -54,3 +54,17 @@ export default {
 ```
 
 The component will be available under the name `VuetifyImageInput`. If Vue is detected, the component will be registered automatically.
+
+
+#### properties
+
+| property | type | default |
+| ---: | :--- | :--- |
+| `clearable` | `Boolean` | `false` |
+| `imageEncoderOptions` | | |
+| `imageHeight` | `Number` | `256` |
+| `imageType` | `String` | `'png'` |
+| `imageWidth` | `Number` | `256` |
+| `notFlippable` | `Boolean` | `false` |
+| `notRotatable` | `Boolean` | `false` |
+| `value` | `String` | |

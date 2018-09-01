@@ -6,8 +6,7 @@ export default function($createElement) {
 		image,
 		imageHeight,
 		imageWidth,
-		notFlippable,
-		notRotatable,
+		hideActions,
 	} = this;
 	if (image) {
 		let imageElement = $createElement(
@@ -41,12 +40,16 @@ export default function($createElement) {
 				spacerElement,
 			);
 		}
-		if (!notFlippable) {
+		if (!hideActions) {
 			let {
 				flipHorizontally,
 				flipHorizontallyTooltip,
 				flipVertically,
 				flipVerticallyTooltip,
+				rotateClockwise,
+				rotateClockwiseTooltip,
+				rotateCounterclockwise,
+				rotateCounterclockwiseTooltip,
 			} = this;
 			let flipHorizontallyButtonElement = $createElement(
 				'v-icon',
@@ -122,14 +125,6 @@ export default function($createElement) {
 				flipHorizontallyButtonElement,
 				flipVerticallyButtonElement,
 			);
-		}
-		if (!notRotatable) {
-			let {
-				rotateClockwise,
-				rotateClockwiseTooltip,
-				rotateCounterclockwise,
-				rotateCounterclockwiseTooltip,
-			} = this;
 			rotateClockwiseButtonElement = $createElement(
 				'v-icon',
 				{

@@ -13,7 +13,12 @@ export default {
 		type: String,
 		default: 'flip vertically',
 	},
-	
+
+	hideActions: {
+		type: Boolean,
+		default: false,
+	},
+
 	imageEncoderOptions: {},
 
 	imageHeight: {
@@ -32,11 +37,6 @@ export default {
 	},
 
 	notFlippable: {
-		type: Boolean,
-		default: false,
-	},
-
-	notRotatable: {
 		type: Boolean,
 		default: false,
 	},

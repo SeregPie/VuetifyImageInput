@@ -127,6 +127,22 @@ export default function($createElement) {
 				),
 			);
 		}
+		let imageContainerElement = $createElement(
+			'div',
+			{
+				style: {
+					alignItems: 'center',
+					backgroundImage: checkeredBackgroundImage,
+					backgroundRepeat: 'repeat',
+					backgroundSize: '16px 16px',
+					display: 'flex',
+					height: `${imageHeight}px`,
+					justifyContent: 'center',
+					width: `${imageWidth}px`,
+				},
+			},
+			[imageElement],
+		);
 		if (actionButtonElements.length) {
 			let actionButtonsContainerElement = $createElement(
 				'div',
@@ -140,27 +156,11 @@ export default function($createElement) {
 				},
 				actionButtonElements,
 			);
-			let imageContainerElement = $createElement(
+			let wrapperElement = $createElement(
 				'div',
 				{
 					style: {
-						alignItems: 'center',
-						backgroundImage: checkeredBackgroundImage,
-						backgroundRepeat: 'repeat',
-						backgroundSize: '16px 16px',
-						display: 'flex',
-						height: `${imageHeight}px`,
-						justifyContent: 'center',
-						width: `${imageWidth}px`,
-					},
-				},
-				[imageElement],
-			);
-			let layoutElement = $createElement(
-				'div',
-				{
-					style: {
-						display: 'flex',
+						display: 'inline-flex',
 					},
 				},
 				[
@@ -168,18 +168,9 @@ export default function($createElement) {
 					actionButtonsContainerElement,
 				],
 			);
-			let wrapperElement = $createElement(
-				'div',
-				{
-					style: {
-						display: 'inline',
-					},
-				},
-				[layoutElement],
-			);
 			return wrapperElement;
 		}
-		return imageElement;
+		return imageContainerElement;
 	}
 	let uploadIconElement = $createElement('v-icon', 'cloud_upload');
 	let uploadButtonElement = $createElement(

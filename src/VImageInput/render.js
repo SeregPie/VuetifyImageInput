@@ -11,6 +11,54 @@ export default function($createElement) {
 		hideActions,
 	} = this;
 	if (image) {
+		let createActionButtonElement = ((action, icon, iconStyle, text) => {
+			text = Function_cast(text).call(this);
+			icon = Function_cast(icon).call(this);
+			iconStyle = Function_cast(iconStyle).call(this);
+			let iconElement = $createElement(
+				'v-icon',
+				{
+					style: iconStyle,
+				},
+				icon,
+			);
+			let buttonElementOptions = {
+				props: {
+					flat: true,
+					icon: true,
+				},
+				on: {
+					click: action,
+				},
+			};
+			let buttonElement;
+			let setButtonElement = (() => {
+				buttonElement = $createElement(
+					'v-btn',
+					buttonElementOptions,
+					[iconElement],
+				);
+			})
+			if (text) {
+				buttonElementOptions.slot = 'activator';
+				setButtonElement();
+				buttonElement = $createElement(
+					'v-tooltip',
+					{
+						props: {
+							right: true,
+						},
+					},
+					[
+						buttonElement,
+						$createElement('span', text),
+					],
+				);
+			} else {
+				setButtonElement();
+			}
+			return buttonElement;
+		});
 		let imageElement = $createElement(
 			'img',
 			{
@@ -25,25 +73,12 @@ export default function($createElement) {
 				clear,
 				clearIcon,
 			} = this;
-			clearIcon = Function_cast(clearIcon).call(this);
-			let clearIconElement = $createElement('v-icon', clearIcon);
-			let clearButtonElement = $createElement(
-				'v-btn',
-				{
-					props: {
-						flat: true,
-						icon: true,
-					},
-					on: {
-						click: clear,
-					},
-				},
-				[clearIconElement],
-			);
-			let spacerElement = $createElement('v-spacer');
 			actionButtonElements.push(
-				clearButtonElement,
-				spacerElement,
+				createActionButtonElement(
+					clear,
+					clearIcon,
+				),
+				$createElement('v-spacer'),
 			);
 		}
 		if (!hideActions) {
@@ -65,78 +100,30 @@ export default function($createElement) {
 				rotateCounterclockwiseIconStyle,
 				rotateCounterclockwiseText,
 			} = this;
-			let createActionButtonElement = ((text, icon, iconStyle, action) => {
-				text = Function_cast(text).call(this);
-				icon = Function_cast(icon).call(this);
-				iconStyle = Function_cast(iconStyle).call(this);
-				let iconElement = $createElement(
-					'v-icon',
-					{
-						style: iconStyle,
-					},
-					icon,
-				);
-				let buttonElementOptions = {
-					props: {
-						flat: true,
-						icon: true,
-					},
-					on: {
-						click: action,
-					},
-				};
-				let buttonElement;
-				let setButtonElement = (() => {
-					buttonElement = $createElement(
-						'v-btn',
-						buttonElementOptions,
-						[iconElement],
-					);
-				})
-				if (text) {
-					buttonElementOptions.slot = 'activator';
-					setButtonElement();
-					buttonElement = $createElement(
-						'v-tooltip',
-						{
-							props: {
-								right: true,
-							},
-						},
-						[
-							buttonElement,
-							$createElement('span', text),
-						],
-					);
-				} else {
-					setButtonElement();
-				}
-				return buttonElement;
-			});
 			actionButtonElements.push(
 				createActionButtonElement(
-					flipHorizontallyText,
+					flipHorizontally,
 					flipHorizontallyIcon,
 					flipHorizontallyIconStyle,
-					flipHorizontally,
+					flipHorizontallyText,
 				),
 				createActionButtonElement(
-					flipVerticallyText,
+					flipVertically,
 					flipVerticallyIcon,
 					flipVerticallyIconStyle,
-					flipVertically,
+					flipVerticallyText,
 				),
 				createActionButtonElement(
-					rotateClockwiseText,
+					rotateClockwise,
 					rotateClockwiseIcon,
 					rotateClockwiseIconStyle,
-					rotateClockwise,
+					rotateClockwiseText,
 				),
 				createActionButtonElement(
-					rotateCounterclockwiseText,
+					rotateCounterclockwise,
 					rotateCounterclockwiseIcon,
 					rotateCounterclockwiseIconStyle,
-					rotateCounterclockwise,
+					rotateCounterclockwiseText,
 				),
 			);
 		}
@@ -145,7 +132,6 @@ export default function($createElement) {
 				'div',
 				{
 					style: {
-						alignItems: 'center',
 						display: 'flex',
 						flexDirection: 'column',
 						flexWrap: 'wrap',

@@ -79,4 +79,6 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `rotate-counterclockwise-icon-style` | [`Function`, `Object`] | |
 | `rotate-counterclockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` |
 | `rotate-counterclockwise-text` | [`Function`, `String`] | `'rotate counterclockwise'` |
+| `upload-icon-style` | [`Function`, `Object`] | |
+| `upload-icon` | [`Function`, `String`] | `'cloud_upload'` |
 | `value` | `String` | |

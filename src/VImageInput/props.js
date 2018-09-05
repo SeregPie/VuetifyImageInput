@@ -89,5 +89,12 @@ export default {
 		default: 'rotate counterclockwise',
 	},
 
+	uploadIcon: {
+		type: [Function, String],
+		default: 'cloud_upload',
+	},
+
+	uploadIconStyle: [Function, Object],
+
 	value: String,
 };

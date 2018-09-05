@@ -1,10 +1,22 @@
+import Function_cast from '/utils/Function/cast';
+
 export default function() {
 	let {
 		$createElement,
 		upload,
+		uploadIcon,
+		uploadIconStyle,
 	} = this;
-	let uploadIconElement = $createElement('v-icon', 'cloud_upload');
-	let uploadButtonElement = $createElement(
+	uploadIcon = Function_cast(uploadIcon).call(this);
+	uploadIconStyle = Function_cast(uploadIconStyle).call(this);
+	let iconElement = $createElement(
+		'v-icon',
+		{
+			style: uploadIconStyle,
+		},
+		uploadIcon,
+	);
+	let buttonElement = $createElement(
 		'v-btn',
 		{
 			props: {
@@ -16,7 +28,7 @@ export default function() {
 				click: upload,
 			},
 		},
-		[uploadIconElement],
+		[iconElement],
 	);
 	let uploaderElement = $createElement(
 		'v-card',
@@ -35,7 +47,7 @@ export default function() {
 				top: 0,
 			},
 		},
-		[uploadButtonElement],
+		[buttonElement],
 	);
 	return uploaderElement;
 }

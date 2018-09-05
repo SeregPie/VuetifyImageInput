@@ -1,6 +1,6 @@
 # VuetifyImageInput
 
-...
+Provides basic image editing tools.
 
 ## demo
 
@@ -32,16 +32,16 @@ Vue.component(VImageInput.name, VImageInput);
 
 *or*
 
-Register the component in the scope of another instance.
+Register the component in the scope of another component.
 
 ```javascript
 import VImageInput from 'vuetify-image-input';
 
 export default {
-  // ...
   components: {
     [VImageInput.name]: VImageInput,
   },
+  // ...
 };
 ```
 
@@ -54,7 +54,6 @@ export default {
 ```
 
 The component will be available under the name `VuetifyImageInput`. If Vue is detected, the component will be registered automatically.
-
 
 #### properties
 

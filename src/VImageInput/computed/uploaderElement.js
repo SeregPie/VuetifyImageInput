@@ -19,13 +19,13 @@ export default function() {
 		[uploadIconElement],
 	);
 	let uploaderElement = $createElement(
-		'div',
+		'v-card',
 		{
+			props: {
+				flat: true,
+			},
 			style: {
 				alignItems: 'center',
-				backgroundColor: '#eeeeee',
-				border: '1px dashed #bdbdbd',
-				borderRadius: '8px',
 				bottom: 0,
 				display: 'flex',
 				justifyContent: 'center',

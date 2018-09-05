@@ -19,7 +19,6 @@ export default function($createElement) {
 	let wrapperElement = $createElement(
 		'div',
 		{
-			key: 0,
 			style: {
 				display: 'inline',
 				position: 'relative',

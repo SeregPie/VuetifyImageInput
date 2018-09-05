@@ -1,6 +1,6 @@
 {
 	"name": "vuetify-image-input",
-	"version": "18.8.28",
+	"version": "18.9.5",
 	"description": "Provides basic image editing tools.",
 	"main": "VuetifyImageInput.js",
 	"scripts": {

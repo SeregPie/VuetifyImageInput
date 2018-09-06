@@ -9,7 +9,7 @@ Provides basic image editing tools.
 ## dependencies
 
 - [Vue](https://github.com/vuejs/vue)
-- [vuetify](https://github.com/vuetifyjs/vuetify)
+- [Vuetify](https://github.com/vuetifyjs/vuetify)
 
 ## setup
 

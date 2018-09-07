@@ -7,8 +7,7 @@ export default function() {
 		clearIcon,
 	} = this;
 	clearIcon = Function_cast(clearIcon).call(this);
-	let iconElement = $createElement('v-icon', clearIcon);
-	let buttonElement = $createElement(
+	return $createElement(
 		'v-btn',
 		{
 			props: {
@@ -19,7 +18,6 @@ export default function() {
 				click: clear,
 			},
 		},
-		[iconElement],
+		[$createElement('v-icon', clearIcon)],
 	);
-	return buttonElement;
 }

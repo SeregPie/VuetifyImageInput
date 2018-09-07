@@ -9,28 +9,7 @@ export default function() {
 	} = this;
 	uploadIcon = Function_cast(uploadIcon).call(this);
 	uploadIconStyle = Function_cast(uploadIconStyle).call(this);
-	let iconElement = $createElement(
-		'v-icon',
-		{
-			style: uploadIconStyle,
-		},
-		uploadIcon,
-	);
-	let buttonElement = $createElement(
-		'v-btn',
-		{
-			props: {
-				color: 'primary',
-				fab: true,
-				large: true,
-			},
-			on: {
-				click: upload,
-			},
-		},
-		[iconElement],
-	);
-	let uploaderElement = $createElement(
+	return $createElement(
 		'v-card',
 		{
 			props: {
@@ -47,7 +26,25 @@ export default function() {
 				top: 0,
 			},
 		},
-		[buttonElement],
+		[$createElement(
+			'v-btn',
+			{
+				props: {
+					color: 'primary',
+					fab: true,
+					large: true,
+				},
+				on: {
+					click: upload,
+				},
+			},
+			[$createElement(
+				'v-icon',
+				{
+					style: uploadIconStyle,
+				},
+				uploadIcon,
+			)],
+		)],
 	);
-	return uploaderElement;
 }

@@ -6,7 +6,7 @@ export default function() {
 		imageHeight,
 		imageWidth,
 	} = this;
-	let cropperElementOptions = {
+	let elementOptions = {
 		style: {
 			backgroundImage: checkeredBackgroundImage,
 			backgroundRepeat: 'repeat',
@@ -15,9 +15,9 @@ export default function() {
 			width: `${imageWidth}px`,
 		},
 	};
-	let cropperElementChildren = [];
+	let elementChildren = [];
 	if (image) {
-		Object.assign(cropperElementOptions.style, {
+		Object.assign(elementOptions.style, {
 			alignItems: 'center',
 			display: 'flex',
 			justifyContent: 'center',
@@ -30,12 +30,11 @@ export default function() {
 				},
 			},
 		);
-		cropperElementChildren.push(imageElement);
+		elementChildren.push(imageElement);
 	}
-	let cropperElement = $createElement(
+	return $createElement(
 		'div',
-		cropperElementOptions,
-		cropperElementChildren,
+		elementOptions,
+		elementChildren,
 	);
-	return cropperElement;
 }

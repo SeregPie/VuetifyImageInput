@@ -1,22 +1,10 @@
 export default function($createElement) {
-	let {
-		editorElement,
-		image,
-	} = this;
-	if (image) {
-		return editorElement;
+	let elementChildren = [this.createEditorElement()];
+	let {image} = this;
+	if (!image) {
+		elementChildren.push(this.createUploaderElement());
 	}
-	let {uploaderElement} = this;
-	let editorWrapperElement = $createElement(
-		'div',
-		{
-			style: {
-				visibility: 'hidden',
-			},
-		},
-		[editorElement],
-	);
-	let wrapperElement = $createElement(
+	return $createElement(
 		'div',
 		{
 			style: {
@@ -24,10 +12,6 @@ export default function($createElement) {
 				position: 'relative',
 			},
 		},
-		[
-			editorWrapperElement,
-			uploaderElement,
-		],
+		elementChildren,
 	);
-	return wrapperElement;
 }

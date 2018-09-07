@@ -73,6 +73,7 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `image-height` | `Number` | `256` |
 | `image-type` | `String` | `'png'` |
 | `image-width` | `Number` | `256` |
+| `readonly` | `Boolean` | `false` |
 | `rotate-clockwise-icon-style` | [`Function`, `Object`] | `{transform: 'scaleX(-1)'}` |
 | `rotate-clockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` |
 | `rotate-clockwise-text` | [`Function`, `String`] | `'rotate clockwise'` |

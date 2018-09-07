@@ -11,6 +11,7 @@
 				disabled: VuetifyImageInput.props.disabled.default,
 				drawer: true,
 				hideActions: VuetifyImageInput.props.hideActions.default,
+				readonly: VuetifyImageInput.props.readonly.default,
 				value: null,
 			};
 		},

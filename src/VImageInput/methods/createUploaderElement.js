@@ -4,6 +4,7 @@ export default function() {
 	let {
 		$createElement,
 		disabled,
+		readonly,
 		upload,
 		uploadIcon,
 		uploadIconStyle,
@@ -32,7 +33,7 @@ export default function() {
 			{
 				props: {
 					color: 'primary',
-					disabled,
+					disabled: disabled || readonly,
 					fab: true,
 					large: true,
 				},

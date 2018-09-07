@@ -4,13 +4,14 @@ export default function(action, icon, iconStyle, text) {
 	let {
 		$createElement,
 		disabled,
+		readonly,
 	} = this;
 	icon = Function_cast(icon).call(this);
 	iconStyle = Function_cast(iconStyle).call(this);
 	text = Function_cast(text).call(this);
 	let buttonElementOptions = {
 		props: {
-			disabled,
+			disabled: disabled || readonly,
 			flat: true,
 			icon: true,
 		},

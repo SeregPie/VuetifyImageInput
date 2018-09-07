@@ -32,6 +32,9 @@
 						<v-flex>
 							<v-checkbox v-model="disabled" class="ma-0" hide-details label="disabled"></v-checkbox>
 						</v-flex>
+						<v-flex>
+							<v-checkbox v-model="readonly" class="ma-0" hide-details label="readonly"></v-checkbox>
+						</v-flex>
 					</v-layout>
 				</v-container>
 			</v-navigation-drawer>
@@ -53,6 +56,7 @@
 						:clearable="clearable"
 						:disabled="disabled"
 						:hide-actions="hideActions"
+						:readonly="readonly"
 					></v-image-input>
 				</v-container>
 			</v-content>

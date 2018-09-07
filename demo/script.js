@@ -5,7 +5,7 @@
 
 		data: function() {
 			return {
-				clearable: true,
+				clearable: VuetifyImageInput.props.clearable.default,
 				dark: false,
 				dialog: false,
 				disabled: VuetifyImageInput.props.disabled.default,

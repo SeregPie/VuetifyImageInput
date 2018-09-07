@@ -3,6 +3,7 @@ import Function_cast from '/utils/Function/cast';
 export default function() {
 	let {
 		$createElement,
+		disabled,
 		upload,
 		uploadIcon,
 		uploadIconStyle,
@@ -31,6 +32,7 @@ export default function() {
 			{
 				props: {
 					color: 'primary',
+					disabled,
 					fab: true,
 					large: true,
 				},

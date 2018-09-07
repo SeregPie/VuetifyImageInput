@@ -8,6 +8,7 @@
 				clearable: true,
 				dark: false,
 				dialog: false,
+				disabled: VuetifyImageInput.props.disabled.default,
 				drawer: true,
 				hideActions: VuetifyImageInput.props.hideActions.default,
 				value: null,

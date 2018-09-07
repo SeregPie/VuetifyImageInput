@@ -5,12 +5,14 @@ export default function() {
 		$createElement,
 		clear,
 		clearIcon,
+		disabled,
 	} = this;
 	clearIcon = Function_cast(clearIcon).call(this);
 	return $createElement(
 		'v-btn',
 		{
 			props: {
+				disabled,
 				flat: true,
 				icon: true,
 			},

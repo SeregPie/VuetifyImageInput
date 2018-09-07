@@ -1,12 +1,16 @@
 import Function_cast from '/utils/Function/cast';
 
 export default function(action, icon, iconStyle, text) {
-	let {$createElement} = this;
+	let {
+		$createElement,
+		disabled,
+	} = this;
 	icon = Function_cast(icon).call(this);
 	iconStyle = Function_cast(iconStyle).call(this);
 	text = Function_cast(text).call(this);
 	let buttonElementOptions = {
 		props: {
+			disabled,
 			flat: true,
 			icon: true,
 		},

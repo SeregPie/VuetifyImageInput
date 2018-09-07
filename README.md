@@ -61,6 +61,7 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | ---: | :--- | :--- |
 | `clear-icon` | [`Function`, `String`] | `$vuetify.icons.clear` |
 | `clearable` | `Boolean` | `false` |
+| `disabled` | `Boolean` | `false` |
 | `flip-horizontally-icon-style` | [`Function`, `Object`] | |
 | `flip-horizontally-icon` | [`Function`, `String`] | `'flip'` |
 | `flip-horizontally-text` | [`Function`, `String`] | `'flip horizontally'` |

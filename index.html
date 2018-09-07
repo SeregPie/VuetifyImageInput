@@ -24,9 +24,6 @@
 				<v-container class="pa-2" fluid grid-list-md>
 					<v-layout column>
 						<v-flex>
-							<v-switch v-model="dark" class="ma-0" hide-details label="dark"></v-switch>
-						</v-flex>
-						<v-flex>
 							<v-checkbox v-model="clearable" class="ma-0" hide-details label="clearable"></v-checkbox>
 						</v-flex>
 						<v-flex>
@@ -39,6 +36,9 @@
 				<v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
 				<v-toolbar-title>VuetifyImageInput</v-toolbar-title>
 				<v-spacer></v-spacer>
+				<v-btn icon @click="dark = !dark">
+					<v-icon>invert_colors</v-icon>
+				</v-btn>
 				<v-btn href="https://github.com/SeregPie/VuetifyImageInput" icon target="_blank">
 					<v-icon>fab fa-github</v-icon>
 				</v-btn>

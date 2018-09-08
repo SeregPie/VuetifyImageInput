@@ -1,8 +1,12 @@
 export default function($createElement) {
-	let elementChildren = [this.createEditorElement()];
 	let {image} = this;
-	if (!image) {
-		elementChildren.push(this.createUploaderElement());
+	let editorElement;
+	let uploaderTransitonElementChildren = [];
+	if (image) {
+		editorElement = this.createEditorElement($createElement, image);
+	} else {
+		editorElement = this.createEditorElement($createElement);
+		uploaderTransitonElementChildren.push(this.createUploaderElement($createElement));
 	}
 	return $createElement(
 		'div',
@@ -12,6 +16,12 @@ export default function($createElement) {
 				position: 'relative',
 			},
 		},
-		elementChildren,
+		[
+			editorElement,
+			$createElement(
+				'v-fade-transition',
+				uploaderTransitonElementChildren,
+			),
+		],
 	);
 }

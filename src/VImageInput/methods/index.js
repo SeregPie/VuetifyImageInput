@@ -5,6 +5,7 @@ import createCropperElement from './createCropperElement';
 import createEditorElement from './createEditorElement';
 import createFlipHorizontallyButtonElement from './createFlipHorizontallyButtonElement';
 import createFlipVerticallyButtonElement from './createFlipVerticallyButtonElement';
+import createImageElement from './createImageElement';
 import createRotateClockwiseButtonElement from './createRotateClockwiseButtonElement';
 import createRotateCounterclockwiseButtonElement from './createRotateCounterclockwiseButtonElement';
 import createUploaderElement from './createUploaderElement';
@@ -22,6 +23,7 @@ export default {
 	createEditorElement,
 	createFlipHorizontallyButtonElement,
 	createFlipVerticallyButtonElement,
+	createImageElement,
 	createRotateClockwiseButtonElement,
 	createRotateCounterclockwiseButtonElement,
 	createUploaderElement,

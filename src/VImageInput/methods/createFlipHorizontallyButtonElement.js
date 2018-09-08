@@ -1,4 +1,4 @@
-export default function() {
+export default function($createElement) {
 	let {
 		flipHorizontally,
 		flipHorizontallyIcon,
@@ -6,6 +6,7 @@ export default function() {
 		flipHorizontallyText,
 	} = this;
 	return this.createActionButtonElement(
+		$createElement,
 		flipHorizontally,
 		flipHorizontallyIcon,
 		flipHorizontallyIconStyle,

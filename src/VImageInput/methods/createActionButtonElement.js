@@ -1,8 +1,7 @@
 import Function_cast from '/utils/Function/cast';
 
-export default function(action, icon, iconStyle, text) {
+export default function($createElement, action, icon, iconStyle, text) {
 	let {
-		$createElement,
 		disabled,
 		readonly,
 	} = this;

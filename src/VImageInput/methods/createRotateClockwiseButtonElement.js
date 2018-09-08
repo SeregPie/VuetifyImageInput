@@ -1,4 +1,4 @@
-export default function() {
+export default function($createElement) {
 	let {
 		rotateClockwise,
 		rotateClockwiseIcon,
@@ -6,6 +6,7 @@ export default function() {
 		rotateClockwiseText,
 	} = this;
 	return this.createActionButtonElement(
+		$createElement,
 		rotateClockwise,
 		rotateClockwiseIcon,
 		rotateClockwiseIconStyle,

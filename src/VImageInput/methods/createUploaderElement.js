@@ -1,8 +1,7 @@
 import Function_cast from '/utils/Function/cast';
 
-export default function() {
+export default function($createElement) {
 	let {
-		$createElement,
 		disabled,
 		readonly,
 		upload,

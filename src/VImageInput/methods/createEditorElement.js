@@ -1,23 +1,22 @@
-export default function() {
+export default function($createElement, image) {
 	let {
-		$createElement,
 		clearable,
 		hideActions,
 	} = this;
-	let element = this.createCropperElement();
+	let element = this.createCropperElement($createElement, image);
 	let elementChildren = [];
 	if (clearable) {
 		elementChildren.push(
-			this.createClearButtonElement(),
+			this.createClearButtonElement($createElement),
 			$createElement('v-spacer'),
 		);
 	}
 	if (!hideActions) {
 		elementChildren.push(
-			this.createFlipHorizontallyButtonElement(),
-			this.createFlipVerticallyButtonElement(),
-			this.createRotateClockwiseButtonElement(),
-			this.createRotateCounterclockwiseButtonElement(),
+			this.createFlipHorizontallyButtonElement($createElement),
+			this.createFlipVerticallyButtonElement($createElement),
+			this.createRotateClockwiseButtonElement($createElement),
+			this.createRotateCounterclockwiseButtonElement($createElement),
 		);
 	}
 	if (elementChildren.length) {

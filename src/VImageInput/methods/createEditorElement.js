@@ -3,46 +3,42 @@ export default function($createElement, image) {
 		clearable,
 		hideActions,
 	} = this;
-	let element = this.createCropperElement($createElement, image);
-	let elementChildren = [];
+	let toolbarElementChildren = [];
 	if (clearable) {
-		elementChildren.push(
+		toolbarElementChildren.push(
 			this.createClearButtonElement($createElement),
 			$createElement('v-spacer'),
 		);
 	}
 	if (!hideActions) {
-		elementChildren.push(
+		toolbarElementChildren.push(
 			this.createFlipHorizontallyButtonElement($createElement),
 			this.createFlipVerticallyButtonElement($createElement),
 			this.createRotateClockwiseButtonElement($createElement),
 			this.createRotateCounterclockwiseButtonElement($createElement),
 		);
 	}
-	if (elementChildren.length) {
-		element = $createElement(
-			'div',
-			{
-				style: {
-					display: 'flex',
-				},
+	return $createElement(
+		'div',
+		{
+			style: {
+				display: 'flex',
 			},
-			[
-				element,
-				$createElement(
-					'div',
-					{
-						style: {
-							display: 'flex',
-							flexDirection: 'column',
-							flexWrap: 'wrap',
-							justifyContent: 'center',
-						},
+		},
+		[
+			this.createCropperElement($createElement, image),
+			$createElement(
+				'div',
+				{
+					style: {
+						display: 'flex',
+						flexDirection: 'column',
+						flexWrap: 'wrap',
+						justifyContent: 'center',
 					},
-					elementChildren,
-				),
-			],
-		);
-	}
-	return element;
+				},
+				toolbarElementChildren,
+			),
+		],
+	);
 }

@@ -1,9 +1,11 @@
-import checkeredBackgroundImage from './checkeredBackgroundImage';
+import borderColor from './borderColor';
+import checkeredBackground from './checkeredBackground';
 import image from './image';
 import internalValue from './internalValue';
 
 export default {
-	checkeredBackgroundImage,
+	borderColor,
+	checkeredBackground,
 	image,
 	internalValue,
 };

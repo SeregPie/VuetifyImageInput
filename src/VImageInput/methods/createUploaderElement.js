@@ -11,11 +11,8 @@ export default function($createElement) {
 	uploadIcon = Function_cast(uploadIcon).call(this);
 	uploadIconStyle = Function_cast(uploadIconStyle).call(this);
 	return $createElement(
-		'v-card',
+		'div',
 		{
-			props: {
-				flat: true,
-			},
 			style: {
 				alignItems: 'center',
 				bottom: 0,

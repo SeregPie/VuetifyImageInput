@@ -1,3 +1,4 @@
+import inject from './inject';
 import props from './props';
 import data from './data';
 import computed from './computed';
@@ -7,6 +8,7 @@ import render from './render';
 
 export default {
 	name: 'VImageInput',
+	inject,
 	props,
 	data,
 	computed,

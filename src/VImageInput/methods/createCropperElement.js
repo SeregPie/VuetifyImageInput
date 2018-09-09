@@ -1,30 +1,25 @@
 export default function($createElement, image) {
 	let {
-		checkeredBackgroundImage,
+		checkeredBackground,
 		imageHeight,
 		imageWidth,
 	} = this;
-	let imageTransitonElementChildren = [];
+	let elementChildren = [];
 	if (image) {
-		imageTransitonElementChildren.push(this.createImageElement($createElement, image));
+		elementChildren.push(this.createImageElement($createElement, image));
 	}
 	return $createElement(
 		'div',
 		{
 			style: {
 				alignItems: 'center',
-				backgroundImage: checkeredBackgroundImage,
-				backgroundRepeat: 'repeat',
-				backgroundSize: '16px 16px',
+				background: checkeredBackground,
 				display: 'flex',
 				height: `${imageHeight}px`,
 				justifyContent: 'center',
 				width: `${imageWidth}px`,
 			},
 		},
-		[$createElement(
-			'v-fade-transition',
-			imageTransitonElementChildren,
-		)],
+		elementChildren,
 	);
 }

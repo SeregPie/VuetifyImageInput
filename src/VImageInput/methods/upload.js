@@ -9,7 +9,7 @@ export default function() {
 		PaperDuck
 			.load(input)
 			.then(image => {
-				this.image = image.scaleMin(this.imageWidth, this.imageHeight);
+				this.image = image.cover(this.imageWidth, this.imageHeight);
 			})
 			.catch(Function_noop);
 	});

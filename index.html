@@ -35,6 +35,12 @@
 						<v-flex>
 							<v-checkbox v-model="readonly" class="ma-0" hide-details label="readonly"></v-checkbox>
 						</v-flex>
+						<v-flex>
+							<v-checkbox v-model="fullWidth" class="ma-0" hide-details label="full-width"></v-checkbox>
+						</v-flex>
+						<v-flex>
+							<v-checkbox v-model="fullHeight" class="ma-0" hide-details label="full-height"></v-checkbox>
+						</v-flex>
 					</v-layout>
 				</v-container>
 			</v-navigation-drawer>
@@ -55,6 +61,8 @@
 						v-model="value"
 						:clearable="clearable"
 						:disabled="disabled"
+						:full-height="fullHeight"
+						:full-width="fullWidth"
 						:hide-actions="hideActions"
 						:readonly="readonly"
 					></v-image-input>

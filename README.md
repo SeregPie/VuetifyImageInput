@@ -68,6 +68,8 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `flip-vertically-icon-style` | [`Function`, `Object`] | `{transform: 'rotate(90deg)'}` |
 | `flip-vertically-icon` | [`Function`, `String`] | `'flip'` |
 | `flip-vertically-text` | [`Function`, `String`] | `'flip vertically'` |
+| `full-height` | `Boolean` | `false` |
+| `full-width` | `Boolean` | `false` |
 | `hide-actions` | `Boolean` | `false` |
 | `image-encoder-options` | | |
 | `image-height` | `Number` | `256` |

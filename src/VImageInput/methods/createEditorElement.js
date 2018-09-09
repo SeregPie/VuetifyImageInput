@@ -23,6 +23,8 @@ export default function($createElement, image) {
 		{
 			style: {
 				display: 'flex',
+				minHeight: '100%',
+				minWidth: '100%',
 			},
 		},
 		[

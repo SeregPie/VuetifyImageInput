@@ -1,11 +1,34 @@
 export default function($createElement) {
 	let {
 		borderColor,
+		fullHeight,
+		fullWidth,
 		image,
 	} = this;
+	let elementOptions = {
+		class: 'transition-swing',
+		style: {
+			border: `2px solid ${borderColor}`,
+			borderRadius: '4px',
+			display: 'inline',
+			position: 'relative',
+		},
+	};
+	if (fullWidth) {
+		elementOptions.style.width = '100%';
+	}
+	if (fullHeight) {
+		elementOptions.style.height = '100%';
+	}
 	let elementChildren = [];
 	let editorWrapperElementOptions = {
-		style: {},
+		style: {
+			display: 'table',
+			height: 0,
+			minHeight: '100%',
+			minWidth: '100%',
+			width: 0,
+		},
 	};
 	let editorElement;
 	let pushEditorWrapperElement = (() => {
@@ -29,15 +52,7 @@ export default function($createElement) {
 	}
 	return $createElement(
 		'div',
-		{
-			class: 'transition-swing',
-			style: {
-				border: `2px solid ${borderColor}`,
-				borderRadius: '4px',
-				display: 'inline',
-				position: 'relative',
-			},
-		},
+		elementOptions,
 		elementChildren,
 	);
 }

@@ -45,6 +45,16 @@ export default {
 		default: 'flip vertically',
 	},
 
+	fullHeight: {
+		type: Boolean,
+		default: false,
+	},
+
+	fullWidth: {
+		type: Boolean,
+		default: false,
+	},
+
 	hideActions: {
 		type: Boolean,
 		default: false,

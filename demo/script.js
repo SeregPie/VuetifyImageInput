@@ -10,6 +10,8 @@
 				dialog: false,
 				disabled: VuetifyImageInput.props.disabled.default,
 				drawer: true,
+				fullHeight: VuetifyImageInput.props.fullHeight.default,
+				fullWidth: VuetifyImageInput.props.fullWidth.default,
 				hideActions: VuetifyImageInput.props.hideActions.default,
 				readonly: VuetifyImageInput.props.readonly.default,
 				value: null,

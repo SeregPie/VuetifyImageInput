@@ -2,16 +2,11 @@ import PaperDuck from 'paperduck';
 
 import Function_noop from '/utils/Function/noop';
 
-export default function() {
-	let input = document.createElement('input');
-	input.type = 'file';
-	input.addEventListener('change', () => {
-		PaperDuck
-			.load(input)
-			.then(image => {
-				this.image = image.cover(this.imageWidth, this.imageHeight);
-			})
-			.catch(Function_noop);
-	});
-	input.click();
+export default function(image) {
+	PaperDuck
+		.load(image)
+		.then(image => {
+			this.image = image.cover(this.imageWidth, this.imageHeight);
+		})
+		.catch(Function_noop);
 }

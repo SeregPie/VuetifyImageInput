@@ -9,6 +9,7 @@ export default function($createElement, action, icon, iconStyle, text) {
 	iconStyle = Function_cast(iconStyle).call(this);
 	text = Function_cast(text).call(this);
 	let buttonElementOptions = {
+		class: 'ma-1',
 		props: {
 			disabled: disabled || readonly,
 			flat: true,

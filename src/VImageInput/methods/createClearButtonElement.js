@@ -10,6 +10,7 @@ export default function($createElement) {
 	return $createElement(
 		'v-btn',
 		{
+			class: 'ma-1',
 			props: {
 				disabled,
 				flat: true,

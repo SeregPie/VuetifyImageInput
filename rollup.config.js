@@ -20,7 +20,7 @@ export default {
 	},
 	plugins: [
 		resolve(),
-		buble(),
-		minify(),
+		buble({objectAssign: 'Object.assign'}),
+		minify({comments: false}),
 	],
 };

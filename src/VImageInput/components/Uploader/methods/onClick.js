@@ -1,8 +1,6 @@
 export default function() {
-	let {disabled} = this;
-	if (!disabled) {
-		let {$refs} = this;
-		$refs.input.value = null;
-		$refs.input.click();
+	if (!this.disabled) {
+		this.$refs.input.value = null;
+		this.$refs.input.click();
 	}
 }

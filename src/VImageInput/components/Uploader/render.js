@@ -1,35 +1,23 @@
 import Function_cast from '/utils/Function/cast';
 
 export default function($createElement) {
-	let {
-		onChange,
-		onClick,
-		onDragLeave,
-		onDragOver,
-		onDrop,
-		theme,
-		uploadIcon,
-		uploadIconStyle,
-	} = this;
-	uploadIcon = Function_cast(uploadIcon).call(this);
-	uploadIconStyle = Function_cast(uploadIconStyle).call(this);
 	return $createElement(
 		'div',
 		{
 			style: {
 				alignItems: 'center',
 				//backgroundColor: '#fff',
-				border: `1px dashed rgba(${theme.isDark ? '255,255,255,0.7' : '0,0,0,0.54'})`,
+				border: `1px dashed rgba(${this.theme.isDark ? '255,255,255,0.7' : '0,0,0,0.54'})`,
 				borderRadius: '6px',
 				cursor: 'pointer',
 				display: 'flex',
 				justifyContent: 'center',
 			},
 			on: {
-				dragleave: onDragLeave,
-				dragover: onDragOver,
-				drop: onDrop,
-				click: onClick,
+				dragleave: this.onDragLeave,
+				dragover: this.onDragOver,
+				drop: this.onDrop,
+				click: this.onClick,
 			},
 		},
 		[
@@ -43,7 +31,7 @@ export default function($createElement) {
 						type: 'file',
 					},
 					on: {
-						change: onChange,
+						change: this.onChange,
 					},
 					ref: 'input',
 				},
@@ -51,12 +39,12 @@ export default function($createElement) {
 			$createElement(
 				'v-icon',
 				{
-					style: uploadIconStyle,
+					style: Function_cast(this.uploadIconStyle).call(this),
 					props: {
 						large: true,
 					},
 				},
-				uploadIcon,
+				Function_cast(this.uploadIcon).call(this),
 			),
 		],
 	);

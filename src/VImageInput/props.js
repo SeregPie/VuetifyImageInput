@@ -13,6 +13,8 @@ export default {
 		},
 	},
 
+	clearIconStyle: [Function, Object],
+
 	disabled: {
 		type: Boolean,
 		default: false,
@@ -25,11 +27,6 @@ export default {
 
 	flipHorizontallyIconStyle: [Function, Object],
 
-	flipHorizontallyText: {
-		type: [Function, String],
-		default: 'flip horizontally',
-	},
-
 	flipVerticallyIcon: {
 		type: [Function, String],
 		default: 'flip',
@@ -38,11 +35,6 @@ export default {
 	flipVerticallyIconStyle: {
 		type: [Function, Object],
 		default: Function_constant({transform: 'rotate(90deg)'}),
-	},
-
-	flipVerticallyText: {
-		type: [Function, String],
-		default: 'flip vertically',
 	},
 
 	fullHeight: {
@@ -60,14 +52,14 @@ export default {
 		default: false,
 	},
 
-	imageEncoderOptions: {},
+	imageQuality: {},
 
 	imageHeight: {
 		type: Number,
 		default: 256,
 	},
 
-	imageType: {
+	imageFormat: {
 		type: String,
 		default: 'png',
 	},
@@ -92,22 +84,12 @@ export default {
 		default: Function_constant({transform: 'scaleX(-1)'}),
 	},
 
-	rotateClockwiseText: {
-		type: [Function, String],
-		default: 'rotate clockwise',
-	},
-
 	rotateCounterclockwiseIcon: {
 		type: [Function, String],
 		default: 'rotate_90_degrees_ccw',
 	},
 
 	rotateCounterclockwiseIconStyle: [Function, Object],
-
-	rotateCounterclockwiseText: {
-		type: [Function, String],
-		default: 'rotate counterclockwise',
-	},
 
 	uploadIcon: {
 		type: [Function, String],

@@ -1,7 +1,6 @@
 export default function(event) {
 	event.preventDefault();
-	let {disabled} = this;
-	if (!disabled) {
+	if (!this.disabled) {
 		let files = event.dataTransfer.files;
 		if (files) {
 			this.uploadFiles(files);

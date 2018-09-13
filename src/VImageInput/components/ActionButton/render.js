@@ -1,22 +1,25 @@
 import Function_cast from '/utils/Function/cast';
 
-export default function($createElement, action, icon, iconStyle, text) {
+export default function($createElement) {
 	let {
 		disabled,
-		readonly,
+		icon,
+		iconStyle,
+		onClick,
+		text,
 	} = this;
-	icon = Function_cast(icon).call(this);
-	iconStyle = Function_cast(iconStyle).call(this);
-	text = Function_cast(text).call(this);
+	icon = Function_cast(this.icon).call(this);
+	iconStyle = Function_cast(this.iconStyle).call(this);
+	text = Function_cast(this.text).call(this);
 	let buttonElementOptions = {
 		class: 'ma-1',
 		props: {
-			disabled: disabled || readonly,
+			disabled: this.disabled,
 			flat: true,
 			icon: true,
 		},
 		on: {
-			click: action,
+			click: onClick,
 		},
 	};
 	let buttonElement;

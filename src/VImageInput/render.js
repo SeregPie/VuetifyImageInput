@@ -1,19 +1,4 @@
 export default function($createElement) {
-	let {
-		checkeredBackground,
-		clearable,
-		disabled,
-		fullHeight,
-		fullWidth,
-		hideActions,
-		image,
-		imageHeight,
-		imageWidth,
-		readonly,
-		upload,
-		uploadIcon,
-		uploadIconStyle,
-	} = this;
 	return $createElement(
 		'div',
 		{
@@ -21,8 +6,8 @@ export default function($createElement) {
 				display: 'table',
 				height: 0,
 				width: 0,
-				...(fullWidth ? {minWidth: '100%'} : {}),
-				...(fullHeight ? {minHeight: '100%'} : {}),
+				...(this.fullWidth ? {minWidth: '100%'} : {}),
+				...(this.fullHeight ? {minHeight: '100%'} : {}),
 			},
 		},
 		[
@@ -46,47 +31,68 @@ export default function($createElement) {
 						},
 						[
 							$createElement(
-								'div',
+								'my-cropper',
 								{
 									style: {
-										alignItems: 'center',
-										background: checkeredBackground,
-										display: 'flex',
-										flexGrow: 1,
-										justifyContent: 'center',
-										minHeight: `${imageHeight}px`,
-										minWidth: `${imageWidth}px`,
-										width: '100%',
 										height: '100%',
-										...(
-											image
-												? {}
-												: {
-													opacity: 0,
-													visibility: 'hidden',
-												}
+										width: '100%',
+										...(originalImage
+											? {}
+											: {
+												opacity: 0,
+												visibility: 'hidden',
+											}
 										),
 									},
 								},
 								[
-									...(
-										image
-											? [$createElement(
-												'img',
-												{
-													attrs: {
-														src: image.toDataURL(),
-													},
+									...(originalImage
+										? [$createElement(
+											'img',
+											{
+												style: {
+													left: '50%',
+													position: 'absolute',
+													top: '50%',
+													transform: [
+														'translate(-50%,-50%)',
+														`scale(${[
+															originalImage.flipHorizontally ? -1 : 1,
+															originalImage.flipVertically ? -1 : 1,
+														].join(',')})`,
+														`rotate(${originalImage.rotate * 90}deg)`,
+													].join(' '),
 												},
-											)]
-											: []
-									)
+												attrs: {
+													src: originalImage.data,
+												},
+											},
+										)]
+										: []
+									),
+									$createElement(
+										'div',
+										{
+											style: {
+												border: '4px solid #fff',
+												height: `${imageHeight}px`,
+												position: 'relative',
+												width: `${imageWidth}px`,
+												boxShadow: '0 0 9999px 9999px rgba(0,0,0,0.5)',
+											},
+										},
+									),
 								],
 							),
-							...(
-								image
-									? []
-									: $createElement(
+							...(originalImage
+								? []
+								: [(() => {
+									let {
+										upload,
+										uploadIcon,
+										uploadIconStyle,
+									} = this;
+									return $createElement(
 										'my-uploader',
 										{
 											props: {
@@ -105,7 +111,8 @@ export default function($createElement) {
 												load: upload,
 											},
 										},
-									)
+									);
+								})()]
 							),
 						],
 					),
@@ -115,13 +122,12 @@ export default function($createElement) {
 							style: {
 								display: 'table-cell',
 								verticalAlign: 'top',
-								...(
-									image
-										? {}
-										: {
-											opacity: 0,
-											visibility: 'hidden',
-										}
+								...(originalImage
+									? {}
+									: {
+										opacity: 0,
+										visibility: 'hidden',
+									}
 								),
 							},
 						},
@@ -136,23 +142,116 @@ export default function($createElement) {
 								},
 							},
 							[
-								...(
-									clearable
-										? [
-											this.createClearButtonElement($createElement),
-											$createElement('v-spacer'),
-										]
-										: []
+								...(clearable
+									? [
+										(() => {
+											let {
+												clearIcon,
+												clearIconStyle,
+												clear,
+											} = this;
+											return $createElement(
+												'my-action-button',
+												{
+													props: {
+														disabled: disabled,
+														icon: clearIcon,
+														iconStyle: clearIconStyle,
+													},
+													on: {
+														click: clear,
+													},
+												},
+											);
+										})(),
+										$createElement('v-spacer'),
+									]
+									: []
 								),
-								...(
-									hideActions
-										? []
-										: [
-											this.createFlipHorizontallyButtonElement($createElement),
-											this.createFlipVerticallyButtonElement($createElement),
-											this.createRotateClockwiseButtonElement($createElement),
-											this.createRotateCounterclockwiseButtonElement($createElement),
-										]
+								...(hideActions || readonly
+									? []
+									: (() => {
+										let {
+											flipHorizontallyIcon,
+											flipHorizontallyIconStyle,
+											flipHorizontallyText,
+											flipVerticallyIcon,
+											flipVerticallyIconStyle,
+											flipVerticallyText,
+											rotateClockwiseIcon,
+											rotateClockwiseIconStyle,
+											rotateClockwiseText,
+											rotateCounterclockwiseIcon,
+											rotateCounterclockwiseIconStyle,
+											rotateCounterclockwiseText,
+										} = this;
+										return [
+											$createElement(
+												'my-action-button',
+												{
+													props: {
+														disabled: disabled,
+														icon: flipHorizontallyIcon,
+														iconStyle: flipHorizontallyIconStyle,
+														text: flipHorizontallyText,
+													},
+													on: {
+														click() {
+															originalImage.flipHorizontally = !originalImage.flipHorizontally;
+														},
+													},
+												},
+											),
+											$createElement(
+												'my-action-button',
+												{
+													props: {
+														disabled: disabled,
+														icon: flipVerticallyIcon,
+														iconStyle: flipVerticallyIconStyle,
+														text: flipVerticallyText,
+													},
+													on: {
+														click() {
+															originalImage.flipVertically = !originalImage.flipVertically;
+														},
+													},
+												},
+											),
+											$createElement(
+												'my-action-button',
+												{
+													props: {
+														disabled: disabled,
+														icon: rotateClockwiseIcon,
+														iconStyle: rotateClockwiseIconStyle,
+														text: rotateClockwiseText,
+													},
+													on: {
+														click() {
+															originalImage.rotate = ((originalImage.rotate + 1) % 4 + 4) % 4;
+														},
+													},
+												},
+											),
+											$createElement(
+												'my-action-button',
+												{
+													props: {
+														disabled: disabled,
+														icon: rotateCounterclockwiseIcon,
+														iconStyle: rotateCounterclockwiseIconStyle,
+														text: rotateCounterclockwiseText,
+													},
+													on: {
+														click() {
+															originalImage.rotate = ((originalImage.rotate - 1) % 4 + 4) % 4;
+														},
+													},
+												},
+											),
+										];
+									})()
 								),
 							],
 						)],

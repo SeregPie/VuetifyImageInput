@@ -1,3 +1,5 @@
+import Function_cast from '/utils/Function/cast';
+
 import checkeredBackground from './checkeredBackground';
 import image from './image';
 import internalValue from './internalValue';

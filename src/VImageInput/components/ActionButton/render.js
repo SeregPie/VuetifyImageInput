@@ -1,4 +1,4 @@
-import Function_cast from '/utils/Function/cast';
+
 
 export default function($createElement) {
 	let {

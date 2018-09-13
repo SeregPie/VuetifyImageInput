@@ -159,7 +159,7 @@ export default function($createElement) {
 					),
 				],
 			),
-			$createElement(
+			/*$createElement(
 				'div',
 				{
 					style: {
@@ -201,7 +201,7 @@ export default function($createElement) {
 						},
 					),
 				],
-			),
+			),*/
 		],
 	);
 }

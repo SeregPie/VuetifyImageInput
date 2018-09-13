@@ -10,6 +10,7 @@ Provides basic image editing tools.
 
 - [Vue](https://github.com/vuejs/vue)
 - [Vuetify](https://github.com/vuetifyjs/vuetify)
+- [Vuetify](https://github.com/SeregPie/PaperDuck)
 
 ## setup
 
@@ -50,6 +51,7 @@ export default {
 ```html
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/vuetify"></script>
+<script src="https://unpkg.com/paperduck"></script>
 <script src="https://unpkg.com/vuetify-image-input"></script>
 ```
 

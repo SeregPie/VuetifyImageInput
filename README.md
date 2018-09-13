@@ -10,7 +10,7 @@ Provides basic image editing tools.
 
 - [Vue](https://github.com/vuejs/vue)
 - [Vuetify](https://github.com/vuetifyjs/vuetify)
-- [Vuetify](https://github.com/SeregPie/PaperDuck)
+- [PaperDuck](https://github.com/SeregPie/PaperDuck)
 
 ## setup
 

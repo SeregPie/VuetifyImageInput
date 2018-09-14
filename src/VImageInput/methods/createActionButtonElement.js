@@ -2,6 +2,7 @@ export default function($createElement, onClick, icon, iconStyle) {
 	return $createElement(
 		'v-btn',
 		{
+			class: 'ma-1',
 			props: {
 				disabled: this.disabled,
 				flat: true,

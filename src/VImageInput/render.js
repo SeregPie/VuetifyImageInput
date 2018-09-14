@@ -60,6 +60,20 @@ export default function($createElement) {
 												}
 											),
 										},
+										/*on: {
+											dragstart(event) {
+												event.preventDefault();
+												console.log('dragstart', event);
+											},
+											dragend(event) {
+												event.preventDefault();
+												console.log('dragend', event);
+											},
+											drag(event) {
+												event.preventDefault();
+												console.log('drag', event);
+											},
+										},*/
 									},
 									[
 										$createElement(
@@ -67,6 +81,7 @@ export default function($createElement) {
 											{
 												style: {
 													left: '50%',
+													pointerEvents: 'none',
 													position: 'absolute',
 													top: '50%',
 													transform: [
@@ -92,6 +107,7 @@ export default function($createElement) {
 													boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
 													boxSizing: 'content-box',
 													height: `${this.imageHeight}px`,
+													pointerEvents: 'none',
 													position: 'relative',
 													width: `${this.imageWidth}px`,
 												},

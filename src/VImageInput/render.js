@@ -89,7 +89,7 @@ export default function($createElement) {
 											{
 												style: {
 													border: '4px solid #fff',
-													boxShadow: '0 0 9999px 9999px rgba(0,0,0,0.5)',
+													boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
 													boxSizing: 'content-box',
 													height: `${this.imageHeight}px`,
 													position: 'relative',

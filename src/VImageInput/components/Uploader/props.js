@@ -1,5 +1,5 @@
-export default {
-	disabled: {},
-	uploadIcon: {},
-	uploadIconStyle: {},
-};
+export default [
+	'disabled',
+	'uploadIcon',
+	'uploadIconStyle',
+];

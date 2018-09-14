@@ -57,7 +57,18 @@ export default {
 
 The component will be available under the name `VuetifyImageInput`. If Vue is detected, the component will be registered automatically.
 
-#### properties
+## usage
+
+```html
+<v-image-input
+  v-model="imageData"
+  :image-quality="0.85"
+  clearable
+  image-format="jpeg"
+/>
+```
+
+## properties
 
 | property | type | default |
 | ---: | :--- | :--- |

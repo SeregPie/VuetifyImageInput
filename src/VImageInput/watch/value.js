@@ -1,9 +1,7 @@
-import PaperDuck from 'paperduck';
-
 export default {
 	handler(value) {
-		if (this.internalValue !== value) {
-			this.lazyImage = PaperDuck.from(value);
+		if (this.imageData !== value) {
+			this.setImageData(value);
 		}
 	},
 	immediate: true,

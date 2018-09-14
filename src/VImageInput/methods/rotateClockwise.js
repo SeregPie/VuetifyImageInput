@@ -1,3 +1,3 @@
 export default function() {
-	this.$emit('click');
+	this.rotate(1);
 }

@@ -3,7 +3,8 @@ import inject from './inject';
 import props from './props';
 import data from './data';
 import computed from './computed';
-import watch from './watch';
+//import watch from './watch';
+import created from './created';
 import methods from './methods';
 import render from './render';
 
@@ -14,7 +15,8 @@ export default {
 	props,
 	data,
 	computed,
-	watch,
+	//watch,
+	created,
 	methods,
 	render,
 };

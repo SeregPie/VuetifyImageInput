@@ -1,13 +1,22 @@
 import Function_cast from '/utils/Function/cast';
+import Object_mapValues from '/utils/Object/mapValues';
 
 import checkeredBackground from './checkeredBackground';
-import image from './image';
-import internalValue from './internalValue';
+import clampedScaling from './clampedScaling';
+import imageData from './imageData';
+import maxScaling from './maxScaling';
+import minScaling from './minScaling';
+import rotatedInternalImageHeight from './rotatedInternalImageHeight';
+import rotatedInternalImageWidth from './rotatedInternalImageWidth';
 
 export default {
 	checkeredBackground,
-	image,
-	internalValue,
+	clampedScaling,
+	imageData,
+	maxScaling,
+	minScaling,
+	rotatedInternalImageHeight,
+	rotatedInternalImageWidth,
 	...Object_mapValues({
 		remappedClearIcon: 'clearIcon',
 		remappedClearIconStyle: 'clearIconStyle',

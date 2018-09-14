@@ -27,6 +27,12 @@
 							<v-checkbox v-model="clearable" class="ma-0" hide-details label="clearable"></v-checkbox>
 						</v-flex>
 						<v-flex>
+							<v-text-field v-model="imageWidth" :max="1024" :min="32" box hide-details label="image-width" type="number"></v-text-field>
+						</v-flex>
+						<v-flex>
+							<v-text-field v-model="imageHeight" :max="1024" :min="32" box hide-details label="image-height" type="number"></v-text-field>
+						</v-flex>
+						<v-flex>
 							<v-checkbox v-model="hideActions" class="ma-0" hide-details label="hide-actions"></v-checkbox>
 						</v-flex>
 						<v-flex>
@@ -64,6 +70,8 @@
 						:full-height="fullHeight"
 						:full-width="fullWidth"
 						:hide-actions="hideActions"
+						:image-height="Number.parseInt(imageHeight)"
+						:image-width="Number.parseInt(imageWidth)"
 						:readonly="readonly"
 					></v-image-input>
 				</v-container>
@@ -73,9 +81,11 @@
 					<v-icon>image</v-icon>
 				</v-btn>
 				<v-card>
-					<v-card-title class="justify-center">
-						<img :src="value"/>
-					</v-card-title>
+					<v-card-text class="justify-center">
+						<div style="overflow: auto;">
+							<img :src="value"/>
+						</div>
+					</v-card-text>
 					<v-card-actions>
 						<v-spacer></v-spacer>
 						<v-btn flat @click="dialog = false">

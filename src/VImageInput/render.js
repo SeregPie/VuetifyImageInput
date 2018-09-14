@@ -162,7 +162,7 @@ export default function($createElement) {
 					),
 				],
 			),
-			/*$createElement(
+			$createElement(
 				'div',
 				{
 					style: {
@@ -175,25 +175,19 @@ export default function($createElement) {
 						{
 							style: {
 								display: 'table-cell',
-								...(
-									image
-										? {}
-										: {
-											opacity: 0,
-											visibility: 'hidden',
-										}
+								...(this.internalImageData
+									? {}
+									: {
+										opacity: 0,
+										visibility: 'hidden',
+									}
 								),
 							},
 						},
-						[$createElement(
-							'v-slider',
-							{
-								class: 'mx-2 my-1',
-								props: {
-									hideDetails: true,
-								},
-							},
-						)],
+						(this.hideActions || this.readonly
+							? []
+							: [this.createScaleSliderElement($createElement)]
+						),
 					),
 					$createElement(
 						'div',
@@ -204,7 +198,7 @@ export default function($createElement) {
 						},
 					),
 				],
-			),*/
+			),
 		],
 	);
 }

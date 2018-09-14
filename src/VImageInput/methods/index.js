@@ -5,6 +5,7 @@ import createFlipHorizontallyButtonElement from './createFlipHorizontallyButtonE
 import createFlipVerticallyButtonElement from './createFlipVerticallyButtonElement';
 import createRotateClockwiseButtonElement from './createRotateClockwiseButtonElement';
 import createRotateCounterclockwiseButtonElement from './createRotateCounterclockwiseButtonElement';
+import createScaleSliderElement from './createScaleSliderElement';
 import flipHorizontally from './flipHorizontally';
 import flipVertically from './flipVertically';
 import load from './load';
@@ -20,6 +21,7 @@ export default {
 	createFlipVerticallyButtonElement,
 	createRotateClockwiseButtonElement,
 	createRotateCounterclockwiseButtonElement,
+	createScaleSliderElement,
 	flipHorizontally,
 	flipVertically,
 	load,

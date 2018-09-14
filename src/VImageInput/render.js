@@ -60,20 +60,11 @@ export default function($createElement) {
 												}
 											),
 										},
-										/*on: {
-											dragstart(event) {
-												event.preventDefault();
-												console.log('dragstart', event);
-											},
-											dragend(event) {
-												event.preventDefault();
-												console.log('dragend', event);
-											},
-											drag(event) {
-												event.preventDefault();
-												console.log('drag', event);
-											},
-										},*/
+										/*directives: [{
+											name: 'MyDrag',
+											value: this.onDrag,
+											modifiers: ['prevent'],
+										}],*/
 									},
 									[
 										$createElement(
@@ -91,7 +82,11 @@ export default function($createElement) {
 															this.flippedVertically ? -1 : 1,
 														].join(',')})`,
 														`rotate(${this.rotation * 90}deg)`,
-														`scale(${this.clampedScaling})`,
+														/*`translate(${[
+															`${this.originLeft * 100}%`,
+															`${this.originTop * 100}%`,
+														].join(',')})`,*/
+														`scale(${this.scaling})`,
 													].join(' '),
 												},
 												attrs: {
@@ -118,7 +113,7 @@ export default function($createElement) {
 								...(this.internalImageData
 									? []
 									: [$createElement(
-										'my-uploader',
+										'MyUploader',
 										{
 											props: {
 												disabled: this.disabled || this.readonly,

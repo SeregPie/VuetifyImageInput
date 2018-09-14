@@ -1,5 +1,3 @@
-import Function_cast from '/utils/Function/cast';
-
 export default function($createElement) {
 	return $createElement(
 		'div',
@@ -37,14 +35,14 @@ export default function($createElement) {
 				},
 			),
 			$createElement(
-				'v-icon',
+				'VIcon',
 				{
-					style: Function_cast(this.uploadIconStyle).call(this),
+					style: this.uploadIconStyle,
 					props: {
 						large: true,
 					},
 				},
-				Function_cast(this.uploadIcon).call(this),
+				this.uploadIcon,
 			),
 		],
 	);

@@ -2,21 +2,27 @@ import Function_cast from '/utils/Function/cast';
 import Object_mapValues from '/utils/Object/mapValues';
 
 import checkeredBackground from './checkeredBackground';
-import clampedScaling from './clampedScaling';
+import cropLeft from './cropLeft';
+import cropTop from './cropTop';
 import imageData from './imageData';
 import maxScaling from './maxScaling';
 import minScaling from './minScaling';
 import rotatedInternalImageHeight from './rotatedInternalImageHeight';
 import rotatedInternalImageWidth from './rotatedInternalImageWidth';
+import rotation from './rotation';
+import scaling from './scaling';
 
 export default {
 	checkeredBackground,
-	clampedScaling,
+	cropLeft,
+	cropTop,
 	imageData,
 	maxScaling,
 	minScaling,
 	rotatedInternalImageHeight,
 	rotatedInternalImageWidth,
+	rotation,
+	scaling,
 	...Object_mapValues({
 		remappedClearIcon: 'clearIcon',
 		remappedClearIconStyle: 'clearIconStyle',

@@ -20,7 +20,7 @@ export default function() {
 				image = image.rotate270();
 				break;
 		}
-		image = image.scale(this.clampedScaling);
+		image = image.scale(this.scaling);
 		image = image.cropAlign(this.imageWidth, this.imageHeight);
 		return image.toDataURL(`image/${this.imageFormat}`, this.imageQuality);
 	}

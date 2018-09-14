@@ -1,6 +1,6 @@
 export default function($createElement, onClick, icon, iconStyle) {
 	return $createElement(
-		'v-btn',
+		'VBtn',
 		{
 			class: 'ma-1',
 			props: {
@@ -13,7 +13,7 @@ export default function($createElement, onClick, icon, iconStyle) {
 			},
 		},
 		[$createElement(
-			'v-icon',
+			'VIcon',
 			{
 				style: iconStyle,
 			},

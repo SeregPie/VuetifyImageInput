@@ -19,6 +19,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"paperduck": "^18.9.13",
+		"v-dragged": "0.0.5",
 		"vue": "^2.5.17",
 		"vuetify": "^1.2.3"
 	},

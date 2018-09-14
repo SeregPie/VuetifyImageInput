@@ -7,6 +7,7 @@ import {main} from './package.json';
 
 let globals = {
 	'paperduck': 'PaperDuck',
+	'v-dragged': 'VDragged',
 };
 
 export default {

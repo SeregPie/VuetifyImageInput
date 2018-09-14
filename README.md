@@ -11,6 +11,7 @@ Provides basic image editing tools.
 - [Vue](https://github.com/vuejs/vue)
 - [Vuetify](https://github.com/vuetifyjs/vuetify)
 - [PaperDuck](https://github.com/SeregPie/PaperDuck)
+- [VDragged](https://github.com/zhanziyang/v-dragged)
 
 ## setup
 

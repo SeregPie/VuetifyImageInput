@@ -9,7 +9,7 @@ import createScaleSliderElement from './createScaleSliderElement';
 import flipHorizontally from './flipHorizontally';
 import flipVertically from './flipVertically';
 import load from './load';
-import rotate from './rotate';
+import onDrag from './onDrag';
 import rotateClockwise from './rotateClockwise';
 import rotateCounterclockwise from './rotateCounterclockwise';
 
@@ -25,7 +25,7 @@ export default {
 	flipHorizontally,
 	flipVertically,
 	load,
-	rotate,
+	onDrag,
 	rotateClockwise,
 	rotateCounterclockwise,
 };

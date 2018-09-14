@@ -1,6 +1,6 @@
 export default function($createElement) {
 	return $createElement(
-		'v-slider',
+		'VSlider',
 		{
 			class: 'mx-2 my-1',
 			props: {
@@ -8,7 +8,7 @@ export default function($createElement) {
 				hideDetails: true,
 				max: Math.round(this.maxScaling * 1000),
 				min: Math.round(this.minScaling * 1000),
-				value: Math.round(this.clampedScaling * 1000),
+				value: Math.round(this.scaling * 1000),
 			},
 			on: {
 				input: value => {

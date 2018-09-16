@@ -60,11 +60,11 @@ export default function($createElement) {
 												}
 											),
 										},
-										/*directives: [{
+										directives: [{
 											name: 'MyDrag',
 											value: this.onDrag,
 											modifiers: ['prevent'],
-										}],*/
+										}],
 									},
 									[
 										$createElement(
@@ -82,10 +82,10 @@ export default function($createElement) {
 															this.flippedVertically ? -1 : 1,
 														].join(',')})`,
 														`rotate(${this.rotation * 90}deg)`,
-														/*`translate(${[
+														`translate(${[
 															`${this.originLeft * 100}%`,
 															`${this.originTop * 100}%`,
-														].join(',')})`,*/
+														].join(',')})`,
 														`scale(${this.scaling})`,
 													].join(' '),
 												},

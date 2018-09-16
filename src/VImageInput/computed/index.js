@@ -10,6 +10,8 @@ import minScaling from './minScaling';
 import rotatedInternalImageHeight from './rotatedInternalImageHeight';
 import rotatedInternalImageWidth from './rotatedInternalImageWidth';
 import rotation from './rotation';
+import scaledRotatedInternalImageHeight from './scaledRotatedInternalImageHeight';
+import scaledRotatedInternalImageWidth from './scaledRotatedInternalImageWidth';
 import scaling from './scaling';
 
 export default {
@@ -22,6 +24,8 @@ export default {
 	rotatedInternalImageHeight,
 	rotatedInternalImageWidth,
 	rotation,
+	scaledRotatedInternalImageHeight,
+	scaledRotatedInternalImageWidth,
 	scaling,
 	...Object_mapValues({
 		remappedClearIcon: 'clearIcon',

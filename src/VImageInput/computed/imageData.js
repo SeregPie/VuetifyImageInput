@@ -21,7 +21,7 @@ export default function() {
 				break;
 		}
 		image = image.scale(this.scaling);
-		image = image.cropAlign(this.imageWidth, this.imageHeight);
+		image = image.crop(this.cropLeft, this.cropTop, this.imageWidth, this.imageHeight);
 		return image.toDataURL(`image/${this.imageFormat}`, this.imageQuality);
 	}
 	return null;

@@ -4,7 +4,7 @@ export default function(data) {
 	if ((this.imageData || data) && this.imageData !== data) {
 		PaperDuck
 			.load(data)
-			.then((image) => {
+			.then(image => {
 				if (image.width && image.height) {
 					this.internalImage = image;
 					this.scaling = 0;

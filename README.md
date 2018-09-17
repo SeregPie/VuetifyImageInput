@@ -96,11 +96,3 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `upload-icon-style` | [`Function`, `Object`] | |
 | `upload-icon` | [`Function`, `String`] | `'cloud_upload'` |
 | `value` | `String` | |
-
-## todo
-
-- Image dragging.
-- Debounced output.
-- More styling options.
-- Progress while uploading the image.
-- Scale the element if if does not fit inside his container.

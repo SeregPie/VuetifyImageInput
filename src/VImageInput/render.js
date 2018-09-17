@@ -52,7 +52,7 @@ export default function($createElement) {
 											padding: '50px',
 											position: 'relative',
 											width: '100%',
-											...(this.internalImageData
+											...(this.internalImage
 												? {}
 												: {
 													opacity: 0,
@@ -66,51 +66,54 @@ export default function($createElement) {
 											modifiers: ['prevent'],
 										}],
 									},
-									[
-										$createElement(
-											'img',
-											{
-												style: {
-													left: '50%',
-													pointerEvents: 'none',
-													position: 'absolute',
-													top: '50%',
-													transform: [
-														'translate(-50%,-50%)',
-														`scale(${[
-															this.flippedHorizontally ? -1 : 1,
-															this.flippedVertically ? -1 : 1,
-														].join(',')})`,
-														`rotate(${this.rotation * 90}deg)`,
-														`translate(${[
-															`${this.originLeft * 100}%`,
-															`${this.originTop * 100}%`,
-														].join(',')})`,
-														`scale(${this.scaling})`,
-													].join(' '),
-												},
-												attrs: {
-													src: this.internalImageData,
-												},
+									[$createElement(
+										'div',
+										{
+											style: {
+												height: `${this.imageHeight}px`,
+												pointerEvents: 'none',
+												position: 'relative',
+												width: `${this.imageWidth}px`,
 											},
-										),
-										$createElement(
-											'div',
-											{
-												style: {
-													border: '4px solid #fff',
-													boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
-													boxSizing: 'content-box',
-													height: `${this.imageHeight}px`,
-													pointerEvents: 'none',
-													position: 'relative',
-													width: `${this.imageWidth}px`,
+										},
+										[
+											$createElement(
+												'canvas',
+												{
+													style: {
+														position: 'absolute',
+														left: '50%',
+														top: '50%',
+														transform: [
+															'translate(-50%,-50%)',
+															`translate(${[
+																`${this.originLeft}px`,
+																`${this.originTop}px`,
+															].join(',')})`,
+														].join(' '),
+													},
+													ref: 'canvas',
 												},
-											},
-										),
-									],
+											),
+											$createElement(
+												'div',
+												{
+													style: {
+														border: '4px solid #fff',
+														bottom: 0,
+														boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
+														boxSizing: 'content-box',
+														left: 0,
+														position: 'absolute',
+														right: 0,
+														top: 0,
+													},
+												},
+											),
+										],
+									)],
 								),
-								...(this.internalImageData
+								...(this.internalImage
 									? []
 									: [$createElement(
 										'MyUploader',
@@ -141,7 +144,7 @@ export default function($createElement) {
 								style: {
 									display: 'table-cell',
 									verticalAlign: 'top',
-									...(this.internalImageData
+									...(this.internalImage
 										? {}
 										: {
 											opacity: 0,
@@ -195,7 +198,7 @@ export default function($createElement) {
 							{
 								style: {
 									display: 'table-cell',
-									...(this.internalImageData
+									...(this.internalImage
 										? {}
 										: {
 											opacity: 0,

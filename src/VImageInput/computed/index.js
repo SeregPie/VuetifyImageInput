@@ -4,28 +4,22 @@ import Object_mapValues from '/utils/Object/mapValues';
 import checkeredBackground from './checkeredBackground';
 import cropLeft from './cropLeft';
 import cropTop from './cropTop';
+import displayedImage from './displayedImage';
+import image from './image';
 import imageData from './imageData';
 import maxScaling from './maxScaling';
 import minScaling from './minScaling';
-import rotatedInternalImageHeight from './rotatedInternalImageHeight';
-import rotatedInternalImageWidth from './rotatedInternalImageWidth';
-import rotation from './rotation';
-import scaledRotatedInternalImageHeight from './scaledRotatedInternalImageHeight';
-import scaledRotatedInternalImageWidth from './scaledRotatedInternalImageWidth';
 import scaling from './scaling';
 
 export default {
 	checkeredBackground,
 	cropLeft,
 	cropTop,
+	displayedImage,
+	image,
 	imageData,
 	maxScaling,
 	minScaling,
-	rotatedInternalImageHeight,
-	rotatedInternalImageWidth,
-	rotation,
-	scaledRotatedInternalImageHeight,
-	scaledRotatedInternalImageWidth,
 	scaling,
 	...Object_mapValues({
 		remappedClearIcon: 'clearIcon',

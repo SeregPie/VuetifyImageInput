@@ -1,3 +1,5 @@
 export default function() {
-	this.flippedHorizontally = !this.flippedHorizontally;
+	if (this.internalImage) {
+		this.internalImage = this.internalImage.flop();
+	}
 }

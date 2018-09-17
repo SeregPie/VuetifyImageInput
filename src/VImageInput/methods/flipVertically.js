@@ -1,3 +1,5 @@
 export default function() {
-	this.flippedVertically = !this.flippedVertically;
+	if (this.internalImage) {
+		this.internalImage = this.internalImage.flip();
+	}
 }

@@ -1,3 +1,5 @@
 export default function() {
-	this.rotation--;
+	if (this.internalImage) {
+		this.internalImage = this.internalImage.rotate270();
+	}
 }

@@ -1,9 +1,9 @@
 export default {
 	get() {
-		return Math.floor(this.originTop * this.rotatedInternalImageHeight);
+		return this.originTop;
 	},
 
 	set(value) {
-		this.originTop = value / this.rotatedInternalImageHeight;
+		this.originTop = value;
 	},
 };

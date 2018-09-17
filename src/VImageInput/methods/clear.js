@@ -1,3 +1,3 @@
 export default function() {
-	this.internalImageData = null;
+	this.internalImage = null;
 }

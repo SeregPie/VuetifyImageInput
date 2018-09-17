@@ -1,3 +1,3 @@
 export default function() {
-	return this.displayedImage ? this.displayedImage.cropAlign(this.imageWidth, this.imageHeight) : null;
+	return this.displayedImage ? this.displayedImage.crop(this.cropLeft, this.cropTop, this.imageWidth, this.imageHeight) : null;
 }

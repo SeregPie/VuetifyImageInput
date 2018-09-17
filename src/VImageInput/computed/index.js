@@ -5,6 +5,8 @@ import checkeredBackground from './checkeredBackground';
 import cropLeft from './cropLeft';
 import cropTop from './cropTop';
 import displayedImage from './displayedImage';
+import displayedImageHeight from './displayedImageHeight';
+import displayedImageWidth from './displayedImageWidth';
 import image from './image';
 import imageData from './imageData';
 import maxScaling from './maxScaling';
@@ -16,6 +18,8 @@ export default {
 	cropLeft,
 	cropTop,
 	displayedImage,
+	displayedImageHeight,
+	displayedImageWidth,
 	image,
 	imageData,
 	maxScaling,

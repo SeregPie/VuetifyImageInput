@@ -69,6 +69,26 @@ export default {
 		default: 256,
 	},
 
+	overlayBackgroundColor: {
+		type: String,
+		default: 'rgba(0,0,0,0.5)',
+	},
+
+	overlayBorderColor: {
+		type: String,
+		default: '#fff',
+	},
+
+	overlayBorderWidth: {
+		type: String,
+		default: '4px',
+	},
+
+	overlayPadding: {
+		type: String,
+		default: '50px',
+	},
+
 	readonly: {
 		type: Boolean,
 		default: false,

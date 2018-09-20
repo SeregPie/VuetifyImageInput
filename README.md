@@ -43,7 +43,7 @@ export default {
   components: {
     [VImageInput.name]: VImageInput,
   },
-  // ...
+  /*...*/
 };
 ```
 
@@ -88,6 +88,10 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `image-height` | `Number` | `256` |
 | `image-quality` | | |
 | `image-width` | `Number` | `256` |
+| `overlay-background-color` | `String` | `'rgba(0,0,0,0.5)'` |
+| `overlay-border-color` | `String` | `'#fff'` |
+| `overlay-border-width` | `String` | `'4px'` |
+| `overlay-padding` | `String` | `'50px'` |
 | `readonly` | `Boolean` | `false` |
 | `rotate-clockwise-icon-style` | [`Function`, `Object`] | `{transform: 'scaleX(-1)'}` |
 | `rotate-clockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` |

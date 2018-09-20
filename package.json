@@ -2,13 +2,6 @@
 	"name": "vuetify-image-input",
 	"version": "18.9.17",
 	"description": "Provides basic image editing tools.",
-	"main": "VuetifyImageInput.js",
-	"scripts": {
-		"build": "rollup -c",
-		"dev": "rollup -c -w | http-server -o -c-1",
-		"prepublishOnly": "npm run build"
-	},
-	"repository": "https://github.com/SeregPie/VuetifyImageInput.git",
 	"keywords": [
 		"canvas",
 		"clip",
@@ -28,8 +21,15 @@
 		"vue",
 		"vuetify"
 	],
-	"author": "Sergej Sintschilin <seregpie@gmail.com>",
 	"license": "MIT",
+	"author": "Sergej Sintschilin <seregpie@gmail.com>",
+	"main": "VuetifyImageInput.js",
+	"repository": "https://github.com/SeregPie/VuetifyImageInput.git",
+	"scripts": {
+		"build": "rollup -c",
+		"dev": "rollup -c -w | http-server -o -c-1",
+		"prepublishOnly": "npm run build"
+	},
 	"dependencies": {
 		"paperduck": "^18.9.13",
 		"v-dragged": "0.0.5"

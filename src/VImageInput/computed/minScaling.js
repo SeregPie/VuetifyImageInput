@@ -1,8 +1,8 @@
 export default function() {
-	if (this.internalImage) {
+	if (this.rotatedInternalImageWidth && this.rotatedInternalImageHeight) {
 		return Math.max(
-			this.imageWidth / this.internalImage.width,
-			this.imageHeight / this.internalImage.height,
+			this.imageWidth / this.rotatedInternalImageWidth,
+			this.imageHeight / this.rotatedInternalImageHeight,
 		);
 	}
 	return 0;

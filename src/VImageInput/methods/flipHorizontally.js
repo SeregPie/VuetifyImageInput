@@ -1,5 +1,4 @@
 export default function() {
-	if (this.internalImage) {
-		this.internalImage = this.internalImage.flop();
-	}
+	this.flippedHorizontally = !this.flippedHorizontally;
+	this.cropLeft = this.cropRight;
 }

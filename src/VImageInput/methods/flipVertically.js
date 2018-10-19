@@ -1,5 +1,4 @@
 export default function() {
-	if (this.internalImage) {
-		this.internalImage = this.internalImage.flip();
-	}
+	this.flippedVertically = !this.flippedVertically;
+	this.cropTop = this.cropBottom;
 }

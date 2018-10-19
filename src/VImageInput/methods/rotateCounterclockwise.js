@@ -1,5 +1,7 @@
 export default function() {
-	if (this.internalImage) {
-		this.internalImage = this.internalImage.rotate270();
-	}
+	let cropRight = this.cropRight;
+	let cropTop = this.cropTop;
+	this.rotation--;
+	this.cropLeft = cropTop;
+	this.cropTop = cropRight;
 }

@@ -52,7 +52,7 @@ export default function($createElement) {
 											padding: this.overlayPadding,
 											position: 'relative',
 											width: '100%',
-											...(this.internalImage
+											...(this.internalImageData
 												? {}
 												: {
 													opacity: 0,
@@ -78,14 +78,30 @@ export default function($createElement) {
 										},
 										[
 											$createElement(
-												'canvas',
+												'img',
 												{
 													style: {
 														left: `${-this.cropLeft}px`,
+														pointerEvents: 'none',
 														position: 'absolute',
 														top: `${-this.cropTop}px`,
+														transform: [
+															`scale(${this.scaling})`,
+															`rotate(${this.rotation * 90}deg)`,
+															`translate(${[
+																`${((this.flippedHorizontally ? 1 : 0) - ((this.rotation === 3 || this.rotation === 2) ? 1 : 0)) * 100}%`,
+																`${((this.flippedVertically ? 1 : 0) - ((this.rotation === 1 || this.rotation === 2) ? 1 : 0)) * 100}%`,
+															].join(',')})`,
+															`scale(${[
+																this.flippedHorizontally ? -1 : 1,
+																this.flippedVertically ? -1 : 1,
+															].join(',')})`,
+														].join(' '),
+														transformOrigin: '0 0',
 													},
-													ref: 'canvas',
+													attrs: {
+														src: this.internalImageData,
+													},
 												},
 											),
 											$createElement(
@@ -106,7 +122,7 @@ export default function($createElement) {
 										],
 									)],
 								),
-								...(this.internalImage
+								...(this.internalImageData
 									? []
 									: [$createElement(
 										'MyUploader',
@@ -137,7 +153,7 @@ export default function($createElement) {
 								style: {
 									display: 'table-cell',
 									verticalAlign: 'top',
-									...(this.internalImage
+									...(this.internalImageData
 										? {}
 										: {
 											opacity: 0,
@@ -191,7 +207,7 @@ export default function($createElement) {
 							{
 								style: {
 									display: 'table-cell',
-									...(this.internalImage
+									...(this.internalImageData
 										? {}
 										: {
 											opacity: 0,

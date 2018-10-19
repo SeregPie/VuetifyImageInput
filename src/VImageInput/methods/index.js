@@ -1,3 +1,4 @@
+import center from './center';
 import clear from './clear';
 import createActionButtonElement from './createActionButtonElement';
 import createClearButtonElement from './createClearButtonElement';
@@ -12,8 +13,10 @@ import load from './load';
 import onDrag from './onDrag';
 import rotateClockwise from './rotateClockwise';
 import rotateCounterclockwise from './rotateCounterclockwise';
+import scale from './scale';
 
 export default {
+	center,
 	clear,
 	createActionButtonElement,
 	createClearButtonElement,
@@ -28,4 +31,5 @@ export default {
 	onDrag,
 	rotateClockwise,
 	rotateCounterclockwise,
+	scale,
 };

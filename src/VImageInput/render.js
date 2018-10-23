@@ -88,14 +88,8 @@ export default function($createElement) {
 														transform: [
 															`scale(${this.scaling})`,
 															...(this.rotated ? ['rotate(90deg)', 'translateY(-100%)'] : []),
-															`translate(${[
-																`${(this.flippedHorizontally ? 1 : 0) * 100}%`,
-																`${(this.flippedVertically ? 1 : 0) * 100}%`,
-															].join(',')})`,
-															`scale(${[
-																this.flippedHorizontally ? -1 : 1,
-																this.flippedVertically ? -1 : 1,
-															].join(',')})`,
+															...(this.flippedVertically ? ['translateY(100%)', 'scaleY(-1)'] : []),
+															...(this.flippedHorizontally ? ['translateX(100%)', 'scaleX(-1)'] : []),
 														].join(' '),
 														transformOrigin: '0 0',
 													},

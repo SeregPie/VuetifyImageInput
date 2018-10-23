@@ -49,7 +49,7 @@ export default function($createElement) {
 											height: '100%',
 											justifyContent: 'center',
 											overflow: 'hidden',
-											padding: this.overlayPadding,
+											padding: `calc(${this.overlayPadding} + ${this.overlayBorderWidth})`,
 											position: 'relative',
 											width: '100%',
 											...(this.internalImageData
@@ -105,11 +105,11 @@ export default function($createElement) {
 												'div',
 												{
 													style: {
-														border: `${this.overlayBorderWidth} solid ${this.overlayBorderColor}`,
 														bottom: 0,
 														boxShadow: `0 0 4000px 4000px ${this.overlayBackgroundColor}`,
 														boxSizing: 'content-box',
 														left: 0,
+														outline: `${this.overlayBorderWidth} solid ${this.overlayBorderColor}`,
 														position: 'absolute',
 														right: 0,
 														top: 0,

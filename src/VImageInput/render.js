@@ -60,11 +60,14 @@ export default function($createElement) {
 												}
 											),
 										},
-										directives: [{
-											name: 'MyDrag',
-											value: this.onDrag,
-											modifiers: ['prevent'],
-										}],
+										...(this.disabled || this.readonly
+											? {}
+											: {directives: [{
+												name: 'MyDrag',
+												value: this.onDrag,
+												modifiers: ['prevent'],
+											}]}
+										),
 									},
 									[$createElement(
 										'div',

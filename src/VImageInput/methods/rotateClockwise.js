@@ -1,5 +1,5 @@
 export default function() {
-	/*let cropLeft = this.cropLeft;
+	let cropLeft = this.cropLeft;
 	let cropBottom = this.cropBottom;
 	if (this.rotated) {
 		this.rotated = false;
@@ -9,5 +9,5 @@ export default function() {
 		this.rotated = true;
 	}
 	this.cropLeft = cropBottom;
-	this.cropTop = cropLeft;*/
+	this.cropTop = cropLeft;
 }

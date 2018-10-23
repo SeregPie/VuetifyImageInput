@@ -87,7 +87,7 @@ export default function($createElement) {
 														top: `${-this.cropTop}px`,
 														transform: [
 															`scale(${this.scaling})`,
-															//`rotate(${this.rotation * 90}deg)`,
+															...(this.rotated ? ['rotate(90deg)', 'translateY(-100%)'] : []),
 															`translate(${[
 																`${(this.flippedHorizontally ? 1 : 0) * 100}%`,
 																`${(this.flippedVertically ? 1 : 0) * 100}%`,

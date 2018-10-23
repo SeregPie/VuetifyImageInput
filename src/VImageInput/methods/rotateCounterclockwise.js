@@ -1,5 +1,5 @@
 export default function() {
-	/*let cropRight = this.cropRight;
+	let cropRight = this.cropRight;
 	let cropTop = this.cropTop;
 	if (this.rotated) {
 		this.rotated = false;
@@ -9,5 +9,5 @@ export default function() {
 		this.flippedVertically = !this.flippedVertically;
 	}
 	this.cropLeft = cropTop;
-	this.cropTop = cropRight;*/
+	this.cropTop = cropRight;
 }

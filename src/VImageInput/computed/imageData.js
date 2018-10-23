@@ -9,16 +9,8 @@ export default function() {
 		if (this.flippedVertically) {
 			image = image.flip();
 		}
-		switch (this.rotation) {
-			case 1:
-				image = image.rotate90();
-				break;
-			case 2:
-				image = image.rotate180();
-				break;
-			case 3:
-				image = image.rotate270();
-				break;
+		if (this.rotated) {
+			image = image.rotate90();
 		}
 		image = image.scale(this.scaling);
 		image = image.crop(this.cropLeft, this.cropTop, this.imageWidth, this.imageHeight);

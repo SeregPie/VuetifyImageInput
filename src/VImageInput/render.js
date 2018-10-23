@@ -87,10 +87,10 @@ export default function($createElement) {
 														top: `${-this.cropTop}px`,
 														transform: [
 															`scale(${this.scaling})`,
-															`rotate(${this.rotation * 90}deg)`,
+															//`rotate(${this.rotation * 90}deg)`,
 															`translate(${[
-																`${((this.flippedHorizontally ? 1 : 0) - ((this.rotation === 3 || this.rotation === 2) ? 1 : 0)) * 100}%`,
-																`${((this.flippedVertically ? 1 : 0) - ((this.rotation === 1 || this.rotation === 2) ? 1 : 0)) * 100}%`,
+																`${(this.flippedHorizontally ? 1 : 0) * 100}%`,
+																`${(this.flippedVertically ? 1 : 0) * 100}%`,
 															].join(',')})`,
 															`scale(${[
 																this.flippedHorizontally ? -1 : 1,

@@ -1,4 +1,8 @@
 export default function() {
-	this.flippedVertically = !this.flippedVertically;
+	if (this.rotated) {
+		this.flippedHorizontally = !this.flippedHorizontally;
+	} else {
+		this.flippedVertically = !this.flippedVertically;
+	}
 	this.cropTop = this.cropBottom;
 }

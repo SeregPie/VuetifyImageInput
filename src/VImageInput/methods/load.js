@@ -11,7 +11,7 @@ export default function(data) {
 					this.internalImageHeight = height;
 					this.flippedHorizontally = false;
 					this.flippedVertically = false;
-					this.rotation = 0;
+					this.rotated = false;
 					this.scaling = 0;
 					this.center();
 				} else {

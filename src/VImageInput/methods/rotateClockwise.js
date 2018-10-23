@@ -1,7 +1,13 @@
 export default function() {
-	let cropLeft = this.cropLeft;
+	/*let cropLeft = this.cropLeft;
 	let cropBottom = this.cropBottom;
-	this.rotation++;
+	if (this.rotated) {
+		this.rotated = false;
+		this.flippedHorizontally = !this.flippedHorizontally;
+		this.flippedVertically = !this.flippedVertically;
+	} else {
+		this.rotated = true;
+	}
 	this.cropLeft = cropBottom;
-	this.cropTop = cropLeft;
+	this.cropTop = cropLeft;*/
 }

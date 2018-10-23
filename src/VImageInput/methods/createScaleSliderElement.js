@@ -6,13 +6,14 @@ export default function($createElement) {
 			props: {
 				disabled: this.disabled,
 				hideDetails: true,
-				max: Math.round(this.maxScaling * 1000),
-				min: Math.round(this.minScaling * 1000),
-				value: Math.round(this.scaling * 1000),
+				max: this.maxScaling,
+				min: this.minScaling,
+				step: 1 / 1000,
+				value: this.scaling,
 			},
 			on: {
 				input: value => {
-					this.scaling = value / 1000;
+					this.scaling = value;
 				},
 			},
 		},

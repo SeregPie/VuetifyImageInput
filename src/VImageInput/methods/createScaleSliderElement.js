@@ -12,9 +12,7 @@ export default function($createElement) {
 				value: this.scaling,
 			},
 			on: {
-				input: value => {
-					this.scaling = value;
-				},
+				input: this.setScaling,
 			},
 		},
 	);

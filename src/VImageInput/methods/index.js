@@ -14,6 +14,7 @@ import onDrag from './onDrag';
 import rotateClockwise from './rotateClockwise';
 import rotateCounterclockwise from './rotateCounterclockwise';
 import scale from './scale';
+import setScaling from './setScaling';
 
 export default {
 	center,
@@ -32,4 +33,5 @@ export default {
 	rotateClockwise,
 	rotateCounterclockwise,
 	scale,
+	setScaling,
 };

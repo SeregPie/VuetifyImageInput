@@ -6,8 +6,8 @@ import cropBottom from './cropBottom';
 import cropLeft from './cropLeft';
 import cropRight from './cropRight';
 import cropTop from './cropTop';
-import displayedInternalImageHeight from './displayedInternalImageHeight';
-import displayedInternalImageWidth from './displayedInternalImageWidth';
+import displayedImageHeight from './displayedImageHeight';
+import displayedImageWidth from './displayedImageWidth';
 import imageData from './imageData';
 import maxScaling from './maxScaling';
 import minScaling from './minScaling';
@@ -21,8 +21,8 @@ export default {
 	cropLeft,
 	cropRight,
 	cropTop,
-	displayedInternalImageHeight,
-	displayedInternalImageWidth,
+	displayedImageHeight,
+	displayedImageWidth,
 	imageData,
 	maxScaling,
 	minScaling,

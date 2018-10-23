@@ -1,3 +1,3 @@
 export default function() {
-	return this.displayedInternalImageWidth - this.imageWidth - this.cropLeft;
+	return this.displayedImageWidth - this.imageWidth - this.cropLeft;
 }

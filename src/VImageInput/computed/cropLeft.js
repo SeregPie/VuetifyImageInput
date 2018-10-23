@@ -3,9 +3,9 @@ import Math_clamp from '/utils/Math/clamp';
 export default {
 	get() {
 		return Math_clamp(
-			this.dirtyCropLeft,
+			Math.round(this.dirtyCropLeft),
 			0,
-			this.displayedInternalImageWidth - this.imageWidth,
+			this.displayedImageWidth - this.imageWidth,
 		);
 	},
 

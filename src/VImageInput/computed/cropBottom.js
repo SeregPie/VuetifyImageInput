@@ -1,3 +1,3 @@
 export default function() {
-	return this.displayedInternalImageHeight - this.imageHeight - this.cropTop;
+	return this.displayedImageHeight - this.imageHeight - this.cropTop;
 }

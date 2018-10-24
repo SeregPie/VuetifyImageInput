@@ -89,9 +89,9 @@ export default function($createElement) {
 														position: 'absolute',
 														//top: `${-this.cropTop}px`,
 														transform: [
-															//...(this.rotated ? ['rotate(90deg)', 'translateY(-100%)'] : []),
 															...(this.flippedVertically ? [`translateY(${this.imageHeight}px)`, 'scaleY(-1)'] : []),
 															...(this.flippedHorizontally ? [`translateX(${this.imageWidth}px)`, 'scaleX(-1)'] : []),
+															...(this.rotated ? [`translateX(${this.imageWidth}px)`, 'rotate(90deg)'] : []),
 															`scale(${this.scaling})`,
 														].join(' '),
 														transformOrigin: '0 0',

@@ -20,9 +20,8 @@ export default function(
 	canvas.width = imageWidth;
 	canvas.height = imageHeight;
 	if (rotated) {
-		context.translate(imageHeight / 2, imageWidth / 2);
+		context.translate(imageWidth, 0);
 		context.rotate(Math.PI / 2);
-		context.translate(-imageWidth / 2, -imageHeight / 2);
 	}
 	if (flippedHorizontally) {
 		context.translate(imageWidth, 0);

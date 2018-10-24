@@ -74,7 +74,7 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 
 | property | type | default |
 | ---: | :--- | :--- |
-| `clear-icon` | [`Function`, `String`] | `$vuetify.icons.clear` |
+| `clear-icon` | [`Function`, `String`] | * |
 | `clearable` | `Boolean` | `false` |
 | `disabled` | `Boolean` | `false` |
 | `flip-horizontally-icon-style` | [`Function`, `Object`] | |
@@ -100,3 +100,9 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `upload-icon-style` | [`Function`, `Object`] | |
 | `upload-icon` | [`Function`, `String`] | `'cloud_upload'` |
 | `value` | `String` | |
+
+---
+
+let clearIcon = function() {
+  return this.$vuetify.icons.clear;
+};

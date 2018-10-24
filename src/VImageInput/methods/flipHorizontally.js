@@ -4,5 +4,4 @@ export default function() {
 	} else {
 		this.flippedHorizontally = !this.flippedHorizontally;
 	}
-	this.cropLeft = this.cropRight;
 }

@@ -1,25 +1,22 @@
-import PaperDuck from 'paperduck';
-
 export default function(data) {
 	if ((this.imageData || data) && this.imageData !== data) {
-		PaperDuck
-			.load(data)
-			.then(({width, height}) => {
-				if (width && height) {
-					this.internalImageData = data;
-					this.internalImageWidth = width;
-					this.internalImageHeight = height;
-					this.flippedHorizontally = false;
-					this.flippedVertically = false;
-					this.rotated = false;
-					this.scaling = 0;
-					this.center();
-				} else {
-					this.internalImageData = null;
-				}
-			})
-			.catch(() => {
-				// pass
-			});
+		let image = new Image();
+		image.addEventListener('load', () => {
+			let width = image.naturalWidth || image.width;
+			let height = image.naturalHeight || image.height;
+			if (width && height) {
+				this.internalImageData = data;
+				this.internalImageWidth = width;
+				this.internalImageHeight = height;
+				this.flippedHorizontally = false;
+				this.flippedVertically = false;
+				this.rotated = false;
+				this.scaling = 0;
+				this.center();
+			} else {
+				this.internalImageData = null;
+			}
+		});
+		image.src = data;
 	}
 }

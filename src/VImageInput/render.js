@@ -60,14 +60,14 @@ export default function($createElement) {
 												}
 											),
 										},
-										...(this.disabled || this.readonly
+										/*...(this.disabled || this.readonly
 											? {}
 											: {directives: [{
 												name: 'MyDrag',
 												value: this.onDrag,
 												modifiers: ['prevent'],
 											}]}
-										),
+										),*/
 									},
 									[$createElement(
 										'div',
@@ -84,10 +84,10 @@ export default function($createElement) {
 												'img',
 												{
 													style: {
-														left: `${-this.cropLeft}px`,
+														//left: `${-this.cropLeft}px`,
 														pointerEvents: 'none',
 														position: 'absolute',
-														top: `${-this.cropTop}px`,
+														//top: `${-this.cropTop}px`,
 														transform: [
 															`scale(${this.scaling})`,
 															...(this.rotated ? ['rotate(90deg)', 'translateY(-100%)'] : []),

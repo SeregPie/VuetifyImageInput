@@ -33,7 +33,6 @@
 		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
-		"paperduck": "^18.9.25",
 		"v-dragged": "0.0.5"
 	},
 	"devDependencies": {

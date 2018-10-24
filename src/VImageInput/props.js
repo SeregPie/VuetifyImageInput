@@ -52,17 +52,17 @@ export default {
 		default: false,
 	},
 
-	imageQuality: {},
+	imageFormat: {
+		type: String,
+		default: 'png',
+	},
 
 	imageHeight: {
 		type: Number,
 		default: 256,
 	},
 
-	imageFormat: {
-		type: String,
-		default: 'png',
-	},
+	imageQuality: {},
 
 	imageWidth: {
 		type: Number,

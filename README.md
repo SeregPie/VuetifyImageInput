@@ -103,6 +103,8 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 
 ---
 
+```javascript
 let clearIcon = function() {
   return this.$vuetify.icons.clear;
 };
+```

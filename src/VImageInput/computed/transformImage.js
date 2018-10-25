@@ -31,7 +31,7 @@ export default function(
 		context.translate(imageHeight, 0);
 		context.rotate(Math.PI / 2);
 	}*/
-	//context.translate(-25, -25);
+	context.translate(cropLeft, cropTop);
 	context.scale(scaling, scaling);
 	context.drawImage(internalImage, 0, 0);
 	return canvas.toDataURL(`image/${imageFormat}`, imageQuality);

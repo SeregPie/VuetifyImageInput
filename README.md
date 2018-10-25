@@ -53,7 +53,6 @@ export default {
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/vuetify"></script>
 <script src="https://unpkg.com/v-dragged"></script>
-<script src="https://unpkg.com/paperduck"></script>
 <script src="https://unpkg.com/vuetify-image-input"></script>
 ```
 

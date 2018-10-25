@@ -60,14 +60,14 @@ export default function($createElement) {
 												}
 											),
 										},
-										/*...(this.disabled || this.readonly
+										...(this.disabled || this.readonly
 											? {}
 											: {directives: [{
 												name: 'MyDrag',
 												value: this.onDrag,
 												modifiers: ['prevent'],
 											}]}
-										),*/
+										),
 									},
 									[$createElement(
 										'div',
@@ -92,7 +92,7 @@ export default function($createElement) {
 															...(this.flippedVertically ? [`translateY(${this.imageHeight}px)`, 'scaleY(-1)'] : []),
 															...(this.flippedHorizontally ? [`translateX(${this.imageWidth}px)`, 'scaleX(-1)'] : []),
 															//...(this.rotated ? [`translateX(${this.imageHeight}px)`, 'rotate(90deg)'] : []),
-															//`translate(${-25}px,${-25}px)`,
+															`translate(${this.cropLeft}px,${this.cropTop}px)`,
 															`scale(${this.scaling})`,
 														].join(' '),
 														transformOrigin: '0 0',

@@ -4,8 +4,8 @@ export default {
 	get() {
 		return Math_clamp(
 			Math.round(this.dirtyCropLeft),
+			this.imageWidth - this.displayedImageWidth,
 			0,
-			this.displayedImageWidth - this.imageWidth,
 		);
 	},
 

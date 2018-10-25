@@ -1,4 +1,4 @@
 export default function() {
-	this.cropLeft = (this.displayedImageWidth - this.imageWidth) / 2;
-	this.cropTop = (this.displayedImageHeight - this.imageHeight) / 2;
+	this.cropLeft = (this.imageWidth - this.displayedImageWidth) / 2;
+	this.cropTop = (this.imageHeight - this.displayedImageHeight) / 2;
 }

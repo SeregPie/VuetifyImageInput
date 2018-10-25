@@ -1,38 +1,43 @@
 export default function(
-	internalImageData,
-	internalImageWidth,
-	internalImageHeight,
+	originalData,
+	originalWidth,
+	originalHeight,
 	rotated,
 	flippedHorizontally,
 	flippedVertically,
 	scaling,
 	croppingLeft,
 	croppingTop,
-	imageWidth,
-	imageHeight,
-	imageFormat,
-	imageQuality,
+	backgroundColor,
+	width,
+	height,
+	format,
+	quality,
 ) {
-	let internalImage = new Image();
-	internalImage.src = internalImageData;
+	let originalImage = new Image();
+	originalImage.src = originalData;
 	let canvas = document.createElement('canvas');
 	let context = canvas.getContext('2d');
-	canvas.width = imageWidth;
-	canvas.height = imageHeight;
+	canvas.width = width;
+	canvas.height = height;
+	if (backgroundColor) {
+		context.fillStyle = backgroundColor;
+		context.fillRect(0, 0, width, height);
+	}
 	if (flippedHorizontally) {
-		context.translate(imageWidth, 0);
+		context.translate(width, 0);
 		context.scale(-1, 1);
 	}
 	if (flippedVertically) {
-		context.translate(0, imageHeight);
+		context.translate(0, height);
 		context.scale(1, -1);
 	}
 	/*if (rotated) {
-		context.translate(imageHeight, 0);
+		context.translate(height, 0);
 		context.rotate(Math.PI / 2);
 	}*/
 	context.translate(croppingLeft, croppingTop);
 	context.scale(scaling, scaling);
-	context.drawImage(internalImage, 0, 0);
-	return canvas.toDataURL(`image/${imageFormat}`, imageQuality);
+	context.drawImage(originalImage, 0, 0);
+	return canvas.toDataURL(`image/${format}`, quality);
 }

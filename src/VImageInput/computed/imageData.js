@@ -12,6 +12,7 @@ export default function() {
 			this.scaling,
 			this.croppingLeft,
 			this.croppingTop,
+			this.imageBackgroundColor,
 			this.imageWidth,
 			this.imageHeight,
 			this.imageFormat,

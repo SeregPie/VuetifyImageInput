@@ -76,6 +76,10 @@ export default function($createElement) {
 												pointerEvents: 'none',
 												position: 'relative',
 												width: `${this.imageWidth}px`,
+												...(this.imageBackgroundColor
+													? {backgroundColor: this.imageBackgroundColor}
+													: {}
+												),
 											},
 										},
 										[

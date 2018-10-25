@@ -83,6 +83,7 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `full-height` | `Boolean` | `false` |
 | `full-width` | `Boolean` | `false` |
 | `hide-actions` | `Boolean` | `false` |
+| `image-background-color` | `String` | |
 | `image-format` | `String` | `'png'` |
 | `image-height` | `Number` | `256` |
 | `image-quality` | | |

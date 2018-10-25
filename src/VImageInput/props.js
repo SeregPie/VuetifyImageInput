@@ -52,6 +52,8 @@ export default {
 		default: false,
 	},
 
+	imageBackgroundColor: String,
+
 	imageFormat: {
 		type: String,
 		default: 'png',

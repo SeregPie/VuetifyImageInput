@@ -63,9 +63,8 @@ export default function($createElement) {
 										...(this.disabled || this.readonly
 											? {}
 											: {directives: [{
-												name: 'MyDrag',
-												value: this.onDrag,
-												modifiers: ['prevent'],
+												name: 'Pan',
+												value: this.onPan,
 											}]}
 										),
 									},

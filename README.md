@@ -10,8 +10,7 @@ Provides basic image editing tools.
 
 - [Vue](https://github.com/vuejs/vue)
 - [Vuetify](https://github.com/vuetifyjs/vuetify)
-- [VDragged](https://github.com/zhanziyang/v-dragged)
-- [PaperDuck](https://github.com/SeregPie/PaperDuck)
+- [ZingTouch](https://github.com/zingchart/zingtouch)
 
 ## setup
 
@@ -50,9 +49,10 @@ export default {
 ### browser
 
 ```html
-<script src="https://unpkg.com/vue"></script>
-<script src="https://unpkg.com/vuetify"></script>
-<script src="https://unpkg.com/v-dragged"></script>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet"/>
+<script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
+<script src="https://unpkg.com/zingtouch/dist/zingtouch.min.js"></script>
 <script src="https://unpkg.com/vuetify-image-input"></script>
 ```
 

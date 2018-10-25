@@ -6,7 +6,7 @@ import resolve from '@seregpie/rollup-plugin-resolve';
 import {main} from './package.json';
 
 let globals = {
-	'v-dragged': 'VDragged',
+	'zingtouch': 'ZingTouch',
 };
 
 export default {

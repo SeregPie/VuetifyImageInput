@@ -1,5 +1,5 @@
-import VDragged from 'v-dragged';
+import Pan from './Pan';
 
 export default {
-	MyDrag: VDragged.directive,
+	Pan,
 };

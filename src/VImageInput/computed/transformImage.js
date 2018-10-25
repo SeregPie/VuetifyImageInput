@@ -6,8 +6,8 @@ export default function(
 	flippedHorizontally,
 	flippedVertically,
 	scaling,
-	cropLeft,
-	cropTop,
+	croppingLeft,
+	croppingTop,
 	imageWidth,
 	imageHeight,
 	imageFormat,
@@ -31,7 +31,7 @@ export default function(
 		context.translate(imageHeight, 0);
 		context.rotate(Math.PI / 2);
 	}*/
-	context.translate(cropLeft, cropTop);
+	context.translate(croppingLeft, croppingTop);
 	context.scale(scaling, scaling);
 	context.drawImage(internalImage, 0, 0);
 	return canvas.toDataURL(`image/${imageFormat}`, imageQuality);

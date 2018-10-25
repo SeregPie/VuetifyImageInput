@@ -2,8 +2,8 @@ import Function_cast from '/utils/Function/cast';
 import Object_mapValues from '/utils/Object/mapValues';
 
 import checkeredBackground from './checkeredBackground';
-import cropLeft from './cropLeft';
-import cropTop from './cropTop';
+import croppingLeft from './croppingLeft';
+import croppingTop from './croppingTop';
 import displayedImageHeight from './displayedImageHeight';
 import displayedImageWidth from './displayedImageWidth';
 import imageData from './imageData';
@@ -15,8 +15,8 @@ import scaling from './scaling';
 
 export default {
 	checkeredBackground,
-	cropLeft,
-	cropTop,
+	croppingLeft,
+	croppingTop,
 	displayedImageHeight,
 	displayedImageWidth,
 	imageData,

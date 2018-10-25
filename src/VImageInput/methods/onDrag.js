@@ -6,7 +6,7 @@ export default function({deltaX, deltaY}) {
 		if (this.flippedVertically) {
 			deltaY *= -1;
 		}
-		this.cropLeft += deltaX;
-		this.cropTop += deltaY;
+		this.croppingLeft += deltaX;
+		this.croppingTop += deltaY;
 	}
 }

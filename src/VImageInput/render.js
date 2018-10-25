@@ -84,15 +84,13 @@ export default function($createElement) {
 												'img',
 												{
 													style: {
-														//left: `${-this.cropLeft}px`,
 														pointerEvents: 'none',
 														position: 'absolute',
-														//top: `${-this.cropTop}px`,
 														transform: [
 															...(this.flippedVertically ? [`translateY(${this.imageHeight}px)`, 'scaleY(-1)'] : []),
 															...(this.flippedHorizontally ? [`translateX(${this.imageWidth}px)`, 'scaleX(-1)'] : []),
 															//...(this.rotated ? [`translateX(${this.imageHeight}px)`, 'rotate(90deg)'] : []),
-															`translate(${this.cropLeft}px,${this.cropTop}px)`,
+															`translate(${this.croppingLeft}px,${this.croppingTop}px)`,
 															`scale(${this.scaling})`,
 														].join(' '),
 														transformOrigin: '0 0',

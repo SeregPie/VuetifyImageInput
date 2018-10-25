@@ -19,10 +19,6 @@ export default function(
 	let context = canvas.getContext('2d');
 	canvas.width = imageWidth;
 	canvas.height = imageHeight;
-	if (rotated) {
-		context.translate(imageWidth, 0);
-		context.rotate(Math.PI / 2);
-	}
 	if (flippedHorizontally) {
 		context.translate(imageWidth, 0);
 		context.scale(-1, 1);
@@ -31,8 +27,12 @@ export default function(
 		context.translate(0, imageHeight);
 		context.scale(1, -1);
 	}
+	/*if (rotated) {
+		context.translate(imageHeight, 0);
+		context.rotate(Math.PI / 2);
+	}*/
+	//context.translate(-25, -25);
 	context.scale(scaling, scaling);
-	//context.translate(-cropLeft, -cropTop);
 	context.drawImage(internalImage, 0, 0);
 	return canvas.toDataURL(`image/${imageFormat}`, imageQuality);
 }

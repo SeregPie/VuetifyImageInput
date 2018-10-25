@@ -89,10 +89,10 @@ export default function($createElement) {
 														position: 'absolute',
 														//top: `${-this.cropTop}px`,
 														transform: [
-															...(this.rotated ? [`translateX(${this.imageWidth}px)`, 'rotate(90deg)'] : []),
 															...(this.flippedVertically ? [`translateY(${this.imageHeight}px)`, 'scaleY(-1)'] : []),
 															...(this.flippedHorizontally ? [`translateX(${this.imageWidth}px)`, 'scaleX(-1)'] : []),
-
+															//...(this.rotated ? [`translateX(${this.imageHeight}px)`, 'rotate(90deg)'] : []),
+															//`translate(${-25}px,${-25}px)`,
 															`scale(${this.scaling})`,
 														].join(' '),
 														transformOrigin: '0 0',
@@ -183,8 +183,8 @@ export default function($createElement) {
 										: [
 											this.createFlipHorizontallyButtonElement($createElement),
 											this.createFlipVerticallyButtonElement($createElement),
-											this.createRotateClockwiseButtonElement($createElement),
-											this.createRotateCounterclockwiseButtonElement($createElement),
+											//this.createRotateClockwiseButtonElement($createElement),
+											//this.createRotateCounterclockwiseButtonElement($createElement),
 										]
 									),
 								],

@@ -1,6 +1,8 @@
 import Function_constant from '/utils/Function/constant';
 
 export default {
+	backgroundColor: String,
+
 	clearable: {
 		type: Boolean,
 		default: false,
@@ -51,8 +53,6 @@ export default {
 		type: Boolean,
 		default: false,
 	},
-
-	imageBackgroundColor: String,
 
 	imageFormat: {
 		type: String,

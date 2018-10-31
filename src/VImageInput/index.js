@@ -4,7 +4,7 @@ import inject from './inject';
 import props from './props';
 import data from './data';
 import computed from './computed';
-import created from './created';
+import watch from './watch';
 import methods from './methods';
 import render from './render';
 
@@ -16,7 +16,7 @@ export default {
 	props,
 	data,
 	computed,
-	created,
+	watch,
 	methods,
 	render,
 };

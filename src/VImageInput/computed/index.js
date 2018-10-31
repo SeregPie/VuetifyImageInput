@@ -6,12 +6,12 @@ import croppingLeft from './croppingLeft';
 import croppingTop from './croppingTop';
 import displayedImageHeight from './displayedImageHeight';
 import displayedImageWidth from './displayedImageWidth';
-import imageData from './imageData';
 import maxScaling from './maxScaling';
 import minScaling from './minScaling';
 import rotatedInternalImageHeight from './rotatedInternalImageHeight';
 import rotatedInternalImageWidth from './rotatedInternalImageWidth';
 import scaling from './scaling';
+import updateImageData from './updateImageData';
 
 export default {
 	checkeredBackground,
@@ -19,12 +19,12 @@ export default {
 	croppingTop,
 	displayedImageHeight,
 	displayedImageWidth,
-	imageData,
 	maxScaling,
 	minScaling,
 	rotatedInternalImageHeight,
 	rotatedInternalImageWidth,
 	scaling,
+	updateImageData,
 	...Object_mapValues({
 		remappedClearIcon: 'clearIcon',
 		remappedClearIconStyle: 'clearIconStyle',

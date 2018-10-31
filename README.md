@@ -76,6 +76,7 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `background-color` | `String` | |
 | `clear-icon` | [`Function`, `String`] | * |
 | `clearable` | `Boolean` | `false` |
+| `debounce` | `Number` | `0` |
 | `disabled` | `Boolean` | `false` |
 | `flip-horizontally-icon-style` | [`Function`, `Object`] | |
 | `flip-horizontally-icon` | [`Function`, `String`] | `'flip'` |

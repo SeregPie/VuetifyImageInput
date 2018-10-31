@@ -5,6 +5,7 @@ export default function() {
 		dirtyScaling: 0,
 		flippedHorizontally: false,
 		flippedVertically: false,
+		imageData: null,
 		internalImageData: null,
 		internalImageHeight: 0,
 		internalImageWidth: 0,

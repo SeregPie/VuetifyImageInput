@@ -4,9 +4,12 @@ import createActionButtonElement from './createActionButtonElement';
 import createClearButtonElement from './createClearButtonElement';
 import createFlipHorizontallyButtonElement from './createFlipHorizontallyButtonElement';
 import createFlipVerticallyButtonElement from './createFlipVerticallyButtonElement';
+import createImageElement from './createImageElement';
+import createOverlayElement from './createOverlayElement';
 import createRotateClockwiseButtonElement from './createRotateClockwiseButtonElement';
 import createRotateCounterclockwiseButtonElement from './createRotateCounterclockwiseButtonElement';
 import createScalingSliderElement from './createScalingSliderElement';
+import createUploaderElement from './createUploaderElement';
 import flipHorizontally from './flipHorizontally';
 import flipVertically from './flipVertically';
 import load from './load';
@@ -23,9 +26,12 @@ export default {
 	createClearButtonElement,
 	createFlipHorizontallyButtonElement,
 	createFlipVerticallyButtonElement,
+	createImageElement,
+	createOverlayElement,
 	createRotateClockwiseButtonElement,
 	createRotateCounterclockwiseButtonElement,
 	createScalingSliderElement,
+	createUploaderElement,
 	flipHorizontally,
 	flipVertically,
 	load,

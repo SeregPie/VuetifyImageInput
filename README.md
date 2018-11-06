@@ -109,3 +109,19 @@ let clearIcon = function() {
   return this.$vuetify.icons.clear;
 };
 ```
+
+## todo
+
+- Bring back the rotate functionality.
+- Scale from the center.
+- Scale gesture.
+- Scale the image if the container is too small.
+- Color properties for the slider.
+- Input and output synchronization.
+- Smooth image scaling.
+- Support all color props as functions.
+- What about checkered background? Dark/light theme? Custom checkered background?
+- Hidden input field for the image?
+- Gestures directive?
+- Uploader component?
+- Upload cross-origin images?

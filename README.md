@@ -89,8 +89,8 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `image-width` | `Number` | `256` | |
 | `max-scaling` | `Number` | `1` | |
 | `min-scaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
-| `overlay-background-color` | `String` | `'rgba(0,0,0,0.5)'` | |
-| `overlay-border-color` | `String` | `'#fff'` | |
+| `overlay-background-color` | [`Function`, `String`] | `'rgba(0,0,0,0.5)'` | |
+| `overlay-border-color` | [`Function`, `String`] | `'#fff'` | |
 | `overlay-border-width` | `String` | `'4px'` | |
 | `overlay-padding` | `String` | `'50px'` | |
 | `readonly` | `Boolean` | `false` | |
@@ -119,7 +119,6 @@ let clearIcon = function() {
 - Color properties for the slider.
 - Input and output synchronization.
 - Smooth image scaling.
-- Support all color props as functions.
 - What about checkered background? Dark/light theme? Custom checkered background?
 - Hidden input field for the image?
 - Gestures directive?

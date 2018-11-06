@@ -87,12 +87,12 @@ export default {
 	},
 
 	overlayBackgroundColor: {
-		type: String,
+		type: [Function, String],
 		default: 'rgba(0,0,0,0.5)',
 	},
 
 	overlayBorderColor: {
-		type: String,
+		type: [Function, String],
 		default: '#fff',
 	},
 

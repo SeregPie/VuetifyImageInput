@@ -40,6 +40,8 @@ export default {
 		remappedFlipHorizontallyIconStyle: 'flipHorizontallyIconStyle',
 		remappedFlipVerticallyIcon: 'flipVerticallyIcon',
 		remappedFlipVerticallyIconStyle: 'flipVerticallyIconStyle',
+		remappedOverlayBackgroundColor: 'overlayBackgroundColor',
+		remappedOverlayBorderColor: 'overlayBorderColor',
 		remappedRotateClockwiseIcon: 'rotateClockwiseIcon',
 		remappedRotateClockwiseIconStyle: 'rotateClockwiseIconStyle',
 		remappedRotateCounterclockwiseIcon: 'rotateCounterclockwiseIcon',

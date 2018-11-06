@@ -32,8 +32,8 @@ export default function($createElement) {
 			'div',
 			{
 				style: {
-					border: `${this.overlayBorderWidth} solid ${this.overlayBorderColor}`,
-					boxShadow: `0 0 4000px 4000px ${this.overlayBackgroundColor}`,
+					border: `${this.overlayBorderWidth} solid ${this.remappedOverlayBorderColor}`,
+					boxShadow: `0 0 4000px 4000px ${this.remappedOverlayBackgroundColor}`,
 					margin: this.overlayPadding,
 					pointerEvents: 'none',
 					...(this.internalImageData

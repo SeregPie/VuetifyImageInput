@@ -134,6 +134,33 @@
 								label="full-height"
 							></v-checkbox>
 						</v-flex>
+						<v-flex>
+							<v-input
+								label="background-color"
+								hide-details
+							></v-input>
+							<v-btn-toggle v-model="backgroundColorIndex">
+								<v-btn
+									v-for="(value, index) in backgroundColorValues"
+									:key="index"
+									:value="index"
+									color="primary"
+									flat
+								>
+									<div
+										v-if="value"
+										:style="{backgroundColor: value}"
+										style="
+											height: 24px;
+											width: 24px;
+										"
+									></div>
+									<v-icon
+										v-else
+									>block</v-icon>
+								</v-btn>
+							</v-btn-toggle>
+						</v-flex>
 					</v-layout>
 				</v-container>
 			</v-navigation-drawer>
@@ -168,6 +195,7 @@
 				>
 					<v-image-input
 						v-model="value"
+						:background-color="backgroundColor"
 						:clearable="clearable"
 						:debounce="250"
 						:disabled="disabled"

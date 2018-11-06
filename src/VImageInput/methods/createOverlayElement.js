@@ -34,16 +34,8 @@ export default function($createElement) {
 				style: {
 					border: `${this.overlayBorderWidth} solid ${this.overlayBorderColor}`,
 					boxShadow: `0 0 4000px 4000px ${this.overlayBackgroundColor}`,
-					boxSizing: 'content-box',
-					height: `${this.imageHeight}px`,
 					margin: this.overlayPadding,
 					pointerEvents: 'none',
-					position: 'relative',
-					width: `${this.imageWidth}px`,
-					...(this.backgroundColor
-						? {backgroundColor: this.backgroundColor}
-						: {}
-					),
 					...(this.internalImageData
 						? {}
 						: {
@@ -53,7 +45,22 @@ export default function($createElement) {
 					),
 				},
 			},
-			[this.createImageElement($createElement)],
+			[$createElement(
+				'div',
+				{
+					style: {
+						height: `${this.imageHeight}px`,
+						position: 'relative',
+						width: `${this.imageWidth}px`,
+						zIndex: -1,
+						...(this.backgroundColor
+							? {backgroundColor: this.backgroundColor}
+							: {}
+						),
+					},
+				},
+				[this.createImageElement($createElement)],
+			)]
 		)],
 	);
 }

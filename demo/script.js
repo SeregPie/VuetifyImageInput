@@ -1,10 +1,19 @@
 (function() {
 
+	var backgroundColorValues = [
+		undefined,
+		'#e8aca0',
+		'#3a7fd8',
+		'#f92036',
+	];
+
 	new Vue({
 		el: '#app',
 
 		data: function() {
 			return {
+				backgroundColorIndex: 0,
+				backgroundColorValues: backgroundColorValues,
 				clearable: VuetifyImageInput.props.clearable.default,
 				dark: false,
 				dialog: false,
@@ -19,6 +28,12 @@
 				readonly: VuetifyImageInput.props.readonly.default,
 				value: null,
 			};
+		},
+
+		computed: {
+			backgroundColor: function() {
+				return this.backgroundColorValues[this.backgroundColorIndex];
+			},
 		},
 	});
 

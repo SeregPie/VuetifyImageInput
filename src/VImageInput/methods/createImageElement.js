@@ -13,7 +13,6 @@ export default function($createElement) {
 					`scale(${this.scaling})`,
 				].join(' '),
 				transformOrigin: '0 0',
-				zIndex: -1,
 			},
 			attrs: {
 				src: this.internalImageData,

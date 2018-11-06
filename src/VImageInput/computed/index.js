@@ -2,6 +2,7 @@ import Function_cast from '/utils/Function/cast';
 import Object_mapValues from '/utils/Object/mapValues';
 
 import checkeredBackground from './checkeredBackground';
+import cleanMaxScaling from './cleanMaxScaling';
 import cleanMinScaling from './cleanMinScaling';
 import croppingLeft from './croppingLeft';
 import croppingTop from './croppingTop';
@@ -9,7 +10,6 @@ import displayedImageHeight from './displayedImageHeight';
 import displayedImageWidth from './displayedImageWidth';
 import maxCroppingLeft from './maxCroppingLeft';
 import maxCroppingTop from './maxCroppingTop';
-import maxScaling from './maxScaling';
 import minCroppingLeft from './minCroppingLeft';
 import minCroppingTop from './minCroppingTop';
 import rotatedInternalImageHeight from './rotatedInternalImageHeight';
@@ -19,6 +19,7 @@ import updateImageData from './updateImageData';
 
 export default {
 	checkeredBackground,
+	cleanMaxScaling,
 	cleanMinScaling,
 	croppingLeft,
 	croppingTop,
@@ -26,7 +27,6 @@ export default {
 	displayedImageWidth,
 	maxCroppingLeft,
 	maxCroppingTop,
-	maxScaling,
 	minCroppingLeft,
 	minCroppingTop,
 	rotatedInternalImageHeight,

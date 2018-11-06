@@ -6,7 +6,7 @@ export default function($createElement) {
 			props: {
 				disabled: this.disabled,
 				hideDetails: true,
-				max: this.maxScaling,
+				max: this.cleanMaxScaling,
 				min: this.cleanMinScaling,
 				step: 1 / 1000,
 				value: this.scaling,

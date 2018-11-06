@@ -76,6 +76,11 @@ export default {
 		default: 256,
 	},
 
+	maxScaling: {
+		type: Number,
+		default: 1,
+	},
+
 	minScaling: {
 		type: String,
 		default: 'cover',

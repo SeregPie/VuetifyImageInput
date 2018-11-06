@@ -98,6 +98,7 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `rotate-clockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
 | `rotate-counterclockwise-icon-style` | [`Function`, `Object`] | | |
 | `rotate-counterclockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
+| `scaling-slider-color` | [`Function`, `String`] | | |
 | `upload-icon-style` | [`Function`, `Object`] | | |
 | `upload-icon` | [`Function`, `String`] | `'cloud_upload'` | |
 | `value` | `String` | | |
@@ -116,7 +117,6 @@ let clearIcon = function() {
 - Scale from the center.
 - Scale gesture.
 - Scale the image if the container is too small.
-- Color properties for the slider.
 - Input and output synchronization.
 - Smooth image scaling.
 - What about checkered background? Dark/light theme? Custom checkered background?

@@ -46,6 +46,7 @@ export default {
 		remappedRotateClockwiseIconStyle: 'rotateClockwiseIconStyle',
 		remappedRotateCounterclockwiseIcon: 'rotateCounterclockwiseIcon',
 		remappedRotateCounterclockwiseIconStyle: 'rotateCounterclockwiseIconStyle',
+		remappedScalingSliderColor: 'scalingSliderColor',
 		remappedUploadIcon: 'uploadIcon',
 		remappedUploadIconStyle: 'uploadIconStyle',
 	}, key => function() {

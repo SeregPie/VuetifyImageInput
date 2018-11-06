@@ -4,6 +4,7 @@ export default function($createElement) {
 		{
 			class: 'mx-2 my-1',
 			props: {
+				color: this.remappedScalingSliderColor,
 				disabled: this.disabled,
 				hideDetails: true,
 				max: this.cleanMaxScaling,

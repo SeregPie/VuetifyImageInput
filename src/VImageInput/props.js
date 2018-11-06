@@ -128,6 +128,8 @@ export default {
 
 	rotateCounterclockwiseIconStyle: [Function, Object],
 
+	scalingSliderColor: [Function, String],
+
 	uploadIcon: {
 		type: [Function, String],
 		default: 'cloud_upload',

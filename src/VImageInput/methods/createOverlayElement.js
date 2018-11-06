@@ -20,6 +20,13 @@ export default function($createElement) {
 					}
 				),
 			},
+			...(this.disabled || this.readonly
+				? {}
+				: {directives: [{
+					name: 'Pan',
+					value: this.onPan,
+				}]}
+			),
 		},
 		[$createElement(
 			'div',
@@ -45,13 +52,6 @@ export default function($createElement) {
 						}
 					),
 				},
-				...(this.disabled || this.readonly
-					? {}
-					: {directives: [{
-						name: 'Pan',
-						value: this.onPan,
-					}]}
-				),
 			},
 			[this.createImageElement($createElement)],
 		)],

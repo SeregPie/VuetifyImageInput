@@ -8,8 +8,6 @@ Provides basic image editing tools.
 
 ## dependencies
 
-- [Vue](https://github.com/vuejs/vue)
-- [Vuetify](https://github.com/vuetifyjs/vuetify)
 - [ZingTouch](https://github.com/zingchart/zingtouch)
 
 ## setup

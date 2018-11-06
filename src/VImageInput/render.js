@@ -217,7 +217,7 @@ export default function($createElement) {
 							},
 							(this.hideActions || this.readonly
 								? []
-								: [this.createScaleSliderElement($createElement)]
+								: [this.createScalingSliderElement($createElement)]
 							),
 						),
 						$createElement(

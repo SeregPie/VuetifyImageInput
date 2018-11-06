@@ -69,36 +69,37 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 
 ## properties
 
-| property | type | default |
-| ---: | :--- | :--- |
-| `background-color` | `String` | |
-| `clear-icon` | [`Function`, `String`] | * |
-| `clearable` | `Boolean` | `false` |
-| `debounce` | `Number` | `0` |
-| `disabled` | `Boolean` | `false` |
-| `flip-horizontally-icon-style` | [`Function`, `Object`] | |
-| `flip-horizontally-icon` | [`Function`, `String`] | `'flip'` |
-| `flip-vertically-icon-style` | [`Function`, `Object`] | `{transform: 'rotate(90deg)'}` |
-| `flip-vertically-icon` | [`Function`, `String`] | `'flip'` |
-| `full-height` | `Boolean` | `false` |
-| `full-width` | `Boolean` | `false` |
-| `hide-actions` | `Boolean` | `false` |
-| `image-format` | `String` | `'png'` |
-| `image-height` | `Number` | `256` |
-| `image-quality` | | |
-| `image-width` | `Number` | `256` |
-| `overlay-background-color` | `String` | `'rgba(0,0,0,0.5)'` |
-| `overlay-border-color` | `String` | `'#fff'` |
-| `overlay-border-width` | `String` | `'4px'` |
-| `overlay-padding` | `String` | `'50px'` |
-| `readonly` | `Boolean` | `false` |
-| `rotate-clockwise-icon-style` | [`Function`, `Object`] | `{transform: 'scaleX(-1)'}` |
-| `rotate-clockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` |
-| `rotate-counterclockwise-icon-style` | [`Function`, `Object`] | |
-| `rotate-counterclockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` |
-| `upload-icon-style` | [`Function`, `Object`] | |
-| `upload-icon` | [`Function`, `String`] | `'cloud_upload'` |
-| `value` | `String` | |
+| property | type | default | description |
+| ---: | :--- | :--- | :--- |
+| `background-color` | `String` | | |
+| `clear-icon` | [`Function`, `String`] | * | |
+| `clearable` | `Boolean` | `false` | |
+| `debounce` | `Number` | `0` | |
+| `disabled` | `Boolean` | `false` | |
+| `flip-horizontally-icon-style` | [`Function`, `Object`] | | |
+| `flip-horizontally-icon` | [`Function`, `String`] | `'flip'` | |
+| `flip-vertically-icon-style` | [`Function`, `Object`] | `{transform: 'rotate(90deg)'}` | |
+| `flip-vertically-icon` | [`Function`, `String`] | `'flip'` | |
+| `full-height` | `Boolean` | `false` | |
+| `full-width` | `Boolean` | `false` | |
+| `hide-actions` | `Boolean` | `false` | |
+| `image-format` | `String` | `'png'` | |
+| `image-height` | `Number` | `256` | |
+| `image-quality` | | | |
+| `image-width` | `Number` | `256` | |
+| `min-scaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
+| `overlay-background-color` | `String` | `'rgba(0,0,0,0.5)'` | |
+| `overlay-border-color` | `String` | `'#fff'` | |
+| `overlay-border-width` | `String` | `'4px'` | |
+| `overlay-padding` | `String` | `'50px'` | |
+| `readonly` | `Boolean` | `false` | |
+| `rotate-clockwise-icon-style` | [`Function`, `Object`] | `{transform: 'scaleX(-1)'}` | |
+| `rotate-clockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
+| `rotate-counterclockwise-icon-style` | [`Function`, `Object`] | | |
+| `rotate-counterclockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
+| `upload-icon-style` | [`Function`, `Object`] | | |
+| `upload-icon` | [`Function`, `String`] | `'cloud_upload'` | |
+| `value` | `String` | | |
 
 ---
 

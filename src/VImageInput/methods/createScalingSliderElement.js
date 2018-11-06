@@ -7,7 +7,7 @@ export default function($createElement) {
 				disabled: this.disabled,
 				hideDetails: true,
 				max: this.maxScaling,
-				min: this.minScaling,
+				min: this.cleanMinScaling,
 				step: 1 / 1000,
 				value: this.scaling,
 			},

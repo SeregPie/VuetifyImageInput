@@ -2,7 +2,7 @@ import Math_clamp from '/utils/Math/clamp';
 
 export default {
 	get() {
-		return Math_clamp(this.dirtyScaling, this.minScaling, this.maxScaling);
+		return Math_clamp(this.dirtyScaling, this.cleanMinScaling, this.maxScaling);
 	},
 
 	set(value) {

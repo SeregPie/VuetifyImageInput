@@ -4,8 +4,8 @@ export default {
 	get() {
 		return Math_clamp(
 			Math.round(this.dirtyCroppingTop),
-			this.imageHeight - this.displayedImageHeight,
-			0,
+			this.minCroppingTop,
+			this.maxCroppingTop,
 		);
 	},
 

@@ -15,6 +15,7 @@
 				hideActions: VuetifyImageInput.props.hideActions.default,
 				imageHeight: VuetifyImageInput.props.imageHeight.default,
 				imageWidth: VuetifyImageInput.props.imageWidth.default,
+				minScaling: VuetifyImageInput.props.minScaling.default,
 				readonly: VuetifyImageInput.props.readonly.default,
 				value: null,
 			};

@@ -76,6 +76,11 @@ export default {
 		default: 256,
 	},
 
+	minScaling: {
+		type: String,
+		default: 'cover',
+	},
+
 	overlayBackgroundColor: {
 		type: String,
 		default: 'rgba(0,0,0,0.5)',

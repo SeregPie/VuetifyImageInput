@@ -23,10 +23,10 @@
 			rel="stylesheet"
 		/>
 		<link
-			href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.3.5/vuetify.min.css"
+			href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.2.10/vuetify.min.css"
 			rel="stylesheet"
 		/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.3.5/vuetify.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.2.10/vuetify.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/zingtouch/1.0.6/zingtouch.min.js"></script>
 		<script src="VuetifyImageInput.js"></script>
 	</head>
@@ -44,7 +44,7 @@
 				<v-container
 					class="pa-2"
 					fluid
-					grid-list-md
+					grid-list-lg
 				>
 					<v-layout column>
 						<v-flex>
@@ -76,6 +76,23 @@
 								label="image-height"
 								type="number"
 							></v-text-field>
+						</v-flex>
+						<v-flex>
+							<v-radio-group
+								v-model="minScaling"
+								class="ma-0"
+								hide-details
+								label="min-scaling"
+							>
+								<v-radio
+									label="cover"
+									value="cover"
+								></v-radio>
+								<v-radio
+									label="contain"
+									value="contain"
+								></v-radio>
+							</v-radio-group>
 						</v-flex>
 						<v-flex>
 							<v-checkbox
@@ -152,13 +169,14 @@
 					<v-image-input
 						v-model="value"
 						:clearable="clearable"
-						:debounce="1000"
+						:debounce="250"
 						:disabled="disabled"
 						:full-height="fullHeight"
 						:full-width="fullWidth"
 						:hide-actions="hideActions"
 						:image-height="Number.parseInt(imageHeight)"
 						:image-width="Number.parseInt(imageWidth)"
+						:min-scaling="minScaling"
 						:readonly="readonly"
 					></v-image-input>
 				</v-container>

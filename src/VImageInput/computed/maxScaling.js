@@ -1,3 +1,3 @@
 export default function() {
-	return Math.max(1, this.minScaling);
+	return Math.max(1, this.cleanMinScaling);
 }

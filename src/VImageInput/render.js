@@ -3,9 +3,11 @@ export default function($createElement) {
 		'div',
 		{
 			style: {
-				display: 'inline-table',
-				height: this.fullHeight ? '100%' : 0,
-				width: this.fullWidth ? '100%' : 0,
+				display: 'inline-grid',
+				gridTemplateColumns: '1fr auto',
+				gridTemplateRows: '1fr auto',
+				...(this.fullHeight ? {height: '100%'} : {}),
+				...(this.fullWidth ? {width: '100%'} : {}),
 			},
 		},
 		[
@@ -13,73 +15,14 @@ export default function($createElement) {
 				'div',
 				{
 					style: {
-						display: 'table-row',
+						position: 'relative',
 					},
 				},
 				[
-					$createElement(
-						'div',
-						{
-							style: {
-								display: 'table-cell',
-								height: '100%',
-								position: 'relative',
-								width: '100%',
-							},
-						},
-						[
-							this.createOverlayElement($createElement),
-							...(this.internalImageData || this.readonly
-								? []
-								: [this.createUploaderElement($createElement)]
-							),
-						],
-					),
-					$createElement(
-						'div',
-						{
-							style: {
-								display: 'table-cell',
-								verticalAlign: 'top',
-								...(this.internalImageData
-									? {}
-									: {
-										opacity: 0,
-										visibility: 'hidden',
-									}
-								),
-							},
-						},
-						[$createElement(
-							'div',
-							{
-								style: {
-									display: 'flex',
-									flexDirection: 'column',
-									height: '100%',
-									justifyContent: 'center',
-									width: '100%',
-								},
-							},
-							[
-								...(this.clearable
-									? [
-										this.createClearButtonElement($createElement),
-										$createElement('v-spacer'),
-									]
-									: []
-								),
-								...(this.hideActions || this.readonly
-									? []
-									: [
-										this.createFlipHorizontallyButtonElement($createElement),
-										this.createFlipVerticallyButtonElement($createElement),
-										//this.createRotateClockwiseButtonElement($createElement),
-										//this.createRotateCounterclockwiseButtonElement($createElement),
-									]
-								),
-							],
-						)],
+					this.createOverlayElement($createElement),
+					...(this.internalImageData || this.readonly
+						? []
+						: [this.createUploaderElement($createElement)]
 					),
 				],
 			),
@@ -87,38 +30,54 @@ export default function($createElement) {
 				'div',
 				{
 					style: {
-						display: 'table-row',
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'center',
+						...(this.internalImageData
+							? {}
+							: {
+								opacity: 0,
+								visibility: 'hidden',
+							}
+						),
 					},
 				},
 				[
-					$createElement(
-						'div',
-						{
-							style: {
-								display: 'table-cell',
-								...(this.internalImageData
-									? {}
-									: {
-										opacity: 0,
-										visibility: 'hidden',
-									}
-								),
-							},
-						},
-						(this.hideActions || this.readonly
-							? []
-							: [this.createScalingSliderElement($createElement)]
-						),
+					...(this.clearable
+						? [
+							this.createClearButtonElement($createElement),
+							$createElement('v-spacer'),
+						]
+						: []
 					),
-					$createElement(
-						'div',
-						{
-							style: {
-								display: 'table-cell',
-							},
-						},
+					...(this.hideActions || this.readonly
+						? []
+						: [
+							this.createFlipHorizontallyButtonElement($createElement),
+							this.createFlipVerticallyButtonElement($createElement),
+							//this.createRotateClockwiseButtonElement($createElement),
+							//this.createRotateCounterclockwiseButtonElement($createElement),
+						]
 					),
 				],
+			),
+			$createElement(
+				'div',
+				{
+					style: {
+						...(this.internalImageData
+							? {}
+							: {
+								opacity: 0,
+								visibility: 'hidden',
+							}
+						),
+					},
+				},
+				(this.hideActions || this.readonly
+					? []
+					: [this.createScalingSliderElement($createElement)]
+				),
 			),
 		],
 	);

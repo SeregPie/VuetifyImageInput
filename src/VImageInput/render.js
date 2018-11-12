@@ -3,7 +3,9 @@ export default function($createElement) {
 		'div',
 		{
 			style: {
-				display: 'inline-grid',
+				display: ['-ms-inline-grid', 'inline-grid'],
+				gridColumns: '1fr auto',
+				gridRows: '1fr auto',
 				gridTemplateColumns: '1fr auto',
 				gridTemplateRows: '1fr auto',
 				...(this.fullHeight ? {height: '100%'} : {}),
@@ -15,6 +17,8 @@ export default function($createElement) {
 				'div',
 				{
 					style: {
+						gridColumn: 1,
+						gridRow: 1,
 						position: 'relative',
 					},
 				},
@@ -32,6 +36,8 @@ export default function($createElement) {
 					style: {
 						display: 'flex',
 						flexDirection: 'column',
+						gridColumn: 2,
+						gridRow: 1,
 						justifyContent: 'center',
 						...(this.internalImageData
 							? {}
@@ -65,6 +71,8 @@ export default function($createElement) {
 				'div',
 				{
 					style: {
+						gridColumn: 1,
+						gridRow: 2,
 						...(this.internalImageData
 							? {}
 							: {

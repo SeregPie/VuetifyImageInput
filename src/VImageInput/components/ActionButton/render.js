@@ -1,23 +1,24 @@
-export default function($createElement, onClick, icon, iconStyle) {
+export default function($createElement, {
+	listeners,
+	props,
+}) {
 	return $createElement(
 		'VBtn',
 		{
 			class: 'ma-1',
 			props: {
-				disabled: this.disabled,
+				disabled: props.disabled,
 				flat: true,
 				icon: true,
 			},
-			on: {
-				click: onClick,
-			},
+			on: listeners,
 		},
 		[$createElement(
 			'VIcon',
 			{
-				style: iconStyle,
+				style: props.iconStyle,
 			},
-			icon,
+			props.icon,
 		)],
 	);
 }

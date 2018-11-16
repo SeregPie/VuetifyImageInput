@@ -23,10 +23,121 @@ export default function($createElement) {
 					},
 				},
 				[
-					this.createOverlayElement($createElement),
+					$createElement(
+						'div',
+						{
+							style: {
+								alignItems: 'center',
+								background: this.checkeredBackground,
+								display: 'flex',
+								height: '100%',
+								justifyContent: 'center',
+								overflow: 'hidden',
+								position: 'relative',
+								width: '100%',
+								zIndex: 0,
+								...(this.internalImageData || this.readonly
+									? {}
+									: {
+										opacity: 0,
+										visibility: 'hidden',
+									}
+								),
+							},
+							...(this.disabled || this.readonly
+								? {}
+								: {directives: [{
+									name: 'Claw',
+									arg: 'pan',
+									value: this.onPan,
+								}]}
+							),
+						},
+						[$createElement(
+							'div',
+							{
+								style: {
+									border: `${this.overlayBorderWidth} solid ${this.remappedOverlayBorderColor}`,
+									boxShadow: `0 0 4000px 4000px ${this.remappedOverlayBackgroundColor}`,
+									margin: this.overlayPadding,
+									pointerEvents: 'none',
+									...(this.internalImageData
+										? {}
+										: {
+											opacity: 0,
+											visibility: 'hidden',
+										}
+									),
+								},
+							},
+							[$createElement(
+								'div',
+								{
+									style: {
+										height: `${this.imageHeight}px`,
+										position: 'relative',
+										width: `${this.imageWidth}px`,
+										zIndex: -1,
+										...(this.backgroundColor
+											? {backgroundColor: this.backgroundColor}
+											: {}
+										),
+									},
+								},
+								[$createElement(
+									'img',
+									{
+										style: {
+											pointerEvents: 'none',
+											position: 'absolute',
+											transform: [
+												...(this.flippedVertically ? [`translateY(${this.imageHeight}px)`, 'scaleY(-1)'] : []),
+												...(this.flippedHorizontally ? [`translateX(${this.imageWidth}px)`, 'scaleX(-1)'] : []),
+												//...(this.rotated ? [`translateX(${this.imageHeight}px)`, 'rotate(90deg)'] : []),
+												`translate(${this.croppingLeft}px,${this.croppingTop}px)`,
+												`scale(${this.scaling})`,
+											].join(' '),
+											transformOrigin: '0 0',
+										},
+										attrs: {
+											src: this.internalImageData,
+										},
+									},
+								)],
+							)]
+						)],
+					),
 					...(this.internalImageData || this.readonly
-						? [this.createInputElement($createElement)]
-						: [this.createUploaderElement($createElement)]
+						? [$createElement(
+							'input',
+							{
+								attrs: {
+									name: this.name,
+									type: 'hidden',
+									value: this.imageData,
+								},
+							},
+						)]
+						: [$createElement(
+							'MyUploader',
+							{
+								props: {
+									disabled: this.disabled,
+									uploadIcon: this.remappedUploadIcon,
+									uploadIconStyle: this.remappedUploadIconStyle,
+								},
+								style: {
+									bottom: 0,
+									left: 0,
+									position: 'absolute',
+									right: 0,
+									top: 0,
+								},
+								on: {
+									load: this.load,
+								},
+							},
+						)]
 					),
 				],
 			),
@@ -51,7 +162,19 @@ export default function($createElement) {
 				[
 					...(this.clearable
 						? [
-							this.createClearButtonElement($createElement),
+							$createElement(
+								'MyActionButton',
+								{
+									props: {
+										disabled: this.disabled,
+										icon: this.remappedClearIcon,
+										iconStyle: this.remappedClearIconStyle,
+									},
+									on: {
+										click: this.clear,
+									},
+								},
+							),
 							$createElement('v-spacer'),
 						]
 						: []
@@ -59,8 +182,32 @@ export default function($createElement) {
 					...(this.hideActions || this.readonly
 						? []
 						: [
-							this.createFlipHorizontallyButtonElement($createElement),
-							this.createFlipVerticallyButtonElement($createElement),
+							$createElement(
+								'MyActionButton',
+								{
+									props: {
+										disabled: this.disabled,
+										icon: this.remappedFlipHorizontallyIcon,
+										iconStyle: this.remappedFlipHorizontallyIconStyle,
+									},
+									on: {
+										click: this.flipHorizontally,
+									},
+								},
+							),
+							$createElement(
+								'MyActionButton',
+								{
+									props: {
+										disabled: this.disabled,
+										icon: this.remappedFlipVerticallyIcon,
+										iconStyle: this.remappedFlipVerticallyIconStyle,
+									},
+									on: {
+										click: this.flipVertically,
+									},
+								},
+							),
 							//this.createRotateClockwiseButtonElement($createElement),
 							//this.createRotateCounterclockwiseButtonElement($createElement),
 						]
@@ -84,7 +231,24 @@ export default function($createElement) {
 				},
 				(this.hideActions || this.readonly
 					? []
-					: [this.createScalingSliderElement($createElement)]
+					: [$createElement(
+						'VSlider',
+						{
+							class: 'mx-2 my-1',
+							props: {
+								color: this.remappedScalingSliderColor,
+								disabled: this.disabled,
+								hideDetails: true,
+								max: this.cleanMaxScaling,
+								min: this.cleanMinScaling,
+								step: 1 / 1000,
+								value: this.scaling,
+							},
+							on: {
+								input: this.setScaling,
+							},
+						},
+					)]
 				),
 			),
 		],

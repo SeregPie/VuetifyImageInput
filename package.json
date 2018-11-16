@@ -33,7 +33,7 @@
 		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
-		"zingtouch": "^1.0.6"
+		"vueclaw": "^1.0.1"
 	},
 	"devDependencies": {
 		"@seregpie/rollup-plugin-resolve": "^18.7.0",

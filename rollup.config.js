@@ -6,7 +6,7 @@ import resolve from '@seregpie/rollup-plugin-resolve';
 import {main} from './package.json';
 
 let globals = {
-	'zingtouch': 'ZingTouch',
+	'vueclaw': 'VueClaw',
 };
 
 export default {

@@ -1,5 +1,6 @@
-export default function(data, event) {
-	let {movementX, movementY} = event.originalEvent;
+export default function(event) {
+	let movementX = event.x - event.previousX;
+	let movementY = event.y - event.previousY;
 	if (this.flippedHorizontally) {
 		movementX *= -1;
 	}

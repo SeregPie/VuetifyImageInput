@@ -8,7 +8,7 @@ Provides basic image editing tools.
 
 ## dependencies
 
-- [ZingTouch](https://github.com/zingchart/zingtouch)
+- [VueClaw](https://github.com/SeregPie/VueClaw)
 
 ## setup
 
@@ -50,7 +50,8 @@ export default {
 <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet"/>
 <script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
-<script src="https://unpkg.com/zingtouch/dist/zingtouch.min.js"></script>
+<script src="https://unpkg.com/@seregpie/claw"></script>
+<script src="https://unpkg.com/vueclaw"></script>
 <script src="https://unpkg.com/vuetify-image-input"></script>
 ```
 
@@ -121,6 +122,5 @@ let clearIcon = function() {
 - Smooth image scaling.
 - What about checkered background? Dark/light theme? Custom checkered background?
 - Hidden input field for the image?
-- Gestures directive?
 - Uploader component?
 - Upload cross-origin images?

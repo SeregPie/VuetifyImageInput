@@ -23,7 +23,8 @@ export default function($createElement) {
 			...(this.disabled || this.readonly
 				? {}
 				: {directives: [{
-					name: 'Pan',
+					name: 'Claw',
+					arg: 'pan',
 					value: this.onPan,
 				}]}
 			),

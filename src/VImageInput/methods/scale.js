@@ -1,5 +1,5 @@
 export default function(factor) {
-	this.scaling *= factor;
-	this.croppingLeft *= factor;
-	this.croppingTop *= factor;
+	this.__scaling *= factor;
+	this.__croppingLeft *= factor;
+	this.__croppingTop *= factor;
 }

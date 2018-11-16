@@ -1,7 +1,7 @@
 export default function() {
-	if (this.rotated) {
-		this.flippedHorizontally = !this.flippedHorizontally;
+	if (this.__rotated) {
+		this.__flippedHorizontally = !this.__flippedHorizontally;
 	} else {
-		this.flippedVertically = !this.flippedVertically;
+		this.__flippedVertically = !this.__flippedVertically;
 	}
 }

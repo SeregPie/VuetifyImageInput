@@ -1,9 +1,9 @@
 export default function() {
-	if (this.rotated) {
-		this.rotated = false;
-		this.flippedHorizontally = !this.flippedHorizontally;
-		this.flippedVertically = !this.flippedVertically;
+	if (this.__rotated) {
+		this.__rotated = false;
+		this.__flippedHorizontally = !this.__flippedHorizontally;
+		this.__flippedVertically = !this.__flippedVertically;
 	} else {
-		this.rotated = true;
+		this.__rotated = true;
 	}
 }

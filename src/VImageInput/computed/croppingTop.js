@@ -3,13 +3,13 @@ import Math_clamp from '/utils/Math/clamp';
 export default {
 	get() {
 		return Math_clamp(
-			Math.round(this.dirtyCroppingTop),
-			this.minCroppingTop,
-			this.maxCroppingTop,
+			Math.round(this.__dirtyCroppingTop),
+			this.__minCroppingTop,
+			this.__maxCroppingTop,
 		);
 	},
 
 	set(value) {
-		this.dirtyCroppingTop = value;
+		this.__dirtyCroppingTop = value;
 	},
 };

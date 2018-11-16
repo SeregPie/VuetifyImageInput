@@ -1,14 +1,14 @@
 export default function() {
 	return {
-		dirtyCroppingLeft: 0,
-		dirtyCroppingTop: 0,
-		dirtyScaling: 0,
-		flippedHorizontally: false,
-		flippedVertically: false,
-		imageData: null,
-		internalImageData: null,
-		internalImageHeight: 0,
-		internalImageWidth: 0,
-		rotated: false,
+		__dirtyCroppingLeft: 0,
+		__dirtyCroppingTop: 0,
+		__dirtyScaling: 0,
+		__flippedHorizontally: false,
+		__flippedVertically: false,
+		__imageData: null,
+		__internalImageData: null,
+		__internalImageHeight: 0,
+		__internalImageWidth: 0,
+		__rotated: false,
 	};
 }

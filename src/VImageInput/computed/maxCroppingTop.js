@@ -1,3 +1,3 @@
 export default function() {
-	return Math.max(0, this.imageHeight - this.displayedImageHeight);
+	return Math.max(0, this.imageHeight - this.__displayedImageHeight);
 }

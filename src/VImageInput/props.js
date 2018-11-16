@@ -86,6 +86,8 @@ export default {
 		default: 'cover',
 	},
 
+	name: String,
+
 	overlayBackgroundColor: {
 		type: [Function, String],
 		default: 'rgba(0,0,0,0.5)',

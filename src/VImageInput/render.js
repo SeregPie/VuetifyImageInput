@@ -25,7 +25,7 @@ export default function($createElement) {
 				[
 					this.createOverlayElement($createElement),
 					...(this.internalImageData || this.readonly
-						? []
+						? [this.createInputElement($createElement)]
 						: [this.createUploaderElement($createElement)]
 					),
 				],

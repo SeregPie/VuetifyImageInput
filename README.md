@@ -90,6 +90,7 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `image-width` | `Number` | `256` | |
 | `max-scaling` | `Number` | `1` | |
 | `min-scaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
+| `name` | `String` | | |
 | `overlay-background-color` | [`Function`, `String`] | `'rgba(0,0,0,0.5)'` | |
 | `overlay-border-color` | [`Function`, `String`] | `'#fff'` | |
 | `overlay-border-width` | `String` | `'4px'` | |
@@ -121,6 +122,5 @@ let clearIcon = function() {
 - Input and output synchronization.
 - Smooth image scaling.
 - What about checkered background? Dark/light theme? Custom checkered background?
-- Hidden input field for the image?
 - Uploader component?
 - Upload cross-origin images?

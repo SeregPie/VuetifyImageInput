@@ -5,6 +5,7 @@ import createClearButtonElement from './createClearButtonElement';
 import createFlipHorizontallyButtonElement from './createFlipHorizontallyButtonElement';
 import createFlipVerticallyButtonElement from './createFlipVerticallyButtonElement';
 import createImageElement from './createImageElement';
+import createInputElement from './createInputElement';
 import createOverlayElement from './createOverlayElement';
 import createRotateClockwiseButtonElement from './createRotateClockwiseButtonElement';
 import createRotateCounterclockwiseButtonElement from './createRotateCounterclockwiseButtonElement';
@@ -27,6 +28,7 @@ export default {
 	createFlipHorizontallyButtonElement,
 	createFlipVerticallyButtonElement,
 	createImageElement,
+	createInputElement,
 	createOverlayElement,
 	createRotateClockwiseButtonElement,
 	createRotateCounterclockwiseButtonElement,

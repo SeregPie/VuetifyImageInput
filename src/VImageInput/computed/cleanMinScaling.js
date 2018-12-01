@@ -1,15 +1,15 @@
 export default function() {
-	if (this.__rotatedInternalImageWidth && this.__rotatedInternalImageHeight) {
+	if (this.rotatedInternalImageWidth && this.rotatedInternalImageHeight) {
 		switch (this.minScaling) {
 			case 'cover':
 				return Math.max(
-					this.imageWidth / this.__rotatedInternalImageWidth,
-					this.imageHeight / this.__rotatedInternalImageHeight,
+					this.imageWidth / this.rotatedInternalImageWidth,
+					this.imageHeight / this.rotatedInternalImageHeight,
 				);
 			case 'contain':
 				return Math.min(
-					this.imageWidth / this.__rotatedInternalImageWidth,
-					this.imageHeight / this.__rotatedInternalImageHeight,
+					this.imageWidth / this.rotatedInternalImageWidth,
+					this.imageHeight / this.rotatedInternalImageHeight,
 				);
 		}
 	}

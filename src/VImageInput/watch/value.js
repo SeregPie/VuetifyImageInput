@@ -1,6 +1,6 @@
 export default {
 	handler(value) {
-		this.__load(value);
+		this.load(value);
 	},
 	immediate: true,
 };

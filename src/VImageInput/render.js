@@ -28,7 +28,7 @@ export default function($createElement) {
 						{
 							style: {
 								alignItems: 'center',
-								background: this.__checkeredBackground,
+								background: this.checkeredBackground,
 								display: 'flex',
 								height: '100%',
 								justifyContent: 'center',
@@ -36,7 +36,7 @@ export default function($createElement) {
 								position: 'relative',
 								width: '100%',
 								zIndex: 0,
-								...(this.__internalImageData || this.readonly
+								...(this.internalImageData || this.readonly
 									? {}
 									: {
 										opacity: 0,
@@ -49,7 +49,7 @@ export default function($createElement) {
 								: {directives: [{
 									name: 'Claw',
 									arg: 'pan',
-									value: this.__onPan,
+									value: this.onPan,
 								}]}
 							),
 						},
@@ -57,11 +57,11 @@ export default function($createElement) {
 							'div',
 							{
 								style: {
-									border: `${this.overlayBorderWidth} solid ${this.__remappedOverlayBorderColor}`,
-									boxShadow: `0 0 4000px 4000px ${this.__remappedOverlayBackgroundColor}`,
+									border: `${this.overlayBorderWidth} solid ${this.remappedOverlayBorderColor}`,
+									boxShadow: `0 0 4000px 4000px ${this.remappedOverlayBackgroundColor}`,
 									margin: this.overlayPadding,
 									pointerEvents: 'none',
-									...(this.__internalImageData
+									...(this.internalImageData
 										? {}
 										: {
 											opacity: 0,
@@ -91,30 +91,30 @@ export default function($createElement) {
 											pointerEvents: 'none',
 											position: 'absolute',
 											transform: [
-												...(this.__flippedVertically ? [`translateY(${this.imageHeight}px)`, 'scaleY(-1)'] : []),
-												...(this.__flippedHorizontally ? [`translateX(${this.imageWidth}px)`, 'scaleX(-1)'] : []),
+												...(this.flippedVertically ? [`translateY(${this.imageHeight}px)`, 'scaleY(-1)'] : []),
+												...(this.flippedHorizontally ? [`translateX(${this.imageWidth}px)`, 'scaleX(-1)'] : []),
 												//...(this.rotated ? [`translateX(${this.imageHeight}px)`, 'rotate(90deg)'] : []),
-												`translate(${this.__croppingLeft}px,${this.__croppingTop}px)`,
-												`scale(${this.__scaling})`,
+												`translate(${this.croppingLeft}px,${this.croppingTop}px)`,
+												`scale(${this.scaling})`,
 											].join(' '),
 											transformOrigin: '0 0',
 										},
 										attrs: {
-											src: this.__internalImageData,
+											src: this.internalImageData,
 										},
 									},
 								)],
 							)]
 						)],
 					),
-					...(this.__internalImageData || this.readonly
+					...(this.internalImageData || this.readonly
 						? [$createElement(
 							'input',
 							{
 								attrs: {
 									name: this.name,
 									type: 'hidden',
-									value: this.__imageData,
+									value: this.imageData,
 								},
 							},
 						)]
@@ -123,8 +123,8 @@ export default function($createElement) {
 							{
 								props: {
 									disabled: this.disabled,
-									uploadIcon: this.__remappedUploadIcon,
-									uploadIconStyle: this.__remappedUploadIconStyle,
+									uploadIcon: this.remappedUploadIcon,
+									uploadIconStyle: this.remappedUploadIconStyle,
 								},
 								style: {
 									bottom: 0,
@@ -134,7 +134,7 @@ export default function($createElement) {
 									top: 0,
 								},
 								on: {
-									load: this.__load,
+									load: this.load,
 								},
 							},
 						)]
@@ -150,7 +150,7 @@ export default function($createElement) {
 						gridColumn: 2,
 						gridRow: 1,
 						justifyContent: 'center',
-						...(this.__internalImageData
+						...(this.internalImageData
 							? {}
 							: {
 								opacity: 0,
@@ -167,11 +167,11 @@ export default function($createElement) {
 								{
 									props: {
 										disabled: this.disabled,
-										icon: this.__remappedClearIcon,
-										iconStyle: this.__remappedClearIconStyle,
+										icon: this.remappedClearIcon,
+										iconStyle: this.remappedClearIconStyle,
 									},
 									on: {
-										click: this.__clear,
+										click: this.clear,
 									},
 								},
 							),
@@ -187,11 +187,11 @@ export default function($createElement) {
 								{
 									props: {
 										disabled: this.disabled,
-										icon: this.__remappedFlipHorizontallyIcon,
-										iconStyle: this.__remappedFlipHorizontallyIconStyle,
+										icon: this.remappedFlipHorizontallyIcon,
+										iconStyle: this.remappedFlipHorizontallyIconStyle,
 									},
 									on: {
-										click: this.__flipHorizontally,
+										click: this.flipHorizontally,
 									},
 								},
 							),
@@ -200,11 +200,11 @@ export default function($createElement) {
 								{
 									props: {
 										disabled: this.disabled,
-										icon: this.__remappedFlipVerticallyIcon,
-										iconStyle: this.__remappedFlipVerticallyIconStyle,
+										icon: this.remappedFlipVerticallyIcon,
+										iconStyle: this.remappedFlipVerticallyIconStyle,
 									},
 									on: {
-										click: this.__flipVertically,
+										click: this.flipVertically,
 									},
 								},
 							),
@@ -220,7 +220,7 @@ export default function($createElement) {
 					style: {
 						gridColumn: 1,
 						gridRow: 2,
-						...(this.__internalImageData
+						...(this.internalImageData
 							? {}
 							: {
 								opacity: 0,
@@ -236,16 +236,16 @@ export default function($createElement) {
 						{
 							class: 'mx-2 my-1',
 							props: {
-								color: this.__remappedScalingSliderColor,
+								color: this.remappedScalingSliderColor,
 								disabled: this.disabled,
 								hideDetails: true,
-								max: this.__cleanMaxScaling,
-								min: this.__cleanMinScaling,
+								max: this.cleanMaxScaling,
+								min: this.cleanMinScaling,
 								step: 1 / 1000,
-								value: this.__scaling,
+								value: this.scaling,
 							},
 							on: {
-								input: this.__setScaling,
+								input: this.setScaling,
 							},
 						},
 					)]

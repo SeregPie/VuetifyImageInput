@@ -1,54 +1,54 @@
 import Function_cast from '/utils/Function/cast';
 import Object_mapValues from '/utils/Object/mapValues';
 
-import __checkeredBackground from './checkeredBackground';
-import __cleanMaxScaling from './cleanMaxScaling';
-import __cleanMinScaling from './cleanMinScaling';
-import __croppingLeft from './croppingLeft';
-import __croppingTop from './croppingTop';
-import __displayedImageHeight from './displayedImageHeight';
-import __displayedImageWidth from './displayedImageWidth';
-import __maxCroppingLeft from './maxCroppingLeft';
-import __maxCroppingTop from './maxCroppingTop';
-import __minCroppingLeft from './minCroppingLeft';
-import __minCroppingTop from './minCroppingTop';
-import __rotatedInternalImageHeight from './rotatedInternalImageHeight';
-import __rotatedInternalImageWidth from './rotatedInternalImageWidth';
-import __scaling from './scaling';
-import __updateImageData from './updateImageData';
+import checkeredBackground from './checkeredBackground';
+import cleanMaxScaling from './cleanMaxScaling';
+import cleanMinScaling from './cleanMinScaling';
+import croppingLeft from './croppingLeft';
+import croppingTop from './croppingTop';
+import displayedImageHeight from './displayedImageHeight';
+import displayedImageWidth from './displayedImageWidth';
+import maxCroppingLeft from './maxCroppingLeft';
+import maxCroppingTop from './maxCroppingTop';
+import minCroppingLeft from './minCroppingLeft';
+import minCroppingTop from './minCroppingTop';
+import rotatedInternalImageHeight from './rotatedInternalImageHeight';
+import rotatedInternalImageWidth from './rotatedInternalImageWidth';
+import scaling from './scaling';
+import updateImageData from './updateImageData';
 
 export default {
-	__checkeredBackground,
-	__cleanMaxScaling,
-	__cleanMinScaling,
-	__croppingLeft,
-	__croppingTop,
-	__displayedImageHeight,
-	__displayedImageWidth,
-	__maxCroppingLeft,
-	__maxCroppingTop,
-	__minCroppingLeft,
-	__minCroppingTop,
-	__rotatedInternalImageHeight,
-	__rotatedInternalImageWidth,
-	__scaling,
-	__updateImageData,
+	checkeredBackground,
+	cleanMaxScaling,
+	cleanMinScaling,
+	croppingLeft,
+	croppingTop,
+	displayedImageHeight,
+	displayedImageWidth,
+	maxCroppingLeft,
+	maxCroppingTop,
+	minCroppingLeft,
+	minCroppingTop,
+	rotatedInternalImageHeight,
+	rotatedInternalImageWidth,
+	scaling,
+	updateImageData,
 	...Object_mapValues({
-		__remappedClearIcon: 'clearIcon',
-		__remappedClearIconStyle: 'clearIconStyle',
-		__remappedFlipHorizontallyIcon: 'flipHorizontallyIcon',
-		__remappedFlipHorizontallyIconStyle: 'flipHorizontallyIconStyle',
-		__remappedFlipVerticallyIcon: 'flipVerticallyIcon',
-		__remappedFlipVerticallyIconStyle: 'flipVerticallyIconStyle',
-		__remappedOverlayBackgroundColor: 'overlayBackgroundColor',
-		__remappedOverlayBorderColor: 'overlayBorderColor',
-		__remappedRotateClockwiseIcon: 'rotateClockwiseIcon',
-		__remappedRotateClockwiseIconStyle: 'rotateClockwiseIconStyle',
-		__remappedRotateCounterclockwiseIcon: 'rotateCounterclockwiseIcon',
-		__remappedRotateCounterclockwiseIconStyle: 'rotateCounterclockwiseIconStyle',
-		__remappedScalingSliderColor: 'scalingSliderColor',
-		__remappedUploadIcon: 'uploadIcon',
-		__remappedUploadIconStyle: 'uploadIconStyle',
+		remappedClearIcon: 'clearIcon',
+		remappedClearIconStyle: 'clearIconStyle',
+		remappedFlipHorizontallyIcon: 'flipHorizontallyIcon',
+		remappedFlipHorizontallyIconStyle: 'flipHorizontallyIconStyle',
+		remappedFlipVerticallyIcon: 'flipVerticallyIcon',
+		remappedFlipVerticallyIconStyle: 'flipVerticallyIconStyle',
+		remappedOverlayBackgroundColor: 'overlayBackgroundColor',
+		remappedOverlayBorderColor: 'overlayBorderColor',
+		remappedRotateClockwiseIcon: 'rotateClockwiseIcon',
+		remappedRotateClockwiseIconStyle: 'rotateClockwiseIconStyle',
+		remappedRotateCounterclockwiseIcon: 'rotateCounterclockwiseIcon',
+		remappedRotateCounterclockwiseIconStyle: 'rotateCounterclockwiseIconStyle',
+		remappedScalingSliderColor: 'scalingSliderColor',
+		remappedUploadIcon: 'uploadIcon',
+		remappedUploadIconStyle: 'uploadIconStyle',
 	}, key => function() {
 		return Function_cast(this[key]).call(this);
 	}),

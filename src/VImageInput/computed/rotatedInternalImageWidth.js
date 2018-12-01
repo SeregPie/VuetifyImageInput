@@ -1,3 +1,3 @@
 export default function() {
-	return this.__rotated ? this.__internalImageHeight : this.__internalImageWidth;
+	return this.rotated ? this.internalImageHeight : this.internalImageWidth;
 }

@@ -1,12 +1,12 @@
 export default function(event) {
 	let movementX = event.x - event.previousX;
 	let movementY = event.y - event.previousY;
-	if (this.__flippedHorizontally) {
+	if (this.flippedHorizontally) {
 		movementX *= -1;
 	}
-	if (this.__flippedVertically) {
+	if (this.flippedVertically) {
 		movementY *= -1;
 	}
-	this.__croppingLeft += movementX;
-	this.__croppingTop += movementY;
+	this.croppingLeft += movementX;
+	this.croppingTop += movementY;
 }

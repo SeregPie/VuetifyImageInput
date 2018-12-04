@@ -6,7 +6,6 @@ import load from './load';
 import onPan from './onPan';
 import rotateClockwise from './rotateClockwise';
 import rotateCounterclockwise from './rotateCounterclockwise';
-import scale from './scale';
 import setScaling from './setScaling';
 
 export default {
@@ -18,6 +17,5 @@ export default {
 	onPan,
 	rotateClockwise,
 	rotateCounterclockwise,
-	scale,
 	setScaling,
 };

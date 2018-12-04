@@ -115,8 +115,7 @@ let clearIcon = function() {
 
 ## todo
 
-- Bring back the rotate functionality.
-- Scale from the center.
+- Relative image centering.
 - Scale gesture.
 - Scale the image if the container is too small.
 - Input and output synchronization.

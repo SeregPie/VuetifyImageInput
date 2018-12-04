@@ -6,14 +6,14 @@ import cleanMaxScaling from './cleanMaxScaling';
 import cleanMinScaling from './cleanMinScaling';
 import croppingLeft from './croppingLeft';
 import croppingTop from './croppingTop';
-import displayedImageHeight from './displayedImageHeight';
-import displayedImageWidth from './displayedImageWidth';
 import maxCroppingLeft from './maxCroppingLeft';
 import maxCroppingTop from './maxCroppingTop';
 import minCroppingLeft from './minCroppingLeft';
 import minCroppingTop from './minCroppingTop';
 import rotatedInternalImageHeight from './rotatedInternalImageHeight';
 import rotatedInternalImageWidth from './rotatedInternalImageWidth';
+import scaledRotatedInternalImageHeight from './scaledRotatedInternalImageHeight';
+import scaledRotatedInternalImageWidth from './scaledRotatedInternalImageWidth';
 import scaling from './scaling';
 import updateImageData from './updateImageData';
 
@@ -23,14 +23,14 @@ export default {
 	cleanMinScaling,
 	croppingLeft,
 	croppingTop,
-	displayedImageHeight,
-	displayedImageWidth,
 	maxCroppingLeft,
 	maxCroppingTop,
 	minCroppingLeft,
 	minCroppingTop,
 	rotatedInternalImageHeight,
 	rotatedInternalImageWidth,
+	scaledRotatedInternalImageHeight,
+	scaledRotatedInternalImageWidth,
 	scaling,
 	updateImageData,
 	...Object_mapValues({

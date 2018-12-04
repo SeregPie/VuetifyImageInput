@@ -91,11 +91,11 @@ export default function($createElement) {
 											pointerEvents: 'none',
 											position: 'absolute',
 											transform: [
-												...(this.flippedVertically ? [`translateY(${this.imageHeight}px)`, 'scaleY(-1)'] : []),
-												...(this.flippedHorizontally ? [`translateX(${this.imageWidth}px)`, 'scaleX(-1)'] : []),
-												//...(this.rotated ? [`translateX(${this.imageHeight}px)`, 'rotate(90deg)'] : []),
 												`translate(${this.croppingLeft}px,${this.croppingTop}px)`,
 												`scale(${this.scaling})`,
+												...(this.rotated ? [`translateX(${this.internalImageHeight}px)`, 'rotate(90deg)'] : []),
+												...(this.flippedVertically ? [`translateY(${this.internalImageHeight}px)`, 'scaleY(-1)'] : []),
+												...(this.flippedHorizontally ? [`translateX(${this.internalImageWidth}px)`, 'scaleX(-1)'] : []),
 											].join(' '),
 											transformOrigin: '0 0',
 										},
@@ -187,6 +187,32 @@ export default function($createElement) {
 								{
 									props: {
 										disabled: this.disabled,
+										icon: this.remappedRotateClockwiseIcon,
+										iconStyle: this.remappedRotateClockwiseIconStyle,
+									},
+									on: {
+										click: this.rotateClockwise,
+									},
+								},
+							),
+							$createElement(
+								'MyActionButton',
+								{
+									props: {
+										disabled: this.disabled,
+										icon: this.remappedRotateCounterclockwiseIcon,
+										iconStyle: this.remappedRotateCounterclockwiseIconStyle,
+									},
+									on: {
+										click: this.rotateCounterclockwise,
+									},
+								},
+							),
+							$createElement(
+								'MyActionButton',
+								{
+									props: {
+										disabled: this.disabled,
 										icon: this.remappedFlipHorizontallyIcon,
 										iconStyle: this.remappedFlipHorizontallyIconStyle,
 									},
@@ -208,8 +234,6 @@ export default function($createElement) {
 									},
 								},
 							),
-							//this.createRotateClockwiseButtonElement($createElement),
-							//this.createRotateCounterclockwiseButtonElement($createElement),
 						]
 					),
 				],

@@ -1,3 +1,3 @@
 export default function(scaling) {
-	this.scale(scaling / this.scaling);
+	this.scaling = scaling;
 }

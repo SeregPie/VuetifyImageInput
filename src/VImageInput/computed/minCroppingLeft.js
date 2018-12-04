@@ -1,3 +1,3 @@
 export default function() {
-	return Math.min(0, this.imageWidth - this.displayedImageWidth);
+	return Math.min(0, this.imageWidth - this.scaledRotatedInternalImageWidth);
 }

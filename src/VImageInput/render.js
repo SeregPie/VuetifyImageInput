@@ -84,40 +84,46 @@ export default function($createElement) {
 										),
 									},
 								},
-								[$createElement(
-									'img',
-									{
-										style: {
-											pointerEvents: 'none',
-											position: 'absolute',
-											transform: [
-												`translate(${this.croppingLeft}px,${this.croppingTop}px)`,
-												`scale(${this.scaling})`,
-												...(this.rotated ? [`translateX(${this.internalImageHeight}px)`, 'rotate(90deg)'] : []),
-												...(this.flippedVertically ? [`translateY(${this.internalImageHeight}px)`, 'scaleY(-1)'] : []),
-												...(this.flippedHorizontally ? [`translateX(${this.internalImageWidth}px)`, 'scaleX(-1)'] : []),
-											].join(' '),
-											transformOrigin: '0 0',
-										},
-										attrs: {
-											src: this.internalImageData,
-										},
-									},
-								)],
-							)]
+								(this.internalImageData
+									? [
+										$createElement(
+											'img',
+											{
+												style: {
+													pointerEvents: 'none',
+													position: 'absolute',
+													transform: [
+														`translate(${this.croppingLeft}px,${this.croppingTop}px)`,
+														`scale(${this.scaling})`,
+														...(this.rotated ? [`translateX(${this.internalImageHeight}px)`, 'rotate(90deg)'] : []),
+														...(this.flippedVertically ? [`translateY(${this.internalImageHeight}px)`, 'scaleY(-1)'] : []),
+														...(this.flippedHorizontally ? [`translateX(${this.internalImageWidth}px)`, 'scaleX(-1)'] : []),
+													].join(' '),
+													transformOrigin: '0 0',
+												},
+												attrs: {
+													src: this.internalImageData,
+												},
+											},
+										),
+										$createElement(
+											'input',
+											{
+												attrs: {
+													name: this.name,
+													type: 'hidden',
+													value: this.imageData,
+												},
+											},
+										),
+									]
+									: []
+								),
+							)],
 						)],
 					),
 					...(this.internalImageData || this.readonly
-						? [$createElement(
-							'input',
-							{
-								attrs: {
-									name: this.name,
-									type: 'hidden',
-									value: this.imageData,
-								},
-							},
-						)]
+						? []
 						: [$createElement(
 							'MyUploader',
 							{

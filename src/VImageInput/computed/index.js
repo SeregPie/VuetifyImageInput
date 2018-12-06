@@ -1,7 +1,9 @@
 import checkeredBackground from './checkeredBackground';
 import cleanMaxScaling from './cleanMaxScaling';
 import cleanMinScaling from './cleanMinScaling';
+import croppingBottom from './croppingBottom';
 import croppingLeft from './croppingLeft';
+import croppingRight from './croppingRight';
 import croppingTop from './croppingTop';
 import maxCroppingLeft from './maxCroppingLeft';
 import maxCroppingTop from './maxCroppingTop';
@@ -23,7 +25,9 @@ export default {
 	checkeredBackground,
 	cleanMaxScaling,
 	cleanMinScaling,
+	croppingBottom,
 	croppingLeft,
+	croppingRight,
 	croppingTop,
 	maxCroppingLeft,
 	maxCroppingTop,

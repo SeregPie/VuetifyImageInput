@@ -13,7 +13,9 @@ import remappedProperties from './remappedProperties';
 import rotatedInternalImageHeight from './rotatedInternalImageHeight';
 import rotatedInternalImageWidth from './rotatedInternalImageWidth';
 import scaledRotatedInternalImageHeight from './scaledRotatedInternalImageHeight';
+import scaledRotatedInternalImageHeightDifference from './scaledRotatedInternalImageHeightDifference';
 import scaledRotatedInternalImageWidth from './scaledRotatedInternalImageWidth';
+import scaledRotatedInternalImageWidthDifference from './scaledRotatedInternalImageWidthDifference';
 import scaling from './scaling';
 import updateImageData from './updateImageData';
 
@@ -32,7 +34,9 @@ export default {
 	rotatedInternalImageHeight,
 	rotatedInternalImageWidth,
 	scaledRotatedInternalImageHeight,
+	scaledRotatedInternalImageHeightDifference,
 	scaledRotatedInternalImageWidth,
+	scaledRotatedInternalImageWidthDifference,
 	scaling,
 	updateImageData,
 	...remappedProperties,

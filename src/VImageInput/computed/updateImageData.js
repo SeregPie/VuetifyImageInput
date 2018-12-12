@@ -1,8 +1,9 @@
 export default function() {
 	let {
 		backgroundColor,
-		croppingLeft,
-		croppingTop,
+		computedCroppingLeft,
+		computedCroppingTop,
+		computedScaling,
 		debounce,
 		flippedHorizontally,
 		flippedVertically,
@@ -14,7 +15,6 @@ export default function() {
 		internalImageHeight,
 		internalImageWidth,
 		rotated,
-		computedScaling,
 	} = this;
 	return setTimeout(() => {
 		let imageData;
@@ -29,7 +29,7 @@ export default function() {
 				context.fillStyle = backgroundColor;
 				context.fillRect(0, 0, imageWidth, imageHeight);
 			}
-			context.translate(croppingLeft, croppingTop);
+			context.translate(computedCroppingLeft, computedCroppingTop);
 			context.scale(computedScaling, computedScaling);
 			if (rotated) {
 				context.translate(internalImageHeight, 0);

@@ -1,9 +1,12 @@
 export default {
 	get() {
-		return this.imageWidth / 2 - this.originLeft * this.scaledRotatedInternalImageWidth;
+		return this.scaledRotatedInternalImageWidthDifference * this.originLeft;
 	},
 
 	set(value) {
-		this.originLeft = (this.imageWidth / 2 - value) / this.scaledRotatedInternalImageWidth;
+		let {scaledRotatedInternalImageWidthDifference} = this;
+		this.originLeft = scaledRotatedInternalImageWidthDifference
+			? value / scaledRotatedInternalImageWidthDifference
+			: 1/2;
 	},
 };

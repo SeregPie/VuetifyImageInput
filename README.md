@@ -115,7 +115,6 @@ let clearIcon = function() {
 
 ## todo
 
-- Relative image centering.
 - Scale gesture.
 - Scale the image if the container is too small.
 - Input and output synchronization.

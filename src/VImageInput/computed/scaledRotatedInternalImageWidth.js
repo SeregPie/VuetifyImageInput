@@ -1,3 +1,3 @@
 export default function() {
-	return Math.round(this.scaling * this.rotatedInternalImageWidth);
+	return Math.round(this.computedScaling * this.rotatedInternalImageWidth);
 }

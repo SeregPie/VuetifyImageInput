@@ -2,11 +2,11 @@ import Math_clamp from '/utils/Math/clamp';
 
 export default {
 	get() {
-		return Math_clamp(
-			Math.round(this.imageWidth / 2 - this.originLeft * this.scaledRotatedInternalImageWidth),
+		return Math.round(Math_clamp(
+			this.imageWidth / 2 - this.originLeft * this.scaledRotatedInternalImageWidth,
 			this.minCroppingLeft,
 			this.maxCroppingLeft,
-		);
+		));
 	},
 
 	set(value) {

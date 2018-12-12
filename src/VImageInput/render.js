@@ -94,7 +94,7 @@ export default function($createElement) {
 													position: 'absolute',
 													transform: [
 														`translate(${this.croppingLeft}px,${this.croppingTop}px)`,
-														`scale(${this.scaling})`,
+														`scale(${this.computedScaling})`,
 														...(this.rotated ? [`translateX(${this.internalImageHeight}px)`, 'rotate(90deg)'] : []),
 														...(this.flippedVertically ? [`translateY(${this.internalImageHeight}px)`, 'scaleY(-1)'] : []),
 														...(this.flippedHorizontally ? [`translateX(${this.internalImageWidth}px)`, 'scaleX(-1)'] : []),
@@ -269,13 +269,13 @@ export default function($createElement) {
 								color: this.remappedScalingSliderColor,
 								disabled: this.disabled,
 								hideDetails: true,
-								max: this.cleanMaxScaling,
-								min: this.cleanMinScaling,
+								max: this.computedMaxScaling,
+								min: this.computedMinScaling,
 								step: 1 / 1000,
 								value: this.scaling,
 							},
 							on: {
-								input: this.setScaling,
+								input: this.scaleTo,
 							},
 						},
 					)]

@@ -1,9 +1,8 @@
 import checkeredBackground from './checkeredBackground';
-import cleanMaxScaling from './cleanMaxScaling';
-import cleanMinScaling from './cleanMinScaling';
-import croppingBottom from './croppingBottom';
+import computedMaxScaling from './computedMaxScaling';
+import computedMinScaling from './computedMinScaling';
+import computedScaling from './computedScaling';
 import croppingLeft from './croppingLeft';
-import croppingRight from './croppingRight';
 import croppingTop from './croppingTop';
 import maxCroppingLeft from './maxCroppingLeft';
 import maxCroppingTop from './maxCroppingTop';
@@ -18,16 +17,14 @@ import scaledRotatedInternalImageHeight from './scaledRotatedInternalImageHeight
 import scaledRotatedInternalImageHeightDifference from './scaledRotatedInternalImageHeightDifference';
 import scaledRotatedInternalImageWidth from './scaledRotatedInternalImageWidth';
 import scaledRotatedInternalImageWidthDifference from './scaledRotatedInternalImageWidthDifference';
-import scaling from './scaling';
 import updateImageData from './updateImageData';
 
 export default {
 	checkeredBackground,
-	cleanMaxScaling,
-	cleanMinScaling,
-	croppingBottom,
+	computedMaxScaling,
+	computedMinScaling,
+	computedScaling,
 	croppingLeft,
-	croppingRight,
 	croppingTop,
 	maxCroppingLeft,
 	maxCroppingTop,
@@ -41,7 +38,6 @@ export default {
 	scaledRotatedInternalImageHeightDifference,
 	scaledRotatedInternalImageWidth,
 	scaledRotatedInternalImageWidthDifference,
-	scaling,
 	updateImageData,
 	...remappedProperties,
 };

@@ -12,7 +12,8 @@ export default function(data) {
 				this.flippedVertically = false;
 				this.rotated = false;
 				this.scaling = 0;
-				this.center();
+				this.originLeft = 1/2;
+				this.originTop = 1/2;
 			} else {
 				this.internalImageData = null;
 			}

@@ -6,4 +6,7 @@ export default function() {
 	} else {
 		this.rotated = true;
 	}
+	let {originTop} = this;
+	this.originTop = this.originLeft;
+	this.originLeft = 1 - originTop;
 }

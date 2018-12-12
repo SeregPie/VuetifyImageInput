@@ -14,7 +14,7 @@ export default function() {
 		internalImageHeight,
 		internalImageWidth,
 		rotated,
-		scaling,
+		computedScaling,
 	} = this;
 	return setTimeout(() => {
 		let imageData;
@@ -30,7 +30,7 @@ export default function() {
 				context.fillRect(0, 0, imageWidth, imageHeight);
 			}
 			context.translate(croppingLeft, croppingTop);
-			context.scale(scaling, scaling);
+			context.scale(computedScaling, computedScaling);
 			if (rotated) {
 				context.translate(internalImageHeight, 0);
 				context.rotate(Math.PI / 2);

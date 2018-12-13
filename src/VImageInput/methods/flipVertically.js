@@ -4,5 +4,5 @@ export default function() {
 	} else {
 		this.flippedVertically = !this.flippedVertically;
 	}
-	this.originTop = 1 - this.originTop;
+	this.dirtyOriginTop = 1 - this.dirtyOriginTop;
 }

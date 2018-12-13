@@ -4,5 +4,5 @@ export default function() {
 	} else {
 		this.flippedHorizontally = !this.flippedHorizontally;
 	}
-	this.originLeft = 1 - this.originLeft;
+	this.dirtyOriginLeft = 1 - this.dirtyOriginLeft;
 }

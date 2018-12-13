@@ -93,8 +93,8 @@ export default function($createElement) {
 													pointerEvents: 'none',
 													position: 'absolute',
 													transform: [
-														`translate(${this.computedCroppingLeft}px,${this.computedCroppingTop}px)`,
-														`scale(${this.computedScaling})`,
+														`translate(${this.croppingLeft}px,${this.croppingTop}px)`,
+														`scale(${this.scaling})`,
 														...(this.rotated ? [`translateX(${this.internalImageHeight}px)`, 'rotate(90deg)'] : []),
 														...(this.flippedVertically ? [`translateY(${this.internalImageHeight}px)`, 'scaleY(-1)'] : []),
 														...(this.flippedHorizontally ? [`translateX(${this.internalImageWidth}px)`, 'scaleX(-1)'] : []),

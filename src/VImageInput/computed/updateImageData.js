@@ -1,9 +1,9 @@
 export default function() {
 	let {
 		backgroundColor,
-		computedCroppingLeft,
-		computedCroppingTop,
-		computedScaling,
+		croppingLeft,
+		croppingTop,
+		scaling,
 		debounce,
 		flippedHorizontally,
 		flippedVertically,
@@ -29,8 +29,8 @@ export default function() {
 				context.fillStyle = backgroundColor;
 				context.fillRect(0, 0, imageWidth, imageHeight);
 			}
-			context.translate(computedCroppingLeft, computedCroppingTop);
-			context.scale(computedScaling, computedScaling);
+			context.translate(croppingLeft, croppingTop);
+			context.scale(scaling, scaling);
 			if (rotated) {
 				context.translate(internalImageHeight, 0);
 				context.rotate(Math.PI / 2);

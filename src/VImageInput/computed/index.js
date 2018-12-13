@@ -1,15 +1,12 @@
 import checkeredBackground from './checkeredBackground';
-import computedCroppingLeft from './computedCroppingLeft';
-import computedCroppingTop from './computedCroppingTop';
+import computedMaxCroppingLeft from './computedMaxCroppingLeft';
+import computedMaxCroppingTop from './computedMaxCroppingTop';
 import computedMaxScaling from './computedMaxScaling';
+import computedMinCroppingLeft from './computedMinCroppingLeft';
+import computedMinCroppingTop from './computedMinCroppingTop';
 import computedMinScaling from './computedMinScaling';
-import computedScaling from './computedScaling';
 import croppingLeft from './croppingLeft';
 import croppingTop from './croppingTop';
-import maxCroppingLeft from './maxCroppingLeft';
-import maxCroppingTop from './maxCroppingTop';
-import minCroppingLeft from './minCroppingLeft';
-import minCroppingTop from './minCroppingTop';
 import relativeRotatedInternalImageHeight from './relativeRotatedInternalImageHeight';
 import relativeRotatedInternalImageWidth from './relativeRotatedInternalImageWidth';
 import remappedProperties from './remappedProperties';
@@ -19,21 +16,19 @@ import scaledRotatedInternalImageHeight from './scaledRotatedInternalImageHeight
 import scaledRotatedInternalImageHeightDifference from './scaledRotatedInternalImageHeightDifference';
 import scaledRotatedInternalImageWidth from './scaledRotatedInternalImageWidth';
 import scaledRotatedInternalImageWidthDifference from './scaledRotatedInternalImageWidthDifference';
+import scaling from './scaling';
 import updateImageData from './updateImageData';
 
 export default {
 	checkeredBackground,
-	computedCroppingLeft,
-	computedCroppingTop,
+	computedMaxCroppingLeft,
+	computedMaxCroppingTop,
 	computedMaxScaling,
+	computedMinCroppingLeft,
+	computedMinCroppingTop,
 	computedMinScaling,
-	computedScaling,
 	croppingLeft,
 	croppingTop,
-	maxCroppingLeft,
-	maxCroppingTop,
-	minCroppingLeft,
-	minCroppingTop,
 	relativeRotatedInternalImageHeight,
 	relativeRotatedInternalImageWidth,
 	rotatedInternalImageHeight,
@@ -42,6 +37,7 @@ export default {
 	scaledRotatedInternalImageHeightDifference,
 	scaledRotatedInternalImageWidth,
 	scaledRotatedInternalImageWidthDifference,
+	scaling,
 	updateImageData,
 	...remappedProperties,
 };

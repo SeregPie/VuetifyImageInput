@@ -19,6 +19,7 @@ export default function($createElement) {
 					style: {
 						gridColumn: 1,
 						gridRow: 1,
+						overflow: 'hidden',
 						position: 'relative',
 					},
 				},
@@ -40,17 +41,21 @@ export default function($createElement) {
 									? {}
 									: {
 										opacity: 0,
+										pointerEvents: 'none',
 										visibility: 'hidden',
 									}
 								),
 							},
-							...(this.disabled || this.readonly
-								? {}
-								: {directives: [{
-									name: 'Claw',
-									arg: 'pan',
-									value: this.onPan,
-								}]}
+							...(this.internalImageData
+								? (this.disabled || this.readonly
+									? {}
+									: {directives: [{
+										name: 'Claw',
+										arg: 'pan',
+										value: this.onPan,
+									}]}
+								)
+								: {}
 							),
 						},
 						[$createElement(
@@ -61,13 +66,6 @@ export default function($createElement) {
 									boxShadow: `0 0 4000px 4000px ${this.remappedOverlayBackgroundColor}`,
 									margin: this.overlayPadding,
 									pointerEvents: 'none',
-									...(this.internalImageData
-										? {}
-										: {
-											opacity: 0,
-											visibility: 'hidden',
-										}
-									),
 								},
 							},
 							[$createElement(
@@ -84,9 +82,9 @@ export default function($createElement) {
 										),
 									},
 								},
-								(this.internalImageData
-									? [
-										$createElement(
+								[
+									...(this.internalImageData
+										? [$createElement(
 											'img',
 											{
 												style: {
@@ -105,8 +103,11 @@ export default function($createElement) {
 													src: this.internalImageData,
 												},
 											},
-										),
-										$createElement(
+										)]
+										: []
+									),
+									...(this.internalImageData && this.imageData
+										? [$createElement(
 											'input',
 											{
 												attrs: {
@@ -115,10 +116,10 @@ export default function($createElement) {
 													value: this.imageData,
 												},
 											},
-										),
-									]
-									: []
-								),
+										)]
+										: []
+									),
+								],
 							)],
 						)],
 					),
@@ -160,6 +161,7 @@ export default function($createElement) {
 							? {}
 							: {
 								opacity: 0,
+								pointerEvents: 'none',
 								visibility: 'hidden',
 							}
 						),
@@ -181,7 +183,7 @@ export default function($createElement) {
 									},
 								},
 							),
-							$createElement('v-spacer'),
+							$createElement('VSpacer'),
 						]
 						: []
 					),
@@ -254,6 +256,7 @@ export default function($createElement) {
 							? {}
 							: {
 								opacity: 0,
+								pointerEvents: 'none',
 								visibility: 'hidden',
 							}
 						),

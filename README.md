@@ -112,13 +112,3 @@ let clearIcon = function() {
   return this.$vuetify.icons.clear;
 };
 ```
-
-## todo
-
-- Scale gesture.
-- Scale the image if the container is too small.
-- Input and output synchronization.
-- Smooth image scaling.
-- What about checkered background? Dark/light theme? Custom checkered background?
-- Uploader component?
-- Upload cross-origin images?

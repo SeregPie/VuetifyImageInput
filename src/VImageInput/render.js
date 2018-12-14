@@ -34,6 +34,7 @@ export default function($createElement) {
 								height: '100%',
 								justifyContent: 'center',
 								overflow: 'hidden',
+								padding: `calc(${this.overlayPadding} + ${this.overlayBorderWidth})`,
 								position: 'relative',
 								width: '100%',
 								zIndex: 0,
@@ -62,9 +63,10 @@ export default function($createElement) {
 							'div',
 							{
 								style: {
-									border: `${this.overlayBorderWidth} solid ${this.remappedOverlayBorderColor}`,
 									boxShadow: `0 0 4000px 4000px ${this.remappedOverlayBackgroundColor}`,
-									margin: this.overlayPadding,
+									maxHeight: '100%',
+									maxWidth: '100%',
+									outline: `${this.overlayBorderWidth} solid ${this.remappedOverlayBorderColor}`,
 									pointerEvents: 'none',
 								},
 							},

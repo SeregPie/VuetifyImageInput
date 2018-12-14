@@ -213,7 +213,6 @@
 			<v-dialog
 				v-model="dialog"
 				scrollable
-				width="AUTO"
 			>
 				<v-btn
 					slot="activator"
@@ -229,7 +228,12 @@
 				</v-btn>
 				<v-card>
 					<v-card-text class="justify-center">
-						<div style="overflow: auto;">
+						<div
+							style="
+								display: flex;
+								justify-content: center;
+							"
+						>
 							<img :src="value"/>
 						</div>
 					</v-card-text>

@@ -1,4 +1,4 @@
-import Math_clamp from '/utils/Math/clamp';
+import Math_clamp from '../../utils/Math/clamp';
 
 export default {
 	get() {

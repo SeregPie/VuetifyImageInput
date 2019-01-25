@@ -1,5 +1,5 @@
-import Function_cast from '/utils/Function/cast';
-import Object_mapValues from '/utils/Object/mapValues';
+import Function_cast from '../../utils/Function/cast';
+import Object_mapValues from '../../utils/Object/mapValues';
 
 export default Object_mapValues({
 	remappedClearIcon: 'clearIcon',

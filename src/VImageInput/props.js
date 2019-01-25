@@ -1,4 +1,4 @@
-import Function_constant from '/utils/Function/constant';
+import Function_constant from '../utils/Function/constant';
 
 export default {
 	backgroundColor: String,

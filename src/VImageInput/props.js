@@ -76,6 +76,11 @@ export default {
 		default: 256,
 	},
 
+	outputScale: {
+		type: Number,
+		default: 1,
+	},
+
 	maxScaling: {
 		type: Number,
 		default: 1,

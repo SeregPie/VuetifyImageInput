@@ -15,41 +15,43 @@ export default function() {
 		internalImageHeight,
 		internalImageWidth,
 		rotated,
+		outputScale
 	} = this;
 	return setTimeout(() => {
 		let imageData;
 		if (internalImageData) {
+
 			let internalImage = new Image();
 			internalImage.src = internalImageData;
 			let canvas = document.createElement('canvas');
 			let context = canvas.getContext('2d');
-			canvas.width = imageWidth;
-			canvas.height = imageHeight;
+			canvas.width = imageWidth * outputScale;
+			canvas.height = imageHeight * outputScale;
 			if (backgroundColor) {
 				context.fillStyle = backgroundColor;
-				context.fillRect(0, 0, imageWidth, imageHeight);
+				context.fillRect(0, 0, imageWidth * outputScale, imageHeight * outputScale);
 			}
-			context.translate(croppingLeft, croppingTop);
+			context.translate(croppingLeft * outputScale, croppingTop * outputScale);
 			context.scale(scaling, scaling);
 			if (rotated) {
-				context.translate(internalImageHeight, 0);
+				context.translate(internalImageHeight * outputScale, 0);
 				context.rotate(Math.PI / 2);
 			}
 			if (flippedHorizontally) {
-				context.translate(internalImageWidth, 0);
+				context.translate(internalImageWidth * outputScale, 0);
 				context.scale(-1, 1);
 			}
 			if (flippedVertically) {
-				context.translate(0, internalImageHeight);
+				context.translate(0, internalImageHeight * outputScale);
 				context.scale(1, -1);
 			}
-			context.drawImage(internalImage, 0, 0);
+			context.drawImage(internalImage, 0, 0, internalImageWidth * outputScale, internalImageHeight * outputScale);
 			if (flippedHorizontally) {
-				context.translate(imageWidth, 0);
+				context.translate(imageWidth * outputScale, 0);
 				context.scale(-1, 1);
 			}
 			if (flippedVertically) {
-				context.translate(0, imageHeight);
+				context.translate(0, imageHeight * outputScale);
 				context.scale(1, -1);
 			}
 			imageData = canvas.toDataURL(`image/${imageFormat}`, imageQuality);

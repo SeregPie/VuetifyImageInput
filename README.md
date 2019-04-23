@@ -88,6 +88,7 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 | `image-height` | `Number` | `256` | |
 | `image-quality` | | | |
 | `image-width` | `Number` | `256` | |
+| `output-scale` | `Number` | `1` | |
 | `max-scaling` | `Number` | `1` | |
 | `min-scaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
 | `name` | `String` | | |

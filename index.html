@@ -75,6 +75,17 @@
 							></v-text-field>
 						</v-flex>
 						<v-flex>
+							<v-text-field
+								v-model="outputScale"
+								:max="10"
+								:min="1"
+								box
+								hide-details
+								label="output scale"
+								type="number"
+							></v-text-field>
+						</v-flex>
+						<v-flex>
 							<v-radio-group
 								v-model="minScaling"
 								class="ma-0"
@@ -209,6 +220,7 @@
 						:image-height="Number.parseInt(imageHeight)"
 						:image-width="Number.parseInt(imageWidth)"
 						:min-scaling="minScaling"
+						:output-scale="outputScale"
 						:readonly="readonly"
 					></v-image-input>
 				</v-container>
@@ -237,7 +249,7 @@
 								justify-content: center;
 							"
 						>
-							<img :src="value"/>
+							<img :src="value" style="border: 1px solid #888"/>
 						</div>
 					</v-card-text>
 					<v-card-actions>

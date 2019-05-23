@@ -3,34 +3,34 @@
 	<head>
 		<meta charset="utf-8"/>
 		<meta
-			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+			content="width=device-width, initial-scale=1"
 			name="viewport"
 		/>
 		<title>VuetifyImageInput</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.2.5/polyfill.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.min.js"></script>
 		<style>
 			[v-cloak] {
 				display: none;
 			}
 		</style>
 		<link
-			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
+			href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
 			rel="stylesheet"
 		/>
 		<link
-			href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.4.3/vuetify.min.css"
+			href="https://unpkg.com/vuetify@1.5.14/dist/vuetify.min.css"
 			rel="stylesheet"
 		/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.4.3/vuetify.min.js"></script>
+		<script src="https://unpkg.com/@babel/polyfill@7.4.4/dist/polyfill.min.js"></script>
+		<script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+		<script src="https://unpkg.com/vuetify@1.5.14/dist/vuetify.min.js"></script>
 		<script src="https://unpkg.com/@seregpie/claw@3.0.0"></script>
 		<script src="https://unpkg.com/vueclaw@1.1.0"></script>
-		<script src="VuetifyImageInput.js"></script>
+		<script src="index.js"></script>
 	</head>
 	<body>
 		<v-app
-			v-cloak
 			id="app"
+			v-cloak
 			:dark="dark"
 		>
 			<v-navigation-drawer
@@ -217,18 +217,20 @@
 				v-model="dialog"
 				scrollable
 			>
-				<v-btn
-					slot="activator"
-					:disabled="!value"
-					bottom
-					color="accent"
-					dark
-					fab
-					fixed
-					right
-				>
-					<v-icon>image</v-icon>
-				</v-btn>
+				<template v-slot:activator="props">
+					<v-btn
+						v-on="props.on"
+						:disabled="!value"
+						bottom
+						color="accent"
+						dark
+						fab
+						fixed
+						right
+					>
+						<v-icon>image</v-icon>
+					</v-btn>
+				</template>
 				<v-card>
 					<v-card-text class="justify-center">
 						<div

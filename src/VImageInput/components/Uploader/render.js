@@ -1,5 +1,5 @@
-export default function($createElement) {
-	return $createElement(
+export default function(h) {
+	return h(
 		'div',
 		{
 			style: {
@@ -19,7 +19,7 @@ export default function($createElement) {
 			},
 		},
 		[
-			$createElement(
+			h(
 				'input',
 				{
 					style: {
@@ -34,7 +34,7 @@ export default function($createElement) {
 					ref: 'input',
 				},
 			),
-			$createElement(
+			h(
 				'VIcon',
 				{
 					style: this.uploadIconStyle,

@@ -1,5 +1,5 @@
-export default function($createElement) {
-	return $createElement(
+export default function(h) {
+	return h(
 		'div',
 		{
 			style: {
@@ -13,7 +13,7 @@ export default function($createElement) {
 			},
 		},
 		[
-			$createElement(
+			h(
 				'div',
 				{
 					style: {
@@ -24,7 +24,7 @@ export default function($createElement) {
 					},
 				},
 				[
-					$createElement(
+					h(
 						'div',
 						{
 							style: {
@@ -59,7 +59,7 @@ export default function($createElement) {
 								: {}
 							),
 						},
-						[$createElement(
+						[h(
 							'div',
 							{
 								style: {
@@ -70,7 +70,7 @@ export default function($createElement) {
 									pointerEvents: 'none',
 								},
 							},
-							[$createElement(
+							[h(
 								'div',
 								{
 									style: {
@@ -86,7 +86,7 @@ export default function($createElement) {
 								},
 								[
 									...(this.internalImageData
-										? [$createElement(
+										? [h(
 											'img',
 											{
 												style: {
@@ -109,7 +109,7 @@ export default function($createElement) {
 										: []
 									),
 									...(this.internalImageData && this.imageData
-										? [$createElement(
+										? [h(
 											'input',
 											{
 												attrs: {
@@ -127,7 +127,7 @@ export default function($createElement) {
 					),
 					...(this.internalImageData || this.readonly
 						? []
-						: [$createElement(
+						: [h(
 							'MyUploader',
 							{
 								props: {
@@ -150,7 +150,7 @@ export default function($createElement) {
 					),
 				],
 			),
-			$createElement(
+			h(
 				'div',
 				{
 					style: {
@@ -172,83 +172,23 @@ export default function($createElement) {
 				[
 					...(this.clearable
 						? [
-							$createElement(
-								'MyActionButton',
-								{
-									props: {
-										disabled: this.disabled,
-										icon: this.clearIcon,
-										iconStyle: this.clearIconStyle,
-									},
-									on: {
-										click: this.clear,
-									},
-								},
-							),
-							$createElement('VSpacer'),
+							h('MyClearButton'),
+							h('VSpacer'),
 						]
 						: []
 					),
 					...(this.hideActions || this.readonly
 						? []
 						: [
-							$createElement(
-								'MyActionButton',
-								{
-									props: {
-										disabled: this.disabled,
-										icon: this.rotateClockwiseIcon,
-										iconStyle: this.rotateClockwiseIconStyle,
-									},
-									on: {
-										click: this.rotateClockwise,
-									},
-								},
-							),
-							$createElement(
-								'MyActionButton',
-								{
-									props: {
-										disabled: this.disabled,
-										icon: this.rotateCounterclockwiseIcon,
-										iconStyle: this.rotateCounterclockwiseIconStyle,
-									},
-									on: {
-										click: this.rotateCounterclockwise,
-									},
-								},
-							),
-							$createElement(
-								'MyActionButton',
-								{
-									props: {
-										disabled: this.disabled,
-										icon: this.flipHorizontallyIcon,
-										iconStyle: this.flipHorizontallyIconStyle,
-									},
-									on: {
-										click: this.flipHorizontally,
-									},
-								},
-							),
-							$createElement(
-								'MyActionButton',
-								{
-									props: {
-										disabled: this.disabled,
-										icon: this.flipVerticallyIcon,
-										iconStyle: this.flipVerticallyIconStyle,
-									},
-									on: {
-										click: this.flipVertically,
-									},
-								},
-							),
+							h('MyRotateClockwiseButton'),
+							h('MyRotateCounterclockwiseButton'),
+							h('MyFlipHorizontallyButton'),
+							h('MyFlipVerticallyButton'),
 						]
 					),
 				],
 			),
-			$createElement(
+			h(
 				'div',
 				{
 					style: {
@@ -266,24 +206,7 @@ export default function($createElement) {
 				},
 				(this.hideActions || this.readonly
 					? []
-					: [$createElement(
-						'VSlider',
-						{
-							class: 'mx-2 my-1',
-							props: {
-								color: this.scalingSliderColor,
-								disabled: this.disabled,
-								hideDetails: true,
-								max: this.computedMaxScaling,
-								min: this.computedMinScaling,
-								step: 1 / 1000,
-								value: this.scaling,
-							},
-							on: {
-								input: this.scaleTo,
-							},
-						},
-					)]
+					: [h('MyScalingSlider')]
 				),
 			),
 		],

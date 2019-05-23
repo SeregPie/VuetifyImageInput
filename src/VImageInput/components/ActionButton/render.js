@@ -1,19 +1,20 @@
-export default function($createElement, {
+export default function(h, {
 	listeners,
+	parent,
 	props,
 }) {
-	return $createElement(
+	return h(
 		'VBtn',
 		{
 			class: 'ma-1',
 			props: {
-				disabled: props.disabled,
+				disabled: parent.disabled,
 				flat: true,
 				icon: true,
 			},
 			on: listeners,
 		},
-		[$createElement(
+		[h(
 			'VIcon',
 			{
 				style: props.iconStyle,

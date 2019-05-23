@@ -15,10 +15,10 @@ Provides basic image editing tools.
 ### npm
 
 ```shell
-npm install vuetify-image-input
+npm i vuetify-image-input
 ```
 
-### ES module
+### es6
 
 Register the component globally.
 
@@ -40,7 +40,6 @@ export default {
   components: {
     [VImageInput.name]: VImageInput,
   },
-  /*...*/
 };
 ```
 
@@ -55,7 +54,7 @@ export default {
 <script src="https://unpkg.com/vuetify-image-input"></script>
 ```
 
-The component will be available under the name `VuetifyImageInput`. If Vue is detected, the component will be registered automatically.
+The component is globally available as `VuetifyImageInput`. If Vue is detected, the component is registered automatically.
 
 ## usage
 
@@ -72,37 +71,37 @@ The component will be available under the name `VuetifyImageInput`. If Vue is de
 
 | property | type | default | description |
 | ---: | :--- | :--- | :--- |
-| `background-color` | `String` | | |
-| `clear-icon` | [`Function`, `String`] | * | |
+| `backgroundColor` | `String` | | |
 | `clearable` | `Boolean` | `false` | |
+| `clearIcon` | [`Function`, `String`] | * | |
 | `debounce` | `Number` | `0` | |
 | `disabled` | `Boolean` | `false` | |
-| `flip-horizontally-icon-style` | [`Function`, `Object`] | | |
-| `flip-horizontally-icon` | [`Function`, `String`] | `'flip'` | |
-| `flip-vertically-icon-style` | [`Function`, `Object`] | `{transform: 'rotate(90deg)'}` | |
-| `flip-vertically-icon` | [`Function`, `String`] | `'flip'` | |
-| `full-height` | `Boolean` | `false` | |
-| `full-width` | `Boolean` | `false` | |
-| `hide-actions` | `Boolean` | `false` | |
-| `image-format` | `String` | `'png'` | |
-| `image-height` | `Number` | `256` | |
-| `image-quality` | | | |
-| `image-width` | `Number` | `256` | |
-| `max-scaling` | `Number` | `1` | |
-| `min-scaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
+| `flipHorizontallyIcon` | [`Function`, `String`] | `'flip'` | |
+| `flipHorizontallyIconStyle` | [`Function`, `Object`] | | |
+| `flipVerticallyIcon` | [`Function`, `String`] | `'flip'` | |
+| `flipVerticallyIconStyle` | [`Function`, `Object`] | `{transform: 'rotate(90deg)'}` | |
+| `fullHeight` | `Boolean` | `false` | |
+| `fullWidth` | `Boolean` | `false` | |
+| `hideActions` | `Boolean` | `false` | |
+| `imageFormat` | `String` | `'png'` | |
+| `imageHeight` | `Number` | `256` | |
+| `imageQuality` | | | |
+| `imageWidth` | `Number` | `256` | |
+| `maxScaling` | `Number` | `1` | |
+| `minScaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
 | `name` | `String` | | |
-| `overlay-background-color` | [`Function`, `String`] | `'rgba(0,0,0,0.5)'` | |
-| `overlay-border-color` | [`Function`, `String`] | `'#fff'` | |
-| `overlay-border-width` | `String` | `'4px'` | |
-| `overlay-padding` | `String` | `'50px'` | |
+| `overlayBackgroundColor` | [`Function`, `String`] | `'rgba(0,0,0,0.5)'` | |
+| `overlayBorderColor` | [`Function`, `String`] | `'#fff'` | |
+| `overlayBorderWidth` | `String` | `'4px'` | |
+| `overlayPadding` | `String` | `'50px'` | |
 | `readonly` | `Boolean` | `false` | |
-| `rotate-clockwise-icon-style` | [`Function`, `Object`] | `{transform: 'scaleX(-1)'}` | |
-| `rotate-clockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
-| `rotate-counterclockwise-icon-style` | [`Function`, `Object`] | | |
-| `rotate-counterclockwise-icon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
-| `scaling-slider-color` | [`Function`, `String`] | | |
-| `upload-icon-style` | [`Function`, `Object`] | | |
-| `upload-icon` | [`Function`, `String`] | `'cloud_upload'` | |
+| `rotateClockwiseIcon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
+| `rotateClockwiseIconStyle` | [`Function`, `Object`] | `{transform: 'scaleX(-1)'}` | |
+| `rotateCounterclockwiseIcon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
+| `rotateCounterclockwiseIconStyle` | [`Function`, `Object`] | | |
+| `scalingSliderColor` | [`Function`, `String`] | | |
+| `uploadIcon` | [`Function`, `String`] | `'cloud_upload'` | |
+| `uploadIconStyle` | [`Function`, `Object`] | | |
 | `value` | `String` | | |
 
 ---

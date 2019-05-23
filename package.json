@@ -25,6 +25,7 @@
 	],
 	"license": "MIT",
 	"author": "Sergej Sintschilin <seregpie@gmail.com>",
+	"files": [],
 	"main": "index.js",
 	"repository": "https://github.com/SeregPie/VuetifyImageInput.git",
 	"scripts": {

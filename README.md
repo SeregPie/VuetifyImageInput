@@ -73,13 +73,13 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | ---: | :--- | :--- | :--- |
 | `backgroundColor` | `String` | | |
 | `clearable` | `Boolean` | `false` | |
-| `clearIcon` | [`Function`, `String`] | * | |
+| `clearIcon` | `String` | `'$vuetify.icons.clear'` | |
 | `debounce` | `Number` | `0` | |
 | `disabled` | `Boolean` | `false` | |
-| `flipHorizontallyIcon` | [`Function`, `String`] | `'flip'` | |
-| `flipHorizontallyIconStyle` | [`Function`, `Object`] | | |
-| `flipVerticallyIcon` | [`Function`, `String`] | `'flip'` | |
-| `flipVerticallyIconStyle` | [`Function`, `Object`] | `{transform: 'rotate(90deg)'}` | |
+| `flipHorizontallyIcon` | `String` | `'flip'` | |
+| `flipHorizontallyIconStyle` | `Object` | | |
+| `flipVerticallyIcon` | `String` | `'flip'` | |
+| `flipVerticallyIconStyle` | `Object` | `{transform: 'rotate(90deg)'}` | |
 | `fullHeight` | `Boolean` | `false` | |
 | `fullWidth` | `Boolean` | `false` | |
 | `hideActions` | `Boolean` | `false` | |
@@ -90,24 +90,16 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | `maxScaling` | `Number` | `1` | |
 | `minScaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
 | `name` | `String` | | |
-| `overlayBackgroundColor` | [`Function`, `String`] | `'rgba(0,0,0,0.5)'` | |
-| `overlayBorderColor` | [`Function`, `String`] | `'#fff'` | |
+| `overlayBackgroundColor` | `String` | `'rgba(0,0,0,0.5)'` | |
+| `overlayBorderColor` | `String` | `'#fff'` | |
 | `overlayBorderWidth` | `String` | `'4px'` | |
 | `overlayPadding` | `String` | `'50px'` | |
 | `readonly` | `Boolean` | `false` | |
-| `rotateClockwiseIcon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
-| `rotateClockwiseIconStyle` | [`Function`, `Object`] | `{transform: 'scaleX(-1)'}` | |
-| `rotateCounterclockwiseIcon` | [`Function`, `String`] | `'rotate_90_degrees_ccw'` | |
-| `rotateCounterclockwiseIconStyle` | [`Function`, `Object`] | | |
-| `scalingSliderColor` | [`Function`, `String`] | | |
-| `uploadIcon` | [`Function`, `String`] | `'cloud_upload'` | |
-| `uploadIconStyle` | [`Function`, `Object`] | | |
+| `rotateClockwiseIcon` | `String` | `'rotate_90_degrees_ccw'` | |
+| `rotateClockwiseIconStyle` | `Object` | `{transform: 'scaleX(-1)'}` | |
+| `rotateCounterclockwiseIcon` | `String` | `'rotate_90_degrees_ccw'` | |
+| `rotateCounterclockwiseIconStyle` | `Object` | | |
+| `scalingSliderColor` | `String` | | |
+| `uploadIcon` | `String` | `'cloud_upload'` | |
+| `uploadIconStyle` | `Object` | | |
 | `value` | `String` | | |
-
----
-
-```javascript
-let clearIcon = function() {
-  return this.$vuetify.icons.clear;
-};
-```

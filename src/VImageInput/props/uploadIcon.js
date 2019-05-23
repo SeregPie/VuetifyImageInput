@@ -1,4 +1,4 @@
 export default {
-	type: [Function, String],
+	type: String,
 	default: 'cloud_upload',
 };

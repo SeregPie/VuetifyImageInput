@@ -1,1 +1,1 @@
-export default [Function, Object];
+export default Object;

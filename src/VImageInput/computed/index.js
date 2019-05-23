@@ -9,7 +9,6 @@ import croppingLeft from './croppingLeft';
 import croppingTop from './croppingTop';
 import relativeRotatedInternalImageHeight from './relativeRotatedInternalImageHeight';
 import relativeRotatedInternalImageWidth from './relativeRotatedInternalImageWidth';
-import remappedProperties from './remappedProperties';
 import rotatedInternalImageHeight from './rotatedInternalImageHeight';
 import rotatedInternalImageWidth from './rotatedInternalImageWidth';
 import scaledRotatedInternalImageHeight from './scaledRotatedInternalImageHeight';
@@ -39,5 +38,4 @@ export default {
 	scaledRotatedInternalImageWidthDifference,
 	scaling,
 	updateImageData,
-	...remappedProperties,
 };

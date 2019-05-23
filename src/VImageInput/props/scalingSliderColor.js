@@ -1,1 +1,1 @@
-export default [Function, String];
+export default String;

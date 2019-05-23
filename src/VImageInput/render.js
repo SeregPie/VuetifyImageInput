@@ -63,10 +63,10 @@ export default function($createElement) {
 							'div',
 							{
 								style: {
-									boxShadow: `0 0 4000px 4000px ${this.remappedOverlayBackgroundColor}`,
+									boxShadow: `0 0 4000px 4000px ${this.overlayBackgroundColor}`,
 									maxHeight: '100%',
 									maxWidth: '100%',
-									outline: `${this.overlayBorderWidth} solid ${this.remappedOverlayBorderColor}`,
+									outline: `${this.overlayBorderWidth} solid ${this.overlayBorderColor}`,
 									pointerEvents: 'none',
 								},
 							},
@@ -132,8 +132,8 @@ export default function($createElement) {
 							{
 								props: {
 									disabled: this.disabled,
-									uploadIcon: this.remappedUploadIcon,
-									uploadIconStyle: this.remappedUploadIconStyle,
+									uploadIcon: this.uploadIcon,
+									uploadIconStyle: this.uploadIconStyle,
 								},
 								style: {
 									bottom: 0,
@@ -177,8 +177,8 @@ export default function($createElement) {
 								{
 									props: {
 										disabled: this.disabled,
-										icon: this.remappedClearIcon,
-										iconStyle: this.remappedClearIconStyle,
+										icon: this.clearIcon,
+										iconStyle: this.clearIconStyle,
 									},
 									on: {
 										click: this.clear,
@@ -197,8 +197,8 @@ export default function($createElement) {
 								{
 									props: {
 										disabled: this.disabled,
-										icon: this.remappedRotateClockwiseIcon,
-										iconStyle: this.remappedRotateClockwiseIconStyle,
+										icon: this.rotateClockwiseIcon,
+										iconStyle: this.rotateClockwiseIconStyle,
 									},
 									on: {
 										click: this.rotateClockwise,
@@ -210,8 +210,8 @@ export default function($createElement) {
 								{
 									props: {
 										disabled: this.disabled,
-										icon: this.remappedRotateCounterclockwiseIcon,
-										iconStyle: this.remappedRotateCounterclockwiseIconStyle,
+										icon: this.rotateCounterclockwiseIcon,
+										iconStyle: this.rotateCounterclockwiseIconStyle,
 									},
 									on: {
 										click: this.rotateCounterclockwise,
@@ -223,8 +223,8 @@ export default function($createElement) {
 								{
 									props: {
 										disabled: this.disabled,
-										icon: this.remappedFlipHorizontallyIcon,
-										iconStyle: this.remappedFlipHorizontallyIconStyle,
+										icon: this.flipHorizontallyIcon,
+										iconStyle: this.flipHorizontallyIconStyle,
 									},
 									on: {
 										click: this.flipHorizontally,
@@ -236,8 +236,8 @@ export default function($createElement) {
 								{
 									props: {
 										disabled: this.disabled,
-										icon: this.remappedFlipVerticallyIcon,
-										iconStyle: this.remappedFlipVerticallyIconStyle,
+										icon: this.flipVerticallyIcon,
+										iconStyle: this.flipVerticallyIconStyle,
 									},
 									on: {
 										click: this.flipVertically,
@@ -271,7 +271,7 @@ export default function($createElement) {
 						{
 							class: 'mx-2 my-1',
 							props: {
-								color: this.remappedScalingSliderColor,
+								color: this.scalingSliderColor,
 								disabled: this.disabled,
 								hideDetails: true,
 								max: this.computedMaxScaling,

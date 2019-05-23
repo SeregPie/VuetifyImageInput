@@ -1,6 +1,4 @@
 export default {
-	type: [Function, String],
-	default() {
-		return this.$vuetify.icons.clear;
-	},
+	type: String,
+	default: '$vuetify.icons.clear',
 };

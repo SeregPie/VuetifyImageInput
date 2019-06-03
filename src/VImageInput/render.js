@@ -128,7 +128,7 @@ export default function(h) {
 					...(this.internalImageData || this.readonly
 						? []
 						: [h(
-							'MyUploader',
+							'MyFileUpload',
 							{
 								props: {
 									disabled: this.disabled,

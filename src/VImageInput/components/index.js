@@ -5,15 +5,15 @@ import MyFlipVerticallyButton from './FlipVerticallyButton';
 import MyRotateClockwiseButton from './RotateClockwiseButton';
 import MyRotateCounterclockwiseButton from './RotateCounterclockwiseButton';
 import MyScalingSlider from './ScalingSlider';
-import MyUploader from './Uploader';
+import MyFileUpload from './FileUpload';
 
 export default {
 	MyActionButton,
 	MyClearButton,
+	MyFileUpload,
 	MyFlipHorizontallyButton,
 	MyFlipVerticallyButton,
 	MyRotateClockwiseButton,
 	MyRotateCounterclockwiseButton,
 	MyScalingSlider,
-	MyUploader,
 };

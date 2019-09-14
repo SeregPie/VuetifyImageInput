@@ -8,7 +8,7 @@ export default function($createElement, {
 			class: 'ma-1',
 			props: {
 				disabled: props.disabled,
-				flat: true,
+				text: true,
 				icon: true,
 			},
 			on: listeners,

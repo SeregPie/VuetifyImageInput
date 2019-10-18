@@ -18,7 +18,7 @@ Provides basic image editing tools.
 npm i vuetify-image-input
 ```
 
-### es6
+### ES module
 
 Register the component globally.
 
@@ -46,8 +46,8 @@ export default {
 ### browser
 
 ```html
-<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet"/>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
 <script src="https://unpkg.com/@seregpie/claw"></script>
 <script src="https://unpkg.com/vueclaw"></script>
@@ -76,10 +76,10 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | `clearIcon` | `String` | `'$vuetify.icons.clear'` | |
 | `debounce` | `Number` | `0` | |
 | `disabled` | `Boolean` | `false` | |
-| `flipHorizontallyIcon` | `String` | `'flip'` | |
+| `flipHorizontallyIcon` | `String` | `'mdi-flip-horizontal'` | |
 | `flipHorizontallyIconStyle` | `Object` | | |
-| `flipVerticallyIcon` | `String` | `'flip'` | |
-| `flipVerticallyIconStyle` | `Object` | `{transform: 'rotate(90deg)'}` | |
+| `flipVerticallyIcon` | `String` | `'mdi-flip-vertical'` | |
+| `flipVerticallyIconStyle` | `Object` | | |
 | `fullHeight` | `Boolean` | `false` | |
 | `fullWidth` | `Boolean` | `false` | |
 | `hideActions` | `Boolean` | `false` | |
@@ -95,11 +95,11 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | `overlayBorderWidth` | `String` | `'4px'` | |
 | `overlayPadding` | `String` | `'50px'` | |
 | `readonly` | `Boolean` | `false` | |
-| `rotateClockwiseIcon` | `String` | `'rotate_90_degrees_ccw'` | |
-| `rotateClockwiseIconStyle` | `Object` | `{transform: 'scaleX(-1)'}` | |
-| `rotateCounterclockwiseIcon` | `String` | `'rotate_90_degrees_ccw'` | |
+| `rotateClockwiseIcon` | `String` | `'mdi-rotate-right'` | |
+| `rotateClockwiseIconStyle` | `Object` | | |
+| `rotateCounterclockwiseIcon` | `String` | `'mdi-rotate-left'` | |
 | `rotateCounterclockwiseIconStyle` | `Object` | | |
 | `scalingSliderColor` | `String` | | |
-| `uploadIcon` | `String` | `'cloud_upload'` | |
+| `uploadIcon` | `String` | `'mdi-upload'` | |
 | `uploadIconStyle` | `Object` | | |
 | `value` | `String` | | |

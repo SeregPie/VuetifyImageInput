@@ -1,4 +1,4 @@
 export default {
 	type: String,
-	default: 'flip',
+	default: 'mdi-flip-vertical',
 };

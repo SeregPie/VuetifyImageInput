@@ -1,4 +1,4 @@
 export default {
 	type: String,
-	default: 'cloud_upload',
+	default: 'mdi-upload',
 };

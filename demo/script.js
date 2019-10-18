@@ -2,21 +2,12 @@
 
 	new Vue({
 		el: '#app',
-
+		vuetify: new Vuetify(),
 		data: function() {
 			return {
-				backgroundColorIndex: 0,
-				backgroundColorValues: [
-					undefined,
-					'#e8aca0',
-					'#3a7fd8',
-					'#f92036',
-				],
-				clearable: VuetifyImageInput.props.clearable.default,
-				dark: false,
-				dialog: false,
-				disabled: VuetifyImageInput.props.disabled.default,
 				drawer: true,
+				clearable: VuetifyImageInput.props.clearable.default,
+				disabled: VuetifyImageInput.props.disabled.default,
 				fullHeight: VuetifyImageInput.props.fullHeight.default,
 				fullWidth: VuetifyImageInput.props.fullWidth.default,
 				hideActions: VuetifyImageInput.props.hideActions.default,
@@ -26,12 +17,6 @@
 				readonly: VuetifyImageInput.props.readonly.default,
 				value: null,
 			};
-		},
-
-		computed: {
-			backgroundColor: function() {
-				return this.backgroundColorValues[this.backgroundColorIndex];
-			},
 		},
 	});
 

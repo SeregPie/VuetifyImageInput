@@ -27,7 +27,7 @@
 	"author": "Sergej Sintschilin <seregpie@gmail.com>",
 	"files": [],
 	"main": "index.js",
-	"repository": "https://github.com/SeregPie/VuetifyImageInput.git",
+	"repository": "github:SeregPie/VuetifyImageInput",
 	"scripts": {
 		"build": "rollup -c",
 		"dev": "rollup -c -w",
@@ -39,12 +39,12 @@
 	},
 	"devDependencies": {
 		"http-server": "^0.11.1",
-		"rollup": "^1.12.3",
-		"rollup-plugin-buble": "^0.19.6",
-		"rollup-plugin-node-resolve": "^5.0.0",
-		"rollup-plugin-terser": "^5.0.0"
+		"rollup": "^1.24.0",
+		"rollup-plugin-buble": "^0.19.8",
+		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-terser": "^5.1.2"
 	},
 	"peerDependencies": {
-		"vuetify": "^1.5.14"
+		"vuetify": ">=2"
 	}
 }

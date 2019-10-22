@@ -1,4 +1,3 @@
-import backgroundColor from './backgroundColor';
 import clearable from './clearable';
 import clearIcon from './clearIcon';
 import clearIconStyle from './clearIconStyle';
@@ -11,12 +10,13 @@ import flipVerticallyIconStyle from './flipVerticallyIconStyle';
 import fullHeight from './fullHeight';
 import fullWidth from './fullWidth';
 import hideActions from './hideActions';
+import imageBackgroundColor from './imageBackgroundColor';
 import imageFormat from './imageFormat';
 import imageHeight from './imageHeight';
+import imageMaxScaling from './imageMaxScaling';
+import imageMinScaling from './imageMinScaling';
 import imageQuality from './imageQuality';
 import imageWidth from './imageWidth';
-import maxScaling from './maxScaling';
-import minScaling from './minScaling';
 import name from './name';
 import overlayBackgroundColor from './overlayBackgroundColor';
 import overlayBorderColor from './overlayBorderColor';
@@ -25,15 +25,14 @@ import overlayPadding from './overlayPadding';
 import readonly from './readonly';
 import rotateClockwiseIcon from './rotateClockwiseIcon';
 import rotateClockwiseIconStyle from './rotateClockwiseIconStyle';
-import rotateCounterclockwiseIcon from './rotateCounterclockwiseIcon';
-import rotateCounterclockwiseIconStyle from './rotateCounterclockwiseIconStyle';
+import rotateCounterClockwiseIcon from './rotateCounterClockwiseIcon';
+import rotateCounterClockwiseIconStyle from './rotateCounterClockwiseIconStyle';
 import scalingSliderColor from './scalingSliderColor';
 import uploadIcon from './uploadIcon';
 import uploadIconStyle from './uploadIconStyle';
 import value from './value';
 
 export default {
-	backgroundColor,
 	clearable,
 	clearIcon,
 	clearIconStyle,
@@ -46,12 +45,13 @@ export default {
 	fullHeight,
 	fullWidth,
 	hideActions,
+	imageBackgroundColor,
 	imageFormat,
 	imageHeight,
+	imageMaxScaling,
+	imageMinScaling,
 	imageQuality,
 	imageWidth,
-	maxScaling,
-	minScaling,
 	name,
 	overlayBackgroundColor,
 	overlayBorderColor,
@@ -60,10 +60,16 @@ export default {
 	readonly,
 	rotateClockwiseIcon,
 	rotateClockwiseIconStyle,
-	rotateCounterclockwiseIcon,
-	rotateCounterclockwiseIconStyle,
+	rotateCounterClockwiseIcon,
+	rotateCounterClockwiseIconStyle,
 	scalingSliderColor,
 	uploadIcon,
 	uploadIconStyle,
 	value,
+
+	backgroundColor: {},
+	maxScaling: {},
+	minScaling: {},
+	rotateCounterclockwiseIcon: {},
+	rotateCounterclockwiseIconStyle: {},
 };

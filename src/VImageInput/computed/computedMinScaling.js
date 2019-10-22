@@ -1,5 +1,5 @@
 export default function() {
-	switch (this.minScaling) {
+	switch (this.imageMinScaling) {
 		case 'cover':
 			return Math.max(
 				this.relativeRotatedInternalImageWidth,

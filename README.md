@@ -71,7 +71,6 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 
 | property | type | default | description |
 | ---: | :--- | :--- | :--- |
-| `backgroundColor` | `String` | | |
 | `clearable` | `Boolean` | `false` | |
 | `clearIcon` | `String` | `'$vuetify.icons.clear'` | |
 | `debounce` | `Number` | `0` | |
@@ -83,12 +82,13 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | `fullHeight` | `Boolean` | `false` | |
 | `fullWidth` | `Boolean` | `false` | |
 | `hideActions` | `Boolean` | `false` | |
-| `imageFormat` | `String` | `'png'` | |
+| `imageBackgroundColor` | `String` | | |
+| `imageFormat` | `String` | `'png'` | Possible values are `'png'`, `'jpeg'` and `'webp'`. |
 | `imageHeight` | `Number` | `256` | |
+| `imageMaxScaling` | `Number` | `1` | |
+| `imageMinScaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
 | `imageQuality` | | | |
 | `imageWidth` | `Number` | `256` | |
-| `maxScaling` | `Number` | `1` | |
-| `minScaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
 | `name` | `String` | | |
 | `overlayBackgroundColor` | `String` | `'rgba(0,0,0,0.5)'` | |
 | `overlayBorderColor` | `String` | `'#fff'` | |
@@ -97,8 +97,8 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | `readonly` | `Boolean` | `false` | |
 | `rotateClockwiseIcon` | `String` | `'mdi-rotate-right'` | |
 | `rotateClockwiseIconStyle` | `Object` | | |
-| `rotateCounterclockwiseIcon` | `String` | `'mdi-rotate-left'` | |
-| `rotateCounterclockwiseIconStyle` | `Object` | | |
+| `rotateCounterClockwiseIcon` | `String` | `'mdi-rotate-left'` | |
+| `rotateCounterClockwiseIconStyle` | `Object` | | |
 | `scalingSliderColor` | `String` | | |
 | `uploadIcon` | `String` | `'mdi-upload'` | |
 | `uploadIconStyle` | `Object` | | |

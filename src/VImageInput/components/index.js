@@ -3,7 +3,7 @@ import MyClearButton from './ClearButton';
 import MyFlipHorizontallyButton from './FlipHorizontallyButton';
 import MyFlipVerticallyButton from './FlipVerticallyButton';
 import MyRotateClockwiseButton from './RotateClockwiseButton';
-import MyRotateCounterclockwiseButton from './RotateCounterclockwiseButton';
+import MyRotateCounterClockwiseButton from './RotateCounterClockwiseButton';
 import MyScalingSlider from './ScalingSlider';
 import MyFileUpload from './FileUpload';
 
@@ -14,6 +14,6 @@ export default {
 	MyFlipHorizontallyButton,
 	MyFlipVerticallyButton,
 	MyRotateClockwiseButton,
-	MyRotateCounterclockwiseButton,
+	MyRotateCounterClockwiseButton,
 	MyScalingSlider,
 };

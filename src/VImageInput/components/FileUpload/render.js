@@ -4,7 +4,6 @@ export default function(h) {
 		{
 			style: {
 				alignItems: 'center',
-				//backgroundColor: '#fff',
 				border: `1px dashed rgba(${this.theme.isDark ? '255,255,255,0.7' : '0,0,0,0.54'})`,
 				borderRadius: '6px',
 				cursor: 'pointer',

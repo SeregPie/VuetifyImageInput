@@ -5,15 +5,15 @@
 		vuetify: new Vuetify(),
 		data: function() {
 			return {
-				drawer: true,
 				clearable: VuetifyImageInput.props.clearable.default,
 				disabled: VuetifyImageInput.props.disabled.default,
+				drawer: true,
 				fullHeight: VuetifyImageInput.props.fullHeight.default,
 				fullWidth: VuetifyImageInput.props.fullWidth.default,
 				hideActions: VuetifyImageInput.props.hideActions.default,
 				imageHeight: VuetifyImageInput.props.imageHeight.default,
+				imageMinScaling: VuetifyImageInput.props.imageMinScaling.default,
 				imageWidth: VuetifyImageInput.props.imageWidth.default,
-				minScaling: VuetifyImageInput.props.minScaling.default,
 				readonly: VuetifyImageInput.props.readonly.default,
 				value: null,
 			};

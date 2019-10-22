@@ -1,5 +1,6 @@
 import components from './components';
 import computed from './computed';
+import created from './created';
 import data from './data';
 import directives from './directives';
 import inject from './inject';
@@ -18,6 +19,7 @@ export default {
 	data,
 	computed,
 	watch,
+	created,
 	methods,
 	render,
 };

@@ -25,7 +25,7 @@
 			rel="stylesheet"
 		/>
 		<script src="https://unpkg.com/@babel/polyfill@7.6.0/dist/polyfill.min.js"></script>
-		<script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+		<script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
 		<script src="https://unpkg.com/vuetify@2.1.5/dist/vuetify.min.js"></script>
 		<script src="https://unpkg.com/@seregpie/claw@3.0.0"></script>
 		<script src="https://unpkg.com/vueclaw@1.1.0"></script>
@@ -73,7 +73,7 @@
 				</div>
 				<div class="pa-2">
 					<v-radio-group
-						v-model="minScaling"
+						v-model="imageMinScaling"
 						class="ma-0 pa-0"
 						hide-details
 						label="min scaling"
@@ -160,8 +160,8 @@
 						:full-width="fullWidth"
 						:hide-actions="hideActions"
 						:image-height="Number(imageHeight)"
+						:image-min-scaling="imageMinScaling"
 						:image-width="Number(imageWidth)"
-						:min-scaling="minScaling"
 						:readonly="readonly"
 					></v-image-input>
 				</v-container>

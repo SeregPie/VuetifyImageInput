@@ -1,12 +1,11 @@
 export default function() {
 	let {
-		backgroundColor,
 		croppingLeft,
 		croppingTop,
-		scaling,
 		debounce,
 		flippedHorizontally,
 		flippedVertically,
+		imageBackgroundColor,
 		imageFormat,
 		imageHeight,
 		imageQuality,
@@ -15,6 +14,7 @@ export default function() {
 		internalImageHeight,
 		internalImageWidth,
 		rotated,
+		scaling,
 	} = this;
 	return setTimeout(() => {
 		let imageData;
@@ -25,8 +25,8 @@ export default function() {
 			let context = canvas.getContext('2d');
 			canvas.width = imageWidth;
 			canvas.height = imageHeight;
-			if (backgroundColor) {
-				context.fillStyle = backgroundColor;
+			if (imageBackgroundColor) {
+				context.fillStyle = imageBackgroundColor;
 				context.fillRect(0, 0, imageWidth, imageHeight);
 			}
 			context.translate(croppingLeft, croppingTop);

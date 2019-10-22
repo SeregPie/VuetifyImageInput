@@ -78,8 +78,8 @@ export default function(h) {
 										position: 'relative',
 										width: `${this.imageWidth}px`,
 										zIndex: -1,
-										...(this.backgroundColor
-											? {backgroundColor: this.backgroundColor}
+										...(this.imageBackgroundColor
+											? {backgroundColor: this.imageBackgroundColor}
 											: {}
 										),
 									},
@@ -181,7 +181,7 @@ export default function(h) {
 						? []
 						: [
 							h('MyRotateClockwiseButton'),
-							h('MyRotateCounterclockwiseButton'),
+							h('MyRotateCounterClockwiseButton'),
 							h('MyFlipHorizontallyButton'),
 							h('MyFlipVerticallyButton'),
 						]

@@ -9,22 +9,22 @@ let globals = {
 	'vueclaw': 'VueClaw',
 };
 
+let plugins = [
+	resolve(),
+	buble({objectAssign: 'Object.assign'}),
+	terser(),
+];
+if (process.env.ROLLUP_WATCH) {
+	plugins.push(serve({
+		contentBase: '',
+		open: true,
+	}));
+}
+
 export default {
 	external: Object.keys(globals),
 	input: 'src/index.js',
-	plugins: [
-		resolve(),
-		...(process.env.ROLLUP_WATCH
-			? [serve({
-				contentBase: '',
-				open: true,
-			})]
-			: [
-				buble({objectAssign: 'Object.assign'}),
-				terser(),
-			]
-		),
-	],
+	plugins,
 	output: {
 		file: main,
 		format: 'umd',

@@ -25,23 +25,24 @@
 	],
 	"license": "MIT",
 	"author": "Sergej Sintschilin <seregpie@gmail.com>",
-	"files": ["a-la-carte.js"],
+	"files": [
+		"a-la-carte.js"
+	],
 	"main": "index.js",
 	"repository": "github:SeregPie/VuetifyImageInput",
 	"scripts": {
 		"build": "rollup -c",
-		"dev": "rollup -c -w",
 		"prepublishOnly": "npm run build",
-		"serve": "http-server -o -c-1"
+		"serve": "rollup -c -w"
 	},
 	"dependencies": {
 		"vueclaw": "^1.1.0"
 	},
 	"devDependencies": {
-		"http-server": "^0.11.1",
-		"rollup": "^1.25.1",
+		"rollup": "^1.25.2",
 		"rollup-plugin-buble": "^0.19.8",
 		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-serve": "^1.0.1",
 		"rollup-plugin-terser": "^5.1.2"
 	},
 	"peerDependencies": {

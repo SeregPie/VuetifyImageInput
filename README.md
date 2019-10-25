@@ -26,7 +26,7 @@ Register the component globally.
 import Vue from 'vue';
 import VImageInput from 'vuetify-image-input';
 
-Vue.component(VImageInput.name, VImageInput);
+Vue.component('VImageInput', VImageInput);
 ```
 
 *or*
@@ -38,15 +38,26 @@ import VImageInput from 'vuetify-image-input';
 
 export default {
   components: {
-    [VImageInput.name]: VImageInput,
+    VImageInput,
   },
 };
+```
+
+---
+
+Use the treeshaking system.
+
+```javascript
+import VImageInput from 'vuetify-image-input/a-la-carte';
 ```
 
 ### browser
 
 ```html
-<link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet"/>
+<link
+  href="https://unpkg.com/vuetify/dist/vuetify.min.css"
+  rel="stylesheet"
+/>
 <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
 <script src="https://unpkg.com/@seregpie/claw"></script>

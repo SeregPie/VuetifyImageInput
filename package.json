@@ -25,7 +25,7 @@
 	],
 	"license": "MIT",
 	"author": "Sergej Sintschilin <seregpie@gmail.com>",
-	"files": [],
+	"files": ["a-la-carte.js"],
 	"main": "index.js",
 	"repository": "github:SeregPie/VuetifyImageInput",
 	"scripts": {

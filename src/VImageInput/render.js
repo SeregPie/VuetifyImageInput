@@ -130,11 +130,6 @@ export default function(h) {
 						: [h(
 							'MyFileUpload',
 							{
-								props: {
-									disabled: this.disabled,
-									uploadIcon: this.uploadIcon,
-									uploadIconStyle: this.uploadIconStyle,
-								},
 								style: {
 									bottom: 0,
 									left: 0,

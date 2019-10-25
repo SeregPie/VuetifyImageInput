@@ -1,6 +1,4 @@
-export default function(h, {
-	parent,
-}) {
+export default function(h, {parent}) {
 	return h(
 		'VSlider',
 		{

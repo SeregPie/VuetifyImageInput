@@ -1,17 +1,17 @@
+import load from './load';
 import onChange from './onChange';
 import onClick from './onClick';
+import onDragEnter from './onDragEnter';
 import onDragLeave from './onDragLeave';
 import onDragOver from './onDragOver';
 import onDrop from './onDrop';
-import uploadFile from './uploadFile';
-import uploadFiles from './uploadFiles';
 
 export default {
+	load,
 	onChange,
 	onClick,
+	onDragEnter,
 	onDragLeave,
 	onDragOver,
 	onDrop,
-	uploadFile,
-	uploadFiles,
 };

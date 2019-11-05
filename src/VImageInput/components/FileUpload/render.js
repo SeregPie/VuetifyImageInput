@@ -2,7 +2,6 @@ import VueFileUpload from '../../../VueFileUpload';
 
 export default function(h, {
 	data,
-	injections,
 	listeners,
 	parent,
 }) {
@@ -10,8 +9,8 @@ export default function(h, {
 		disabled,
 		uploadIcon,
 		uploadIconStyle,
+		theme,
 	} = parent;
-	let {theme} = injections;
 	let {load} = listeners;
 	let {style} = data;
 	return h(
@@ -20,9 +19,10 @@ export default function(h, {
 			style,
 			scopedSlots: {
 				default: (({
-					cancel,
 					dragging,
 					failed,
+					file,
+					loaded,
 					loading,
 					onClick,
 					onDragEnter,
@@ -57,14 +57,60 @@ export default function(h, {
 							}}
 						),
 					},
-					[h(
-						'VIcon',
-						{
-							large: true,
-							style: uploadIconStyle,
-						},
-						uploadIcon,
-					)],
+					[(() => {
+						if (loading) {
+							let indeterminate;
+							let value = progress / file.size * 100;
+							let text;
+							if (value) {
+								text = `${Math.round(value)}%`;
+							} else {
+								indeterminate = true;
+							}
+							return h(
+								'VProgressCircular',
+								{
+									props: {
+										color: 'primary',
+										indeterminate,
+										rotate: -90,
+										size: 64,
+										value,
+										width: 8,
+									},
+								},
+								text,
+							);
+						}
+						let style;
+						let color;
+						let text;
+						if (loaded) {
+							color = 'success';
+							text = '$vuetify.icons.success';
+						} else
+						if (failed) {
+							color = 'error';
+							text = '$vuetify.icons.error';
+						} else {
+							if (dragging) {
+								color = 'primary';
+							}
+							style = uploadIconStyle;
+							text = uploadIcon;
+						}
+						return h(
+							'VIcon',
+							{
+								style,
+								props: {
+									color,
+									large: true,
+								},
+							},
+							text,
+						);
+					})()],
 				)),
 			},
 			on: {

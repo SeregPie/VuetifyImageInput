@@ -44,7 +44,7 @@ export default function(file) {
 			failed: false,
 			file,
 			loaded: false,
-			loading: false,
+			loading: true,
 			progress: 0,
 			result: null,
 		});

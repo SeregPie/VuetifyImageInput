@@ -14,6 +14,7 @@ let plugins = [
 	buble({objectAssign: 'Object.assign'}),
 	terser(),
 ];
+
 if (process.env.ROLLUP_WATCH) {
 	plugins.push(serve({
 		contentBase: '',

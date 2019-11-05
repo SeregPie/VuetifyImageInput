@@ -18,6 +18,16 @@
 				value: null,
 			};
 		},
+		computed: {
+			dark: {
+				get: function() {
+					return this.$vuetify.theme.dark;
+				},
+				set: function(value) {
+					this.$vuetify.theme.dark = value;
+				},
+			},
+		},
 	});
 
 })();

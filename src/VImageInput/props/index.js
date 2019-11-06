@@ -3,6 +3,8 @@ import clearIcon from './clearIcon';
 import clearIconStyle from './clearIconStyle';
 import debounce from './debounce';
 import disabled from './disabled';
+import errorIcon from './errorIcon';
+import errorIconStyle from './errorIconStyle';
 import flipHorizontallyIcon from './flipHorizontallyIcon';
 import flipHorizontallyIconStyle from './flipHorizontallyIconStyle';
 import flipVerticallyIcon from './flipVerticallyIcon';
@@ -27,6 +29,8 @@ import rotateClockwiseIcon from './rotateClockwiseIcon';
 import rotateClockwiseIconStyle from './rotateClockwiseIconStyle';
 import rotateCounterClockwiseIcon from './rotateCounterClockwiseIcon';
 import rotateCounterClockwiseIconStyle from './rotateCounterClockwiseIconStyle';
+import successIcon from './successIcon';
+import successIconStyle from './successIconStyle';
 import uploadIcon from './uploadIcon';
 import uploadIconStyle from './uploadIconStyle';
 import value from './value';
@@ -37,6 +41,8 @@ export default {
 	clearIconStyle,
 	debounce,
 	disabled,
+	errorIcon,
+	errorIconStyle,
 	flipHorizontallyIcon,
 	flipHorizontallyIconStyle,
 	flipVerticallyIcon,
@@ -61,6 +67,8 @@ export default {
 	rotateClockwiseIconStyle,
 	rotateCounterClockwiseIcon,
 	rotateCounterClockwiseIconStyle,
+	successIcon,
+	successIconStyle,
 	uploadIcon,
 	uploadIconStyle,
 	value,

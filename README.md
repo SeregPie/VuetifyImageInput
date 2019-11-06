@@ -84,8 +84,11 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | ---: | :--- | :--- | :--- |
 | `clearable` | `Boolean` | `false` | |
 | `clearIcon` | `String` | `'$clear'` | |
+| `clearIconStyle` | `Object` | | |
 | `debounce` | `Number` | `0` | |
 | `disabled` | `Boolean` | `false` | |
+| `errorIcon` | `String` | `'$error'` | |
+| `errorIconStyle` | `Object` | | |
 | `flipHorizontallyIcon` | `String` | `'mdi-flip-horizontal'` | |
 | `flipHorizontallyIconStyle` | `Object` | | |
 | `flipVerticallyIcon` | `String` | `'mdi-flip-vertical'` | |
@@ -110,6 +113,8 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | `rotateClockwiseIconStyle` | `Object` | | |
 | `rotateCounterClockwiseIcon` | `String` | `'mdi-rotate-left'` | |
 | `rotateCounterClockwiseIconStyle` | `Object` | | |
+| `successIcon` | `String` | `'$success'` | |
+| `successIconStyle` | `Object` | | |
 | `uploadIcon` | `String` | `'mdi-upload'` | |
 | `uploadIconStyle` | `Object` | | |
 | `value` | `String` | | |

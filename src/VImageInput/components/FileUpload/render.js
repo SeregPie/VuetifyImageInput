@@ -7,9 +7,13 @@ export default function(h, {
 }) {
 	let {
 		disabled,
+		errorIcon,
+		errorIconStyle,
+		successIcon,
+		successIconStyle,
+		theme,
 		uploadIcon,
 		uploadIconStyle,
-		theme,
 	} = parent;
 	let {load} = listeners;
 	let {style} = data;
@@ -86,17 +90,19 @@ export default function(h, {
 						let color;
 						let text;
 						if (loaded) {
+							style = successIconStyle;
 							color = 'success';
-							text = '$success';
+							text = successIcon;
 						} else
 						if (failed) {
+							style = errorIconStyle;
 							color = 'error';
-							text = '$error';
+							text = errorIcon;
 						} else {
+							style = uploadIconStyle;
 							if (dragging) {
 								color = 'primary';
 							}
-							style = uploadIconStyle;
 							text = uploadIcon;
 						}
 						return h(

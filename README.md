@@ -83,7 +83,7 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | property | type | default | description |
 | ---: | :--- | :--- | :--- |
 | `clearable` | `Boolean` | `false` | |
-| `clearIcon` | `String` | `'$vuetify.icons.clear'` | |
+| `clearIcon` | `String` | `'$clear'` | |
 | `debounce` | `Number` | `0` | |
 | `disabled` | `Boolean` | `false` | |
 | `flipHorizontallyIcon` | `String` | `'mdi-flip-horizontal'` | |

@@ -87,11 +87,11 @@ export default function(h, {
 						let text;
 						if (loaded) {
 							color = 'success';
-							text = '$vuetify.icons.success';
+							text = '$success';
 						} else
 						if (failed) {
 							color = 'error';
-							text = '$vuetify.icons.error';
+							text = '$error';
 						} else {
 							if (dragging) {
 								color = 'primary';

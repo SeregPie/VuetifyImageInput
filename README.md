@@ -26,7 +26,7 @@ Register the component globally.
 import Vue from 'vue';
 import VImageInput from 'vuetify-image-input';
 
-Vue.component('VImageInput', VImageInput);
+Vue.component(VImageInput.name, VImageInput);
 ```
 
 *or*
@@ -38,7 +38,7 @@ import VImageInput from 'vuetify-image-input';
 
 export default {
   components: {
-    VImageInput,
+    [VImageInput.name]: VImageInput,
   },
 };
 ```

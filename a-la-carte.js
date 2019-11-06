@@ -8,7 +8,10 @@ import {
 	VSpacer,
 } from 'vuetify/lib';
 
+let {name} = VImageInput;
+
 export default {
+	name,
 	components: {
 		VBtn,
 		VIcon,

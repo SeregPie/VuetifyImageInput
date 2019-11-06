@@ -27,7 +27,6 @@ import rotateClockwiseIcon from './rotateClockwiseIcon';
 import rotateClockwiseIconStyle from './rotateClockwiseIconStyle';
 import rotateCounterClockwiseIcon from './rotateCounterClockwiseIcon';
 import rotateCounterClockwiseIconStyle from './rotateCounterClockwiseIconStyle';
-import scalingSliderColor from './scalingSliderColor';
 import uploadIcon from './uploadIcon';
 import uploadIconStyle from './uploadIconStyle';
 import value from './value';
@@ -62,7 +61,6 @@ export default {
 	rotateClockwiseIconStyle,
 	rotateCounterClockwiseIcon,
 	rotateCounterClockwiseIconStyle,
-	scalingSliderColor,
 	uploadIcon,
 	uploadIconStyle,
 	value,
@@ -72,4 +70,5 @@ export default {
 	minScaling: {},
 	rotateCounterclockwiseIcon: {},
 	rotateCounterclockwiseIconStyle: {},
+	scalingSliderColor: {},
 };

@@ -110,7 +110,6 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | `rotateClockwiseIconStyle` | `Object` | | |
 | `rotateCounterClockwiseIcon` | `String` | `'mdi-rotate-left'` | |
 | `rotateCounterClockwiseIconStyle` | `Object` | | |
-| `scalingSliderColor` | `String` | | |
 | `uploadIcon` | `String` | `'mdi-upload'` | |
 | `uploadIconStyle` | `Object` | | |
 | `value` | `String` | | |

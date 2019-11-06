@@ -1,19 +1,25 @@
 export default function(h, {parent}) {
+	let {
+		computedMaxScaling,
+		computedMinScaling,
+		disabled,
+		scaleTo,
+		scaling,
+	} = parent;
 	return h(
 		'VSlider',
 		{
 			class: 'mx-2 my-1',
 			props: {
-				color: parent.scalingSliderColor,
-				disabled: parent.disabled,
+				disabled,
 				hideDetails: true,
-				max: parent.computedMaxScaling,
-				min: parent.computedMinScaling,
+				max: computedMaxScaling,
+				min: computedMinScaling,
 				step: 1 / 1000,
-				value: parent.scaling,
+				value: scaling,
 			},
 			on: {
-				input: parent.scaleTo,
+				input: scaleTo,
 			},
 		},
 	);

@@ -17,4 +17,11 @@ export default function() {
 			warn(`[${componentName}]: The property '${oldPropName}' has been renamed to '${newPropName}'.`);
 		}
 	});
+	[
+		'scalingSliderColor',
+	].forEach(propName => {
+		if ($props[propName] !== undefined) {
+			warn(`[${componentName}]: The property '${propName}' has been removed.`);
+		}
+	});
 }

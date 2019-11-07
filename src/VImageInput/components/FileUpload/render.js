@@ -11,7 +11,6 @@ export default function(h, {
 		errorIconStyle,
 		successIcon,
 		successIconStyle,
-		theme,
 		uploadIcon,
 		uploadIconStyle,
 	} = parent;
@@ -21,6 +20,9 @@ export default function(h, {
 		VueFileUpload,
 		{
 			style,
+			props: {
+				disabled,
+			},
 			scopedSlots: {
 				default: (({
 					dragging,
@@ -28,96 +30,84 @@ export default function(h, {
 					file,
 					loaded,
 					loading,
-					onClick,
-					onDragEnter,
-					onDragLeave,
-					onDragOver,
-					onDrop,
+					on,
 					progress,
-				}) => h(
-					'div',
-					{
-						style: {
-							alignItems: 'center',
-							border: `1px dashed rgba(${theme.isDark ? '255,255,255,0.7' : '0,0,0,0.54'})`,
-							borderRadius: '6px',
-							display: 'flex',
-							height: '100%',
-							justifyContent: 'center',
-							width: '100%',
-							...(disabled
-								? {}
-								: {cursor: 'pointer'}
-							),
+				}) => {
+					return h(
+						'VCard',
+						{
+							style: {
+								alignItems: 'center',
+								display: 'flex',
+								height: '100%',
+								justifyContent: 'center',
+								width: '100%',
+							},
+							props: {
+								disabled,
+								outlined: true,
+							},
+							on,
 						},
-						...(disabled
-							? {}
-							: {on: {
-								click: onClick,
-								dragenter: onDragEnter,
-								dragleave: onDragLeave,
-								dragover: onDragOver,
-								drop: onDrop,
-							}}
-						),
-					},
-					[(() => {
-						if (loading) {
-							let indeterminate;
-							let value = progress / file.size * 100;
+						[(() => {
+							if (loading) {
+								let indeterminate;
+								let value = progress / file.size * 100;
+								let text;
+								if (value) {
+									text = `${Math.round(value)}%`;
+								} else {
+									indeterminate = true;
+								}
+								return h(
+									'VProgressCircular',
+									{
+										props: {
+											color: 'primary',
+											indeterminate,
+											rotate: -90,
+											size: 64,
+											value,
+											width: 4,
+										},
+									},
+									text,
+								);
+							}
+							let style;
+							let color;
 							let text;
-							if (value) {
-								text = `${Math.round(value)}%`;
+							if (loaded) {
+								style = successIconStyle;
+								color = 'success';
+								text = successIcon;
+							} else
+							if (failed) {
+								style = errorIconStyle;
+								color = 'error';
+								text = errorIcon;
 							} else {
-								indeterminate = true;
+								style = uploadIconStyle;
+								if (dragging) {
+									color = 'primary';
+								}
+								text = uploadIcon;
 							}
 							return h(
-								'VProgressCircular',
+								'VIcon',
 								{
+									style,
 									props: {
-										color: 'primary',
-										indeterminate,
-										rotate: -90,
-										size: 64,
-										value,
-										width: 8,
+										color,
+										disabled,
+										large: true,
 									},
 								},
 								text,
 							);
-						}
-						let style;
-						let color;
-						let text;
-						if (loaded) {
-							style = successIconStyle;
-							color = 'success';
-							text = successIcon;
-						} else
-						if (failed) {
-							style = errorIconStyle;
-							color = 'error';
-							text = errorIcon;
-						} else {
-							style = uploadIconStyle;
-							if (dragging) {
-								color = 'primary';
-							}
-							text = uploadIcon;
-						}
-						return h(
-							'VIcon',
-							{
-								style,
-								props: {
-									color,
-									large: true,
-								},
-							},
-							text,
-						);
-					})()],
-				)),
+						})()],
+					);
+				}),
 			},
 			on: {
 				load: (({result}) => {

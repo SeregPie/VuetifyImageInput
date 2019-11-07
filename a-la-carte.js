@@ -2,6 +2,7 @@ import VImageInput from './index';
 
 import {
 	VBtn,
+	VCard,
 	VIcon,
 	VProgressCircular,
 	VSlider,
@@ -14,6 +15,7 @@ export default {
 	name,
 	components: {
 		VBtn,
+		VCard,
 		VIcon,
 		VProgressCircular,
 		VSlider,

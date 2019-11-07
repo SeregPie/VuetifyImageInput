@@ -1,9 +1,8 @@
 export default function(event) {
 	event.preventDefault();
-	let {$refs} = this;
-	let {input} = $refs;
-	if (input) {
-		input.value = null;
-		input.click();
-	}
+	let input = document.createElement('input');
+	input.setAttribute('type', 'file');
+	let {onChange} = this;
+	input.addEventListener('change', onChange);
+	input.click();
 }

@@ -9,7 +9,7 @@ export default function(h, {parent}) {
 	return h(
 		'VSlider',
 		{
-			class: 'mx-2 my-1',
+			class: 'ma-1',
 			props: {
 				disabled,
 				hideDetails: true,

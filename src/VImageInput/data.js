@@ -1,14 +1,14 @@
+import Function_noop from '../core/Function/noop';
+
 export default function() {
 	return {
-		dirtyOriginLeft: 1/2,
-		dirtyOriginTop: 1/2,
-		dirtyScaling: 0,
-		flippedHorizontally: false,
-		flippedVertically: false,
-		imageData: null,
-		internalImageData: null,
-		internalImageHeight: 0,
-		internalImageWidth: 0,
-		rotated: false,
+		cancel: Function_noop,
+		failed: false,
+		loaded: false,
+		loading: false,
+		originalImageDataURL: null,
+		originalImageHeight: 0,
+		originalImageWidth: 0,
+		progress: 0,
 	};
 }

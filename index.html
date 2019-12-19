@@ -27,8 +27,6 @@
 		<script src="https://unpkg.com/core-js-bundle@3.3.6/minified.js"></script>
 		<script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
 		<script src="https://unpkg.com/vuetify@2.1.9/dist/vuetify.min.js"></script>
-		<script src="https://unpkg.com/@seregpie/claw@3.0.0"></script>
-		<script src="https://unpkg.com/vueclaw@1.1.0"></script>
 		<script src="./index.js"></script>
 	</head>
 	<body>
@@ -73,7 +71,7 @@
 				</div>
 				<div class="pa-2">
 					<v-radio-group
-						v-model="imageMinScaling"
+						v-model="minScaling"
 						class="ma-0 pa-0"
 						hide-details
 						label="min scaling"
@@ -160,13 +158,12 @@
 					<v-image-input
 						v-model="value"
 						:clearable="clearable"
-						:debounce="250"
 						:disabled="disabled"
 						:full-height="fullHeight"
 						:full-width="fullWidth"
 						:hide-actions="hideActions"
 						:image-height="Number(imageHeight)"
-						:image-min-scaling="imageMinScaling"
+						:min-scaling="minScaling"
 						:image-width="Number(imageWidth)"
 						:readonly="readonly"
 					></v-image-input>

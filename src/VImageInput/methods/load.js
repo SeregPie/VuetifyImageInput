@@ -1,85 +1,21 @@
 import Function_noop from '../../core/Function/noop';
 import Promise_try from '../../core/Promise/try';
 
-import loadFromFile from '../shared/loadFromFile';
-
-export default function(token, file) {
+export default function(file) {
 	Promise_try(() => {
-		let {
-			$emit,
-		} = this;
-		let emit = $emit.bind(this);
-		Promise_try(() => {
-			token.throwIfCancelled();
-			let reader = new FileReader();
-			let promise = new Promise((resolve, reject) => {
-				reader.addEventListener('load', () => {
-					let {result} = reader;
-					resolve(result);
-				});
-				reader.addEventListener('abort', resolve);
-				reader.addEventListener('error', reject);
-			});
-			token.onCancelled(() => {
-				reader.abort();
-			});
-			reader.readAsDataURL(file);
-			return promise;
-		}).then(dataURL => {
-			token.throwIfCancelled();
-			let image = new Image();
-			let promise = new Promise((resolve, reject) => {
-				image.addEventListener('load', () => {
-					resolve(image);
-				});
-				image.addEventListener('error', reject);
-			});
-			image.src = dataURL;
-			return promise;
-		}).then(image => {
-			if (!cancelled) {
-				Object.assign(this, {
-					originalImage: image,
-					originalImageHeight: image.naturalHeight,
-					originalImageWidth: image.naturalWidth,
-				});
+		let {cancel} = this;
+		cancel();
+		let cancelled = false;
+		let throwIfCancelled = (() => {
+			if (cancelled) {
+				throw 0;
 			}
 		});
-
-		let reader = new FileReader();
-		let promise = new Promise((resolve, reject) => {
-			reader.addEventListener('progress', event => {
-				let {loaded} = event;
-				Object.assign(this, {
-					progress: loaded,
-				});
-				emit('progress', {
-					file,
-					loaded,
-				});
-			});
-			reader.addEventListener('load', () => {
-				let {result} = reader;
-				Object.assign(this, {
-					loaded: true,
-				});
-				emit('load', {
-					file,
-					result,
-				});
-				resolve();
-			});
-			reader.addEventListener('abort', resolve);
-			reader.addEventListener('error', reject);
-		});
+		let onCancelled = Function_noop;
 		cancel = (() => {
 			cancelled = true;
-			if (reader.readyState === 1) {
-				reader.abort();
-			}
-			emit('cancel', {file});
+			onCancelled();
 		});
-		reader.readAsDataURL(file);
 		Object.assign(this, {
 			cancel,
 			failed: false,
@@ -87,19 +23,58 @@ export default function(token, file) {
 			loading: true,
 			progress: 0,
 		});
-		return promise;
-	}).catch(error => {
-		Object.assign(this, {
-			failed: true,
-		});
-		emit('error', {
-			error,
-			file,
-		});
-	}).finally(() => {
-		Object.assign(this, {
-			cancel: Function_noop,
-			loading: false,
+		return Promise_try(() => {
+			throwIfCancelled();
+			let reader = new FileReader();
+			let promise = new Promise((resolve, reject) => {
+				reader.addEventListener('progress', event => {
+					if (event.lengthComputable) {
+						Object.assign(this, {
+							progress: event.loaded / event.total,
+						});
+					}
+				});
+				reader.addEventListener('load', resolve);
+				reader.addEventListener('abort', reject);
+				reader.addEventListener('error', reject);
+			});
+			onCancelled = (() => {
+				reader.abort();
+			});
+			reader.readAsDataURL(file);
+			return promise.then(() => {
+				throwIfCancelled();
+				let image = new Image();
+				let promise = new Promise((resolve, reject) => {
+					image.addEventListener('load', resolve);
+					image.addEventListener('error', reject);
+				});
+				onCancelled = Function_noop;
+				image.src = reader.result;
+				return promise.then(() => {
+					throwIfCancelled();
+					Object.assign(this, {
+						loaded: true,
+						originalImage: image,
+						originalImageDataURL: image.src,
+						originalImageHeight: image.naturalHeight,
+						originalImageWidth: image.naturalWidth,
+					});
+				});
+			});
+		}).catch(() => {
+			if (!cancelled) {
+				Object.assign(this, {
+					failed: true,
+				});
+			}
+		}).finally(() => {
+			if (!cancelled) {
+				Object.assign(this, {
+					cancel: Function_noop,
+					loading: false,
+				});
+			}
 		});
 	});
 }

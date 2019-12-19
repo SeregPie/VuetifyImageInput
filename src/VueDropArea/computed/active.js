@@ -7,5 +7,5 @@ export default function() {
 		}
 		return true;
 	}
-	return false
+	return false;
 }

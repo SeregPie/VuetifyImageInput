@@ -6,6 +6,7 @@ export default function() {
 		failed: false,
 		loaded: false,
 		loading: false,
+		originalImage: null,
 		originalImageDataURL: null,
 		originalImageHeight: 0,
 		originalImageWidth: 0,

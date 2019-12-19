@@ -1,6 +1,6 @@
 import {terser} from 'rollup-plugin-terser';
 import buble from 'rollup-plugin-buble';
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import serve from 'rollup-plugin-serve';
 
 import {main} from './package.json';

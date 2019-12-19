@@ -3,7 +3,7 @@ export default function(event) {
 	this.active = false;
 	let {files} = event.dataTransfer;
 	if (files) {
-		if (files.length) {
+		if (files.length === 1) {
 			this.$emit('drop', files[0]);
 		}
 	}

@@ -100,9 +100,9 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 | `imageFormat` | `String` | `'png'` | Possible values are `'png'`, `'jpeg'` and `'webp'`. |
 | `imageHeight` | `Number` | `256` | |
 | `imageMaxScaling` | `Number` | `1` | |
-| `imageMinScaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
 | `imageQuality` | | | |
 | `imageWidth` | `Number` | `256` | |
+| `minScaling` | `String` | `'cover'` | Possible values are `'cover'` and `'contain'`. |
 | `name` | `String` | | |
 | `overlayBackgroundColor` | `String` | `'rgba(0,0,0,0.5)'` | |
 | `overlayBorderColor` | `String` | `'#fff'` | |

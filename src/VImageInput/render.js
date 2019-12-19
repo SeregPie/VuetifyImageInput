@@ -2,8 +2,8 @@ export default function(h) {
 	let {
 		fullHeight,
 		fullWidth,
-		failed,
-		loaded,
+		loadError,
+		loadSuccess,
 		loading,
 		progress,
 	} = this;
@@ -27,11 +27,11 @@ export default function(h) {
 			),
 			h(
 				'div',
-				`failed: ${failed}`,
+				`loadError: ${loadError}`,
 			),
 			h(
 				'div',
-				`loaded: ${loaded}`,
+				`loadSuccess: ${loadSuccess}`,
 			),
 			h(
 				'div',

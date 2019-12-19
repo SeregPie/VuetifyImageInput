@@ -18,8 +18,8 @@ export default function(file) {
 		});
 		Object.assign(this, {
 			cancel,
-			failed: false,
-			loaded: false,
+			loadError: false,
+			loadSuccess: false,
 			loading: true,
 			progress: 0,
 		});
@@ -30,7 +30,7 @@ export default function(file) {
 				reader.addEventListener('progress', event => {
 					if (event.lengthComputable) {
 						Object.assign(this, {
-							progress: event.loaded / event.total,
+							progress: event.loadSuccess / event.total,
 						});
 					}
 				});
@@ -54,7 +54,7 @@ export default function(file) {
 				return promise.then(() => {
 					throwIfCancelled();
 					Object.assign(this, {
-						loaded: true,
+						loadSuccess: true,
 						originalImage: image,
 						originalImageDataURL: image.src,
 						originalImageHeight: image.naturalHeight,
@@ -65,7 +65,7 @@ export default function(file) {
 		}).catch(() => {
 			if (!cancelled) {
 				Object.assign(this, {
-					failed: true,
+					loadError: true,
 				});
 			}
 		}).finally(() => {

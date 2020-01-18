@@ -10,6 +10,6 @@ export default function() {
 		originalImageDataURL: null,
 		originalImageHeight: 0,
 		originalImageWidth: 0,
-		progress: 0,
+		loadProgress: 0,
 	};
 }

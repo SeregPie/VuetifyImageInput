@@ -21,16 +21,17 @@ export default function(file) {
 			loadError: false,
 			loadSuccess: false,
 			loading: true,
-			progress: 0,
+			loadProgress: 0,
 		});
 		return Promise_try(() => {
 			throwIfCancelled();
 			let reader = new FileReader();
 			let promise = new Promise((resolve, reject) => {
-				reader.addEventListener('progress', event => {
+				reader.addEventListener('loadProgress', event => {
+					console.log(event);
 					if (event.lengthComputable) {
 						Object.assign(this, {
-							progress: event.loadSuccess / event.total,
+							loadProgress: event.loaded / event.total,
 						});
 					}
 				});

@@ -5,7 +5,7 @@ export default function(h) {
 		loadError,
 		loadSuccess,
 		loading,
-		progress,
+		loadProgress,
 	} = this;
 	return h(
 		'div',
@@ -39,7 +39,7 @@ export default function(h) {
 			),
 			h(
 				'div',
-				`progress: ${progress}`,
+				`loadProgress: ${loadProgress}`,
 			),
 		],
 	);

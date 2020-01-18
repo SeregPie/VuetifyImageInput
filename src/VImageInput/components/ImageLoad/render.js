@@ -10,7 +10,7 @@ export default function(h, {
 		load,
 		loadSuccess,
 		loading,
-		progress,
+		loadProgress,
 		successIcon,
 		successIconStyle,
 		uploadIcon,

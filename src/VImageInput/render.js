@@ -17,7 +17,7 @@ export default function(h) {
 		},
 		[
 			h(
-				'MyImageLoad',
+				'MyImageUpload',
 				{
 					style: {
 						height: '100%',

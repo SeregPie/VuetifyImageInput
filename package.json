@@ -32,8 +32,8 @@
 	"repository": "github:SeregPie/VuetifyImageInput",
 	"scripts": {
 		"build": "rollup -c",
-		"prepublishOnly": "npm run build",
-		"serve": "rollup -c -w"
+		"dev": "rollup -c -w",
+		"prepublishOnly": "npm run build"
 	},
 	"devDependencies": {
 		"@rollup/plugin-buble": "^0.21.0",

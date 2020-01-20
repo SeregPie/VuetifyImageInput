@@ -1,5 +1,7 @@
-import MyImageLoad from './ImageLoad';
+import MyFileUpload from './FileUpload';
+import MyImageUpload from './ImageUpload';
 
 export default {
-	MyImageLoad,
+	MyFileUpload,
+	MyImageUpload,
 };

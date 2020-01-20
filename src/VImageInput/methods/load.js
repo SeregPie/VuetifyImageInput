@@ -1,34 +1,34 @@
 import Function_noop from '../../core/Function/noop';
+import Promise_delay from '../../core/Promise/delay';
 import Promise_try from '../../core/Promise/try';
 
 export default function(file) {
 	Promise_try(() => {
-		let {cancel} = this;
-		cancel();
-		let cancelled = false;
+		let {cancelLoad} = this;
+		cancelLoad();
+		let loadCancelled = false;
 		let throwIfCancelled = (() => {
-			if (cancelled) {
+			if (loadCancelled) {
 				throw 0;
 			}
 		});
-		let onCancelled = Function_noop;
-		cancel = (() => {
-			cancelled = true;
-			onCancelled();
+		let onLoadCancelled = Function_noop;
+		cancelLoad = (() => {
+			loadCancelled = true;
+			onLoadCancelled();
 		});
 		Object.assign(this, {
-			cancel,
+			cancelLoad,
 			loadError: false,
 			loadSuccess: false,
 			loading: true,
 			loadProgress: 0,
 		});
-		return Promise_try(() => {
+		return Promise_delay(200).then(() => {
 			throwIfCancelled();
 			let reader = new FileReader();
 			let promise = new Promise((resolve, reject) => {
-				reader.addEventListener('loadProgress', event => {
-					console.log(event);
+				reader.addEventListener('progress', event => {
 					if (event.lengthComputable) {
 						Object.assign(this, {
 							loadProgress: event.loaded / event.total,
@@ -39,7 +39,7 @@ export default function(file) {
 				reader.addEventListener('abort', reject);
 				reader.addEventListener('error', reject);
 			});
-			onCancelled = (() => {
+			onLoadCancelled = (() => {
 				reader.abort();
 			});
 			reader.readAsDataURL(file);
@@ -50,29 +50,34 @@ export default function(file) {
 					image.addEventListener('load', resolve);
 					image.addEventListener('error', reject);
 				});
-				onCancelled = Function_noop;
+				onLoadCancelled = Function_noop;
 				image.src = reader.result;
 				return promise.then(() => {
 					throwIfCancelled();
 					Object.assign(this, {
 						loadSuccess: true,
-						originalImage: image,
-						originalImageDataURL: image.src,
-						originalImageHeight: image.naturalHeight,
-						originalImageWidth: image.naturalWidth,
+					});
+					return Promise_delay(200).then(() => {
+						throwIfCancelled();
+						Object.assign(this, {
+							originalImage: image,
+							originalImageDataURL: image.src,
+							originalImageHeight: image.naturalHeight,
+							originalImageWidth: image.naturalWidth,
+						});
 					});
 				});
 			});
 		}).catch(() => {
-			if (!cancelled) {
+			if (!loadCancelled) {
 				Object.assign(this, {
 					loadError: true,
 				});
 			}
 		}).finally(() => {
-			if (!cancelled) {
+			if (!loadCancelled) {
 				Object.assign(this, {
-					cancel: Function_noop,
+					cancelLoad: Function_noop,
 					loading: false,
 				});
 			}

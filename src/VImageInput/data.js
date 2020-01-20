@@ -2,14 +2,14 @@ import Function_noop from '../core/Function/noop';
 
 export default function() {
 	return {
-		cancel: Function_noop,
+		cancelLoad: Function_noop,
 		loadError: false,
-		loadSuccess: false,
 		loading: false,
+		loadProgress: 0,
+		loadSuccess: false,
 		originalImage: null,
 		originalImageDataURL: null,
 		originalImageHeight: 0,
 		originalImageWidth: 0,
-		loadProgress: 0,
 	};
 }

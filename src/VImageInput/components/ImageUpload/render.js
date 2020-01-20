@@ -15,13 +15,14 @@ export default function(h, {
 		successIconStyle,
 		uploadIcon,
 		uploadIconStyle,
+		cancelLoad,
 	} = parent;
 	let {style} = data;
 	return h(
 		'MyFileUpload',
 		{
 			props: {
-				disabled,
+				disabled: disabled || loading,
 			},
 			on: {
 				load,

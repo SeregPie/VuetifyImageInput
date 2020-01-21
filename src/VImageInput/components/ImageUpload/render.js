@@ -97,17 +97,15 @@ export default function(h, {
 									);
 								}
 								if (loading) {
-									let value = loadProgress * 100;
-									let indeterminate = !value;
 									return h(
 										'VProgressCircular',
 										{
 											props: {
 												color: 'primary',
-												indeterminate,
+												indeterminate: !loadProgress,
 												rotate: -90,
 												size: 64,
-												value,
+												value: loadProgress * 100,
 												width: 4,
 											},
 										},

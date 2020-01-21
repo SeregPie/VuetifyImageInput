@@ -7,6 +7,8 @@ export default function() {
 		onDragLeave,
 		onDragOver,
 		onDrop,
+		onMouseEnter,
+		onMouseLeave,
 	} = this;
 	return $scopedSlots.default({
 		active,
@@ -15,5 +17,7 @@ export default function() {
 		onDragLeave,
 		onDragOver,
 		onDrop,
+		onMouseEnter,
+		onMouseLeave,
 	});
 }

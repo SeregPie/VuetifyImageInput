@@ -16,6 +16,10 @@ export default function(file) {
 		cancelLoad = (() => {
 			loadCancelled = true;
 			onLoadCancelled();
+			Object.assign(this, {
+				loading: false,
+				loadProgress: 0,
+			});
 		});
 		Object.assign(this, {
 			cancelLoad,
@@ -57,7 +61,7 @@ export default function(file) {
 					Object.assign(this, {
 						loadSuccess: true,
 					});
-					return Promise_delay(5000).then(() => {
+					return Promise_delay(1000).then(() => {
 						throwIfCancelled();
 						Object.assign(this, {
 							originalImage: image,

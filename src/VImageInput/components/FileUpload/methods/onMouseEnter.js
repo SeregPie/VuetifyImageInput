@@ -1,5 +1,5 @@
 export default function(event) {
 	event.preventDefault();
 	event.stopPropagation();
-	this.dragEnter = false;
+	this.mouseEnter = true;
 }

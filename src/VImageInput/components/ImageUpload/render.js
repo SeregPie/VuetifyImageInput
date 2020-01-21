@@ -14,6 +14,7 @@ export default function(h, {
 		loading,
 		loadProgress,
 		loadSuccess,
+		readonly,
 		successIcon,
 		successIconStyle,
 		uploadIcon,
@@ -37,28 +38,38 @@ export default function(h, {
 					onDragLeave,
 					onDragOver,
 					onDrop,
+					onMouseEnter,
+					onMouseLeave,
 				}) {
 					return h(
-						'VCard',
+						'div',
 						{
 							style: {
 								alignItems: 'center',
 								display: 'flex',
 								justifyContent: 'center',
 								position: 'relative',
+								borderStyle: 'dashed',
+								borderWidth: '1px',
+								borderColor: active ? 'red' : 'grey',
 								...style,
 							},
 							props: {
-								disabled,
+								disabled: disabled || readonly,
 								outlined: true,
 							},
-							on: {
-								click: onClick,
-								dragenter: onDragEnter,
-								dragleave: onDragLeave,
-								dragover: onDragOver,
-								drop: onDrop,
-							},
+							...((disabled || readonly || loading)
+								? {}
+								: {on: {
+									click: onClick,
+									dragenter: onDragEnter,
+									dragleave: onDragLeave,
+									dragover: onDragOver,
+									drop: onDrop,
+									mouseenter: onMouseEnter,
+									mouseleave: onMouseLeave,
+								}}
+							),
 						},
 						[h(
 							'VFadeTransition',
@@ -118,7 +129,11 @@ export default function(h, {
 													text: true,
 												},
 												on: {
-													click: cancelLoad,
+													click(event) {
+														event.preventDefault();
+														event.stopPropagation();
+														cancelLoad();
+													},
 												},
 											},
 											[h(
@@ -136,7 +151,8 @@ export default function(h, {
 									{
 										style: uploadIconStyle,
 										props: {
-											large: true,
+											color: active ? 'primary': undefined,
+											size: '128px',
 										},
 										key: 0,
 									},

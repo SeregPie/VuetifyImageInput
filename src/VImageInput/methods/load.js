@@ -24,7 +24,7 @@ export default function(file) {
 			loading: true,
 			loadProgress: 0,
 		});
-		return Promise_delay(200).then(() => {
+		return Promise_delay(1000).then(() => {
 			throwIfCancelled();
 			let reader = new FileReader();
 			let promise = new Promise((resolve, reject) => {
@@ -52,18 +52,15 @@ export default function(file) {
 				});
 				onLoadCancelled = Function_noop;
 				image.src = reader.result;
-				return promise.then(() => {
+				return Promise_delay(1000).then(() => promise).then(() => {
 					throwIfCancelled();
 					Object.assign(this, {
 						loadSuccess: true,
 					});
-					return Promise_delay(200).then(() => {
+					return Promise_delay(5000).then(() => {
 						throwIfCancelled();
 						Object.assign(this, {
 							originalImage: image,
-							originalImageDataURL: image.src,
-							originalImageHeight: image.naturalHeight,
-							originalImageWidth: image.naturalWidth,
 						});
 					});
 				});

@@ -1,3 +1,5 @@
+import cancelIcon from './cancelIcon';
+import cancelIconStyle from './cancelIconStyle';
 import clearable from './clearable';
 import clearIcon from './clearIcon';
 import clearIconStyle from './clearIconStyle';
@@ -36,6 +38,8 @@ import uploadIconStyle from './uploadIconStyle';
 import value from './value';
 
 export default {
+	cancelIcon,
+	cancelIconStyle,
 	clearable,
 	clearIcon,
 	clearIconStyle,

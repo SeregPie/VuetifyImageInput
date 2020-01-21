@@ -3,6 +3,9 @@ export default function(h, {
 	parent,
 }) {
 	let {
+		cancelIcon,
+		cancelIconStyle,
+		cancelLoad,
 		disabled,
 		errorIcon,
 		errorIconStyle,
@@ -15,7 +18,6 @@ export default function(h, {
 		successIconStyle,
 		uploadIcon,
 		uploadIconStyle,
-		cancelLoad,
 	} = parent;
 	let {style} = data;
 	return h(
@@ -110,14 +112,24 @@ export default function(h, {
 											},
 										},
 										[h(
-											'VIcon',
+											'VBtn',
 											{
-												style: uploadIconStyle,
 												props: {
+													icon: true,
 													large: true,
+													text: true,
+												},
+												on: {
+													click: cancelLoad,
 												},
 											},
-											uploadIcon,
+											[h(
+												'VIcon',
+												{
+													style: cancelIconStyle,
+												},
+												cancelIcon,
+											)],
 										)],
 									);
 								}

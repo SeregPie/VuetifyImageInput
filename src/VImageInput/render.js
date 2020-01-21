@@ -3,9 +3,11 @@ export default function(h) {
 		fullHeight,
 		fullWidth,
 		loadError,
-		loadSuccess,
 		loading,
 		loadProgress,
+		loadSuccess,
+		originalImageHeight,
+		originalImageWidth,
 	} = this;
 	return h(
 		'div',
@@ -40,6 +42,14 @@ export default function(h) {
 			h(
 				'div',
 				`loadProgress: ${loadProgress}`,
+			),
+			h(
+				'div',
+				`originalImageWidth: ${originalImageWidth}`,
+			),
+			h(
+				'div',
+				`originalImageHeight: ${originalImageHeight}`,
 			),
 		],
 	);

@@ -9,12 +9,12 @@ export default function(h, {
 		disabled,
 		errorIcon,
 		errorIconStyle,
+		dark,
 		load,
 		loadError,
 		loading,
 		loadProgress,
 		loadSuccess,
-		readonly,
 		successIcon,
 		successIconStyle,
 		uploadIcon,
@@ -46,19 +46,40 @@ export default function(h, {
 						{
 							style: {
 								alignItems: 'center',
+								backgroundColor: (dark
+									? (active
+										? 'rgba(255, 255, 255, 0.16)'
+										: 'rgba(255, 255, 255, 0.08)'
+									)
+									: (active
+										? 'rgba(0, 0, 0, 0.12)'
+										: 'rgba(0, 0, 0, 0.06)'
+									)
+								),
+								borderColor: (dark
+									? (active
+										? '#fff'
+										: 'rgba(255, 255, 255, 0.7)'
+									)
+									: (active
+										? 'rgba(0, 0, 0, 0.87)'
+										: 'rgba(0, 0, 0, 0.42)'
+									)
+								),
+								borderRadius: '4px',
+								borderStyle: 'dashed',
+								borderWidth: '1px',
+								cursor: (disabled || loading
+									? undefined
+									: 'pointer'
+								),
 								display: 'flex',
 								justifyContent: 'center',
 								position: 'relative',
-								borderStyle: 'dashed',
-								borderWidth: '1px',
-								borderColor: active ? 'red' : 'grey',
+								transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1)',
 								...style,
 							},
-							props: {
-								disabled: disabled || readonly,
-								outlined: true,
-							},
-							...((disabled || readonly || loading)
+							...(disabled || loading
 								? {}
 								: {on: {
 									click: onClick,
@@ -151,7 +172,10 @@ export default function(h, {
 									{
 										style: uploadIconStyle,
 										props: {
-											color: active ? 'primary': undefined,
+											color: (dark
+												? 'rgba(255, 255, 255, 0.08)'
+												: 'rgba(0, 0, 0, 0.06)'
+											),
 											size: '128px',
 										},
 										key: 0,

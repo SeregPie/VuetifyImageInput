@@ -26,6 +26,14 @@
 					this.$vuetify.theme.dark = value;
 				},
 			},
+			rtl: {
+				get: function() {
+					return this.$vuetify.rtl;
+				},
+				set: function(value) {
+					this.$vuetify.rtl = value;
+				},
+			},
 		},
 	});
 

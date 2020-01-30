@@ -36,9 +36,29 @@
 		>
 			<v-navigation-drawer
 				v-model="drawer"
+				:right="rtl"
 				app
 				clipped
 			>
+				<div class="pa-2">
+					<v-checkbox
+						v-model="dark"
+						class="ma-0 pa-0"
+						hide-details
+						label="dark"
+					></v-checkbox>
+				</div>
+				<div class="pa-2">
+					<v-checkbox
+						v-model="rtl"
+						class="ma-0 pa-0"
+						hide-details
+						label="right to left"
+					></v-checkbox>
+				</div>
+				<v-divider
+					class="my-2"
+				></v-divider>
 				<div class="pa-2">
 					<v-checkbox
 						v-model="clearable"
@@ -122,18 +142,13 @@
 			<v-app-bar
 				app
 				clipped-left
+				clipped-right
 				color="primary"
 				dark
 			>
 				<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 				<v-toolbar-title>VuetifyImageInput</v-toolbar-title>
 				<v-spacer></v-spacer>
-				<v-btn
-					icon
-					@click="dark = !dark"
-				>
-					<v-icon>mdi-invert-colors</v-icon>
-				</v-btn>
 				<v-btn
 					href="https://github.com/SeregPie/VuetifyImageInput"
 					icon

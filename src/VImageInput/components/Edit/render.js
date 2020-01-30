@@ -9,6 +9,8 @@ export default function(h) {
 		{
 			style: {
 				background,
+				border: '1px solid #ccc',
+				borderRadius: '4px',
 				bottom: 0,
 				left: 0,
 				overflow: 'hidden',

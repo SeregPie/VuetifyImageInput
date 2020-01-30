@@ -4,6 +4,7 @@ import originalImageHeight from './originalImageHeight';
 import originalImageWidth from './originalImageWidth';
 import overriddenMaxZoom from './overriddenMaxZoom';
 import overriddenMinZoom from './overriddenMinZoom';
+import rtl from './zoomSnap';
 import zoomDelta from './zoomDelta';
 import zoomSnap from './zoomSnap';
 
@@ -14,6 +15,7 @@ export default {
 	originalImageWidth,
 	overriddenMaxZoom,
 	overriddenMinZoom,
+	rtl,
 	zoomDelta,
 	zoomSnap,
 };

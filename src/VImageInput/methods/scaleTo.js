@@ -1,1 +1,3 @@
-export default function() {}
+export default function(value) {
+	this.scaling = value;
+}

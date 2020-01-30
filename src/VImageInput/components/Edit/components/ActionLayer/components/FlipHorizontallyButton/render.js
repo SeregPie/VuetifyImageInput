@@ -1,10 +1,12 @@
+import MyButton from '../Button';
+
 export default function(h, {parent}) {
 	let {
 		flipHorizontally,
 		flipHorizontallyIcon,
 	} = parent;
 	return h(
-		'MyActionButton',
+		MyButton,
 		{
 			props: {
 				icon: flipHorizontallyIcon,

@@ -1,3 +1,7 @@
+import MyEdit from './components/Edit';
+import MyLoad from './components/Load';
+import MyResponsive from './components/Responsive';
+
 export default function(h) {
 	let {
 		fullHeight,
@@ -5,7 +9,7 @@ export default function(h) {
 		image,
 	} = this;
 	return h(
-		'MyResponsive',
+		MyResponsive,
 		{
 			style: {
 				...(fullHeight ? {height: '100%'} : {}),
@@ -19,7 +23,7 @@ export default function(h) {
 					leaveAbsolute: true,
 				},
 			},
-			[image ? h('MyEdit') : h('MyLoad')],
+			[image ? h(MyEdit) : h(MyLoad)],
 		)],
 	);
 }

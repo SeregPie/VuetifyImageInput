@@ -5,6 +5,8 @@ export default function(h) {
 		{
 			style: {
 				display: 'flex',
+				minHeight: '100px',
+				minWidth: '100px',
 				position: 'relative',
 			},
 		},

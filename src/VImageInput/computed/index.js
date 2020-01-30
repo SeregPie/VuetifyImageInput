@@ -4,6 +4,7 @@ import originalImageHeight from './originalImageHeight';
 import originalImageWidth from './originalImageWidth';
 import overriddenMaxScaling from './overriddenMaxScaling';
 import overriddenMinScaling from './overriddenMinScaling';
+import scalingStep from './scalingStep';
 
 export default {
 	dark,
@@ -12,4 +13,5 @@ export default {
 	originalImageWidth,
 	overriddenMaxScaling,
 	overriddenMinScaling,
+	scalingStep,
 };

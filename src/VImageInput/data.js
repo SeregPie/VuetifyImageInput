@@ -8,7 +8,7 @@ export default function() {
 		loadProgress: 0,
 		loadSuccess: false,
 
-		image: false,
+		image: true,
 
 		scaling: 1,
 	};

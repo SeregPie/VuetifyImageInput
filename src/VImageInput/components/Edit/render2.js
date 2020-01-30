@@ -116,7 +116,7 @@ export default function(h, {
 													position: 'absolute',
 													transform: [
 														`translate(${this.croppingLeft}px,${this.croppingTop}px)`,
-														`scale(${this.scaling})`,
+														`scale(${this.zoom})`,
 														...(this.rotated ? [`translateX(${this.internalImageHeight}px)`, 'rotate(90deg)'] : []),
 														...(this.flippedVertically ? [`translateY(${this.internalImageHeight}px)`, 'scaleY(-1)'] : []),
 														...(this.flippedHorizontally ? [`translateX(${this.internalImageWidth}px)`, 'scaleX(-1)'] : []),
@@ -228,7 +228,7 @@ export default function(h, {
 				},
 				(this.hideActions || this.readonly
 					? []
-					: [h('MyScalingSlider')]
+					: [h('MyZoomSlider')]
 				),
 			),
 		],

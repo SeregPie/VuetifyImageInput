@@ -4,9 +4,9 @@ import flipVertically from './flipVertically';
 import load from './load';
 import rotateClockwise from './rotateClockwise';
 import rotateCounterClockwise from './rotateCounterClockwise';
-import scaleDec from './scaleDec';
-import scaleInc from './scaleInc';
-import scaleTo from './scaleTo';
+import setZoom from './setZoom';
+import zoomIn from './zoomIn';
+import zoomOut from './zoomOut';
 
 export default {
 	clear,
@@ -15,7 +15,7 @@ export default {
 	load,
 	rotateClockwise,
 	rotateCounterClockwise,
-	scaleDec,
-	scaleInc,
-	scaleTo,
+	setZoom,
+	zoomIn,
+	zoomOut,
 };

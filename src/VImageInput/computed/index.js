@@ -2,16 +2,18 @@ import dark from './dark';
 import originalImageDataURL from './originalImageDataURL';
 import originalImageHeight from './originalImageHeight';
 import originalImageWidth from './originalImageWidth';
-import overriddenMaxScaling from './overriddenMaxScaling';
-import overriddenMinScaling from './overriddenMinScaling';
-import scalingStep from './scalingStep';
+import overriddenMaxZoom from './overriddenMaxZoom';
+import overriddenMinZoom from './overriddenMinZoom';
+import zoomDelta from './zoomDelta';
+import zoomSnap from './zoomSnap';
 
 export default {
 	dark,
 	originalImageDataURL,
 	originalImageHeight,
 	originalImageWidth,
-	overriddenMaxScaling,
-	overriddenMinScaling,
-	scalingStep,
+	overriddenMaxZoom,
+	overriddenMinZoom,
+	zoomDelta,
+	zoomSnap,
 };

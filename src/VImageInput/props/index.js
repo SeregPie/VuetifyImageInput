@@ -16,6 +16,8 @@ import rotateCounterClockwiseIcon from './rotateCounterClockwiseIcon';
 import successIcon from './successIcon';
 import uploadIcon from './uploadIcon';
 import value from './value';
+import zoomInIcon from './zoomInIcon';
+import zoomOutIcon from './zoomOutIcon';
 
 export default {
 	cancelIcon,
@@ -36,4 +38,6 @@ export default {
 	successIcon,
 	uploadIcon,
 	value,
+	zoomInIcon,
+	zoomOutIcon,
 };

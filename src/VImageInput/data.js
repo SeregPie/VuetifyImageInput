@@ -10,6 +10,6 @@ export default function() {
 
 		image: true,
 
-		scaling: 1,
+		zoom: 1,
 	};
 }

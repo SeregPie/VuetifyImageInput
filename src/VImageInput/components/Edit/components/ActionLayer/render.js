@@ -3,7 +3,7 @@ import MyFlipHorizontallyButton from './components/FlipHorizontallyButton';
 import MyFlipVerticallyButton from './components/FlipVerticallyButton';
 import MyRotateClockwiseButton from './components/RotateClockwiseButton';
 import MyRotateCounterClockwiseButton from './components/RotateCounterClockwiseButton';
-import MyScalingSlider from './components/ScalingSlider';
+import MyZoomSlider from './components/ZoomSlider';
 
 export default function(h, {parent}) {
 	let {
@@ -56,7 +56,7 @@ export default function(h, {parent}) {
 								gridRow: 2,
 							},
 						},
-						[h(MyScalingSlider)],
+						[h(MyZoomSlider)],
 					),
 				]
 			),

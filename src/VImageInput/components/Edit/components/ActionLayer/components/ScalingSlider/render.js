@@ -14,39 +14,20 @@ export default function(h, {parent}) {
 		{
 			class: 'ma-1',
 			props: {
+				appendIcon: 'mdi-plus',
 				disabled,
 				hideDetails: true,
 				max: maxScaling,
 				min: minScaling,
+				prependIcon: 'mdi-minus',
 				step: scalingStep,
 				value: scaling,
-				//vertical: true,
 			},
 			on: {
 				input: scaleTo,
+				'click:append': scaleInc,
+				'click:prepend': scaleDec,
 			},
-			scopedSlots: {
-				prepend: (() => h(
-					'VIcon',
-					{
-						props: {},
-						on: {
-							click: scaleDec,
-						},
-					},
-					'mdi-minus',
-				)),
-				append: (() => h(
-					'VIcon',
-					{
-						props: {},
-						on: {
-							click: scaleInc,
-						},
-					},
-					'mdi-plus',
-				)),
-			}
 		},
 	);
 }

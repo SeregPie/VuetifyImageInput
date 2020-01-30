@@ -7,8 +7,8 @@ import MyScalingSlider from './components/ScalingSlider';
 
 export default function(h, {parent}) {
 	let {
-		hideActions,
 		clearable,
+		hideActions,
 	} = parent;
 	return h(
 		'div',
@@ -35,10 +35,10 @@ export default function(h, {parent}) {
 						{
 							style: {
 								display: 'flex',
+								flexDirection: 'column',
 								gridColumn: 1,
 								gridRow: 1,
 								justifyContent: 'center',
-								flexDirection: 'column',
 							},
 						},
 						[

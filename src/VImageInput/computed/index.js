@@ -1,13 +1,15 @@
 import dark from './dark';
-import originalImage from './originalImage';
 import originalImageDataURL from './originalImageDataURL';
 import originalImageHeight from './originalImageHeight';
 import originalImageWidth from './originalImageWidth';
+import overriddenMaxScaling from './overriddenMaxScaling';
+import overriddenMinScaling from './overriddenMinScaling';
 
 export default {
 	dark,
-	originalImage,
 	originalImageDataURL,
 	originalImageHeight,
 	originalImageWidth,
+	overriddenMaxScaling,
+	overriddenMinScaling,
 };

@@ -104,14 +104,6 @@
 				</div>
 				<div class="pa-2">
 					<v-checkbox
-						v-model="readonly"
-						class="ma-0 pa-0"
-						hide-details
-						label="readonly"
-					></v-checkbox>
-				</div>
-				<div class="pa-2">
-					<v-checkbox
 						v-model="fullWidth"
 						class="ma-0 pa-0"
 						hide-details
@@ -163,9 +155,7 @@
 						:full-width="fullWidth"
 						:hide-actions="hideActions"
 						:image-height="Number(imageHeight)"
-						:min-scaling="minScaling"
 						:image-width="Number(imageWidth)"
-						:readonly="readonly"
 					></v-image-input>
 				</v-container>
 			</v-content>

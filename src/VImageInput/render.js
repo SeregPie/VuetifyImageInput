@@ -90,9 +90,8 @@ export default function(h) {
 								'div',
 								{
 									style: {
-										border: '1px dashed #ccc',
+										border: '4px dashed #ccc',
 										borderRadius: '4px',
-										backgroundColor: 'green',
 										position: 'absolute',
 										left: 0,
 										top: 0,
@@ -121,7 +120,6 @@ export default function(h) {
 							: {
 								opacity: 0,
 								pointerEvents: 'none',
-								visibility: 'hidden',
 							}
 						),
 					},
@@ -162,7 +160,6 @@ export default function(h) {
 							: {
 								opacity: 0,
 								pointerEvents: 'none',
-								visibility: 'hidden',
 							}
 						),
 					},

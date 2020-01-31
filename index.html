@@ -68,6 +68,30 @@
 					></v-checkbox>
 				</div>
 				<div class="pa-2">
+					<v-checkbox
+						v-model="rotatable"
+						class="ma-0 pa-0"
+						hide-details
+						label="rotatable"
+					></v-checkbox>
+				</div>
+				<div class="pa-2">
+					<v-checkbox
+						v-model="flippable"
+						class="ma-0 pa-0"
+						hide-details
+						label="flippable"
+					></v-checkbox>
+				</div>
+				<div class="pa-2">
+					<v-checkbox
+						v-model="zoomable"
+						class="ma-0 pa-0"
+						hide-details
+						label="zoomable"
+					></v-checkbox>
+				</div>
+				<div class="pa-2">
 					<v-text-field
 						v-model="imageWidth"
 						:max="1024"
@@ -88,31 +112,6 @@
 						label="image height"
 						type="number"
 					></v-text-field>
-				</div>
-				<div class="pa-2">
-					<v-radio-group
-						v-model="minScaling"
-						class="ma-0 pa-0"
-						hide-details
-						label="min scaling"
-					>
-						<v-radio
-							label="cover"
-							value="cover"
-						></v-radio>
-						<v-radio
-							label="contain"
-							value="contain"
-						></v-radio>
-					</v-radio-group>
-				</div>
-				<div class="pa-2">
-					<v-checkbox
-						v-model="hideActions"
-						class="ma-0 pa-0"
-						hide-details
-						label="hide actions"
-					></v-checkbox>
 				</div>
 				<div class="pa-2">
 					<v-checkbox
@@ -166,11 +165,13 @@
 						v-model="value"
 						:clearable="clearable"
 						:disabled="disabled"
+						:flippable="flippable"
 						:full-height="fullHeight"
 						:full-width="fullWidth"
-						:hide-actions="hideActions"
 						:image-height="Number(imageHeight)"
 						:image-width="Number(imageWidth)"
+						:rotatable="rotatable"
+						:zoomable="zoomable"
 					></v-image-input>
 				</v-container>
 			</v-content>

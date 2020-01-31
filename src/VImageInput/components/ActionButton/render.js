@@ -10,7 +10,6 @@ export default function(h, {
 		{
 			class: 'ma-1',
 			props: {
-				dark: true,
 				disabled,
 				flat: true,
 				icon: true,

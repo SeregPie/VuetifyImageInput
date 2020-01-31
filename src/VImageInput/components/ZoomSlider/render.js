@@ -17,7 +17,6 @@ export default function(h, {parent}) {
 			class: 'ma-1',
 			props: {
 				appendIcon: zoomInIcon,
-				dark: true,
 				disabled,
 				hideDetails: true,
 				max: maxZoom,

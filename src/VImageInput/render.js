@@ -4,9 +4,9 @@ import MyFlipVerticallyButton from './components/FlipVerticallyButton';
 import MyResponsive from './components/Responsive';
 import MyRotateClockwiseButton from './components/RotateClockwiseButton';
 import MyRotateCounterClockwiseButton from './components/RotateCounterClockwiseButton';
+import MyUpload from './components/Upload';
+import MyView from './components/View';
 import MyZoomSlider from './components/ZoomSlider';
-
-import checkeredBackground from './constants/checkeredBackground';
 
 export default function(h) {
 	let {
@@ -15,8 +15,6 @@ export default function(h) {
 		fullHeight,
 		fullWidth,
 		image,
-		imageHeight,
-		imageWidth,
 		rotatable,
 		zoomable,
 	} = this;
@@ -52,56 +50,18 @@ export default function(h) {
 								leaveAbsolute: true,
 							},
 						},
-						[image
-							? h(
-								'div',
-								{
-									style: {
-										background: checkeredBackground,
-										border: '1px solid #ccc',
-										borderRadius: '4px',
-										bottom: 0,
-										left: 0,
-										overflow: 'hidden',
-										position: 'absolute',
-										right: 0,
-										top: 0,
-									},
-									key: 0,
+						[h(
+							image ? MyView : MyUpload,
+							{
+								style: {
+									bottom: 0,
+									left: 0,
+									position: 'absolute',
+									right: 0,
+									top: 0,
 								},
-								[h(
-									'div',
-									{
-										style: {
-											border: '4px solid #fff',
-											bottom: '50%',
-											boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
-											height: `${imageHeight}px`,
-											pointerEvents: 'none',
-											position: 'absolute',
-											right: '50%',
-											transform: 'translate(50%,50%)',
-											width: `${imageWidth}px`,
-										},
-									},
-								)],
-							)
-							: h(
-								'div',
-								{
-									style: {
-										border: '4px dashed #ccc',
-										borderRadius: '4px',
-										position: 'absolute',
-										left: 0,
-										top: 0,
-										bottom: 0,
-										right: 0,
-									},
-									key: 1,
-								},
-							)
-						],
+							},
+						)],
 					),
 				],
 			),

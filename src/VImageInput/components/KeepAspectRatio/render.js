@@ -7,6 +7,7 @@ export default function(h) {
 		'div',
 		{
 			style: {
+				display: 'grid',
 				opacity: 0,
 				overflow: 'hidden',
 				pointerEvents: 'none',

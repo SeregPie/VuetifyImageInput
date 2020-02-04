@@ -39,6 +39,7 @@ export default function(h) {
 				'div',
 				{
 					style: {
+						display: 'grid',
 						gridColumn: 1,
 						gridRow: 1,
 						overflow: 'hidden',

@@ -4,6 +4,7 @@ import flipVertically from './flipVertically';
 import load from './load';
 import rotateClockwise from './rotateClockwise';
 import rotateCounterClockwise from './rotateCounterClockwise';
+import setScaling from './setScaling';
 import setZoom from './setZoom';
 import zoomIn from './zoomIn';
 import zoomOut from './zoomOut';
@@ -15,6 +16,7 @@ export default {
 	load,
 	rotateClockwise,
 	rotateCounterClockwise,
+	setScaling,
 	setZoom,
 	zoomIn,
 	zoomOut,

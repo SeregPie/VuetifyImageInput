@@ -1,7 +1,7 @@
 import MyClearButton from './components/ClearButton';
 import MyFlipHorizontallyButton from './components/FlipHorizontallyButton';
 import MyFlipVerticallyButton from './components/FlipVerticallyButton';
-import MyResponsive from './components/Responsive';
+import MyKeepAspectRatio from './components/KeepAspectRatio';
 import MyRotateClockwiseButton from './components/RotateClockwiseButton';
 import MyRotateCounterClockwiseButton from './components/RotateCounterClockwiseButton';
 import MyUpload from './components/Upload';
@@ -15,7 +15,10 @@ export default function(h) {
 		fullHeight,
 		fullWidth,
 		image,
+		imageHeight,
+		imageWidth,
 		rotatable,
+		setScaling,
 		zoomable,
 	} = this;
 	return h(
@@ -38,11 +41,26 @@ export default function(h) {
 					style: {
 						gridColumn: 1,
 						gridRow: 1,
+						overflow: 'hidden',
 						position: 'relative',
 					},
 				},
 				[
-					h(MyResponsive),
+					h(
+						MyKeepAspectRatio,
+						{
+							style: {
+								margin: '50px',
+							},
+							props: {
+								width: imageWidth,
+								height: imageHeight,
+							},
+							on: {
+								setScaling: setScaling,
+							},
+						},
+					),
 					h(
 						'VFadeTransition',
 						{

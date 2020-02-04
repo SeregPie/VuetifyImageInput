@@ -8,6 +8,7 @@ export default function(h, {
 	let {
 		imageHeight,
 		imageWidth,
+		scaling,
 	} = parent;
 	return h(
 		'div',
@@ -27,12 +28,12 @@ export default function(h, {
 					border: '4px solid #fff',
 					bottom: '50%',
 					boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
-					height: `${imageHeight}px`,
+					height: `${imageHeight * scaling}px`,
 					pointerEvents: 'none',
 					position: 'absolute',
 					right: '50%',
 					transform: 'translate(50%,50%)',
-					width: `${imageWidth}px`,
+					width: `${imageWidth * scaling}px`,
 				},
 			},
 		)],

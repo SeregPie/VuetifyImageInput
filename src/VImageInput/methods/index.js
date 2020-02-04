@@ -5,7 +5,7 @@ import load from './load';
 import rotateClockwise from './rotateClockwise';
 import rotateCounterClockwise from './rotateCounterClockwise';
 import setScaling from './setScaling';
-import setZoom from './setZoom';
+import setZooming from './setZooming';
 import zoomIn from './zoomIn';
 import zoomOut from './zoomOut';
 
@@ -17,7 +17,7 @@ export default {
 	rotateClockwise,
 	rotateCounterClockwise,
 	setScaling,
-	setZoom,
+	setZooming,
 	zoomIn,
 	zoomOut,
 };

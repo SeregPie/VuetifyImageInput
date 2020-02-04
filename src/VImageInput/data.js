@@ -10,7 +10,7 @@ export default function() {
 
 		image: true,
 
-		zoom: 1,
+		zooming: 1,
 		scaling: 1,
 	};
 }

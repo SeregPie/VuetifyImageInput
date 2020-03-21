@@ -17,16 +17,16 @@
 			rel="stylesheet"
 		/>
 		<link
-			href="https://unpkg.com/@mdi/font@4.7.95/css/materialdesignicons.min.css"
+			href="https://unpkg.com/@mdi/font@5.0.45/css/materialdesignicons.min.css"
 			rel="stylesheet"
 		/>
 		<link
-			href="https://unpkg.com/vuetify@2.2.8/dist/vuetify.min.css"
+			href="https://unpkg.com/vuetify@2.2.18/dist/vuetify.min.css"
 			rel="stylesheet"
 		/>
-		<script src="https://unpkg.com/core-js-bundle@3.6.0/minified.js"></script>
+		<script src="https://unpkg.com/core-js-bundle@3.6.4/minified.js"></script>
 		<script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
-		<script src="https://unpkg.com/vuetify@2.2.8/dist/vuetify.min.js"></script>
+		<script src="https://unpkg.com/vuetify@2.2.18/dist/vuetify.min.js"></script>
 		<script src="./index.js"></script>
 	</head>
 	<body>
@@ -114,6 +114,23 @@
 					></v-text-field>
 				</div>
 				<div class="pa-2">
+					<v-radio-group
+						v-model="minZoom"
+						class="ma-0 pa-0"
+						hide-details
+						label="min zoom"
+					>
+						<v-radio
+							label="cover"
+							value="cover"
+						></v-radio>
+						<v-radio
+							label="contain"
+							value="contain"
+						></v-radio>
+					</v-radio-group>
+				</div>
+				<div class="pa-2">
 					<v-checkbox
 						v-model="disabled"
 						class="ma-0 pa-0"
@@ -170,6 +187,7 @@
 						:full-width="fullWidth"
 						:image-height="Number(imageHeight)"
 						:image-width="Number(imageWidth)"
+						:min-zoom="minZoom"
 						:rotatable="rotatable"
 						:zoomable="zoomable"
 					></v-image-input>

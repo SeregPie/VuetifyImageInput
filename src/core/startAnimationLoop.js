@@ -1,10 +1,10 @@
-import Function_bindRecursive from './Function/bindRecursive';
+import Function_prototype_bindRecursive from './Function/prototype/bindRecursive';
 
 export default function(callback, delay) {
-	Function_bindRecursive(run => {
+	Function_prototype_bindRecursive(recur => {
 		requestAnimationFrame(() => {
 			if (callback() !== false) {
-				setTimeout(run, delay);
+				setTimeout(recur, delay);
 			}
 		});
 	})();

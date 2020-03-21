@@ -13,6 +13,7 @@
 				fullWidth: false,
 				imageHeight: 256,
 				imageWidth: 256,
+				minZoom: 'cover',
 				rotatable: true,
 				value: null,
 				zoomable: true,

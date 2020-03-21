@@ -1,7 +1,3 @@
 export default function() {
-	let {
-		overriddenMaxZoom: maxZoom,
-		overriddenMinZoom: minZoom,
-	} = this;
-	return (maxZoom - minZoom) / 1000;
+	return (this.computedMaxZoom - this.computedMinZoom) / 1000;
 }

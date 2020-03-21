@@ -6,10 +6,6 @@ Provides basic image editing tools.
 
 [Try it out!](https://seregpie.github.io/VuetifyImageInput/)
 
-## dependencies
-
-- [VueClaw](https://github.com/SeregPie/VueClaw)
-
 ## setup
 
 ### npm
@@ -60,8 +56,6 @@ import VImageInput from 'vuetify-image-input/a-la-carte';
 />
 <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
-<script src="https://unpkg.com/@seregpie/claw"></script>
-<script src="https://unpkg.com/vueclaw"></script>
 <script src="https://unpkg.com/vuetify-image-input"></script>
 ```
 

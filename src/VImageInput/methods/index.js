@@ -1,11 +1,12 @@
 import clear from './clear';
 import flipHorizontally from './flipHorizontally';
 import flipVertically from './flipVertically';
-import load from './load';
+import rotate from './rotate';
 import rotateClockwise from './rotateClockwise';
 import rotateCounterClockwise from './rotateCounterClockwise';
-import setScaling from './setScaling';
-import setZooming from './setZooming';
+import setZoom from './setZoom';
+import translateHorizontally from './translateHorizontally';
+import translateVertically from './translateVertically';
 import zoomIn from './zoomIn';
 import zoomOut from './zoomOut';
 
@@ -13,11 +14,12 @@ export default {
 	clear,
 	flipHorizontally,
 	flipVertically,
-	load,
+	rotate,
 	rotateClockwise,
 	rotateCounterClockwise,
-	setScaling,
-	setZooming,
+	setZoom,
+	translateHorizontally,
+	translateVertically,
 	zoomIn,
 	zoomOut,
 };

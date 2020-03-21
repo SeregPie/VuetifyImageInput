@@ -1,24 +1,30 @@
 import MyClearButton from './components/ClearButton';
 import MyFlipHorizontallyButton from './components/FlipHorizontallyButton';
 import MyFlipVerticallyButton from './components/FlipVerticallyButton';
-import MyKeepAspectRatio from './components/KeepAspectRatio';
 import MyRotateClockwiseButton from './components/RotateClockwiseButton';
 import MyRotateCounterClockwiseButton from './components/RotateCounterClockwiseButton';
-import MyUpload from './components/Upload';
-import MyView from './components/View';
 import MyZoomSlider from './components/ZoomSlider';
+
+import checkeredBackground from './constants/checkeredBackground';
 
 export default function(h) {
 	let {
 		clearable,
 		flippable,
+		flippedHorizontally,
+		flippedVertically,
 		fullHeight,
 		fullWidth,
 		image,
 		imageHeight,
 		imageWidth,
+		originalImageHeight,
+		originalImageWidth,
 		rotatable,
-		setScaling,
+		rotationTurns,
+		translationHorizontally,
+		translationVertically,
+		zoom,
 		zoomable,
 	} = this;
 	return h(
@@ -39,48 +45,102 @@ export default function(h) {
 				'div',
 				{
 					style: {
-						display: 'flex',
 						gridColumn: 1,
 						gridRow: 1,
-						overflow: 'hidden',
 						position: 'relative',
 					},
 				},
 				[
 					h(
-						MyKeepAspectRatio,
+						'div',
 						{
 							style: {
+								height: `${imageHeight}px`,
 								margin: '50px',
-							},
-							props: {
-								width: imageWidth,
-								height: imageHeight,
-							},
-							on: {
-								setScaling: setScaling,
+								width: `${imageWidth}px`,
 							},
 						},
 					),
 					h(
-						'VFadeTransition',
+						'div',
 						{
-							props: {
-								leaveAbsolute: true,
+							style: {
+								background: checkeredBackground,
+								border: '1px solid #ccc',
+								borderRadius: '4px',
+								bottom: 0,
+								left: 0,
+								overflow: 'hidden',
+								position: 'absolute',
+								right: 0,
+								top: 0,
 							},
 						},
-						[h(
-							image ? MyView : MyUpload,
-							{
-								style: {
-									bottom: 0,
-									left: 0,
-									position: 'absolute',
-									right: 0,
-									top: 0,
+						[
+							h(
+								'div',
+								{
+									style: {
+										bottom: '50%',
+										position: 'absolute',
+										right: '50%',
+										transform: 'translate(50%,50%)',
+									},
 								},
-							},
-						)],
+								[h(
+									'div',
+									{
+										style: {
+											transform: [
+												`scale(${zoom})`,
+												`scale(${[
+													flippedHorizontally ? -1 : 1,
+													flippedVertically ? -1 : 1,
+												].join(',')})`,
+												`rotate(${rotationTurns}turn)`,
+												`translate(${[
+													`${translationHorizontally}px`,
+													`${translationVertically}px`,
+												].join(',')})`,
+											].join(' '),
+											transition: 'all 0.3s',
+										},
+									},
+									[h(
+										'div',
+										{
+											style: {
+												alignItems: 'center',
+												backgroundColor: '#ff0',
+												color: '#00f',
+												display: 'flex',
+												fontSize: '64px',
+												height: `${originalImageHeight}px`,
+												justifyContent: 'center',
+												width: `${originalImageWidth}px`,
+											},
+										},
+										'IMAGE',
+									)],
+								)],
+							),
+							h(
+								'div',
+								{
+									style: {
+										border: '4px solid #fff',
+										bottom: '50%',
+										boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
+										height: `${imageHeight}px`,
+										pointerEvents: 'none',
+										position: 'absolute',
+										right: '50%',
+										transform: 'translate(50%,50%)',
+										width: `${imageWidth}px`,
+									},
+								},
+							),
+						],
 					),
 				],
 			),

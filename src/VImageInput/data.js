@@ -1,16 +1,13 @@
-import Function_noop from '../core/Function/noop';
-
 export default function() {
 	return {
-		cancelLoad: Function_noop,
-		loadError: false,
-		loading: false,
-		loadProgress: 0,
-		loadSuccess: false,
-
+		flippedHorizontally: false,
+		flippedVertically: false,
 		image: true,
-
-		zooming: 1,
-		scaling: 1,
+		originalImageHeight: 150,
+		originalImageWidth: 250,
+		rotationTurns: 0,
+		translationHorizontally: 0,
+		translationVertically: 0,
+		zoom: 1,
 	};
 }

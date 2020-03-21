@@ -1,3 +1,1 @@
-export default function() {
-	this.originalImage = null;
-}
+export default function() {}

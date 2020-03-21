@@ -1,6 +1,6 @@
 import Function_constant from './constant';
-import Function_isFunction from './isFunction';
+import Function_is from './is';
 
 export default function(value) {
-	return Function_isFunction(value) ? value : Function_constant(value);
+	return Function_is(value) ? value : Function_constant(value);
 }

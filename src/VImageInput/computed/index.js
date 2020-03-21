@@ -1,21 +1,13 @@
-import dark from './dark';
-import originalImageDataURL from './originalImageDataURL';
-import originalImageHeight from './originalImageHeight';
-import originalImageWidth from './originalImageWidth';
-import overriddenMaxZoom from './overriddenMaxZoom';
-import overriddenMinZoom from './overriddenMinZoom';
-import rtl from './zoomSnap';
+import computedMaxZoom from './computedMaxZoom';
+import computedMinZoom from './computedMinZoom';
+import rotationRadians from './rotationRadians';
 import zoomDelta from './zoomDelta';
 import zoomSnap from './zoomSnap';
 
 export default {
-	dark,
-	originalImageDataURL,
-	originalImageHeight,
-	originalImageWidth,
-	overriddenMaxZoom,
-	overriddenMinZoom,
-	rtl,
+	computedMaxZoom,
+	computedMinZoom,
+	rotationRadians,
 	zoomDelta,
 	zoomSnap,
 };

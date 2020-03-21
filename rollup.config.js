@@ -5,10 +5,6 @@ import serve from 'rollup-plugin-serve';
 
 import {main} from './package.json';
 
-let globals = {
-	'vueclaw': 'VueClaw',
-};
-
 let plugins = [
 	resolve(),
 	buble({objectAssign: 'Object.assign'}),
@@ -23,13 +19,11 @@ if (process.env.ROLLUP_WATCH) {
 }
 
 export default {
-	external: Object.keys(globals),
 	input: 'src/index.js',
 	plugins,
 	output: {
 		file: main,
 		format: 'umd',
 		name: 'VuetifyImageInput',
-		globals,
 	},
 };

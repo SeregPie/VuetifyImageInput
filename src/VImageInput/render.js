@@ -18,8 +18,6 @@ export default function(h) {
 		image,
 		imageHeight,
 		imageWidth,
-		originalImageHeight,
-		originalImageWidth,
 		rotatable,
 		rotationTurns,
 		translationHorizontally,
@@ -120,10 +118,10 @@ export default function(h) {
 								'div',
 								{
 									style: {
-										border: '4px solid #fff',
 										bottom: '50%',
 										boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
 										height: `${imageHeight}px`,
+										outline: '4px solid #fff',
 										pointerEvents: 'none',
 										position: 'absolute',
 										right: '50%',

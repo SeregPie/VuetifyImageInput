@@ -1,8 +1,8 @@
 export default function(h, {parent}) {
 	let {
-		computedMaxZoom,
-		computedMinZoom,
 		disabled,
+		overriddenMaxZoom,
+		overriddenMinZoom,
 		setZoom,
 		zoom,
 		zoomIn,
@@ -19,8 +19,8 @@ export default function(h, {parent}) {
 				appendIcon: zoomInIcon,
 				disabled,
 				hideDetails: true,
-				max: computedMaxZoom,
-				min: computedMinZoom,
+				max: overriddenMaxZoom,
+				min: overriddenMinZoom,
 				prependIcon: zoomOutIcon,
 				step: zoomSnap,
 				value: zoom,

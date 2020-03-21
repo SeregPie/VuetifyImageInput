@@ -11,9 +11,14 @@ import fullWidth from './fullWidth';
 import hideActions from './hideActions';
 import imageBackgroundColor from './imageBackgroundColor';
 import imageHeight from './imageHeight';
+import imageMaxHeight from './imageMaxHeight';
+import imageMaxWidth from './imageMaxWidth';
+import imageMinHeight from './imageMinHeight';
+import imageMinWidth from './imageMinWidth';
 import imageWidth from './imageWidth';
 import maxZoom from './maxZoom';
 import minZoom from './minZoom';
+import resizable from './resizable';
 import rotatable from './rotatable';
 import rotateClockwiseIcon from './rotateClockwiseIcon';
 import rotateCounterClockwiseIcon from './rotateCounterClockwiseIcon';
@@ -38,9 +43,14 @@ export default {
 	hideActions,
 	imageBackgroundColor,
 	imageHeight,
+	imageMaxHeight,
+	imageMaxWidth,
+	imageMinHeight,
+	imageMinWidth,
 	imageWidth,
 	maxZoom,
 	minZoom,
+	resizable,
 	rotatable,
 	rotateClockwiseIcon,
 	rotateCounterClockwiseIcon,

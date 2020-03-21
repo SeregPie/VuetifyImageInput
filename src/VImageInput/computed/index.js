@@ -1,13 +1,13 @@
-import computedMaxZoom from './computedMaxZoom';
-import computedMinZoom from './computedMinZoom';
+import overriddenMaxZoom from './overriddenMaxZoom';
+import overriddenMinZoom from './overriddenMinZoom';
 import rotationRadians from './rotationRadians';
 import zoom from './zoom';
 import zoomDelta from './zoomDelta';
 import zoomSnap from './zoomSnap';
 
 export default {
-	computedMaxZoom,
-	computedMinZoom,
+	overriddenMaxZoom,
+	overriddenMinZoom,
 	rotationRadians,
 	zoom,
 	zoomDelta,

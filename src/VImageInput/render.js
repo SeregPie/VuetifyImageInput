@@ -18,6 +18,7 @@ export default function(h) {
 		image,
 		imageHeight,
 		imageWidth,
+		resizable,
 		rotatable,
 		rotationTurns,
 		translationHorizontally,
@@ -74,22 +75,28 @@ export default function(h) {
 								top: 0,
 							},
 						},
-						[
-							h(
-								'div',
-								{
-									style: {
-										bottom: '50%',
-										position: 'absolute',
-										right: '50%',
-										transform: 'translate(50%,50%)',
-									},
+						[h(
+							'div',
+							{
+								style: {
+									bottom: '50%',
+									position: 'absolute',
+									right: '50%',
+									transform: 'translate(50%,50%)',
+									width: `${imageWidth}px`,
+									height: `${imageHeight}px`,
 								},
-								[h(
-									'div',
+							},
+							[
+								h(
+									'img',
 									{
 										style: {
+											bottom: '50%',
+											position: 'absolute',
+											right: '50%',
 											transform: [
+												'translate(50%,50%)',
 												`scale(${zoom})`,
 												`scale(${[
 													flippedHorizontally ? -1 : 1,
@@ -103,33 +110,130 @@ export default function(h) {
 											].join(' '),
 											transition: 'all 0.3s',
 										},
-									},
-									[h(
-										'img',
-										{
-											attrs: {
-												src: '/demo/image.jpg',
-											},
+										attrs: {
+											src: '/demo/image.jpg',
 										},
-									)],
-								)],
-							),
-							h(
-								'div',
-								{
-									style: {
-										bottom: '50%',
-										boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
-										height: `${imageHeight}px`,
-										outline: '4px solid #fff',
-										pointerEvents: 'none',
-										position: 'absolute',
-										right: '50%',
-										transform: 'translate(50%,50%)',
-										width: `${imageWidth}px`,
 									},
-								},
-							),
+								),
+								h(
+									'div',
+									{
+										style: {
+											bottom: 0,
+											boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
+											left: 0,
+											position: 'absolute',
+											right: 0,
+											top: 0,
+										},
+									},
+								),
+								h(
+									'div',
+									{
+										style: {
+											backgroundColor: '#fff',
+											bottom: '100%',
+											height: '4px',
+											left: 0,
+											position: 'absolute',
+											right: 0,
+										},
+									},
+								),
+								h(
+									'div',
+									{
+										style: {
+											backgroundColor: '#fff',
+											bottom: '100%',
+											height: '4px',
+											left: '100%',
+											position: 'absolute',
+											width: '4px',
+										},
+									},
+								),
+								h(
+									'div',
+									{
+										style: {
+											backgroundColor: '#fff',
+											bottom: 0,
+											position: 'absolute',
+											right: '100%',
+											top: 0,
+											width: '4px',
+										},
+									},
+								),
+								h(
+									'div',
+									{
+										style: {
+											backgroundColor: '#fff',
+											height: '4px',
+											left: '100%',
+											position: 'absolute',
+											top: '100%',
+											width: '4px',
+										},
+									},
+								),
+								h(
+									'div',
+									{
+										style: {
+											backgroundColor: '#fff',
+											height: '4px',
+											left: 0,
+											position: 'absolute',
+											right: 0,
+											top: '100%',
+										},
+									},
+								),
+								h(
+									'div',
+									{
+										style: {
+											backgroundColor: '#fff',
+											height: '4px',
+											position: 'absolute',
+											right: '100%',
+											top: '100%',
+											width: '4px',
+										},
+									},
+								),
+								h(
+									'div',
+									{
+										style: {
+											backgroundColor: '#fff',
+											bottom: 0,
+											left: '100%',
+											position: 'absolute',
+											top: 0,
+											width: '4px',
+										},
+									},
+								),
+								h(
+									'div',
+									{
+										style: {
+											backgroundColor: '#fff',
+											bottom: '100%',
+											height: '4px',
+											position: 'absolute',
+											right: '100%',
+											width: '4px',
+											...(resizable ? {cursor: 'nwse-resize'} : {}),
+										},
+									},
+								),
+							]),
 						],
 					),
 				],

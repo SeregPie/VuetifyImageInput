@@ -69,6 +69,14 @@
 				</div>
 				<div class="pa-2">
 					<v-checkbox
+						v-model="resizable"
+						class="ma-0 pa-0"
+						hide-details
+						label="resizable"
+					></v-checkbox>
+				</div>
+				<div class="pa-2">
+					<v-checkbox
 						v-model="rotatable"
 						class="ma-0 pa-0"
 						hide-details
@@ -90,28 +98,6 @@
 						hide-details
 						label="zoomable"
 					></v-checkbox>
-				</div>
-				<div class="pa-2">
-					<v-text-field
-						v-model="imageWidth"
-						:max="1024"
-						:min="32"
-						filled
-						hide-details
-						label="image width"
-						type="number"
-					></v-text-field>
-				</div>
-				<div class="pa-2">
-					<v-text-field
-						v-model="imageHeight"
-						:max="1024"
-						:min="32"
-						filled
-						hide-details
-						label="image height"
-						type="number"
-					></v-text-field>
 				</div>
 				<div class="pa-2">
 					<v-radio-group
@@ -185,9 +171,8 @@
 						:flippable="flippable"
 						:full-height="fullHeight"
 						:full-width="fullWidth"
-						:image-height="Number(imageHeight)"
-						:image-width="Number(imageWidth)"
 						:min-zoom="minZoom"
+						:resizable="resizable"
 						:rotatable="rotatable"
 						:zoomable="zoomable"
 					></v-image-input>

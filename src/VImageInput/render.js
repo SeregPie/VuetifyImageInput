@@ -107,20 +107,12 @@ export default function(h) {
 										},
 									},
 									[h(
-										'div',
+										'img',
 										{
-											style: {
-												alignItems: 'center',
-												backgroundColor: '#ff0',
-												color: '#00f',
-												display: 'flex',
-												fontSize: '64px',
-												height: `${originalImageHeight}px`,
-												justifyContent: 'center',
-												width: `${originalImageWidth}px`,
+											attrs: {
+												src: '/demo/image.jpg',
 											},
 										},
-										'IMAGE',
 									)],
 								)],
 							),

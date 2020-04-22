@@ -2,17 +2,17 @@ import MyButton from '../ActionButton';
 
 export default function(h, {parent}) {
 	let {
-		rotateCounterClockwise,
-		rotateCounterClockwiseIcon,
+		rotateCounterClockwise: onClick,
+		rotateCounterClockwiseIcon: icon,
 	} = parent;
 	return h(
 		MyButton,
 		{
 			props: {
-				icon: rotateCounterClockwiseIcon,
+				icon,
 			},
 			on: {
-				click: rotateCounterClockwise,
+				click: onClick,
 			},
 		},
 	);

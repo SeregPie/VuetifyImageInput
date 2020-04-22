@@ -2,17 +2,17 @@ import MyButton from '../ActionButton';
 
 export default function(h, {parent}) {
 	let {
-		flipVertically,
-		flipVerticallyIcon,
+		flipVertically: onClick,
+		flipVerticallyIcon: icon,
 	} = parent;
 	return h(
 		MyButton,
 		{
 			props: {
-				icon: flipVerticallyIcon,
+				icon,
 			},
 			on: {
-				click: flipVertically,
+				click: onClick,
 			},
 		},
 	);

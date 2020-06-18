@@ -1,7 +1,13 @@
 import VImageInput from './VImageInput';
 
-if (typeof window !== 'undefined' && window.Vue) {
-	window.Vue.component(VImageInput.name, VImageInput);
+{
+	let {window} = globalThis;
+	if (window) {
+		let {Vue} = window;
+		if (Vue) {
+			Vue.component(VImageInput.name, VImageInput);
+		}
+	}
 }
 
 export default VImageInput;

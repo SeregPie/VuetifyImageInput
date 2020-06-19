@@ -1,7 +1,4 @@
-export default function(h, {
-	listeners,
-	parent,
-}) {
+export default function(h, {parent}) {
 	let {
 		animated,
 		disabled,
@@ -17,9 +14,9 @@ export default function(h, {
 		lockDisplayedAnimations,
 		rotationInTurns,
 		translatable,
+		translate,
 		unlockDisplayedAnimations,
 	} = parent;
-	let {pan: onPan} = listeners;
 	return h(
 		'div',
 		{
@@ -52,16 +49,24 @@ export default function(h, {
 						{
 							name: 'Claw',
 							arg: 'pan',
-							value: onPan,
+							rawName: 'v-claw:pan',
+							value(event) {
+								translate(
+									event.x - event.previousX,
+									event.y - event.previousY,
+								);
+							},
 						},
 						{
 							name: 'Claw',
 							arg: 'panStart',
+							rawName: 'v-claw:panStart',
 							value: lockDisplayedAnimations,
 						},
 						{
 							name: 'Claw',
 							arg: 'panEnd',
+							rawName: 'v-claw:panEnd',
 							value: unlockDisplayedAnimations,
 						},
 					]}

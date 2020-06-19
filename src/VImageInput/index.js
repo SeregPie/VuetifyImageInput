@@ -1,6 +1,7 @@
 import beforeDestroy from './beforeDestroy';
 import computed from './computed';
 import data from './data';
+import directives from './directives';
 import inject from './inject';
 import methods from './methods';
 import name from './name';
@@ -10,6 +11,7 @@ import watch from './watch';
 
 export default {
 	name,
+	directives,
 	inject,
 	props,
 	data,

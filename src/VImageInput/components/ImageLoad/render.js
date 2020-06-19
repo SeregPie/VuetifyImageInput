@@ -1,43 +1,51 @@
-export default function(h, {
-	listeners,
-	parent,
-}) {
+export default function(h, {parent}) {
 	let {
-		animated,
+		cancelIcon,
 		disabled,
-		displayedTranslationHorizontally,
-		displayedTranslationVertically,
-		displayedZoom,
-		imageBackgroundColor,
-		internalImageDataURL,
-		internalImageHeight,
-		internalImageWidth,
-		lockDisplayedAnimations,
-		rotationInTurns,
-		translatable,
-		unlockDisplayedAnimations,
+		errorIcon,
+		loadError,
+		loadFromFile,
+		loading,
+		loadProgress,
+		loadSuccess,
+		successIcon,
+		uploadIcon,
 	} = parent;
-	let {pan: onPan} = listeners;
 	return h(
 		'div',
 		{
 			style: {
+				alignItems: 'center',
 				borderRadius: '4px',
 				borderStyle: 'dashed',
 				borderWidth: '4px',
-				cursor: (disabled || loading
-					? undefined
-					: 'pointer'
-				),
+				bottom: 0,
+				cursor: (disabled || loading ? undefined : 'pointer'),
 				display: 'flex',
 				justifyContent: 'center',
-				bottom: 0,
 				left: 0,
 				position: 'absolute',
 				right: 0,
 				top: 0,
 			},
-			key: 'szrj',
+			on: {
+				click(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					let input = document.createElement('input');
+					input.setAttribute('type', 'file');
+					input.addEventListener('change', event => {
+						event.preventDefault();
+						let {files} = event.target;
+						if (files) {
+							if (files.length) {
+								loadFromFile(files[0]);
+							}
+						}
+					});
+					input.click();
+				},
+			},
 		},
 		[h(
 			'VSlideYTransition',
@@ -111,17 +119,14 @@ export default function(h, {
 				return h(
 					'VIcon',
 					{
-						style: uploadIconStyle,
 						props: {
-							color: (dark
-								? 'rgba(255, 255, 255, 0.08)'
-								: 'rgba(0, 0, 0, 0.06)'
-							),
 							size: '128px',
 						},
 						key: 0,
 					},
 					uploadIcon,
 				);
-			})()],;
+			})()],
+		)],
+	);
 }

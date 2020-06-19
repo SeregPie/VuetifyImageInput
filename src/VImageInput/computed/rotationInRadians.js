@@ -1,5 +1,5 @@
-import Math_turnsToInRadians from '../../core/Math/turnsToInRadians';
+import Math_turnsToRadians from '../../core/Math/turnsToRadians';
 
 export default function() {
-	return Math_turnsToInRadians(this.rotationInTurns);
+	return Math_turnsToRadians(this.rotationInTurns);
 }

@@ -8,6 +8,8 @@ export default function(h, {
 		displayedTranslationHorizontally,
 		displayedTranslationVertically,
 		displayedZoom,
+		flippedHorizontally,
+		flippedVertically,
 		imageBackgroundColor,
 		internalImageDataURL,
 		internalImageHeight,

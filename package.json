@@ -38,9 +38,9 @@
 	"devDependencies": {
 		"@rollup/plugin-buble": "^0.21.3",
 		"@rollup/plugin-node-resolve": "^8.0.1",
-		"eslint": "^7.2.0",
+		"eslint": "^7.3.0",
 		"eslint-config-seregpie": "^1.0.1",
-		"rollup": "^2.17.0",
+		"rollup": "^2.17.1",
 		"rollup-plugin-serve": "^1.0.1",
 		"rollup-plugin-terser": "^6.1.0"
 	},

@@ -8,7 +8,6 @@ import flippable from './flippable';
 import flipVerticallyIcon from './flipVerticallyIcon';
 import fullHeight from './fullHeight';
 import fullWidth from './fullWidth';
-import hideActions from './hideActions';
 import imageBackgroundColor from './imageBackgroundColor';
 import imageHeight from './imageHeight';
 import imageMaxHeight from './imageMaxHeight';
@@ -24,6 +23,7 @@ import rotatable from './rotatable';
 import rotateClockwiseIcon from './rotateClockwiseIcon';
 import rotateCounterClockwiseIcon from './rotateCounterClockwiseIcon';
 import successIcon from './successIcon';
+import translatable from './translatable';
 import uploadIcon from './uploadIcon';
 import value from './value';
 import zoomable from './zoomable';
@@ -41,7 +41,6 @@ export default {
 	flipVerticallyIcon,
 	fullHeight,
 	fullWidth,
-	hideActions,
 	imageBackgroundColor,
 	imageHeight,
 	imageMaxHeight,
@@ -57,6 +56,7 @@ export default {
 	rotateClockwiseIcon,
 	rotateCounterClockwiseIcon,
 	successIcon,
+	translatable,
 	uploadIcon,
 	value,
 	zoomable,

@@ -1,3 +1,5 @@
+// todo
+
 import MyClearButton from './components/ClearButton';
 import MyFlipHorizontallyButton from './components/FlipHorizontallyButton';
 import MyFlipVerticallyButton from './components/FlipVerticallyButton';
@@ -20,7 +22,7 @@ export default function(h) {
 		imageWidth,
 		resizable,
 		rotatable,
-		rotationTurns,
+		rotationInTurns,
 		translationHorizontally,
 		translationVertically,
 		zoom,
@@ -123,7 +125,7 @@ export default function(h) {
 															flippedHorizontally ? -1 : 1,
 															flippedVertically ? -1 : 1,
 														].join(',')})`,
-														`rotate(${rotationTurns}turn)`,
+														`rotate(${rotationInTurns}turn)`,
 														`translate(${[
 															`${translationHorizontally}px`,
 															`${translationVertically}px`,

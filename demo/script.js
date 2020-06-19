@@ -12,8 +12,10 @@
 				fullHeight: false,
 				fullWidth: false,
 				minZoom: 'cover',
+				resetable: true,
 				resizable: true,
 				rotatable: true,
+				translatable: true,
 				value: null,
 				zoomable: true,
 			};

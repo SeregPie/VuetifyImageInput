@@ -3,6 +3,6 @@ export default function(pixels) {
 		pixels *= -1;
 	}
 	pixels /= this.zoom;
-	this.translationHorizontally += pixels * Math.sin(this.rotationRadians);
-	this.translationVertically += pixels * Math.cos(this.rotationRadians);
+	this.translationHorizontally += pixels * Math.sin(this.rotationInRadians);
+	this.translationVertically += pixels * Math.cos(this.rotationInRadians);
 }

@@ -5,13 +5,15 @@ import methods from './methods';
 import name from './name';
 import props from './props';
 import render from './render';
+import watch from './watch';
 
 export default {
-	computed,
-	data,
-	inject,
-	methods,
 	name,
+	inject,
 	props,
+	data,
+	computed,
+	watch,
+	methods,
 	render,
 };

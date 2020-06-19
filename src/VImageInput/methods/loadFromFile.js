@@ -1,10 +1,9 @@
 import Function_noop from '../core/Function/noop';
 
 export default function() {
-	this.cancel();
 	let cancelled = false;
 	let onCancel = Function_noop;
-	this.cancellation = (() => {
+	this.cancelWith(() => {
 		cancelled = true;
 		onCancel();
 	});

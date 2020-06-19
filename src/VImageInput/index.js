@@ -1,3 +1,4 @@
+import beforeDestroy from './beforeDestroy';
 import computed from './computed';
 import data from './data';
 import inject from './inject';
@@ -14,6 +15,7 @@ export default {
 	data,
 	computed,
 	watch,
+	beforeDestroy,
 	methods,
 	render,
 };

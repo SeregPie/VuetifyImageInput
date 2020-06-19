@@ -37,7 +37,9 @@ export default function() {
 				this.resetCancellation();
 				this.$emit('input', imageDataURL);
 			}, 1000);
-			this.cancelWith(() => clearTimeout(timer));
+			this.cancelWith(() => {
+				clearTimeout(timer);
+			});
 		} else {
 			this.cancel();
 			this.$emit('input', null);

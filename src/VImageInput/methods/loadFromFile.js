@@ -37,6 +37,7 @@ export default function(file) {
 						this.loading = false;
 						let timer = setTimeout(() => {
 							this.internalImage = image;
+							this.reset();
 							this.resetCancellation();
 						}, 1000);
 						onCancel = (() => {
@@ -46,6 +47,7 @@ export default function(file) {
 				});
 				image.addEventListener('error', onError);
 				onCancel = Function_noop;
+				image.src = reader.result;
 			}
 		});
 		reader.addEventListener('error', onError);

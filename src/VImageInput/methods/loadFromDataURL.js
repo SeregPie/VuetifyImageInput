@@ -1,11 +1,22 @@
-import Function_noop from '../../core/Function/noop';
-
-export default function() {
+export default function(dataURL) {
 	let cancelled = false;
-	let onCancel = Function_noop;
 	this.cancelWith(() => {
 		cancelled = true;
-		onCancel();
 	});
-	//todo
+	let image = new Image();
+	image.addEventListener('load', () => {
+		if (!cancelled) {
+			this.internalImage = image;
+			this.reset();
+			this.resetCancellation();
+		}
+	});
+	image.addEventListener('error', () => {
+		if (!cancelled) {
+			this.internalImage = null;
+			this.reset();
+			this.resetCancellation();
+		}
+	});
+	image.src = dataURL;
 }

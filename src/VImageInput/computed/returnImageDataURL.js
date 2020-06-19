@@ -39,6 +39,7 @@ export default function() {
 			}, 1000);
 			this.cancelWith(() => clearTimeout(timer));
 		} else {
+			this.cancel();
 			this.$emit('input', null);
 		}
 	});

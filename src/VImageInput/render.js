@@ -3,6 +3,7 @@
 import MyClearButton from './components/ClearButton';
 import MyFlipHorizontallyButton from './components/FlipHorizontallyButton';
 import MyFlipVerticallyButton from './components/FlipVerticallyButton';
+import MyResetButton from './components/ResetButton';
 import MyRotateClockwiseButton from './components/RotateClockwiseButton';
 import MyRotateCounterClockwiseButton from './components/RotateCounterClockwiseButton';
 import MyZoomSlider from './components/ZoomSlider';
@@ -17,7 +18,8 @@ export default function(h) {
 		flippedVertically,
 		fullHeight,
 		fullWidth,
-		image,
+		internalImage,
+		internalImageDataURL,
 		imageHeight,
 		imageWidth,
 		resizable,
@@ -38,6 +40,7 @@ export default function(h) {
 		successIcon,
 		uploadIcon,
 		uploadIconStyle,
+		resetable,
 	} = this;
 	let active = false;
 	return h(
@@ -403,7 +406,7 @@ export default function(h) {
 						gridRow: 1,
 						justifyContent: 'center',
 						transition: 'opacity 0.3s cubic-bezier(0.25,0.8,0.5,1)',
-						...(image
+						...(internalImage
 							? {}
 							: {
 								opacity: 0,
@@ -434,6 +437,13 @@ export default function(h) {
 						]
 						: []
 					),
+					...(resetable
+						? [
+							h('VSpacer'),
+							h(MyResetButton),
+						]
+						: []
+					),
 				],
 			),
 			h(
@@ -443,7 +453,7 @@ export default function(h) {
 						gridColumn: 1,
 						gridRow: 2,
 						transition: 'opacity 0.3s cubic-bezier(0.25,0.8,0.5,1)',
-						...(image
+						...(internalImage
 							? {}
 							: {
 								opacity: 0,

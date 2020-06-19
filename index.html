@@ -27,6 +27,10 @@
 		<script src="https://unpkg.com/core-js-bundle@3.6.5/minified.js"></script>
 		<script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
 		<script src="https://unpkg.com/vuetify@2.3.1/dist/vuetify.min.js"></script>
+
+		<script src="https://unpkg.com/@seregpie/claw"></script>
+		<script src="https://unpkg.com/vueclaw"></script>
+
 		<script src="./index.js"></script>
 	</head>
 	<body>
@@ -197,7 +201,7 @@
 						:rotatable="rotatable"
 						:translatable="translatable"
 						:zoomable="zoomable"
-						v-model="value"
+						v-model="imageDataURL"
 					></v-image-input>
 				</v-container>
 			</v-main>

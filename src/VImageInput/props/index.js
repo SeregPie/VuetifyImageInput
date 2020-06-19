@@ -18,6 +18,7 @@ import imageWidth from './imageWidth';
 import maxZoom from './maxZoom';
 import minZoom from './minZoom';
 import resetable from './resetable';
+import resetIcon from './resetIcon';
 import resizable from './resizable';
 import rotatable from './rotatable';
 import rotateClockwiseIcon from './rotateClockwiseIcon';
@@ -51,6 +52,7 @@ export default {
 	maxZoom,
 	minZoom,
 	resetable,
+	resetIcon,
 	resizable,
 	rotatable,
 	rotateClockwiseIcon,

@@ -12,19 +12,16 @@ export default function(h, {
 		internalImageDataURL,
 		internalImageHeight,
 		internalImageWidth,
+		lockDisplayedAnimations,
 		rotationInTurns,
 		translatable,
+		unlockDisplayedAnimations,
 	} = parent;
-	let {
-		pan: onPan,
-		panEnd: onPanEnd,
-		panStart: onPanStart,
-	} = listeners;
+	let {pan: onPan} = listeners;
 	return h(
 		'div',
 		{
 			style: {
-				...(imageBackgroundColor ? {backgroundColor: imageBackgroundColor} : {}),
 				backgroundImage: `url("${internalImageDataURL}")`,
 				backgroundPosition: 'center',
 				backgroundRepeat: 'no-repeat',
@@ -42,8 +39,9 @@ export default function(h, {
 					].join(',')})`,
 				].join(' '),
 				position: 'relative',
-				...(animated ? {transition: `all ${1/2}s`} : {}),
 				width: `${internalImageWidth}px`,
+				...(imageBackgroundColor ? {backgroundColor: imageBackgroundColor} : {}),
+				...(animated ? {transition: `all ${1/2}s`} : {}),
 			},
 			...(translatable
 				? (disabled
@@ -57,12 +55,12 @@ export default function(h, {
 						{
 							name: 'Claw',
 							arg: 'panStart',
-							value: onPanStart,
+							value: lockDisplayedAnimations,
 						},
 						{
 							name: 'Claw',
 							arg: 'panEnd',
-							value: onPanEnd,
+							value: unlockDisplayedAnimations,
 						},
 					]}
 				)

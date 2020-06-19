@@ -5,6 +5,7 @@ import flipHorizontally from './flipHorizontally';
 import flipVertically from './flipVertically';
 import loadFromDataURL from './loadFromDataURL';
 import loadFromFile from './loadFromFile';
+import lockDisplayedAnimations from './lockDisplayedAnimations';
 import reset from './reset';
 import resetCancellation from './resetCancellation';
 import rotate from './rotate';
@@ -16,6 +17,7 @@ import translate from './translate';
 import translateHorizontally from './translateHorizontally';
 import translateVertically from './translateVertically';
 import triggerCancellation from './triggerCancellation';
+import unlockDisplayedAnimations from './unlockDisplayedAnimations';
 import zoomIn from './zoomIn';
 import zoomOut from './zoomOut';
 
@@ -27,6 +29,7 @@ export default {
 	flipVertically,
 	loadFromDataURL,
 	loadFromFile,
+	lockDisplayedAnimations,
 	reset,
 	resetCancellation,
 	rotate,
@@ -38,6 +41,7 @@ export default {
 	translateHorizontally,
 	translateVertically,
 	triggerCancellation,
+	unlockDisplayedAnimations,
 	zoomIn,
 	zoomOut,
 };

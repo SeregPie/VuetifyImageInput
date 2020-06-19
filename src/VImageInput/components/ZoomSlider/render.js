@@ -10,6 +10,8 @@ export default function(h, {parent}) {
 		zoomOut,
 		zoomOutIcon,
 		zoomSnap,
+		lockDisplayedAnimations,
+		unlockDisplayedAnimations,
 	} = parent;
 	return h(
 		'VSlider',
@@ -28,7 +30,9 @@ export default function(h, {parent}) {
 			on: {
 				'click:append': zoomIn,
 				'click:prepend': zoomOut,
+				end: unlockDisplayedAnimations,
 				input: setZoom,
+				start: lockDisplayedAnimations,
 			},
 		},
 	);

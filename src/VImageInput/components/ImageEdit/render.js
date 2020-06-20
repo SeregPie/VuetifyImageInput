@@ -1,10 +1,14 @@
 import MyImage from '../Image';
 
-export default function(h, {parent}) {
+export default function(h, {
+	data,
+	parent,
+}) {
 	let {
 		overriddenImageHeight: imageHeight,
 		overriddenImageWidth: imageWidth,
 	} = parent;
+	let {key} = data;
 	return h(
 		'div',
 		{
@@ -16,6 +20,7 @@ export default function(h, {parent}) {
 				right: 0,
 				top: 0,
 			},
+			key,
 		},
 		[
 			h(

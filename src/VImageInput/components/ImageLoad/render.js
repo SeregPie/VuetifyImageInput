@@ -1,4 +1,7 @@
-export default function(h, {parent}) {
+export default function(h, {
+	data,
+	parent,
+}) {
 	let {
 		cancelIcon,
 		disabled,
@@ -11,6 +14,7 @@ export default function(h, {parent}) {
 		successIcon,
 		uploadIcon,
 	} = parent;
+	let {key} = data;
 	return h(
 		'div',
 		{
@@ -46,6 +50,7 @@ export default function(h, {parent}) {
 					input.click();
 				},
 			},
+			key,
 		},
 		[h(
 			'VSlideYTransition',

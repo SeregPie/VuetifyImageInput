@@ -1,3 +1,6 @@
+import cssFullHeight from './css/FullHeight';
+import cssFullWidth from './css/FullWidth';
+import cssPlaceholder from './css/Placeholder';
 import cssPositionCover from './css/PositionCover';
 
 import MyClearButton from './components/ClearButton';
@@ -32,8 +35,8 @@ export default function(h) {
 				gridRows: '1fr auto',
 				gridTemplateColumns: '1fr auto',
 				gridTemplateRows: '1fr auto',
-				...(fullWidth ? {width: '100%'} : {}),
-				...(fullHeight ? {height: '100%'} : {}),
+				...(fullWidth ? cssFullWidth : {}),
+				...(fullHeight ? cssFullHeight : {}),
 			},
 		},
 		[
@@ -93,13 +96,7 @@ export default function(h) {
 						gridRow: 1,
 						justifyContent: 'center',
 						transition: 'opacity 0.3s cubic-bezier(0.25,0.8,0.5,1)',
-						...(internalImage
-							? {}
-							: {
-								opacity: 0,
-								pointerEvents: 'none',
-							}
-						),
+						...(internalImage ? {} : cssPlaceholder),
 					},
 				},
 				[
@@ -140,13 +137,7 @@ export default function(h) {
 						gridColumn: 1,
 						gridRow: 2,
 						transition: 'opacity 0.3s cubic-bezier(0.25,0.8,0.5,1)',
-						...(internalImage
-							? {}
-							: {
-								opacity: 0,
-								pointerEvents: 'none',
-							}
-						),
+						...(internalImage ? {} : cssPlaceholder),
 					},
 				},
 				(zoomable

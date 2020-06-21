@@ -1,4 +1,4 @@
-// todo
+import cssPositionCover from './css/PositionCover';
 
 import MyClearButton from './components/ClearButton';
 import MyFlipHorizontallyButton from './components/FlipHorizontallyButton';
@@ -65,8 +65,20 @@ export default function(h) {
 							},
 						},
 						[internalImage
-							? h(MyImageEdit, {key: 0})
-							: h(MyImageLoad, {key: 1})
+							? h(
+								MyImageEdit,
+								{
+									style: {...cssPositionCover},
+									key: 0,
+								},
+							)
+							: h(
+								MyImageLoad,
+								{
+									style: {...cssPositionCover},
+									key: 1,
+								},
+							)
 						],
 					),
 				],

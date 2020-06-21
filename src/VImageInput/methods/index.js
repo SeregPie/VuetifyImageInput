@@ -6,6 +6,7 @@ import flipVertically from './flipVertically';
 import loadFromDataURL from './loadFromDataURL';
 import loadFromFile from './loadFromFile';
 import lockDisplayedAnimations from './lockDisplayedAnimations';
+import onPanToTranslate from './onPanToTranslate';
 import reset from './reset';
 import resetCancellation from './resetCancellation';
 import rotate from './rotate';
@@ -30,6 +31,7 @@ export default {
 	loadFromDataURL,
 	loadFromFile,
 	lockDisplayedAnimations,
+	onPanToTranslate,
 	reset,
 	resetCancellation,
 	rotate,

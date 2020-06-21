@@ -1,3 +1,5 @@
+import cssFlexCenter from './css/FlexCenter';
+
 export default function(h, {
 	data,
 	parent,
@@ -14,23 +16,20 @@ export default function(h, {
 		successIcon,
 		uploadIcon,
 	} = parent;
-	let {key} = data;
+	let {
+		key,
+		style,
+	} = data;
 	return h(
 		'div',
 		{
 			style: {
-				alignItems: 'center',
+				...style,
+				...cssFlexCenter,
 				borderRadius: '4px',
 				borderStyle: 'dashed',
 				borderWidth: '4px',
-				bottom: 0,
 				cursor: (disabled || loading ? undefined : 'pointer'),
-				display: 'flex',
-				justifyContent: 'center',
-				left: 0,
-				position: 'absolute',
-				right: 0,
-				top: 0,
 			},
 			on: {
 				click(event) {

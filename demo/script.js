@@ -6,6 +6,7 @@
 		data: function() {
 			return {
 				clearable: true,
+				dialog: false,
 				disabled: false,
 				drawer: true,
 				flippable: true,

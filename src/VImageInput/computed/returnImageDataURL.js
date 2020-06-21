@@ -6,6 +6,8 @@ export default function() {
 		imageFormat,
 		imageQuality,
 		internalImage,
+		internalImageWidth,
+		internalImageHeight,
 		overriddenImageHeight: imageHeight,
 		overriddenImageWidth: imageWidth,
 		rotationInRadians,
@@ -32,7 +34,7 @@ export default function() {
 					flippedVertically ? -1 : 1,
 				);
 				context.scale(zoom, zoom);
-				context.drawImage(internalImage, 0, 0);
+				context.drawImage(internalImage, -internalImageWidth/2, -internalImageHeight/2);
 				let imageDataURL = canvas.toDataURL(`image/${imageFormat}`, imageQuality);
 				this.resetCancellation();
 				this.$emit('input', imageDataURL);

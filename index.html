@@ -171,6 +171,7 @@
 				app
 				clipped-left
 				clipped-right
+				color="primary"
 				dark
 			>
 				<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -205,6 +206,41 @@
 					></v-image-input>
 				</v-container>
 			</v-main>
+			<v-fab-transition>
+				<v-btn
+					v-if="imageDataURL"
+					bottom
+					color="primary"
+					dark
+					fab
+					fixed
+					right
+					@click="dialog = !dialog"
+				>
+					<v-icon>mdi-image</v-icon>
+				</v-btn>
+			</v-fab-transition>
+			<v-dialog
+				max-width="800px"
+				v-model="dialog"
+			>
+				<v-card>
+					<v-container>
+						<v-img
+							v-if="imageDataURL"
+							:src="imageDataURL"
+							contain
+						></v-img>
+					</v-container>
+					<v-card-actions>
+						<v-spacer></v-spacer>
+						<v-btn
+							text
+							@click="dialog = false"
+						>close</v-btn>
+					</v-card-actions>
+				</v-card>
+			</v-dialog>
 		</v-app>
 		<script src="./demo/script.js"></script>
 	</body>

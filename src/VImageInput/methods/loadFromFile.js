@@ -16,7 +16,13 @@ export default function(file) {
 		if (!cancelled) {
 			this.loadError = true;
 			this.loading = false;
-			this.resetCancellation();
+			let timer = setTimeout(() => {
+				this.loadError = false;
+				this.resetCancellation();
+			}, 1000);
+			onCancel = (() => {
+				clearTimeout(timer);
+			});
 		}
 	});
 	let timer = setTimeout(() => {
@@ -36,6 +42,7 @@ export default function(file) {
 						this.loadSuccess = true;
 						this.loading = false;
 						let timer = setTimeout(() => {
+							this.loadSuccess = false;
 							this.internalImage = image;
 							this.reset();
 							this.resetCancellation();

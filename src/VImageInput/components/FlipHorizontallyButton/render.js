@@ -2,8 +2,8 @@ import MyButton from '../ActionButton';
 
 export default function(h, {parent}) {
 	let {
-		flipHorizontally: onClick,
 		flipHorizontallyIcon: icon,
+		onClickToFlipHorizontally: onClick,
 	} = parent;
 	return h(
 		MyButton,

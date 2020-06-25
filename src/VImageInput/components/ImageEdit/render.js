@@ -7,20 +7,13 @@ export default function(h, {
 	let {
 		animated,
 		disabled,
-		displayedTranslationHorizontally,
-		displayedTranslationVertically,
-		displayedZoom,
-		flippedHorizontally,
-		flippedVertically,
+		displayedImageHeight,
+		displayedImageTransformation,
+		displayedImageWidth,
 		imageBackgroundColor,
 		internalImageDataURL,
-		lockDisplayedAnimations,
 		onPanToTranslate,
-		overriddenImageHeight: imageHeight,
-		overriddenImageWidth: imageWidth,
-		rotationInTurns,
 		translatable,
-		unlockDisplayedAnimations,
 	} = parent;
 	let {
 		key,
@@ -49,18 +42,7 @@ export default function(h, {
 					{
 						style: {
 							display: 'block',
-							transform: [
-								`scale(${displayedZoom})`,
-								`scale(${[
-									flippedHorizontally ? -1 : 1,
-									flippedVertically ? -1 : 1,
-								].join(',')})`,
-								`rotate(${rotationInTurns}turn)`,
-								`translate(${[
-									`${displayedTranslationHorizontally}px`,
-									`${displayedTranslationVertically}px`,
-								].join(',')})`,
-							].join(' '),
+							transform: displayedImageTransformation,
 							position: 'relative',
 							...(imageBackgroundColor ? {backgroundColor: imageBackgroundColor} : {}),
 							...(animated ? {transition: `all ${1/2}s`} : {}),
@@ -78,7 +60,7 @@ export default function(h, {
 										rawName: 'v-claw:pan',
 										value: onPanToTranslate,
 									},
-									{
+									/*{
 										name: 'Claw',
 										arg: 'panStart',
 										rawName: 'v-claw:panStart',
@@ -89,7 +71,7 @@ export default function(h, {
 										arg: 'panEnd',
 										rawName: 'v-claw:panEnd',
 										value: unlockDisplayedAnimations,
-									},
+									},*/
 								]}
 							)
 							: {}
@@ -103,9 +85,9 @@ export default function(h, {
 					style: {
 						...cssPositionCenter,
 						boxShadow: '0 0 4000px 4000px rgba(0,0,0,0.5)',
-						height: `${imageHeight}px`,
+						height: `${displayedImageHeight}px`,
 						pointerEvents: 'none',
-						width: `${imageWidth}px`,
+						width: `${displayedImageWidth}px`,
 					},
 				},
 			),

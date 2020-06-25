@@ -2,7 +2,7 @@ import MyButton from '../ActionButton';
 
 export default function(h, {parent}) {
 	let {
-		reset: onClick,
+		onClickToReset: onClick,
 		resetIcon: icon,
 	} = parent;
 	return h(

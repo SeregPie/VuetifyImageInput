@@ -1,17 +1,15 @@
 export default function(h, {parent}) {
 	let {
 		disabled,
-		overriddenMaxZoom: maxZoom,
-		overriddenMinZoom: minZoom,
-		setZoom,
+		maxZoom,
+		minZoom,
+		onClickToZoomIn,
+		onClickToZoomOut,
+		onInputToSetZoom,
 		zoom,
-		zoomIn,
 		zoomInIcon,
-		zoomOut,
 		zoomOutIcon,
 		zoomSnap,
-		lockDisplayedAnimations,
-		unlockDisplayedAnimations,
 	} = parent;
 	return h(
 		'VSlider',
@@ -28,11 +26,11 @@ export default function(h, {parent}) {
 				value: zoom,
 			},
 			on: {
-				'click:append': zoomIn,
-				'click:prepend': zoomOut,
-				end: unlockDisplayedAnimations,
-				input: setZoom,
-				start: lockDisplayedAnimations,
+				'click:append': onClickToZoomIn,
+				'click:prepend': onClickToZoomOut,
+				//end: unlockDisplayedAnimations,
+				input: onInputToSetZoom,
+				//start: lockDisplayedAnimations,
 			},
 		},
 	);

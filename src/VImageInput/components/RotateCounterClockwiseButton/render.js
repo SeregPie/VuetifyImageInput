@@ -2,7 +2,7 @@ import MyButton from '../ActionButton';
 
 export default function(h, {parent}) {
 	let {
-		rotateCounterClockwise: onClick,
+		onClickToRotateCounterClockwise: onClick,
 		rotateCounterClockwiseIcon: icon,
 	} = parent;
 	return h(

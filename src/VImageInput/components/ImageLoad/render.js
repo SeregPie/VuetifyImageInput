@@ -9,10 +9,10 @@ export default function(h, {
 		disabled,
 		errorIcon,
 		loadError,
-		loadFromFile,
 		loading,
 		loadProgress,
 		loadSuccess,
+		onClickToLoad,
 		successIcon,
 		uploadIcon,
 	} = parent;
@@ -32,22 +32,7 @@ export default function(h, {
 				cursor: (disabled || loading ? undefined : 'pointer'),
 			},
 			on: {
-				click(event) {
-					event.preventDefault();
-					event.stopPropagation();
-					let input = document.createElement('input');
-					input.setAttribute('type', 'file');
-					input.addEventListener('change', event => {
-						event.preventDefault();
-						let {files} = event.target;
-						if (files) {
-							if (files.length) {
-								loadFromFile(files[0]);
-							}
-						}
-					});
-					input.click();
-				},
+				click: onClickToLoad,
 			},
 			key,
 		},

@@ -2,7 +2,7 @@ import MyButton from '../ActionButton';
 
 export default function(h, {parent}) {
 	let {
-		onClickToRotateClockwise: onClick,
+		rotateClockwise: click,
 		rotateClockwiseIcon: icon,
 	} = parent;
 	return h(
@@ -12,7 +12,7 @@ export default function(h, {parent}) {
 				icon,
 			},
 			on: {
-				click: onClick,
+				click,
 			},
 		},
 	);

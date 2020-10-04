@@ -1,5 +1,5 @@
 import {terser} from 'rollup-plugin-terser';
-import buble from '@rollup/plugin-buble';
+import babel from '@rollup/plugin-babel';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import serve from 'rollup-plugin-serve';
 
@@ -7,7 +7,10 @@ import {main} from './package.json';
 
 let plugins = [
 	nodeResolve(),
-	buble({objectAssign: 'Object.assign'}),
+	babel({
+		babelHelpers: 'bundled',
+		presets: ['@babel/preset-env'],
+	}),
 	terser(),
 ];
 

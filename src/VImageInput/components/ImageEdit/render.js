@@ -8,8 +8,8 @@ export default function(h, {
 		animated,
 		disabled,
 		displayedImageHeight,
-		displayedImageTransformation,
 		displayedImageWidth,
+		displayedTransformation,
 		imageBackgroundColor,
 		internalImageDataURL,
 		onPanToTranslate,
@@ -42,7 +42,7 @@ export default function(h, {
 					{
 						style: {
 							display: 'block',
-							transform: displayedImageTransformation,
+							transform: displayedTransformation,
 							position: 'relative',
 							...(imageBackgroundColor ? {backgroundColor: imageBackgroundColor} : {}),
 							...(animated ? {transition: `all ${1/2}s`} : {}),

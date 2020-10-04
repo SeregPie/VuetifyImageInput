@@ -8,176 +8,14 @@ import Math_clamp from '../core/Math/clamp';
 import Math_turnsToRadians from '../../core/Math/turnsToRadians';
 
 export default function(props, {emit}) {
-	let {imageWidth} = props;
-	let rawImageWidthRef = ref(imageWidth);
-	watch(() => props.imageWidth, value => {
-		rawImageWidthRef.value = value;
-	});
-	let {imageHeight} = props;
-	let rawImageHeightRef = ref(imageHeight);
-	watch(() => props.imageHeight, value => {
-		rawImageHeightRef.value = value;
-	});
-	let translationHorizontally = 0;
-	let rawTranslationHorizontallyRef = ref(translationHorizontally);
-	let translationVertically = 0;
-	let rawTranslationVerticallyRef = ref(translationVertically);
-	let rotationInTurns = 0;
-	let rawRotationInTurnsRef = ref(rotationInTurns);
-	let flippedHorizontally = false;
-	let flippedHorizontallyRef = ref(flippedHorizontally);
-	let flippedVertically = false;
-	let flippedVerticallyRef = ref(flippedVertically);
-	let zoom = 0;
-	let rawZoom = ref(zoom);
-	let imageWidthRef = computed(() => {
-		let min = props.imageMinWidth;
-		let max = props.imageMaxWidth;
-		let n = rawImageWidthRef.value;
-		return Math_clamp(n, min, max);
-	});
-	watch(imageWidthRef, value => {
-		emit('update:imageWidth', value);
-	});
-	let imageHeightRef = computed(() => {
-		let min = props.imageMinHeight;
-		let max = props.imageMaxHeight;
-		let n = rawImageHeightRef.value;
-		return Math_clamp(n, min, max);
-	});
-	watch(imageHeightRef, value => {
-		emit('update:imageHeight', value);
-	});
-	let minTranslationHorizontallyRef = computed(() => {
-		//todo
-	});
-	let maxTranslationHorizontallyRef = computed(() => {
-		//todo
-	});
-	let translationHorizontallyRef = computed(() => {
-		let min = minTranslationHorizontallyRef.value;
-		let max = maxTranslationHorizontallyRef.value;
-		let n = rawTranslationHorizontallyRef.value;
-		return Math_clamp(n, min, max);
-	});
-	let minTranslationVerticallyRef = computed(() => {
-		//todo
-	});
-	let maxTranslationVerticallyRef = computed(() => {
-		//todo
-	});
-	let translationVerticallyRef = computed(() => {
-		let min = minTranslationVerticallyRef.value;
-		let max = maxTranslationVerticallyRef.value;
-		let n = rawTranslationVerticallyRef.value;
-		return Math_clamp(n, min, max);
-	});
-	let rotationInTurnsRef = computed(() => {
-		let value = rawRotationInTurnsRef.value;
-		value %= 1;
-		if (value < 0) {
-			value += 1;
-		}
-		return value;
-	});
-	let rotationInRadiansRef = computed(() => {
-		return Math_turnsToRadians(state.rotationInTurns);
-	});
-	let minZoomRef = computed(() => {
-		// todo
-	});
-	let maxZoomRef = computed(() => {
-		let min = minZoomRef.value;
-		let max = props.maxZoom;
-		return Math.max(min, max);
-	});
-	let zoomRef = computed(() => {
-		let min = minZoomRef.value;
-		let max = maxZoomRef.value;
-		let n = rawZoomRef.value;
-		return Math_clamp(n, min, max);
-	});
-	let zoomDeltaRef = computed(() => {
-		let min = minZoomRef.value;
-		let max = maxZoomRef.value;
-		return (max - min) / 10;
-	});
-	let zoomSnapRef = computed(() => {
-		let min = minZoomRef.value;
-		let max = maxZoomRef.value;
-		return (max - min) / 1000;
-	});
-	let showImageSizeRef = ref(false);
-	{
-		let timer;
-		watch([
-			imageWidthRef,
-			imageHeightRef,
-		], () => {
-			showImageSizeRef.value = true;
-			clearTimeout(timer);
-			timer = setTimeout(() => {
-				showImageSizeRef.value = false;
-			}, 2000);
-		});
-	}
-	let internalImageRef = ref(null);
-	let internalImageWidthRef = computed(() => {
-		let image = internalImageRef.value;
-		return image ? image.naturalWidth : 0;
-	});
-	let internalImageHeightRef = computed(() => {
-		let image = internalImageRef.value;
-		return image ? image.naturalHeight : 0;
-	});
-	let internalImageDataURLRef = computed(() => {
-		let image = internalImageRef.value;
-		return image ? image.src : null;
-	});
-	let statusPending = 0;
-	let statusSuccess = 1;
-	let statusError = 2;
-	let loadStatusRef = ref(null);
-	let loadProgressRef = ref(0);
-	let loadingRef = computed(() => {
-		let loadStatus = loadStatusRef.value;
-		return loadStatus === statusPending;
-	});
-	let loadSuccessRef = computed(() => {
-		let loadStatus = loadStatusRef.value;
-		return loadStatus === statusSuccess;
-	});
-	let loadErrorRef = computed(() => {
-		let loadStatus = loadStatusRef.value;
-		return loadStatus === statusError;
-	});
+	/*
+
+
+
 	let onClickToLoad = function() {
 		//todo
 	};
-	let rotate = function(turns) {
-		if (state.flippedHorizontally !== state.flippedVertically) {
-			turns *= -1;
-		}
-		state.rotationInTurns += turns;
-	};
-	let rotateClockwise = function() {
-		rotate(+1/4);
-	};
-	let rotateCounterClockwise = function() {
-		rotate(-1/4);
-	};
-	let flipHorizontally = function() {
-		state.flippedHorizontally = !state.flippedHorizontally;
-	};
-	let flipVertically = function() {
-		state.flippedVertically = !state.flippedVertically;
-	};
-	let zoomIn = function() {
-		state.zoom -= state.zoomDelta;
-	};
-	let zoomOut = function() {
-		state.zoom += state.zoomDelta;
-	};
+
 
 	/*let state = reactive({
 
@@ -228,14 +66,14 @@ export default function(props, {emit}) {
 			imageHeight,
 			imageWidth,
 		} = props;
-		rawImageWidthRef.value = imageWidth;
-		rawImageHeightRef.value = imageHeight;
-		rawTranslationHorizontallyRef.value = translationHorizontally;
-		rawTranslationVerticallyRef.value = translationVertically;
-		rawRotationInTurnsRef.value = rotationInTurns;
-		flippedHorizontallyRef.value = flippedHorizontally;
-		flippedVerticallyRef.value = flippedVertically;
-		rawZoomRef.value = zoom;
+		rawImageWidth.value = imageWidth;
+		rawImageHeight.value = imageHeight;
+		rawTranslationHorizontally.value = translationHorizontally;
+		rawTranslationVertically.value = translationVertically;
+		rawRotationInTurns.value = rotationInTurns;
+		flippedHorizontally.value = flippedHorizontally;
+		flippedVertically.value = flippedVertically;
+		rawZoom.value = zoom;
 	};
 	let cancel = Function_noop;
 	let loadFromFile = function(file) {
@@ -277,19 +115,7 @@ export default function(props, {emit}) {
 		state.internalImage = null;
 		reset();
 	};
-	{
-		let timer;
-		watch([
-			() => state.imageWidth,
-			() => state.imageHeight,
-		], () => {
-			state.showImageSize = true;
-			clearTimeout(timer);
-			timer = setTimeout(() => {
-				state.showImageSize = false;
-			}, 2000);
-		});
-	}
+
 	watch(() => props.value, imageDataURL => {
 		if (imageDataURL) {
 			if (imageDataURL !== state.imageDataURL) {
@@ -415,49 +241,241 @@ export default function(props, {emit}) {
 	let onPanToResizeBottom = function(event) {
 		state.imageHeight += (event.y - event.previousY) * 2;
 	};
-	let onPanToResizeLeftTop = function(event) {
+*/
+
+	let statusPending = {};
+	let statusSuccess = {};
+	let statusError = {};
+	let loadStatusRef = ref(null);
+	let loadProgressRef = ref(0);
+	let load = (() => {
+		// todo
+	});
+	let loadingRef = computed(() => {
+		let status = loadStatusRef.value;
+		return status === statusPending;
+	});
+	let loadSuccessRef = computed(() => {
+		let status = loadStatusRef.value;
+		return status === statusSuccess;
+	});
+	let loadErrorRef = computed(() => {
+		let status = loadStatusRef.value;
+		return status === statusError;
+	});
+	let internalImageRef = ref(null);
+	let internalImageWidthRef = computed(() => {
+		let image = internalImageRef.value;
+		return image ? image.naturalWidth : 0;
+	});
+	let internalImageHeightRef = computed(() => {
+		let image = internalImageRef.value;
+		return image ? image.naturalHeight : 0;
+	});
+	let internalImageDataURLRef = computed(() => {
+		let image = internalImageRef.value;
+		return image ? image.src : null;
+	});
+	let {imageWidth} = props;
+	let rawImageWidthRef = ref(imageWidth);
+	watch(() => props.imageWidth, value => {
+		rawImageWidthRef.value = value;
+	});
+	let imageWidthRef = computed(() => {
+		let min = props.imageMinWidth;
+		let max = props.imageMaxWidth;
+		let n = rawImageWidthRef.value;
+		return Math_clamp(n, min, max);
+	});
+	watch(imageWidthRef, value => {
+		emit('update:imageWidth', value);
+	});
+	let {imageHeight} = props;
+	let rawImageHeightRef = ref(imageHeight);
+	watch(() => props.imageHeight, value => {
+		rawImageHeightRef.value = value;
+	});
+	let imageHeightRef = computed(() => {
+		let min = props.imageMinHeight;
+		let max = props.imageMaxHeight;
+		let n = rawImageHeightRef.value;
+		return Math_clamp(n, min, max);
+	});
+	watch(imageHeightRef, value => {
+		emit('update:imageHeight', value);
+	});
+	let flippedHorizontally = false;
+	let flippedHorizontallyRef = ref(flippedHorizontally);
+	let flipHorizontally = (() => {
+		flippedHorizontallyRef.value = !flippedHorizontallyRef.value;
+	});
+	let flippedVertically = false;
+	let flippedVerticallyRef = ref(flippedVertically);
+	let flipVertically = (() => {
+		flippedVerticallyRef.value = !flippedVerticallyRef.value;
+	});
+	let rotationInTurns = 0;
+	let rawRotationInTurnsRef = ref(rotationInTurns);
+	let rotationInTurnsRef = computed(() => {
+		let n = rawRotationInTurnsRef.value;
+		n %= 1;
+		if (n < 0) {
+			n += 1;
+		}
+		return n;
+	});
+	let rotationInRadiansRef = computed(() => Math_turnsToRadians(rotationInTurnsRef.value));
+	let rotate = (turns => {
+		let flippedX = flippedHorizontallyRef.value;
+		let flippedY = flippedVerticallyRef.value;
+		if (flippedX !== flippedY) {
+			turns *= -1;
+		}
+		rawRotationInTurnsRef.value += turns;
+	});
+	let rotationDelta = 1/4;
+	let rotateClockwise = (() => {
+		let delta = rotationDelta;
+		rotate(+delta);
+	});
+	let rotateCounterClockwise = (() => {
+		let delta = rotationDelta;
+		rotate(-delta);
+	});
+	let minTranslationHorizontallyRef = computed(() => {
+		//todo
+	});
+	let maxTranslationHorizontallyRef = computed(() => {
+		//todo
+	});
+	let translationHorizontally = 0;
+	let rawTranslationHorizontallyRef = ref(translationHorizontally);
+	let translationHorizontallyRef = computed(() => {
+		let min = minTranslationHorizontallyRef.value;
+		let max = maxTranslationHorizontallyRef.value;
+		let n = rawTranslationHorizontallyRef.value;
+		return Math_clamp(n, min, max);
+	});
+	let minTranslationVerticallyRef = computed(() => {
+		//todo
+	});
+	let maxTranslationVerticallyRef = computed(() => {
+		//todo
+	});
+	let translationVertically = 0;
+	let rawTranslationVerticallyRef = ref(translationVertically);
+	let translationVerticallyRef = computed(() => {
+		let min = minTranslationVerticallyRef.value;
+		let max = maxTranslationVerticallyRef.value;
+		let n = rawTranslationVerticallyRef.value;
+		return Math_clamp(n, min, max);
+	});
+	let minZoomRef = computed(() => {
+		// todo
+	});
+	let maxZoomRef = computed(() => {
+		let min = minZoomRef.value;
+		let max = props.maxZoom;
+		return Math.max(min, max);
+	});
+	let zoom = 0;
+	let rawZoomRef = ref(zoom);
+	let zoomRef = computed(() => {
+		let min = minZoomRef.value;
+		let max = maxZoomRef.value;
+		let n = rawZoomRef.value;
+		return Math_clamp(n, min, max);
+	});
+	let setZoom = (() => {
+		// todo
+	});
+	let zoomBy = (() => {
+		// todo
+	});
+	let zoomDeltaRef = computed(() => {
+		let min = minZoomRef.value;
+		let max = maxZoomRef.value;
+		return (max - min) / 10;
+	});
+	let zoomIn = (() => {
+		let delta = zoomDeltaRef.value;
+		zoomBy(-delta);
+	});
+	let zoomOut = (() => {
+		let delta = zoomDeltaRef.value;
+		zoomBy(+delta);
+	});
+	let zoomSnapRef = computed(() => {
+		let min = minZoomRef.value;
+		let max = maxZoomRef.value;
+		return (max - min) / 1000;
+	});
+	let animatedRef = ref(true);
+	let onInteractStart = (() => {
+		animatedRef.value = false;
+		// todo
+	});
+	let onInteractEnd = (() => {
+		animatedRef.value = true;
+		// todo
+	});
+	let showImageSizeRef = ref(false);
+	{
+		let timer;
+		watch([
+			imageWidthRef,
+			imageHeightRef,
+		], () => {
+			showImageSizeRef.value = true;
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				showImageSizeRef.value = false;
+			}, 2000);
+		});
+	}
+	let onPanToResizeLeft = ((event) => {
+		// todo;
+	});
+	let onPanToResizeRight = ((event) => {
+		// todo;
+	});
+	let onPanToResizeTop = ((event) => {
+		// todo;
+	});
+	let onPanToResizeBottom = ((event) => {
+		// todo;
+	});
+	let onPanToResizeLeftTop = ((event) => {
 		onPanToResizeLeft(event);
 		onPanToResizeTop(event);
-	};
-	let onPanToResizeLeftBottom = function(event) {
+	});
+	let onPanToResizeLeftBottom = ((event) => {
 		onPanToResizeLeft(event);
 		onPanToResizeBottom(event);
-	};
-	let onPanToResizeRightTop = function(event) {
+	});
+	let onPanToResizeRightTop = ((event) => {
 		onPanToResizeRight(event);
 		onPanToResizeTop(event);
-	};
-	let onPanToResizeRightBottom = function(event) {
+	});
+	let onPanToResizeRightBottom = ((event) => {
 		onPanToResizeRight(event);
 		onPanToResizeBottom(event);
-	};
-	let onInputToSetZoom = function(value) {
-		state.zoom = value;
-	};*/
+	});
+	let onPanToTranslate = ((event) => {
+		// todo
+	});
 	return {
 		animated: animatedRef,
-		displayedImageHeight: displayedImageHeightRef,
-		displayedImageWidth: displayedImageWidthRef,
-		displayedTransformation: displayedImageTransformationRef,
-		flippedHorizontally: flippedHorizontallyRef,
-		flippedVertically: flippedVerticallyRef,
-		internalImageDataURL: internalImageDataURLRef,
+		clear,
+		flipHorizontally,
+		flipVertically,
+		load,
 		loadError: loadErrorRef,
 		loading: loadingRef,
 		loadProgress: loadProgressRef,
 		loadSuccess: loadSuccessRef,
 		maxZoom: maxZoomRef,
 		minZoom: minZoomRef,
-		onClickToClear: clear,
-		onClickToFlipHorizontally: flipHorizontally,
-		onClickToFlipVertically: flipVertically,
-		onClickToLoad,
-		onClickToReset: reset,
-		onClickToRotateClockwise: rotateClockwise,
-		onClickToRotateCounterClockwise: rotateCounterClockwise,
-		onClickToZoomIn: zoomIn,
-		onClickToZoomOut: zoomOut,
-		onInputToSetZoom,
 		onPanToResizeBottom,
 		onPanToResizeLeft,
 		onPanToResizeLeftBottom,
@@ -467,7 +485,15 @@ export default function(props, {emit}) {
 		onPanToResizeRightTop,
 		onPanToResizeTop,
 		onPanToTranslate,
+		reset,
+		rotate,
+		rotateClockwise,
+		rotateCounterClockwise,
+		setZoom,
+		showImageSize: showImageSizeRef,
 		zoom: zoomRef,
+		zoomIn,
+		zoomOut,
 		zoomSnap: zoomSnapRef,
 	};
 }

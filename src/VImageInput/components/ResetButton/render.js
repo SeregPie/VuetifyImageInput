@@ -2,7 +2,7 @@ import MyButton from '../ActionButton';
 
 export default function(h, {parent}) {
 	let {
-		onClickToReset: onClick,
+		reset: click,
 		resetIcon: icon,
 	} = parent;
 	return h(
@@ -12,7 +12,7 @@ export default function(h, {parent}) {
 				icon,
 			},
 			on: {
-				click: onClick,
+				click,
 			},
 		},
 	);

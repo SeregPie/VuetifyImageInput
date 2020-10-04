@@ -2,8 +2,8 @@ import MyButton from '../ActionButton';
 
 export default function(h, {parent}) {
 	let {
+		clear: click,
 		clearIcon: icon,
-		onClickToClear: onClick,
 	} = parent;
 	return h(
 		MyButton,
@@ -12,7 +12,7 @@ export default function(h, {parent}) {
 				icon,
 			},
 			on: {
-				click: onClick,
+				click,
 			},
 		},
 	);

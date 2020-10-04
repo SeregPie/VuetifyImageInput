@@ -1,23 +1,28 @@
-export default function(h, {
-	listeners,
-	parent,
-	props,
+import {
+	h,
+	resolveComponent,
+} from 'vue';
+
+export default function({
+	disabled,
+	icon,
+	onClick,
 }) {
 	let {disabled} = parent;
 	let {icon} = props;
+	let VBtn = resolveComponent('VBtn')
+	let VIcon = resolveComponent('VIcon')
 	return h(
-		'VBtn',
+		VBtn,
 		{
 			class: 'ma-1',
-			props: {
-				disabled,
-				flat: true,
-				icon: true,
-			},
-			on: listeners,
+			disabled,
+			flat: true,
+			icon: true,
+			onClick,
 		},
 		[h(
-			'VIcon',
+			VIcon,
 			icon,
 		)],
 	);

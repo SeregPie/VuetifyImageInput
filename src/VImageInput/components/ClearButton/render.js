@@ -1,18 +1,18 @@
-import MyButton from '../ActionButton';
+import Button from '../Button';
 
 export default function(h, {parent}) {
 	let {
-		clear: click,
+		clear: onClick,
 		clearIcon: icon,
 	} = parent;
 	return h(
-		MyButton,
+		Button,
 		{
 			props: {
 				icon,
 			},
 			on: {
-				click,
+				click: onClick,
 			},
 		},
 	);

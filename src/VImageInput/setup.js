@@ -160,16 +160,16 @@ export default function(props, {emit}) {
 		}
 		state.rotationInTurns += turns;
 	};
-	let rotateClockwise = function() {
+	let rotateClockwise = (() => {
 		rotate(+1/4);
-	};
-	let rotateCounterClockwise = function() {
+	});
+	let rotateCounterClockwise = (() => {
 		rotate(-1/4);
-	};
-	let flipHorizontally = function() {
+	});
+	let flipHorizontally = (() => {
 		state.flippedHorizontally = !state.flippedHorizontally;
 	};
-	let flipVertically = function() {
+	let flipVertically = (() => {
 		state.flippedVertically = !state.flippedVertically;
 	};
 	let zoomIn = function() {

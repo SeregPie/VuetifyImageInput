@@ -10,5 +10,6 @@ export default function() {
 		internalImageHeight: 0,
 		internalImageWidth: 0,
 		rotated: false,
+		fileInfo: null
 	};
 }

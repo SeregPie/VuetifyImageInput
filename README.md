@@ -75,6 +75,7 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
   :image-quality="0.85"
   clearable
   image-format="jpeg"
+  @file-info="onFileInfo"
 />
 ```
 

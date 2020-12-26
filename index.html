@@ -137,6 +137,11 @@
 			>
 				<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 				<v-toolbar-title>VuetifyImageInput</v-toolbar-title>
+				<v-chip v-if="fileInfo" label style="margin-left: 24px;">
+					<span>{{ fileInfo.name }}</span>,&nbsp;
+					<b><span>{{ fileInfo.type }}</span></b>,&nbsp;
+					<span>{{ fileInfo.lastModified }}</span>
+				</v-chip>
 				<v-spacer></v-spacer>
 				<v-btn
 					icon
@@ -169,6 +174,7 @@
 						:image-min-scaling="imageMinScaling"
 						:image-width="Number(imageWidth)"
 						:readonly="readonly"
+						@file-info="onFileInfo"
 					></v-image-input>
 				</v-container>
 			</v-content>

@@ -19,20 +19,20 @@ export default function(props, {emit}) {
 
 	/*let state = reactive({
 
-		translationHorizontally: computed(() => {
-			return Math_clamp(translationHorizontally, state.minTranslationHorizontally, state.maxTranslationHorizontally);
+		translationX: computed(() => {
+			return Math_clamp(translationX, state.minTranslationX, state.maxTranslationX);
 		}),
-		displayedTranslationHorizontally: (() => {
+		displayedTranslationX: (() => {
 			let r = ref(zoom);
 			let margin = 32;
 			let damping = 3;
 			return computed(() => {
 				if (state.animated) {
-					return state.normalizedTranslationHorizontally;
+					return state.normalizedTranslationX;
 				}
 				let {
-					minTranslationHorizontally: min,
-					maxTranslationHorizontally: max,
+					minTranslationX: min,
+					maxTranslationX: max,
 				} = state;
 				let {value: n} = r;
 				if (n < min) {
@@ -51,40 +51,40 @@ export default function(props, {emit}) {
 		return [
 			`scale(${displayedZoom})`,
 			`scale(${[
-				flippedHorizontally ? -1 : 1,
-				flippedVertically ? -1 : 1,
+				flippedX ? -1 : 1,
+				flippedY ? -1 : 1,
 			].join(',')})`,
-			`rotate(${displayedRotationInTurns}turn)`,
+			`rotate(${displayedRotation}turn)`,
 			`translate(${[
-				`${displayedTranslationHorizontally}px`,
-				`${displayedTranslationVertically}px`,
+				`${displayedTranslationX}px`,
+				`${displayedTranslationY}px`,
 			].join(',')})`,
 		].join(' ');
 	});
 	let reset = function() {
 		let {
-			imageHeight,
-			imageWidth,
+			imageSizeY,
+			imageSizeX,
 		} = props;
-		rawImageWidth.value = imageWidth;
-		rawImageHeight.value = imageHeight;
-		rawTranslationHorizontally.value = translationHorizontally;
-		rawTranslationVertically.value = translationVertically;
-		rawRotationInTurns.value = rotationInTurns;
-		flippedHorizontally.value = flippedHorizontally;
-		flippedVertically.value = flippedVertically;
+		imageSizeXRaw.value = imageSizeX;
+		rawImageSizeY.value = imageSizeY;
+		rawTranslationX.value = translationX;
+		rawTranslationY.value = translationY;
+		rawRotation.value = rotation;
+		flippedX.value = flippedX;
+		flippedY.value = flippedY;
 		rawZoom.value = zoom;
 	};
 	let cancel = Function_noop;
 	let loadFromFile = function(file) {
 		func(file, progress => {
-			state.loadProgress = progress;
+			state.loadingProgress = progress;
 		})
 			.then(image => {
 				cancellation.throwIfCancelled();
-				state.loadStatus = LoadSuccess;
+				state.loadingStatus = LoadSuccess;
 				let timer = setTimeout(() => {
-					state.loadStatus = null;
+					state.loadingStatus = null;
 					state.internalImage = image;
 				}, 1000);
 				onCancel(() => {
@@ -92,9 +92,9 @@ export default function(props, {emit}) {
 				});
 			})
 			.catch(() => {
-				state.loadStatus = LoadError;
+				state.loadingStatus = LoadError;
 				let timer = setTimeout(() => {
-					state.loadStatus = null;
+					state.loadingStatus = null;
 				}, 1000);
 				onCancel(() => {
 					clearTimeout(timer);
@@ -132,38 +132,38 @@ export default function(props, {emit}) {
 		let {internalImage} = state;
 		if (internalImage) {
 			let {
-				flippedHorizontally,
-				flippedVertically,
+				flippedX,
+				flippedY,
 				imageBackgroundColor,
 				imageFormat,
-				imageHeight,
+				imageSizeY,
 				imageQuality,
-				imageWidth,
-				internalImageHeight,
-				internalImageWidth,
+				imageSizeX,
+				internalImageSizeY,
+				internalImageSizeX,
 				rotationInRadians,
-				translationHorizontally,
-				translationVertically,
+				translationX,
+				translationY,
 				zoom,
 			} = state;
 			let timer = setTimeout(() => {
 				let canvas = document.createElement('canvas');
-				canvas.width = imageWidth;
-				canvas.height = imageHeight;
+				canvas.sizeX = imageSizeX;
+				canvas.sizeY = imageSizeY;
 				let context = canvas.getContext('2d');
 				if (imageBackgroundColor) {
 					context.fillStyle = imageBackgroundColor;
-					context.fillRect(0, 0, imageWidth, imageHeight);
+					context.fillRect(0, 0, imageSizeX, imageSizeY);
 				}
-				context.translate(imageWidth/2, imageHeight/2);
-				context.translate(translationHorizontally, translationVertically);
+				context.translate(imageSizeX/2, imageSizeY/2);
+				context.translate(translationX, translationY);
 				context.rotate(rotationInRadians);
 				context.scale(
-					flippedHorizontally ? -1 : 1,
-					flippedVertically ? -1 : 1,
+					flippedX ? -1 : 1,
+					flippedY ? -1 : 1,
 				);
 				context.scale(zoom, zoom);
-				context.drawImage(internalImage, -internalImageWidth/2, -internalImageHeight/2);
+				context.drawImage(internalImage, -internalImageSizeX/2, -internalImageSizeY/2);
 				let imageDataURL = canvas.toDataURL(`image/${imageFormat}`, imageQuality);
 				resetCancellation();
 				emit('input', imageDataURL);
@@ -177,8 +177,8 @@ export default function(props, {emit}) {
 		}
 	});
 	[
-		'imageWidth',
-		'imageHeight',
+		'imageSizeX',
+		'imageSizeY',
 	].forEach(key => {
 		watch(() => state[key], value => {
 			emit(`update:${key}`, value);
@@ -187,24 +187,24 @@ export default function(props, {emit}) {
 	let lock = function() {
 		state.animated = false;
 		state.displayedZoom = state.zoom;
-		state.displayedTranslationHorizontally = state.translationHorizontally;
-		state.displayedTranslationVertically = state.translationVertically;
-		state.displayedRotationInTurns = state.rotationInTurns;
+		state.displayedTranslationX = state.translationX;
+		state.displayedTranslationY = state.translationY;
+		state.displayedRotation = state.rotation;
 	};
 	let unlock = function() {
 		state.animated = true;
 		state.zoom = state.displayedZoom;
-		state.translationHorizontally = state.displayedTranslationHorizontally;
-		state.translationVertically = state.displayedTranslationVertically;
-		state.rotationInTurns = state.displayedRotationInTurns;
+		state.translationX = state.displayedTranslationX;
+		state.translationY = state.displayedTranslationY;
+		state.rotation = state.displayedRotation;
 	};
 	let onPanToTranslate = function(event) {
 		let {
-			displayedTranslationHorizontally: translationX,
-			displayedTranslationVertically: translationY,
+			displayedTranslationX: translationX,
+			displayedTranslationY: translationY,
 			displayedZoom: zoom,
-			flippedHorizontally: flippedX,
-			flippedVertically: flippedY,
+			flippedX: flippedX,
+			flippedY: flippedY,
 			rotationInRadians: a,
 		} = state;
 		let x = event.x - event.previousX;
@@ -222,53 +222,53 @@ export default function(props, {emit}) {
 		translationX += x * cosA + y * sinA;
 		translationY -= x * sinA - y * cosA;
 		Object.assign(state, {
-			displayedTranslationHorizontally: translationX,
-			displayedTranslationVertically: translationY,
+			displayedTranslationX: translationX,
+			displayedTranslationY: translationY,
 		});
 	};
 	let resizeLeft = function(pixels) {
-		state.imageWidth += pixels * 2;
+		state.imageSizeX += pixels * 2;
 	};
 	let onPanToResizeLeft = function(event) {
-		a = state.imageWidth - (event.x - event.previousX) * 2;
+		a = state.imageSizeX - (event.x - event.previousX) * 2;
 	};
 	let onPanToResizeRight = function(event) {
-		a = state.imageWidth + (event.x - event.previousX) * 2;
+		a = state.imageSizeX + (event.x - event.previousX) * 2;
 	};
 	let onPanToResizeTop = function(event) {
-		state.imageHeight -= (event.y - event.previousY) * 2;
+		state.imageSizeY -= (event.y - event.previousY) * 2;
 	};
 	let onPanToResizeBottom = function(event) {
-		state.imageHeight += (event.y - event.previousY) * 2;
+		state.imageSizeY += (event.y - event.previousY) * 2;
 	};
 */
 
 	let statusPending = {};
 	let statusSuccess = {};
-	let statusError = {};
-	let loadStatusRef = ref(null);
-	let loadProgressRef = ref(0);
+	let statusFailure = {};
+	let loadingStatusRef = ref(null);
+	let loadingProgressRef = ref(0);
 	let load = (() => {
 		// todo
 	});
-	let loadingRef = computed(() => {
-		let status = loadStatusRef.value;
+	let loadingPendingRef = computed(() => {
+		let status = loadingStatusRef.value;
 		return status === statusPending;
 	});
-	let loadSuccessRef = computed(() => {
-		let status = loadStatusRef.value;
+	let loadingSuccessRef = computed(() => {
+		let status = loadingStatusRef.value;
 		return status === statusSuccess;
 	});
-	let loadErrorRef = computed(() => {
-		let status = loadStatusRef.value;
-		return status === statusError;
+	let loadingFailureRef = computed(() => {
+		let status = loadingStatusRef.value;
+		return status === statusFailure;
 	});
 	let internalImageRef = ref(null);
-	let internalImageWidthRef = computed(() => {
+	let internalImageSizeXRef = computed(() => {
 		let image = internalImageRef.value;
 		return image ? image.naturalWidth : 0;
 	});
-	let internalImageHeightRef = computed(() => {
+	let internalImageSizeYRef = computed(() => {
 		let image = internalImageRef.value;
 		return image ? image.naturalHeight : 0;
 	});
@@ -276,62 +276,62 @@ export default function(props, {emit}) {
 		let image = internalImageRef.value;
 		return image ? image.src : null;
 	});
-	let {imageWidth} = props;
-	let rawImageWidthRef = ref(imageWidth);
-	watch(() => props.imageWidth, value => {
-		rawImageWidthRef.value = value;
+	let {imageSizeX} = props;
+	let imageSizeXRawRef = ref(imageSizeX);
+	watch(() => props.imageSizeX, value => {
+		imageSizeXRawRef.value = value;
 	});
-	let imageWidthRef = computed(() => {
+	let imageSizeXRef = computed(() => {
 		let min = props.imageMinWidth;
 		let max = props.imageMaxWidth;
-		let n = rawImageWidthRef.value;
+		let n = imageSizeXRawRef.value;
 		return Math_clamp(n, min, max);
 	});
-	watch(imageWidthRef, value => {
-		emit('update:imageWidth', value);
+	watch(imageSizeXRef, value => {
+		emit('update:imageSizeX', value);
 	});
-	let {imageHeight} = props;
-	let rawImageHeightRef = ref(imageHeight);
-	watch(() => props.imageHeight, value => {
-		rawImageHeightRef.value = value;
+	let {imageSizeY} = props;
+	let rawImageSizeYRef = ref(imageSizeY);
+	watch(() => props.imageSizeY, value => {
+		rawImageSizeYRef.value = value;
 	});
-	let imageHeightRef = computed(() => {
-		let min = props.imageMinHeight;
-		let max = props.imageMaxHeight;
-		let n = rawImageHeightRef.value;
+	let imageSizeYRef = computed(() => {
+		let min = props.imageSizeYMin;
+		let max = props.imageSizeYMax;
+		let n = rawImageSizeYRef.value;
 		return Math_clamp(n, min, max);
 	});
-	watch(imageHeightRef, value => {
-		emit('update:imageHeight', value);
+	watch(imageSizeYRef, value => {
+		emit('update:imageSizeY', value);
 	});
-	let flippedHorizontally = false;
-	let flippedHorizontallyRef = ref(flippedHorizontally);
-	let flipHorizontally = (() => {
-		flippedHorizontallyRef.value = !flippedHorizontallyRef.value;
+	let flippedX = false;
+	let flippedXRef = ref(flippedX);
+	let flipX = (() => {
+		flippedXRef.value = !flippedXRef.value;
 	});
-	let flippedVertically = false;
-	let flippedVerticallyRef = ref(flippedVertically);
-	let flipVertically = (() => {
-		flippedVerticallyRef.value = !flippedVerticallyRef.value;
+	let flippedY = false;
+	let flippedYRef = ref(flippedY);
+	let flipY = (() => {
+		flippedYRef.value = !flippedYRef.value;
 	});
-	let rotationInTurns = 0;
-	let rawRotationInTurnsRef = ref(rotationInTurns);
-	let rotationInTurnsRef = computed(() => {
-		let n = rawRotationInTurnsRef.value;
+	let rotation = 0;
+	let rawRotationRef = ref(rotation);
+	let rotationRef = computed(() => {
+		let n = rawRotationRef.value;
 		n %= 1;
 		if (n < 0) {
 			n += 1;
 		}
 		return n;
 	});
-	let rotationInRadiansRef = computed(() => Math_turnsToRadians(rotationInTurnsRef.value));
-	let rotate = (turns => {
-		let flippedX = flippedHorizontallyRef.value;
-		let flippedY = flippedVerticallyRef.value;
+	let rotationInRadiansRef = computed(() => Math_turnsToRadians(rotationRef.value));
+	let rotate = (n => {
+		let flippedX = flippedXRef.value;
+		let flippedY = flippedYRef.value;
 		if (flippedX !== flippedY) {
-			turns *= -1;
+			n *= -1;
 		}
-		rawRotationInTurnsRef.value += turns;
+		rawRotationRef.value += n;
 	});
 	let rotationDelta = 1/4;
 	let rotateClockwise = (() => {
@@ -342,35 +342,10 @@ export default function(props, {emit}) {
 		let delta = rotationDelta;
 		rotate(-delta);
 	});
-	let minTranslationHorizontallyRef = computed(() => {
-		//todo
-	});
-	let maxTranslationHorizontallyRef = computed(() => {
-		//todo
-	});
-	let translationHorizontally = 0;
-	let rawTranslationHorizontallyRef = ref(translationHorizontally);
-	let translationHorizontallyRef = computed(() => {
-		let min = minTranslationHorizontallyRef.value;
-		let max = maxTranslationHorizontallyRef.value;
-		let n = rawTranslationHorizontallyRef.value;
-		return Math_clamp(n, min, max);
-	});
-	let minTranslationVerticallyRef = computed(() => {
-		//todo
-	});
-	let maxTranslationVerticallyRef = computed(() => {
-		//todo
-	});
-	let translationVertically = 0;
-	let rawTranslationVerticallyRef = ref(translationVertically);
-	let translationVerticallyRef = computed(() => {
-		let min = minTranslationVerticallyRef.value;
-		let max = maxTranslationVerticallyRef.value;
-		let n = rawTranslationVerticallyRef.value;
-		return Math_clamp(n, min, max);
-	});
 	let minZoomRef = computed(() => {
+		let a = rotationInRadiansRef.value;
+		let x = imageSizeXRef.value;
+		let y = imageSizeYRef.value;
 		// todo
 	});
 	let maxZoomRef = computed(() => {
@@ -386,11 +361,13 @@ export default function(props, {emit}) {
 		let n = rawZoomRef.value;
 		return Math_clamp(n, min, max);
 	});
-	let setZoom = (() => {
-		// todo
+	let setZoom = (value => {
+		rawZoomRef.value = value;
 	});
-	let zoomBy = (() => {
-		// todo
+	let zoomBy = (n => {
+		let zoom = zoomRef.value;
+		zoom *= n;
+		rawZoomRef.value = zoom;
 	});
 	let zoomDeltaRef = computed(() => {
 		let min = minZoomRef.value;
@@ -410,6 +387,68 @@ export default function(props, {emit}) {
 		let max = maxZoomRef.value;
 		return (max - min) / 1000;
 	});
+	let minTranslationXRef = computed(() => {
+		let a = zoomRef.value;
+		let x = imageSizeXRef.value;
+		let y = imageSizeYRef.value;
+		//todo
+	});
+	let maxTranslationXRef = computed(() => {
+		let a = zoomRef.value;
+		let x = imageSizeXRef.value;
+		let y = imageSizeYRef.value;
+		//todo
+	});
+	let translationX = 0;
+	let rawTranslationXRef = ref(translationX);
+	let translationXRef = computed(() => {
+		let min = minTranslationXRef.value;
+		let max = maxTranslationXRef.value;
+		let n = rawTranslationXRef.value;
+		return Math_clamp(n, min, max);
+	});
+	let minTranslationYRef = computed(() => {
+		let a = zoomRef.value;
+		let x = imageSizeXRef.value;
+		let y = imageSizeYRef.value;
+		//todo
+	});
+	let maxTranslationYRef = computed(() => {
+		let a = zoomRef.value;
+		let x = imageSizeXRef.value;
+		let y = imageSizeYRef.value;
+		//todo
+	});
+	let translationY = 0;
+	let rawTranslationYRef = ref(translationY);
+	let translationYRef = computed(() => {
+		let min = minTranslationYRef.value;
+		let max = maxTranslationYRef.value;
+		let n = rawTranslationYRef.value;
+		return Math_clamp(n, min, max);
+	});
+	let translate = ((x, y) => {
+		let flippedX = flippedXRef.value;
+		let flippedY = flippedYRef.value;
+		let rotation = rotationInRadiansRef.value;
+		let translationX = translationXRef.value;
+		let translationY = translationYRef.value;
+		let zoom = zoomRef.value;
+		if (flippedX) {
+			x *= -1;
+		}
+		if (flippedY) {
+			y *= -1;
+		}
+		x /= zoom;
+		y /= zoom;
+		let sinA = Math.sin(rotation);
+		let cosA = Math.cos(rotation);
+		translationX += x * cosA + y * sinA;
+		translationY -= x * sinA - y * cosA;
+		rawTranslationXRef.value = translationX;
+		rawTranslationYRef.value = translationY;
+	});
 	let animatedRef = ref(true);
 	let onInteractStart = (() => {
 		animatedRef.value = false;
@@ -423,8 +462,8 @@ export default function(props, {emit}) {
 	{
 		let timer;
 		watch([
-			imageWidthRef,
-			imageHeightRef,
+			imageSizeXRef,
+			imageSizeYRef,
 		], () => {
 			showImageSizeRef.value = true;
 			clearTimeout(timer);
@@ -464,36 +503,5 @@ export default function(props, {emit}) {
 	let onPanToTranslate = ((event) => {
 		// todo
 	});
-	return {
-		animated: animatedRef,
-		clear,
-		flipHorizontally,
-		flipVertically,
-		load,
-		loadError: loadErrorRef,
-		loading: loadingRef,
-		loadProgress: loadProgressRef,
-		loadSuccess: loadSuccessRef,
-		maxZoom: maxZoomRef,
-		minZoom: minZoomRef,
-		onPanToResizeBottom,
-		onPanToResizeLeft,
-		onPanToResizeLeftBottom,
-		onPanToResizeLeftTop,
-		onPanToResizeRight,
-		onPanToResizeRightBottom,
-		onPanToResizeRightTop,
-		onPanToResizeTop,
-		onPanToTranslate,
-		reset,
-		rotate,
-		rotateClockwise,
-		rotateCounterClockwise,
-		setZoom,
-		showImageSize: showImageSizeRef,
-		zoom: zoomRef,
-		zoomIn,
-		zoomOut,
-		zoomSnap: zoomSnapRef,
-	};
+
 }

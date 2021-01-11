@@ -1,19 +1,16 @@
 (function() {
 
 	new Vue({
-		el: '#app',
+		el: '#App',
 		vuetify: new Vuetify(),
 		data: function() {
 			return {
 				clearable: true,
-				dialog: false,
 				disabled: false,
 				drawer: true,
 				flippable: true,
 				fullHeight: false,
 				fullWidth: false,
-				imageDataURL: null,
-				minZoom: 'cover',
 				resetable: true,
 				resizable: true,
 				rotatable: true,

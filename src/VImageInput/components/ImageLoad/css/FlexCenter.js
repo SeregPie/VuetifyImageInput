@@ -1,1 +1,1 @@
-export {default} from '../../../css/FlexCenter';
+export {default} from '../../../../styles/FlexCenter';

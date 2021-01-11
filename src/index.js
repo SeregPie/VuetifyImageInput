@@ -1,13 +1,5 @@
-import VImageInput from './VImageInput';
+import Component from './components/VImageInput';
 
-{
-	let {window} = globalThis;
-	if (window) {
-		let {Vue} = window;
-		if (Vue) {
-			Vue.component(VImageInput.name, VImageInput);
-		}
-	}
-}
+globalThis.window?.Vue?.component(Component.name, Component);
 
-export default VImageInput;
+export default Component;

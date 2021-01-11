@@ -1,1 +1,1 @@
-export {default} from '../../../css/PositionCenter';
+export {default} from '../../../../styles/PositionCenter';

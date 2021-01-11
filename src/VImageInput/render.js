@@ -1,7 +1,7 @@
-import cssFullHeight from './css/FullHeight';
-import cssFullWidth from './css/FullWidth';
-import cssPlaceholder from './css/Placeholder';
-import cssPositionCover from './css/PositionCover';
+import cssFullHeight from '../styles/FullHeight';
+import cssFullWidth from '../styles/FullWidth';
+import cssPlaceholder from '../styles/Placeholder';
+import cssPositionCover from '../styles/PositionCover';
 
 import MyClearButton from './components/ClearButton';
 import MyFlipHorizontallyButton from './components/FlipHorizontallyButton';
@@ -96,7 +96,6 @@ export default function(h) {
 						gridRow: 1,
 						justifyContent: 'center',
 						transition: 'opacity 0.3s cubic-bezier(0.25,0.8,0.5,1)',
-						...(internalImage ? {} : cssPlaceholder),
 					},
 				},
 				[
@@ -141,7 +140,29 @@ export default function(h) {
 					},
 				},
 				(zoomable
-					? [h(MyZoomSlider)]
+					? [h(
+						'VSlider',
+						{
+							class: 'ma-1',
+							props: {
+								appendIcon: zoomInIcon,
+								disabled,
+								hideDetails: true,
+								//max,
+								//min,
+								prependIcon: zoomOutIcon,
+								//step,
+								//value,
+							},
+							on: {
+								'click:append'() {},
+								'click:prepend'() {},
+								end() {},
+								input() {},
+								start() {},
+							},
+						},
+					)]
 					: []
 				),
 			),

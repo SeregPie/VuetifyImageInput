@@ -28,6 +28,11 @@
 				},
 			},
 		},
+		methods: {
+			onFileInfo (file) {
+				this.fileInfo = file
+			}
+		},
 	});
 
 })();

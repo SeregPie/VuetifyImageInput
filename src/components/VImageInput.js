@@ -1,5 +1,9 @@
-
-let {h} = VueDemi;
+let {
+	computed,
+	h,
+	reactive,
+	ref,
+} = VueDemi;
 
 import FullHeight from '../styles/FullHeight';
 import FullWidth from '../styles/FullWidth';
@@ -131,6 +135,31 @@ export default {
 		},
 	},
 	setup(props) {
+		let statusLoading = {};
+		let statusLoadingSuccess = {};
+		let statusLoadingError = {};
+		let loadingStatusRef = ref(null);
+		let loadingProgressRef = ref(0);
+		let load = (() => {
+			// todo
+		});
+		let loadingRef = computed(() => {
+			let status = loadingStatusRef.value;
+			return status === statusLoading;
+		});
+		let loadingSuccessRef = computed(() => {
+			let status = loadingStatusRef.value;
+			return status === statusLoadingSuccess;
+		});
+		let loadingErrorRef = computed(() => {
+			let status = loadingStatusRef.value;
+			return status === statusLoadingError;
+		});
+		let state = reactive({
+			loading: loadingRef,
+			loadingError: loadingErrorRef,
+			loadingSuccess: loadingSuccessRef,
+		});
 		return (() => {
 			let {
 				cancelIcon,

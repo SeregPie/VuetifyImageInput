@@ -5,6 +5,7 @@ let {
 	ref,
 } = VueDemi;
 
+import Math_clamp from '../core/Math/clamp';
 import FullHeight from '../styles/FullHeight';
 import FullWidth from '../styles/FullWidth';
 
@@ -155,45 +156,217 @@ export default {
 			let status = loadingStatusRef.value;
 			return status === statusLoadingError;
 		});
+		let rotateBy = (() => {
+			// todo
+		});
+		let rotationDelta = 1/4;
+		let rotateClockwise = (() => {
+			let delta = rotationDelta;
+			rotateBy(+delta);
+		});
+		let rotateCounterClockwise = (() => {
+			let delta = rotationDelta;
+			rotateBy(-delta);
+		});
+		let minZoomRef = computed(() => {
+			// todo
+			return 0;
+		});
+		let maxZoomRef = computed(() => {
+			// todo
+			return 1000;
+		});
+		let setZoom = (value => {
+			// todo
+		});
+		let zoomBy = (n => {
+			// todo
+		});
+		let zoomDeltaRef = computed(() => {
+			let min = minZoomRef.value;
+			let max = maxZoomRef.value;
+			return (max - min) / 10;
+		});
+		let zoomIn = (() => {
+			let delta = zoomDeltaRef.value;
+			zoomBy(-delta);
+		});
+		let zoomOut = (() => {
+			let delta = zoomDeltaRef.value;
+			zoomBy(+delta);
+		});
+		let zoomSnapRef = computed(() => {
+			let min = minZoomRef.value;
+			let max = maxZoomRef.value;
+			return (max - min) / 1000;
+		});
+		let flipHorizontally = (() => {
+			// todo
+		});
+		let flipVertically = (() => {
+			// todo
+		});
+		let clear = (() => {
+			// todo
+		});
+		let reset = (() => {
+			// todo
+		});
 		let state = reactive({
 			loading: loadingRef,
 			loadingError: loadingErrorRef,
 			loadingSuccess: loadingSuccessRef,
+			maxZoom: maxZoomRef,
+			minZoom: minZoomRef,
+			zoomDelta: zoomDeltaRef,
+			zoomSnap: zoomSnapRef,
+		});
+		let genButton = (({
+			icon,
+			onClick,
+		}) => {
+			let {disabled} = props;
+			return h(
+				'VBtn',
+				{
+					class: 'ma-1',
+					props: {
+						disabled,
+						flat: true,
+						icon: true,
+					},
+					on: {
+						click: onClick,
+					},
+				},
+				[h(
+					'VIcon',
+					icon,
+				)],
+			);
+		});
+		let genButtonClear = (() => {
+			let {clearIcon} = props;
+			return genButton({
+				icon: clearIcon,
+				onClick: clear,
+			});
+		});
+		let genButtonRotateClockwise = (() => {
+			let {rotateClockwiseIcon} = props;
+			return genButton({
+				icon: rotateClockwiseIcon,
+				onClick: rotateClockwise,
+			});
+		});
+		let genButtonRotateCounterClockwise = (() => {
+			let {rotateCounterClockwiseIcon} = props;
+			return genButton({
+				icon: rotateCounterClockwiseIcon,
+				onClick: rotateCounterClockwise,
+			});
+		});
+		let genButtonFlipHorizontally = (() => {
+			let {flipHorizontallyIcon} = props;
+			return genButton({
+				icon: flipHorizontallyIcon,
+				onClick: flipHorizontally,
+			});
+		});
+		let genButtonFlipVertically = (() => {
+			let {flipVerticallyIcon} = props;
+			return genButton({
+				icon: flipVerticallyIcon,
+				onClick: flipVertically,
+			});
+		});
+		let genButtonReset = (() => {
+			let {resetIcon} = props;
+			return genButton({
+				icon: resetIcon,
+				onClick: reset,
+			});
+		});
+		let genButtons = (() => {
+			let {
+				clearable,
+				flippable,
+				resetable,
+				rotatable,
+			} = props;
+			[
+				...(clearable
+					? [
+						genButtonClear(),
+						h('VSpacer'),
+					]
+					: []
+				),
+				...(rotatable
+					? [
+						genButtonRotateClockwise(),
+						genButtonRotateCounterClockwise(),
+					]
+					: []
+				),
+				...(flippable
+					? [
+						genButtonFlipHorizontally(),
+						genButtonFlipVertically(),
+					]
+					: []
+				),
+				...(resetable
+					? [
+						h('VSpacer'),
+						genButtonReset(),
+					]
+					: []
+				),
+			],
+		})
+		let genSliderZoom = (() => {
+			let {
+				disabled,
+				zoomInIcon,
+				zoomOutIcon,
+			} = props;
+			let {
+				maxZoom,
+				minZoom,
+				zoomSnap,
+			} = state;
+			return h(
+				'VSlider',
+				{
+					class: 'ma-1',
+					props: {
+						appendIcon: zoomInIcon,
+						disabled,
+						hideDetails: true,
+						max: maxZoom,
+						min: minZoom,
+						prependIcon: zoomOutIcon,
+						step: zoomSnap,
+						value: undefined,
+					},
+					on: {
+						'click:append': zoomIn,
+						'click:prepend': zoomOut,
+						end() {},
+						input() {},
+						start() {},
+					},
+				},
+			);
 		});
 		return (() => {
 			let {
-				cancelIcon,
-				clearable,
-				clearIcon,
-				disabled,
-				errorIcon,
-				flipHorizontallyIcon,
-				flippable,
-				flipVerticallyIcon,
 				fullHeight,
 				fullWidth,
-				imageBackgroundColor,
 				imageHeight,
-				imageMaxHeight,
-				imageMaxWidth,
-				imageMinHeight,
-				imageMinWidth,
 				imageWidth,
-				maxZoom,
-				minZoom,
-				resetable,
-				resetIcon,
-				resizable,
-				rotatable,
-				rotateClockwiseIcon,
-				rotateCounterClockwiseIcon,
-				successIcon,
-				translatable,
-				uploadIcon,
-				value,
 				zoomable,
-				zoomInIcon,
-				zoomOutIcon,
 			} = props;
 			return h(
 				'div',
@@ -244,6 +417,7 @@ export default {
 						'div',
 						{
 							style: {
+								alignItems: 'space-between',
 								display: 'flex',
 								flexDirection: 'column',
 								gridColumn: 2,
@@ -252,138 +426,7 @@ export default {
 								transition: 'opacity 0.3s cubic-bezier(0.25,0.8,0.5,1)',
 							},
 						},
-						[
-							...(clearable
-								? [
-									h(
-										'VBtn',
-										{
-											class: 'ma-1',
-											props: {
-												disabled,
-												flat: true,
-												icon: true,
-											},
-											on: {
-												click() {},
-											},
-										},
-										[h(
-											'VIcon',
-											clearIcon,
-										)],
-									),
-									h('VSpacer'),
-								]
-								: []
-							),
-							...(rotatable
-								? [
-									h(
-										'VBtn',
-										{
-											class: 'ma-1',
-											props: {
-												disabled,
-												flat: true,
-												icon: true,
-											},
-											on: {
-												click() {},
-											},
-										},
-										[h(
-											'VIcon',
-											rotateClockwiseIcon,
-										)],
-									),
-									h(
-										'VBtn',
-										{
-											class: 'ma-1',
-											props: {
-												disabled,
-												flat: true,
-												icon: true,
-											},
-											on: {
-												click() {},
-											},
-										},
-										[h(
-											'VIcon',
-											rotateCounterClockwiseIcon,
-										)],
-									),
-								]
-								: []
-							),
-							...(flippable
-								? [
-									h(
-										'VBtn',
-										{
-											class: 'ma-1',
-											props: {
-												disabled,
-												flat: true,
-												icon: true,
-											},
-											on: {
-												click() {},
-											},
-										},
-										[h(
-											'VIcon',
-											flipHorizontallyIcon,
-										)],
-									),
-									h(
-										'VBtn',
-										{
-											class: 'ma-1',
-											props: {
-												disabled,
-												flat: true,
-												icon: true,
-											},
-											on: {
-												click() {},
-											},
-										},
-										[h(
-											'VIcon',
-											flipVerticallyIcon,
-										)],
-									),
-								]
-								: []
-							),
-							...(resetable
-								? [
-									h('VSpacer'),
-									h(
-										'VBtn',
-										{
-											class: 'ma-1',
-											props: {
-												disabled,
-												flat: true,
-												icon: true,
-											},
-											on: {
-												click() {},
-											},
-										},
-										[h(
-											'VIcon',
-											resetIcon,
-										)],
-									),
-								]
-								: []
-							),
-						],
+						genButtons(),
 					),
 					h(
 						'div',
@@ -395,29 +438,7 @@ export default {
 							},
 						},
 						(zoomable
-							? [h(
-								'VSlider',
-								{
-									class: 'ma-1',
-									props: {
-										appendIcon: zoomInIcon,
-										disabled,
-										hideDetails: true,
-										//max,
-										//min,
-										prependIcon: zoomOutIcon,
-										//step,
-										//value,
-									},
-									on: {
-										'click:append'() {},
-										'click:prepend'() {},
-										end() {},
-										input() {},
-										start() {},
-									},
-								},
-							)]
+							? [genSliderZoom()]
 							: []
 						),
 					),

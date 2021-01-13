@@ -9,7 +9,9 @@ let plugins = [
 	nodeResolve(),
 	babel({
 		babelHelpers: 'bundled',
-		presets: ['@babel/preset-env'],
+		presets: [['@babel/preset-env', {
+			targets: 'defaults and not IE 11',
+		}]],
 	}),
 	terser(),
 ];

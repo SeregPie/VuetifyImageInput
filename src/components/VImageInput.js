@@ -1,12 +1,14 @@
 let {
 	computed,
 	h,
+	inject,
 	reactive,
 	ref,
 } = VueDemi;
 
 import FullHeight from '../styles/FullHeight';
 import FullWidth from '../styles/FullWidth';
+import CheckeredBackground from '../styles/CheckeredBackground';
 import clamp from '../utils/clamp';
 
 export default {
@@ -136,6 +138,8 @@ export default {
 		},
 	},
 	setup(props) {
+		let theme = inject('theme', {isDark: false});
+		let darkRef = computed(() => theme.isDark);
 		let statusLoading = {};
 		let statusLoadingSuccess = {};
 		let statusLoadingError = {};
@@ -213,6 +217,7 @@ export default {
 			// todo
 		});
 		let state = reactive({
+			dark: darkRef,
 			loading: loadingRef,
 			loadingError: loadingErrorRef,
 			loadingSuccess: loadingSuccessRef,
@@ -382,6 +387,7 @@ export default {
 				imageWidth,
 				zoomable,
 			} = props;
+			let {dark} = state;
 			return h(
 				'div',
 				{
@@ -413,6 +419,10 @@ export default {
 										height: `${imageHeight}px`,
 										margin: '50px',
 										width: `${imageWidth}px`,
+										...(dark
+											? CheckeredBackground(16, '#fff', '#000')
+											: CheckeredBackground(16, '#f00', '#0f0')
+										),
 									},
 								},
 							),

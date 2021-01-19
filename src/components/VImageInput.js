@@ -5,9 +5,9 @@ let {
 	ref,
 } = VueDemi;
 
-import Math_clamp from '../core/Math/clamp';
 import FullHeight from '../styles/FullHeight';
 import FullWidth from '../styles/FullWidth';
+import clamp from '../utils/clamp';
 
 export default {
 	name: 'VImageInput',
@@ -294,36 +294,50 @@ export default {
 				resetable,
 				rotatable,
 			} = props;
+			let result = [];
 			[
-				...(clearable
-					? [
-						genButtonClear(),
-						h('VSpacer'),
-					]
+				(clearable
+					? [genButtonClear()]
 					: []
 				),
-				...(rotatable
-					? [
-						genButtonRotateClockwise(),
-						genButtonRotateCounterClockwise(),
-					]
+				[
+					...(rotatable
+						? [
+							genButtonRotateClockwise(),
+							genButtonRotateCounterClockwise(),
+						]
+						: []
+					),
+					...(flippable
+						? [
+							genButtonFlipHorizontally(),
+							genButtonFlipVertically(),
+						]
+						: []
+					),
+				],
+				(resetable
+					? [genButtonReset()]
 					: []
 				),
-				...(flippable
-					? [
-						genButtonFlipHorizontally(),
-						genButtonFlipVertically(),
-					]
-					: []
-				),
-				...(resetable
-					? [
-						h('VSpacer'),
-						genButtonReset(),
-					]
-					: []
-				),
-			],
+			].forEach(v => {
+				if (v.length > 1) {
+					result.push(h(
+						'div',
+						{
+							style: {
+								display: 'inherit',
+								flexDirection: 'inherit',
+							},
+						},
+						v,
+					))
+				} else
+				if (v.length) {
+					result.push(v[0]);
+				}
+			});
+			return result;
 		})
 		let genSliderZoom = (() => {
 			let {
@@ -417,12 +431,11 @@ export default {
 						'div',
 						{
 							style: {
-								alignItems: 'space-between',
 								display: 'flex',
 								flexDirection: 'column',
 								gridColumn: 2,
 								gridRow: 1,
-								justifyContent: 'center',
+								justifyContent: 'space-between',
 								transition: 'opacity 0.3s cubic-bezier(0.25,0.8,0.5,1)',
 							},
 						},

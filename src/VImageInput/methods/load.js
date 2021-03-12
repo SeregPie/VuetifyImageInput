@@ -23,6 +23,6 @@ export default function({ file, base64: data }) {
 				lastModified: file.lastModified || ''
 			})
 		}
-		image.src = data;
+		if (data) image.src = data;
 	}
 }

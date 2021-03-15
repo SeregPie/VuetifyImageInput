@@ -10,6 +10,7 @@ let {
 } = Vue;
 
 import loadImage from '../utils/loadImage';
+import sleep from '../utils/sleep';
 
 export default defineComponent({
 	name: 'VImageInput',
@@ -58,7 +59,7 @@ export default defineComponent({
 		let setInternalImage = (value => {
 			reset();
 			internalImageRef.value = value;
-		})
+		});
 
 		let clear = (() => setInternalImage(null));
 
@@ -93,13 +94,19 @@ export default defineComponent({
 				loadStatusRef.value = statusLoading;
 				let image = await loadImage(value, signal);
 				if (!signal.aborted) {
-					internalImageRef.value = image;
 					loadStatusRef.value = statusSuccess;
+					await sleep(1000);
+					if (!signal.aborted) {
+						internalImageRef.value = image;
+					}
 				}
 			} catch {
 				if (!signal.aborted) {
-					clear();
 					loadStatusRef.value = statusError;
+					await sleep(1000);
+					if (!signal.aborted) {
+						clear();
+					}
 				}
 			}
 		});

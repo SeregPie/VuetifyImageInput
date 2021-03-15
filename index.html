@@ -7,7 +7,18 @@
 			name="viewport"
 		/>
 		<title>VuetifyImageInput</title>
+
+		<link
+			href="https://cdn.jsdelivr.net/npm/vuetify@next/dist/vuetify.css"
+			rel="stylesheet"
+		/>
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
 		<script src="https://unpkg.com/vue@3"></script>
+		<script src="https://unpkg.com/vuetify@next/dist/vuetify.js"></script>
 		<script src="./index.js"></script>
 		<script
 			defer
@@ -15,6 +26,9 @@
 		></script>
 	</head>
 	<body>
-		<v-image-input></v-image-input>
+		<v-app :theme="theme" full-height>
+			<v-btn @click="toggleTheme">toggle theme</v-btn>
+			<v-image-input></v-image-input>
+		</v-app>
 	</body>
 </html>

@@ -3,182 +3,18 @@
 	<head>
 		<meta charset="utf-8"/>
 		<meta
-			content="width=device-width,initial-scale=1"
+			content="width=device-width, initial-scale=1"
 			name="viewport"
 		/>
 		<title>VuetifyImageInput</title>
-		<style>
-			[v-cloak] {
-				display: none;
-			}
-		</style>
-		<link
-			href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://unpkg.com/@mdi/font@4.5.95/css/materialdesignicons.min.css"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://unpkg.com/vuetify@2.1.9/dist/vuetify.min.css"
-			rel="stylesheet"
-		/>
-		<script src="https://unpkg.com/core-js-bundle@3.3.6/minified.js"></script>
-		<script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
-		<script src="https://unpkg.com/vuetify@2.1.9/dist/vuetify.min.js"></script>
-		<script src="https://unpkg.com/@seregpie/claw@3.0.0"></script>
-		<script src="https://unpkg.com/vueclaw@1.1.0"></script>
+		<script src="https://unpkg.com/vue@3"></script>
 		<script src="./index.js"></script>
+		<script
+			defer
+			src="./demo/script.js"
+		></script>
 	</head>
 	<body>
-		<v-app
-			id="app"
-			v-cloak
-		>
-			<v-navigation-drawer
-				v-model="drawer"
-				app
-				clipped
-			>
-				<div class="pa-2">
-					<v-checkbox
-						v-model="clearable"
-						class="ma-0 pa-0"
-						hide-details
-						label="clearable"
-					></v-checkbox>
-				</div>
-				<div class="pa-2">
-					<v-text-field
-						v-model="imageWidth"
-						:max="1024"
-						:min="32"
-						filled
-						hide-details
-						label="image width"
-						type="number"
-					></v-text-field>
-				</div>
-				<div class="pa-2">
-					<v-text-field
-						v-model="imageHeight"
-						:max="1024"
-						:min="32"
-						filled
-						hide-details
-						label="image height"
-						type="number"
-					></v-text-field>
-				</div>
-				<div class="pa-2">
-					<v-radio-group
-						v-model="imageMinScaling"
-						class="ma-0 pa-0"
-						hide-details
-						label="min scaling"
-					>
-						<v-radio
-							label="cover"
-							value="cover"
-						></v-radio>
-						<v-radio
-							label="contain"
-							value="contain"
-						></v-radio>
-					</v-radio-group>
-				</div>
-				<div class="pa-2">
-					<v-checkbox
-						v-model="hideActions"
-						class="ma-0 pa-0"
-						hide-details
-						label="hide actions"
-					></v-checkbox>
-				</div>
-				<div class="pa-2">
-					<v-checkbox
-						v-model="disabled"
-						class="ma-0 pa-0"
-						hide-details
-						label="disabled"
-					></v-checkbox>
-				</div>
-				<div class="pa-2">
-					<v-checkbox
-						v-model="readonly"
-						class="ma-0 pa-0"
-						hide-details
-						label="readonly"
-					></v-checkbox>
-				</div>
-				<div class="pa-2">
-					<v-checkbox
-						v-model="fullWidth"
-						class="ma-0 pa-0"
-						hide-details
-						label="full width"
-					></v-checkbox>
-				</div>
-				<div class="pa-2">
-					<v-checkbox
-						v-model="fullHeight"
-						class="ma-0 pa-0"
-						hide-details
-						label="full height"
-					></v-checkbox>
-				</div>
-			</v-navigation-drawer>
-			<v-app-bar
-				app
-				clipped-left
-				color="primary"
-				dark
-			>
-				<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-				<v-toolbar-title>VuetifyImageInput</v-toolbar-title>
-				<v-chip v-if="fileInfo" label style="margin-left: 24px;">
-					<span>{{ fileInfo.name }}</span>,&nbsp;
-					<b><span>{{ fileInfo.type }}</span></b>,&nbsp;
-					<span>{{ fileInfo.lastModified }}</span>
-				</v-chip>
-				<v-spacer></v-spacer>
-				<v-btn
-					icon
-					@click="dark = !dark"
-				>
-					<v-icon>mdi-invert-colors</v-icon>
-				</v-btn>
-				<v-btn
-					href="https://github.com/SeregPie/VuetifyImageInput"
-					icon
-					target="_blank"
-				>
-					<v-icon>mdi-github-circle</v-icon>
-				</v-btn>
-			</v-app-bar>
-			<v-content>
-				<v-container
-					fill-height
-					justify-center
-				>
-					<v-image-input
-						v-model="value"
-						:clearable="clearable"
-						:debounce="250"
-						:disabled="disabled"
-						:full-height="fullHeight"
-						:full-width="fullWidth"
-						:hide-actions="hideActions"
-						:image-height="Number(imageHeight)"
-						:image-min-scaling="imageMinScaling"
-						:image-width="Number(imageWidth)"
-						:readonly="readonly"
-						@file-info="onFileInfo"
-					></v-image-input>
-				</v-container>
-			</v-content>
-		</v-app>
-		<script src="./demo/script.js"></script>
+		<v-image-input></v-image-input>
 	</body>
 </html>

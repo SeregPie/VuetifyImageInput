@@ -10,7 +10,7 @@ let {
 } = Vue;
 
 import loadImage from '../utils/loadImage';
-import sleep from '../utils/sleep';
+import useDebounce from '../utils/useDebounce';
 
 export default defineComponent({
 	name: 'VImageInput',
@@ -166,6 +166,13 @@ export default defineComponent({
 				imageDataURLRef.value = null;
 			}
 		});
+
+		let viewEdit = {};
+		let viewLoad = {};
+		let viewRef = useDebounce(computed(() => {
+			let image = internalImageRef.value;
+			return image ? viewEdit : viewLoad;
+		}), 1000);
 
 		/*
 

@@ -18,7 +18,6 @@
 			});
 			let themeRef = computed(() => {
 				let dark = darkRef.value;
-				console.log(dark ? 'dark' : 'light');
 				return dark ? 'dark' : 'light';
 			});
 			return {

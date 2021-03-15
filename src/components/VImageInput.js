@@ -95,18 +95,12 @@ export default defineComponent({
 				let image = await loadImage(value, signal);
 				if (!signal.aborted) {
 					loadStatusRef.value = statusSuccess;
-					await sleep(1000);
-					if (!signal.aborted) {
-						internalImageRef.value = image;
-					}
+					setInternalImage(image);
 				}
 			} catch {
 				if (!signal.aborted) {
 					loadStatusRef.value = statusError;
-					await sleep(1000);
-					if (!signal.aborted) {
-						clear();
-					}
+					clear();
 				}
 			}
 		});

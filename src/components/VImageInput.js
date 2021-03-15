@@ -234,7 +234,7 @@ export default {
 			return h(
 				'VBtn',
 				{
-					class: 'ma-1',
+
 					props: {
 						disabled,
 						flat: true,
@@ -336,14 +336,14 @@ export default {
 							},
 						},
 						v,
-					))
+					));
 				} else
 				if (v.length) {
 					result.push(v[0]);
 				}
 			});
 			return result;
-		})
+		});
 		let genSliderZoom = (() => {
 			let {
 				disabled,
@@ -358,7 +358,6 @@ export default {
 			return h(
 				'VSlider',
 				{
-					class: 'ma-1',
 					props: {
 						appendIcon: zoomInIcon,
 						disabled,
@@ -420,8 +419,8 @@ export default {
 										margin: '50px',
 										width: `${imageWidth}px`,
 										...(dark
-											? CheckeredBackground(16, '#fff', '#000')
-											: CheckeredBackground(16, '#f00', '#0f0')
+											? CheckeredBackground(8, '#fff', '#000')
+											: CheckeredBackground(8, '#f00', '#0f0')
 										),
 									},
 								},
@@ -449,11 +448,62 @@ export default {
 								transition: 'opacity 0.3s cubic-bezier(0.25,0.8,0.5,1)',
 							},
 						},
-						genButtons(),
+						[
+							h(
+								'div',
+								{
+									class: 'pa-1',
+								},
+								(clearable
+									? [genButtonClear()]
+									: []
+								),
+							),
+							h(
+								'div',
+								{
+									style: {
+										display: 'inherit',
+										flexDirection: 'inherit',
+									},
+								},
+								(clearable
+									? [genButtonClear()]
+									: []
+								),
+							),
+							[
+								...(rotatable
+									? [
+										genButtonRotateClockwise(),
+										genButtonRotateCounterClockwise(),
+									]
+									: []
+								),
+								...(flippable
+									? [
+										genButtonFlipHorizontally(),
+										genButtonFlipVertically(),
+									]
+									: []
+								),
+							],
+							h(
+								'div',
+								{
+									class: 'pa-1',
+								},
+								(resetable
+									? [genButtonReset()]
+									: []
+								),
+							),
+						],
 					),
 					h(
 						'div',
 						{
+							class: 'pa-1',
 							style: {
 								gridColumn: 1,
 								gridRow: 2,

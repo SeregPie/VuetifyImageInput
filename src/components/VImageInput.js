@@ -1,16 +1,14 @@
 let {
 	computed,
-	createApp,
-	h,
-	reactive,
-	shallowRef,
-	watchEffect,
-	watch,
 	defineComponent,
+	h,
+	shallowRef,
+	watch,
+	watchEffect,
 } = Vue;
 
 import loadImage from '../utils/loadImage';
-import useDebounce from '../utils/useDebounce';
+//import useDebounce from '../utils/useDebounce';
 
 export default defineComponent({
 	name: 'VImageInput',
@@ -61,7 +59,9 @@ export default defineComponent({
 			internalImageRef.value = value;
 		});
 
-		let clear = (() => setInternalImage(null));
+		let clear = (() => {
+			internalImageRef.value = null;
+		});
 
 		let statusLoading = {};
 		let statusSuccess = {};
@@ -95,12 +95,11 @@ export default defineComponent({
 				let image = await loadImage(value, signal);
 				if (!signal.aborted) {
 					loadStatusRef.value = statusSuccess;
-					setInternalImage(image);
+					internalImageRef.value = image;
 				}
 			} catch {
 				if (!signal.aborted) {
 					loadStatusRef.value = statusError;
-					clear();
 				}
 			}
 		});
@@ -167,12 +166,12 @@ export default defineComponent({
 			}
 		});
 
-		let viewEdit = {};
+		/*let viewEdit = {};
 		let viewLoad = {};
 		let viewRef = useDebounce(computed(() => {
 			let image = internalImageRef.value;
 			return image ? viewEdit : viewLoad;
-		}), 1000);
+		}), 1000);*/
 
 		/*
 

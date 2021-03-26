@@ -5,9 +5,11 @@ let {
 	shallowRef,
 	watch,
 	watchEffect,
+	triggerRef,
 } = Vue;
 
 import loadImage from '../utils/loadImage';
+import ImageTransformation from '../utils/ImageTransformation';
 //import useDebounce from '../utils/useDebounce';
 
 export default defineComponent({
@@ -38,25 +40,14 @@ export default defineComponent({
 		let imageHeightRef = shallowRef(256);
 		let imageDataURLRef = shallowRef(null);
 
-		let flippedHorizontally = false;
-		let flippedHorizontallyRef = shallowRef(flippedHorizontally);
+		let transformationRef = shallowRef(new DOMMatrix());
 		let flipHorizontally = (() => {
-			flippedHorizontallyRef.value = !flippedHorizontallyRef.value;
+			let m = transformationRef.value;
+			transformationRef.value = m.flipX();
 		});
-		let flippedVertically = false;
-		let flippedVerticallyRef = shallowRef(flippedVertically);
 		let flipVertically = (() => {
-			flippedVerticallyRef.value = !flippedVerticallyRef.value;
-		});
-
-		let reset = (() => {
-			flippedHorizontallyRef.value = flippedHorizontally;
-			flippedVerticallyRef.value = flippedVertically;
-		});
-
-		let setInternalImage = (value => {
-			reset();
-			internalImageRef.value = value;
+			let m = transformationRef.value;
+			transformationRef.value = m.flipY();
 		});
 
 		let clear = (() => {
@@ -122,49 +113,35 @@ export default defineComponent({
 			},
 		);
 
-		watchEffect(() => {
-			let internalImage = internalImageRef.value;
-
-			if (internalImage) {
-				let internalImageWidth = internalImageWidthRef.value;
-				let internalImageHeight = internalImageHeightRef.value;
-				let imageWidth = imageWidthRef.value;
-				let imageHeight = imageHeightRef.value;
-				let flippedHorizontally = flippedHorizontallyRef.value;
-				let flippedVertically = flippedVerticallyRef.value;
-				let {
-					imageFormat,
-					imageQuality,
-				} = props;
-
-				let canvas = document.createElement('canvas');
-				let ctx = canvas.getContext('2d');
-				canvas.width = imageWidth;
-				canvas.height = imageHeight;
-				let center = false;
-				let width = imageWidth;
-				let height = imageHeight;
-				let x = 0;
-				let y = 0;
-				if(center) {
-					x -= width/2;
-					y -= height/2;
+		// debounce
+		watch(
+			() => {
+				let image = internalImageRef.value;
+				if (image) {
+					let imageWidth = internalImageWidthRef.value;
+					let imageHeight = internalImageHeightRef.value;
+					let {
+						imageFormat: format,
+						imageQuality: quality,
+					} = props;
+					let width = imageWidthRef.value;
+					let height = imageHeightRef.value;
+					let {a, b, c, d, e, f} = transformationRef.value;
+					let canvas = document.createElement('canvas');
+					let ctx = canvas.getContext('2d');
+					canvas.width = width;
+					canvas.height = height;
+					ctx.translate(width/2, height/2);
+					ctx.transform(a, b, c, d, e, f);
+					ctx.drawImage(image, -imageWidth/2, -imageHeight/2);
+					return canvas.toDataURL(`image/${format}`, quality);
 				}
-
-				// Set the origin to the center of the image
-				ctx.translate(x + width/2, y + height/2);
-				ctx.scale(
-					flippedHorizontally ? -1 : 1,
-					flippedVertically ? -1 : 1,
-				);
-				ctx.drawImage(internalImage, -width/2, -height/2);
-				let imageDataURL = canvas.toDataURL(`image/${imageFormat}`, imageQuality);
-
-				imageDataURLRef.value = imageDataURL;
-			} else {
-				imageDataURLRef.value = null;
+				return null;
+			},
+			value => {
+				imageDataURLRef.value = value;
 			}
-		});
+		);
 
 		/*let viewEdit = {};
 		let viewLoad = {};

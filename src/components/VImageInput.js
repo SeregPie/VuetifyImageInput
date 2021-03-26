@@ -121,8 +121,8 @@ export default defineComponent({
 					let imageWidth = internalImageWidthRef.value;
 					let imageHeight = internalImageHeightRef.value;
 					let {
-						imageFormat: format,
-						imageQuality: quality,
+						imageFormat,
+						imageQuality,
 					} = props;
 					let width = imageWidthRef.value;
 					let height = imageHeightRef.value;
@@ -134,7 +134,7 @@ export default defineComponent({
 					ctx.translate(width/2, height/2);
 					ctx.transform(a, b, c, d, e, f);
 					ctx.drawImage(image, -imageWidth/2, -imageHeight/2);
-					return canvas.toDataURL(`image/${format}`, quality);
+					return canvas.toDataURL(`image/${imageFormat}`, imageQuality);
 				}
 				return null;
 			},

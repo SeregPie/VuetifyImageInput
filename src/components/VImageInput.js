@@ -9,6 +9,7 @@ let {
 } = Vue;
 
 import loadImage from '../utils/loadImage';
+import clamp from '../utils/clamp';
 import ImageTransformation from '../utils/ImageTransformation';
 //import useDebounce from '../utils/useDebounce';
 
@@ -184,7 +185,7 @@ export default defineComponent({
 			rotate(-delta);
 		});
 		let minZoomRef = computed(() => {
-			return 1/1000;
+			return 1/10;
 		});
 		let maxZoomRef = computed(() => {
 			let min = minZoomRef.value;
@@ -196,8 +197,8 @@ export default defineComponent({
 			get() {
 				let min = minZoomRef.value;
 				let max = maxZoomRef.value;
-				let n = zoomRef.value;
-				return Math_clamp(n, min, max);
+				let n = rawZoomRef.value;
+				return clamp(n, min, max);
 			},
 			set(value) {
 				rawZoomRef.value = value;
@@ -207,7 +208,7 @@ export default defineComponent({
 			zoomRef.value = value;
 		});
 		let zoomBy = (n => {
-			zoomRef.value *= n;
+			zoomRef.value += n;
 		});
 		let zoomDeltaRef = computed(() => {
 			let min = minZoomRef.value;
@@ -216,11 +217,11 @@ export default defineComponent({
 		});
 		let zoomIn = (() => {
 			let delta = zoomDeltaRef.value;
-			zoomBy(-delta);
+			zoomBy(+delta);
 		});
 		let zoomOut = (() => {
 			let delta = zoomDeltaRef.value;
-			zoomBy(+delta);
+			zoomBy(-delta);
 		});
 		let zoomSnapRef = computed(() => {
 			let min = minZoomRef.value;
@@ -304,13 +305,21 @@ export default defineComponent({
 					} = props;
 					let width = imageWidthRef.value;
 					let height = imageHeightRef.value;
-					let {a, b, c, d, e, f} = transformationRef.value;
+					let flippedHorizontally = flippedHorizontallyRef.value;
+					let flippedVertically = flippedVerticallyRef.value;
+					let rotation = rotationRef.value;
+					let zoom = zoomRef.value;
 					let canvas = document.createElement('canvas');
 					let ctx = canvas.getContext('2d');
 					canvas.width = width;
 					canvas.height = height;
 					ctx.translate(width/2, height/2);
-					ctx.transform(a, b, c, d, e, f);
+					ctx.scale(zoom, zoom);
+					ctx.scale(
+						flippedHorizontally ? -1 : 1,
+						flippedVertically ? -1 : 1,
+					);
+					ctx.rotate(rotation);
 					ctx.drawImage(image, -imageWidth/2, -imageHeight/2);
 					return canvas.toDataURL(`image/${imageFormat}`, imageQuality);
 				}
@@ -388,10 +397,13 @@ export default defineComponent({
 			let loading = loadingRef.value;
 			let loadSuccess = loadSuccessRef.value;
 			let loadError = loadErrorRef.value;
-			let imageDataURL = imageDataURLRef.value;
-			let {a, b, c, d, e, f} = transformationRef.value;
 			let imageWidth = imageWidthRef.value;
 			let imageHeight = imageHeightRef.value;
+			let imageDataURL = imageDataURLRef.value;
+			let flippedHorizontally = flippedHorizontallyRef.value;
+			let flippedVertically = flippedVerticallyRef.value;
+			let rotation = rotationRef.value;
+			let zoom = zoomRef.value;
 			return h(
 				'div',
 				[
@@ -473,8 +485,9 @@ export default defineComponent({
 							{
 								style: {
 									height: `${imageHeight}px`,
+									pointerEvents: 'none',
+									position: 'relative',
 									width: `${imageWidth}px`,
-									position: 'relative'
 								},
 							},
 							[h(
@@ -492,7 +505,14 @@ export default defineComponent({
 									{
 										src: internalImageDataURL,
 										style: {
-											transform: `matrix(${[a, b, c, d, e, f].join(',')})`,
+											transform: [
+												`scale(${zoom})`,
+												`scale(${[
+													flippedHorizontally ? -1 : 1,
+													flippedVertically ? -1 : 1,
+												].join(',')})`,
+												`rotate(${rotation}rad)`,
+											].join(' '),
 											transition: 'all .3s cubic-bezier(.25,.8,.5,1)',
 										},
 									},

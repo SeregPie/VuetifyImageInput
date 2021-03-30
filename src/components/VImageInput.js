@@ -11,7 +11,6 @@ let {
 
 import loadImage from '../utils/loadImage';
 import clamp from '../utils/clamp';
-import ImageTransformation from '../utils/ImageTransformation';
 //import useDebounce from '../utils/useDebounce';
 
 export default defineComponent({

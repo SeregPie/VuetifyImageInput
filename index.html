@@ -7,9 +7,16 @@
 			name="viewport"
 		/>
 		<title>VuetifyImageInput</title>
-
 		<link
-			href="https://cdn.jsdelivr.net/npm/vuetify@next/dist/vuetify.css"
+			href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://unpkg.com/@mdi/font@5/css/materialdesignicons.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://unpkg.com/vuetify@next/dist/vuetify.css"
 			rel="stylesheet"
 		/>
 		<style>
@@ -27,7 +34,22 @@
 	</head>
 	<body>
 		<v-app>
-			<v-image-input></v-image-input>
+			<v-main>
+				<div
+					style="
+						align-items: center;
+						display: flex;
+						height: 100%;
+						justify-content: space-evenly;
+						width: 100%;
+					"
+				>
+					<img :src="image"/>
+					<v-image-input
+						v-model="image"
+					></v-image-input>
+				</div>
+			</v-main>
 		</v-app>
 	</body>
 </html>

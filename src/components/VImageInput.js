@@ -6,6 +6,7 @@ let {
 	watch,
 	watchEffect,
 	triggerRef,
+	resolveComponent,
 } = Vue;
 
 import loadImage from '../utils/loadImage';
@@ -89,6 +90,7 @@ export default defineComponent({
 			type: String,
 			default: 'cover',
 		},
+		modelValue: String,
 		resetable: {
 			type: Boolean,
 			default: false,
@@ -125,7 +127,6 @@ export default defineComponent({
 			type: String,
 			default: 'mdi-upload',
 		},
-		value: String,
 		zoomable: {
 			type: Boolean,
 			default: false,
@@ -274,7 +275,7 @@ export default defineComponent({
 			}
 		});
 
-		watch(
+		/*watch(
 			() => props.modelValue,
 			value => {
 				if (value == null) {
@@ -284,7 +285,7 @@ export default defineComponent({
 				}
 			},
 			{immediate: true},
-		);
+		);*/
 		watch(
 			imageDataURLRef,
 			value => {
@@ -391,12 +392,56 @@ export default defineComponent({
 		});
 
 		return (() => {
-			let internalImageWidth = internalImageWidthRef.value;
-			let internalImageHeight = internalImageHeightRef.value;
+			let VBtn = resolveComponent('VBtn');
+			let genActionButton = ((
+				icon,
+				onClick,
+			) => {
+				return h(
+					VBtn,
+					{
+						icon,
+						onClick,
+					},
+				);
+			});
+			let genActionButtonFlipHorizontally = (() => {
+				return genActionButton(
+					props.flipHorizontallyIcon,
+					flipHorizontally,
+				);
+			});
+			let genActionButtonFlipVertically = (() => {
+				return genActionButton(
+					props.flipVerticallyIcon,
+					flipVertically,
+				);
+			});
+			let genActionButtonRotateClockwise = (() => {
+				return genActionButton(
+					props.rotateClockwiseIcon,
+					rotateClockwise,
+				);
+			});
+			let genActionButtonRotateCounterClockwise = (() => {
+				return genActionButton(
+					props.rotateCounterClockwiseIcon,
+					rotateCounterClockwise,
+				);
+			});
+			let genActionButtonZoomIn = (() => {
+				return genActionButton(
+					props.zoomInIcon,
+					zoomIn,
+				);
+			});
+			let genActionButtonZoomOut = (() => {
+				return genActionButton(
+					props.zoomOutIcon,
+					zoomOut,
+				);
+			});
 			let internalImageDataURL = internalImageDataURLRef.value;
-			let loading = loadingRef.value;
-			let loadSuccess = loadSuccessRef.value;
-			let loadError = loadErrorRef.value;
 			let imageWidth = imageWidthRef.value;
 			let imageHeight = imageHeightRef.value;
 			let imageDataURL = imageDataURLRef.value;
@@ -406,120 +451,102 @@ export default defineComponent({
 			let zoom = zoomRef.value;
 			return h(
 				'div',
+				{
+					style: {
+						display: 'inline-grid',
+						gridTemplateColumns: '1fr auto',
+						gridTemplateRows: '1fr auto',
+					},
+				},
 				[
 					h(
 						'div',
 						{
-							style: {whiteSpace: 'pre-wrap'}
-						},
-						JSON.stringify({
-							internalImageWidth,
-							internalImageHeight,
-							loading,
-							loadSuccess,
-							loadError,
-						}, null, '\t'),
-					),
-					h(
-						'div',
-						{
-							onClick: onClickToLoad,
-						},
-						'click me',
-					),
-					h(
-						'div',
-						{
-							onClick: flipHorizontally,
-						},
-						'flip horizontally',
-					),
-					h(
-						'div',
-						{
-							onClick: flipVertically,
-						},
-						'flip vertically',
-					),
-					h(
-						'div',
-						{
-							onClick: rotateClockwise,
-						},
-						'rotate clockwise',
-					),
-					h(
-						'div',
-						{
-							onClick: rotateCounterClockwise,
-						},
-						'rotate counter clockwise',
-					),
-					h(
-						'div',
-						{
-							onClick: zoomIn,
-						},
-						'zoom in',
-					),
-					h(
-						'div',
-						{
-							onClick: zoomOut,
-						},
-						'zoom out',
-					),
-					...(imageDataURL
-						? [h(
-							'img',
-							{
-								src: imageDataURL,
-								style: {background: 'green'},
+							style: {
+								gridColumn: 1,
+								gridRow: 1,
+								overflow: 'hidden',
+								position: 'relative',
 							},
-						)]
-						: []
-					),
-					...(internalImageDataURL
-						? [h(
-							'div',
-							{
-								style: {
-									height: `${imageHeight}px`,
-									pointerEvents: 'none',
-									position: 'relative',
-									width: `${imageWidth}px`,
-								},
-							},
-							[h(
+						},
+						(internalImageDataURL
+							? [h(
 								'div',
 								{
 									style: {
-										bottom: '50%',
-										position: 'absolute',
-										right: '50%',
-										transform: 'translate(50%,50%)',
+										height: `${imageHeight}px`,
+										pointerEvents: 'none',
+										position: 'relative',
+										width: `${imageWidth}px`,
 									},
 								},
 								[h(
-									'img',
+									'div',
 									{
-										src: internalImageDataURL,
 										style: {
-											transform: [
-												`scale(${zoom})`,
-												`scale(${[
-													flippedHorizontally ? -1 : 1,
-													flippedVertically ? -1 : 1,
-												].join(',')})`,
-												`rotate(${rotation}rad)`,
-											].join(' '),
-											transition: 'all .3s cubic-bezier(.25,.8,.5,1)',
+											bottom: '50%',
+											position: 'absolute',
+											right: '50%',
+											transform: 'translate(50%,50%)',
 										},
 									},
+									[h(
+										'img',
+										{
+											src: internalImageDataURL,
+											style: {
+												transform: [
+													`scale(${zoom})`,
+													`scale(${[
+														flippedHorizontally ? -1 : 1,
+														flippedVertically ? -1 : 1,
+													].join(',')})`,
+													`rotate(${rotation}rad)`,
+												].join(' '),
+												transition: 'all .3s cubic-bezier(.25,.8,.5,1)',
+											},
+										},
+									)],
 								)],
-							)],
-						)]
-						: []
+							)]
+							: []
+						),
+					),
+					h(
+						'div',
+						{
+							style: {
+								display: 'flex',
+								flexDirection: 'column',
+								gridColumn: 2,
+								gridRow: 1,
+								justifyContent: 'center',
+							},
+						},
+						[
+							h(
+								VBtn,
+								{
+									icon: 'mdi-load',
+									onClick: onClickToLoad,
+								},
+							),
+							genActionButtonFlipHorizontally(),
+							genActionButtonFlipVertically(),
+							genActionButtonRotateClockwise(),
+							genActionButtonRotateCounterClockwise(),
+							genActionButtonZoomIn(),
+							genActionButtonZoomOut(),
+						],
+					),
+					h(
+						'div',
+						{
+							style: {
+								gridColumn: 1,
+								gridRow: 2,
+							},
+						},
 					),
 				],
 			);

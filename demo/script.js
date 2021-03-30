@@ -1,9 +1,8 @@
 (function() {
 
 	let {
-		computed,
 		createApp,
-		ref,
+		shallowRef,
 	} = Vue;
 	let {createVuetify} = Vuetify;
 
@@ -12,17 +11,9 @@
 			[VuetifyImageInput.name]: VuetifyImageInput,
 		},
 		setup() {
-			let darkRef = ref(true);
-			let toggleTheme = (() => {
-				darkRef.value = !darkRef.value;
-			});
-			let themeRef = computed(() => {
-				let dark = darkRef.value;
-				return dark ? 'dark' : 'light';
-			});
+			let image = shallowRef(null);
 			return {
-				theme: themeRef,
-				toggleTheme,
+				image,
 			};
 		},
 	});

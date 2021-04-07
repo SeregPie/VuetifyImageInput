@@ -126,3 +126,10 @@ Use the component inside a template.
 | `uploadIcon` | `String` | `'mdi-upload'` | |
 | `uploadIconStyle` | `Object` | | |
 | `value` | `String` | | |
+
+## events
+
+| name |
+| ---: |
+| `fileInfo` |
+| `input` |

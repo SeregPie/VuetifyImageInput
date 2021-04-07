@@ -18,7 +18,35 @@ Provides basic image editing tools.
 npm i vuetify-image-input
 ```
 
-### ES module
+---
+
+```javascript
+import VuetifyImageInput from 'vuetify-image-input';
+```
+
+---
+
+Use the treeshaking system.
+
+```javascript
+import VuetifyImageInput from 'vuetify-image-input/a-la-carte';
+```
+
+### browser
+
+```html
+<link
+  href="https://unpkg.com/vuetify@2/dist/vuetify.min.css"
+  rel="stylesheet"
+/>
+<script src="https://unpkg.com/vue@2"></script>
+<script src="https://unpkg.com/vuetify@2/dist/vuetify.min.js"></script>
+<script src="https://unpkg.com/vuetify-image-input"></script>
+```
+
+The component is globally available as `VuetifyImageInput`. If Vue is detected, the component is registered automatically.
+
+## usage
 
 Register the component globally.
 
@@ -31,47 +59,26 @@ Vue.component(VImageInput.name, VImageInput);
 
 *or*
 
-Register the component in the scope of another component.
+Register the component locally.
 
 ```javascript
 import VImageInput from 'vuetify-image-input';
 
 export default {
   components: {
-    [VImageInput.name]: VImageInput,
+    VImageInput,
   },
+  // ...
 };
 ```
 
 ---
 
-Use the treeshaking system.
-
-```javascript
-import VImageInput from 'vuetify-image-input/a-la-carte';
-```
-
-### browser
-
-```html
-<link
-  href="https://unpkg.com/vuetify/dist/vuetify.min.css"
-  rel="stylesheet"
-/>
-<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
-<script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
-<script src="https://unpkg.com/@seregpie/claw"></script>
-<script src="https://unpkg.com/vueclaw"></script>
-<script src="https://unpkg.com/vuetify-image-input"></script>
-```
-
-The component is globally available as `VuetifyImageInput`. If Vue is detected, the component is registered automatically.
-
-## usage
+Use the component inside a template.
 
 ```html
 <v-image-input
-  v-model="imageData"
+  v-model="image"
   :image-quality="0.85"
   clearable
   image-format="jpeg"
@@ -81,7 +88,7 @@ The component is globally available as `VuetifyImageInput`. If Vue is detected, 
 
 ## properties
 
-| property | type | default | description |
+| name | type | default | description |
 | ---: | :--- | :--- | :--- |
 | `clearable` | `Boolean` | `false` | |
 | `clearIcon` | `String` | `'$clear'` | |

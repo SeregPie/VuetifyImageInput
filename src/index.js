@@ -1,7 +1,5 @@
-import VImageInput from './VImageInput';
+import Component from './VImageInput';
 
-if (typeof window !== 'undefined' && window.Vue) {
-	window.Vue.component(VImageInput.name, VImageInput);
-}
+globalThis.window?.Vue?.component(Component.name, Component);
 
-export default VImageInput;
+export default Component;

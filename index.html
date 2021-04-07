@@ -3,41 +3,42 @@
 	<head>
 		<meta charset="utf-8"/>
 		<meta
-			content="width=device-width,initial-scale=1"
+			content="width=device-width, initial-scale=1"
 			name="viewport"
 		/>
 		<title>VuetifyImageInput</title>
-		<style>
-			[v-cloak] {
-				display: none;
-			}
-		</style>
 		<link
 			href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
 			rel="stylesheet"
 		/>
 		<link
-			href="https://unpkg.com/@mdi/font@4.5.95/css/materialdesignicons.min.css"
+			href="https://unpkg.com/@mdi/font@5/css/materialdesignicons.min.css"
 			rel="stylesheet"
 		/>
 		<link
-			href="https://unpkg.com/vuetify@2.1.9/dist/vuetify.min.css"
+			href="https://unpkg.com/vuetify@2/dist/vuetify.css"
 			rel="stylesheet"
 		/>
-		<script src="https://unpkg.com/core-js-bundle@3.3.6/minified.js"></script>
-		<script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
-		<script src="https://unpkg.com/vuetify@2.1.9/dist/vuetify.min.js"></script>
-		<script src="https://unpkg.com/@seregpie/claw@3.0.0"></script>
-		<script src="https://unpkg.com/vueclaw@1.1.0"></script>
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+		<script src="https://unpkg.com/vue@2"></script>
+		<script src="https://unpkg.com/vuetify@2/dist/vuetify.js"></script>
 		<script src="./index.js"></script>
+		<script
+			defer
+			src="./demo/script.js"
+		></script>
 	</head>
 	<body>
 		<v-app
-			id="app"
+			id="App"
 			v-cloak
 		>
 			<v-navigation-drawer
-				v-model="drawer"
+				v-model="ui.drawer"
 				app
 				clipped
 			>
@@ -135,13 +136,8 @@
 				color="primary"
 				dark
 			>
-				<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+				<v-app-bar-nav-icon @click="ui.drawer = !ui.drawer"></v-app-bar-nav-icon>
 				<v-toolbar-title>VuetifyImageInput</v-toolbar-title>
-				<v-chip v-if="fileInfo" label style="margin-left: 24px;">
-					<span>{{ fileInfo.name }}</span>,&nbsp;
-					<b><span>{{ fileInfo.type }}</span></b>,&nbsp;
-					<span>{{ fileInfo.lastModified }}</span>
-				</v-chip>
 				<v-spacer></v-spacer>
 				<v-btn
 					icon
@@ -154,16 +150,16 @@
 					icon
 					target="_blank"
 				>
-					<v-icon>mdi-github-circle</v-icon>
+					<v-icon>mdi-github</v-icon>
 				</v-btn>
 			</v-app-bar>
-			<v-content>
+			<v-main>
 				<v-container
 					fill-height
 					justify-center
 				>
 					<v-image-input
-						v-model="value"
+						v-model="image"
 						:clearable="clearable"
 						:debounce="250"
 						:disabled="disabled"
@@ -177,8 +173,15 @@
 						@file-info="onFileInfo"
 					></v-image-input>
 				</v-container>
-			</v-content>
+			</v-main>
+			<v-snackbar
+				v-model="ui.snackbar.fileInfo"
+				:timeout="5000"
+			>
+				<pre
+					v-if="fileInfo"
+				>{{ JSON.stringify(fileInfo, null, '  ') }}</pre>
+			</v-snackbar>
 		</v-app>
-		<script src="./demo/script.js"></script>
 	</body>
 </html>

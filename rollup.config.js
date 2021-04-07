@@ -1,17 +1,23 @@
-import {terser} from 'rollup-plugin-terser';
-import buble from 'rollup-plugin-buble';
-import resolve from 'rollup-plugin-node-resolve';
+import {babel} from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import {nodeResolve} from '@rollup/plugin-node-resolve';
 import serve from 'rollup-plugin-serve';
+import {terser} from 'rollup-plugin-terser';
 
 import {main} from './package.json';
 
-let globals = {
-	'vueclaw': 'VueClaw',
-};
-
 let plugins = [
-	resolve(),
-	buble({objectAssign: 'Object.assign'}),
+	nodeResolve(),
+	commonjs({
+		ignoreGlobal: true,
+		requireReturnsDefault: true,
+	}),
+	babel({
+		babelHelpers: 'bundled',
+		presets: [['@babel/preset-env', {
+			targets: 'defaults and not IE 11',
+		}]],
+	}),
 	terser(),
 ];
 
@@ -23,13 +29,11 @@ if (process.env.ROLLUP_WATCH) {
 }
 
 export default {
-	external: Object.keys(globals),
 	input: 'src/index.js',
 	plugins,
 	output: {
 		file: main,
 		format: 'umd',
 		name: 'VuetifyImageInput',
-		globals,
 	},
 };

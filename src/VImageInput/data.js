@@ -3,6 +3,7 @@ export default function() {
 		dirtyOriginLeft: 1/2,
 		dirtyOriginTop: 1/2,
 		dirtyScaling: 0,
+		fileInfo: null,
 		flippedHorizontally: false,
 		flippedVertically: false,
 		imageData: null,
@@ -10,6 +11,5 @@ export default function() {
 		internalImageHeight: 0,
 		internalImageWidth: 0,
 		rotated: false,
-		fileInfo: null
 	};
 }

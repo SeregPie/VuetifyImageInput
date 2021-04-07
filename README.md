@@ -131,5 +131,5 @@ Use the component inside a template.
 
 | name |
 | ---: |
-| `fileInfo` |
+| `file-info` |
 | `input` |

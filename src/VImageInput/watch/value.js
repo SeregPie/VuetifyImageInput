@@ -1,6 +1,10 @@
 export default {
 	handler(value) {
-		this.load(value);
+		if (value) {
+			this.load(value);
+		} else {
+			this.clear();
+		}
 	},
 	immediate: true,
 };

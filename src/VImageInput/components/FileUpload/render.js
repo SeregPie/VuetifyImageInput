@@ -110,9 +110,7 @@ export default function(h, {
 				}),
 			},
 			on: {
-				load: (({file, result}) => {
-					load({ file, base64: result });
-				}),
+				load,
 			},
 		},
 	);

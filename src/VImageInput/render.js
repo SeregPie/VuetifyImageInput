@@ -138,7 +138,23 @@ export default function(h) {
 									top: 0,
 								},
 								on: {
-									load: this.load,
+									load: (({
+										file: {
+											lastModified,
+											name,
+											size,
+											type,
+										},
+										result,
+									}) => {
+										this.$emit('file-info', {
+											name,
+											size,
+											type,
+											lastModified,
+										});
+										this.load(result);
+									}),
 								},
 							},
 						)]

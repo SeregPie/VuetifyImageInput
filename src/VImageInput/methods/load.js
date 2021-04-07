@@ -1,7 +1,7 @@
-export default function({ file, base64: data }) {
-	if ((this.imageData || data) && this.imageData !== data) {
+export default function(data) {
+	if (this.imageData !== data) {
 		let image = new Image();
-		image.addEventListener('load', (e) => {
+		image.addEventListener('load', () => {
 			let width = image.naturalWidth;
 			let height = image.naturalHeight;
 			this.internalImageData = (width && height) ? data : null;
@@ -14,15 +14,6 @@ export default function({ file, base64: data }) {
 			this.dirtyOriginLeft = 1/2;
 			this.dirtyOriginTop = 1/2;
 		});
-
-		if (file) {
-			this.$emit('file-info', {
-				name: file.name || '',
-				size: file.size || '',
-				type: file.type || '',
-				lastModified: file.lastModified || ''
-			})
-		}
-		if (data) image.src = data;
+		image.src = data;
 	}
 }

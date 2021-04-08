@@ -9,6 +9,12 @@ let {
 	resolveComponent,
 } = Vue;
 
+import PositionCenter from '../styles/PositionCenter';
+import PositionRelative from '../styles/PositionRelative';
+import PositionCover from '../styles/PositionCover';
+import OverflowHidden from '../styles/OverflowHidden';
+import InteractivityNone from '../styles/InteractivityNone';
+import BackgroundCheckered from '../styles/BackgroundCheckered';
 import loadImage from '../utils/loadImage';
 import clamp from '../utils/clamp';
 //import useDebounce from '../utils/useDebounce';
@@ -233,21 +239,21 @@ export default defineComponent({
 			internalImageRef.value = null;
 		});
 
-		let statusLoading = {};
-		let statusSuccess = {};
-		let statusError = {};
+		let StatusLoading = {};
+		let StatusSuccess = {};
+		let StatusError = {};
 		let loadStatusRef = shallowRef(null);
 		let loadingRef = computed(() => {
 			let status = loadStatusRef.value;
-			return status === statusLoading;
+			return status === StatusLoading;
 		});
 		let loadSuccessRef = computed(() => {
 			let status = loadStatusRef.value;
-			return status === statusSuccess;
+			return status === StatusSuccess;
 		});
 		let loadErrorRef = computed(() => {
 			let status = loadStatusRef.value;
-			return status === statusError;
+			return status === StatusError;
 		});
 		let loadController = null;
 		let cancelLoad = (() => {
@@ -261,15 +267,15 @@ export default defineComponent({
 			loadController = new AbortController();
 			let {signal} = loadController;
 			try {
-				loadStatusRef.value = statusLoading;
+				loadStatusRef.value = StatusLoading;
 				let image = await loadImage(value, signal);
 				if (!signal.aborted) {
-					loadStatusRef.value = statusSuccess;
+					loadStatusRef.value = StatusSuccess;
 					internalImageRef.value = image;
 				}
 			} catch {
 				if (!signal.aborted) {
-					loadStatusRef.value = statusError;
+					loadStatusRef.value = StatusError;
 				}
 			}
 		});
@@ -428,16 +434,25 @@ export default defineComponent({
 					rotateCounterClockwise,
 				);
 			});
-			let genActionButtonZoomIn = (() => {
-				return genActionButton(
-					props.zoomInIcon,
-					zoomIn,
-				);
-			});
-			let genActionButtonZoomOut = (() => {
-				return genActionButton(
-					props.zoomOutIcon,
-					zoomOut,
+			let genZoomSlider = (() => {
+				return h(
+					'div',
+					{
+						style: {
+							display: 'flex',
+							justifyContent: 'space-between',
+						},
+					},
+					[
+						genActionButton(
+							props.zoomOutIcon,
+							zoomOut,
+						),
+						genActionButton(
+							props.zoomInIcon,
+							zoomIn,
+						),
+					],
 				);
 			});
 			let internalImageDataURL = internalImageDataURLRef.value;
@@ -462,10 +477,13 @@ export default defineComponent({
 						'div',
 						{
 							style: {
+								...BackgroundCheckered(8, '#fff', '#000'),
+								...OverflowHidden,
+								...PositionRelative,
 								gridColumn: 1,
 								gridRow: 1,
-								overflow: 'hidden',
-								position: 'relative',
+								width: `${imageWidth + 50}px`,
+								height: `${imageHeight + 50}px`,
 							},
 						},
 						(internalImageDataURL
@@ -473,40 +491,49 @@ export default defineComponent({
 								'div',
 								{
 									style: {
-										height: `${imageHeight}px`,
-										pointerEvents: 'none',
-										position: 'relative',
+										...InteractivityNone,
+										...PositionCenter,
 										width: `${imageWidth}px`,
+										height: `${imageHeight}px`,
 									},
 								},
-								[h(
-									'div',
-									{
-										style: {
-											bottom: '50%',
-											position: 'absolute',
-											right: '50%',
-											transform: 'translate(50%,50%)',
-										},
-									},
-									[h(
-										'img',
+								[
+									h(
+										'div',
 										{
-											src: internalImageDataURL,
 											style: {
-												transform: [
-													`scale(${zoom})`,
-													`scale(${[
-														flippedHorizontally ? -1 : 1,
-														flippedVertically ? -1 : 1,
-													].join(',')})`,
-													`rotate(${rotation}rad)`,
-												].join(' '),
-												transition: 'all .3s cubic-bezier(.25,.8,.5,1)',
+												...PositionCenter,
 											},
 										},
-									)],
-								)],
+										[h(
+											'img',
+											{
+												src: internalImageDataURL,
+												style: {
+													transform: [
+														`scale(${zoom})`,
+														`scale(${[
+															flippedHorizontally ? -1 : 1,
+															flippedVertically ? -1 : 1,
+														].join(',')})`,
+														`rotate(${rotation}rad)`,
+													].join(' '),
+													transition: 'all .3s cubic-bezier(.25,.8,.5,1)',
+												},
+											},
+										)],
+									),
+									h(
+										'div',
+										{
+											style: {
+												...PositionCover,
+												boxShadow: `0 0 4000px 4000px ${'rgba(0,0,0,0.5)'}`,
+												outline: `${4}px solid ${'#fff'}`,
+											},
+										},
+									),
+								],
 							)]
 							: []
 						),
@@ -534,8 +561,6 @@ export default defineComponent({
 							genActionButtonFlipVertically(),
 							genActionButtonRotateClockwise(),
 							genActionButtonRotateCounterClockwise(),
-							genActionButtonZoomIn(),
-							genActionButtonZoomOut(),
 						],
 					),
 					h(
@@ -546,6 +571,7 @@ export default defineComponent({
 								gridRow: 2,
 							},
 						},
+						[genZoomSlider()]
 					),
 				],
 			);

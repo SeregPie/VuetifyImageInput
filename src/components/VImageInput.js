@@ -485,8 +485,8 @@ export default defineComponent({
 								...PositionRelative,
 								gridColumn: 1,
 								gridRow: 1,
-								width: `${imageWidth + 50}px`,
-								height: `${imageHeight + 50}px`,
+								minHeight: `${imageHeight + 50}px`,
+								minWidth: `${imageWidth + 50}px`,
 							},
 						},
 						(internalImageDataURL

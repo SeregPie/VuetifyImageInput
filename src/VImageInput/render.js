@@ -90,6 +90,7 @@ export default function(h) {
 											'img',
 											{
 												style: {
+													display: 'block',
 													pointerEvents: 'none',
 													position: 'absolute',
 													transform: [

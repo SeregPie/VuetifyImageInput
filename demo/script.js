@@ -11,9 +11,12 @@
 			[VuetifyImageInput.name]: VuetifyImageInput,
 		},
 		setup() {
-			let image = shallowRef(null);
 			return {
-				image,
+				clearable: shallowRef(false),
+				disabled: shallowRef(false),
+				hideActions: shallowRef(false),
+				image: shallowRef(null),
+				readonly: shallowRef(false),
 			};
 		},
 	});

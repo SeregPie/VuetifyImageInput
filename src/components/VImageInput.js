@@ -9,6 +9,8 @@ let {
 	resolveComponent,
 } = Vue;
 
+import Cccc from '../styles/Cccc';
+import Transition from '../styles/Transition';
 import PositionCenter from '../styles/PositionCenter';
 import PositionRelative from '../styles/PositionRelative';
 import PositionCover from '../styles/PositionCover';
@@ -46,10 +48,6 @@ export default defineComponent({
 			type: String,
 			default: 'mdi-flip-horizontal',
 		},
-		flippable: {
-			type: Boolean,
-			default: false,
-		},
 		flipVerticallyIcon: {
 			type: String,
 			default: 'mdi-flip-vertical',
@@ -59,6 +57,10 @@ export default defineComponent({
 			default: false,
 		},
 		fullWidth: {
+			type: Boolean,
+			default: false,
+		},
+		hideActions: {
 			type: Boolean,
 			default: false,
 		},
@@ -96,6 +98,10 @@ export default defineComponent({
 			default: 'cover',
 		},
 		modelValue: String,
+		readonly: {
+			type: Boolean,
+			default: false,
+		},
 		resetable: {
 			type: Boolean,
 			default: false,
@@ -103,14 +109,6 @@ export default defineComponent({
 		resetIcon: {
 			type: String,
 			default: 'mdi-restore',
-		},
-		resizable: {
-			type: Boolean,
-			default: false,
-		},
-		rotatable: {
-			type: Boolean,
-			default: false,
 		},
 		rotateClockwiseIcon: {
 			type: String,
@@ -124,17 +122,9 @@ export default defineComponent({
 			type: String,
 			default: '$success',
 		},
-		translatable: {
-			type: Boolean,
-			default: false,
-		},
 		uploadIcon: {
 			type: String,
 			default: 'mdi-upload',
-		},
-		zoomable: {
-			type: Boolean,
-			default: false,
 		},
 		zoomInIcon: {
 			type: String,
@@ -410,6 +400,12 @@ export default defineComponent({
 					},
 				);
 			});
+			let genActionButtonClear = (() => {
+				return genActionButton(
+					props.clearIcon,
+					clear,
+				);
+			});
 			let genActionButtonFlipHorizontally = (() => {
 				return genActionButton(
 					props.flipHorizontallyIcon,
@@ -455,6 +451,13 @@ export default defineComponent({
 					],
 				);
 			});
+			let {
+				clearable,
+				disabled,
+				hideActions,
+				readonly,
+			} = props;
+			let internalImage = internalImageRef.value;
 			let internalImageDataURL = internalImageDataURLRef.value;
 			let imageWidth = imageWidthRef.value;
 			let imageHeight = imageHeightRef.value;
@@ -510,6 +513,7 @@ export default defineComponent({
 											{
 												src: internalImageDataURL,
 												style: {
+													display: 'block',
 													transform: [
 														`scale(${zoom})`,
 														`scale(${[
@@ -535,7 +539,13 @@ export default defineComponent({
 									),
 								],
 							)]
-							: []
+							: [h(
+								VBtn,
+								{
+									icon: 'mdi-upload',
+									onClick: onClickToLoad,
+								},
+							)]
 						),
 					),
 					h(
@@ -547,20 +557,27 @@ export default defineComponent({
 								gridColumn: 2,
 								gridRow: 1,
 								justifyContent: 'center',
+								...Transition,
+								...(internalImage
+									? {}
+									: Cccc
+								),
 							},
 						},
 						[
-							h(
-								VBtn,
-								{
-									icon: 'mdi-load',
-									onClick: onClickToLoad,
-								},
+							...(hideActions || readonly
+								? []
+								: [
+									...(clearable
+										? [genActionButtonClear()]
+										: []
+									),
+									genActionButtonFlipHorizontally(),
+									genActionButtonFlipVertically(),
+									genActionButtonRotateClockwise(),
+									genActionButtonRotateCounterClockwise(),
+								]
 							),
-							genActionButtonFlipHorizontally(),
-							genActionButtonFlipVertically(),
-							genActionButtonRotateClockwise(),
-							genActionButtonRotateCounterClockwise(),
 						],
 					),
 					h(
@@ -569,9 +586,17 @@ export default defineComponent({
 							style: {
 								gridColumn: 1,
 								gridRow: 2,
+								...Transition,
+								...(internalImage
+									? {}
+									: Cccc
+								),
 							},
 						},
-						[genZoomSlider()]
+						(hideActions || readonly
+							? []
+							: [genZoomSlider()]
+						),
 					),
 				],
 			);

@@ -44,9 +44,50 @@
 						width: 100%;
 					"
 				>
+					<div
+						style="
+							display: grid;
+							gap: 8px;
+						"
+					>
+						<label>
+							<input
+								v-model="disabled"
+								type="checkbox"
+							/>
+							<span>disabled</span>
+						</label>
+						<label>
+							<input
+								v-model="readonly"
+								type="checkbox"
+							/>
+							<span>readonly</span>
+						</label>
+						<label>
+							<input
+								v-model="clearable"
+								type="checkbox"
+							/>
+							<span>clearable</span>
+						</label>
+						<label>
+							<input
+								v-model="hideActions"
+								type="checkbox"
+							/>
+							<span>hide actions</span>
+						</label>
+					</div>
 					<img :src="image"/>
 					<v-image-input
 						v-model="image"
+						v-bind="{
+							clearable,
+							disabled,
+							hideActions,
+							readonly,
+						}"
 					></v-image-input>
 				</div>
 			</v-main>

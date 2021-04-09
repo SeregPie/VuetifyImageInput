@@ -24,9 +24,9 @@ npm i vuetify-image-input
 import VuetifyImageInput from 'vuetify-image-input';
 ```
 
----
+*or*
 
-Use the treeshaking system.
+Use the [treeshaking](https://vuetifyjs.com/features/treeshaking) system.
 
 ```javascript
 import VuetifyImageInput from 'vuetify-image-input/a-la-carte';

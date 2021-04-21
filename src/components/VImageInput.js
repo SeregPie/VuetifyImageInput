@@ -168,7 +168,7 @@ export default defineComponent({
 			}
 			rotationRef.value += n;
 		});
-		let rotationDelta = Math.PI/2;
+		let rotationDelta = Math.PI/3;
 		let rotateClockwise = (() => {
 			let delta = rotationDelta;
 			rotate(+delta);
@@ -224,13 +224,19 @@ export default defineComponent({
 			let max = maxZoomRef.value;
 			return (max - min) / 1000;
 		});
+		let minTranslationHorizontallyRef = computed(() => {
+			return -Infinity;
+		});
+		let maxTranslationHorizontallyRef = computed(() => {
+			return +Infinity;
+		});
 		let translationHorizontallyRef = customRef((track, trigger) => {
 			let n = 0;
 			return {
 				get() {
 					track();
-					let min = -Infinity;
-					let max = +Infinity;
+					let min = minTranslationHorizontallyRef.value;
+					let max = maxTranslationHorizontallyRef.value;
 					return clamp(n, min, max);
 				},
 				set(value) {
@@ -239,13 +245,19 @@ export default defineComponent({
 				},
 			};
 		});
+		let minTranslationVerticallyRef = computed(() => {
+			return -Infinity;
+		});
+		let maxTranslationVerticallyRef = computed(() => {
+			return +Infinity;
+		});
 		let translationVerticallyRef = customRef((track, trigger) => {
 			let n = 0;
 			return {
 				get() {
 					track();
-					let min = -Infinity;
-					let max = +Infinity;
+					let min = minTranslationVerticallyRef.value;
+					let max = maxTranslationVerticallyRef.value;
 					return clamp(n, min, max);
 				},
 				set(value) {

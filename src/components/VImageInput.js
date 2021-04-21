@@ -164,9 +164,9 @@ export default defineComponent({
 		});
 		let rotationRef = shallowRef(0);
 		let rotate = (n => {
-			let flippedHorizontally = flippedHorizontallyRef.value;
-			let flippedVertically = flippedVerticallyRef.value;
-			if (flippedHorizontally !== flippedVertically) {
+			let x = flippedHorizontallyRef.value;
+			let y = flippedVerticallyRef.value;
+			if (x !== y) {
 				n *= -1;
 			}
 			rotationRef.value += n;
@@ -269,18 +269,20 @@ export default defineComponent({
 				}
 			}
 		});
-
-		/*watch(
+		watch(
 			() => props.modelValue,
 			value => {
-				if (value == null) {
-					clear();
+				if (value) {
+					let currentValue = imageDataURLRef.value;
+					if (currentValue !== value) {
+						load(value);
+					}
 				} else {
-					load(value);
+					clear();
 				}
 			},
 			{immediate: true},
-		);*/
+		);
 		watch(
 			imageDataURLRef,
 			value => {
@@ -454,7 +456,6 @@ export default defineComponent({
 			let {
 				clearable,
 				disabled,
-				hideActions,
 				readonly,
 			} = props;
 			let internalImage = internalImageRef.value;
@@ -565,7 +566,7 @@ export default defineComponent({
 							},
 						},
 						[
-							...(hideActions || readonly
+							...(readonly
 								? []
 								: [
 									...(clearable
@@ -593,7 +594,7 @@ export default defineComponent({
 								),
 							},
 						},
-						(hideActions || readonly
+						(readonly
 							? []
 							: [genZoomSlider()]
 						),

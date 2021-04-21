@@ -79,7 +79,13 @@
 							<span>hide actions</span>
 						</label>
 					</div>
-					<img :src="image"/>
+					<img
+						:src="image"
+						style="
+							background-color: aqua;
+							display: block;
+						"
+					/>
 					<v-image-input
 						v-model="image"
 						v-bind="{

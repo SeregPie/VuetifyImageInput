@@ -7,6 +7,7 @@ let {
 	watchEffect,
 	triggerRef,
 	resolveComponent,
+	customRef,
 } = Vue;
 
 import Cccc from '../styles/Cccc';
@@ -57,10 +58,6 @@ export default defineComponent({
 			default: false,
 		},
 		fullWidth: {
-			type: Boolean,
-			default: false,
-		},
-		hideActions: {
 			type: Boolean,
 			default: false,
 		},
@@ -164,9 +161,9 @@ export default defineComponent({
 		});
 		let rotationRef = shallowRef(0);
 		let rotate = (n => {
-			let x = flippedHorizontallyRef.value;
-			let y = flippedVerticallyRef.value;
-			if (x !== y) {
+			let m0 = flippedHorizontallyRef.value;
+			let m1 = flippedVerticallyRef.value;
+			if (m0 !== m1) {
 				n *= -1;
 			}
 			rotationRef.value += n;
@@ -188,17 +185,20 @@ export default defineComponent({
 			let max = props.maxZoom;
 			return Math.max(min, max);
 		});
-		let rawZoomRef = shallowRef(0);
-		let zoomRef = computed({
-			get() {
-				let min = minZoomRef.value;
-				let max = maxZoomRef.value;
-				let n = rawZoomRef.value;
-				return clamp(n, min, max);
-			},
-			set(value) {
-				rawZoomRef.value = value;
-			},
+		let zoomRef = customRef((track, trigger) => {
+			let n = 0;
+			return {
+				get() {
+					track();
+					let min = minZoomRef.value;
+					let max = maxZoomRef.value;
+					return clamp(n, min, max);
+				},
+				set(value) {
+					n = value;
+					trigger();
+				},
+			};
 		});
 		let setZoom = (value => {
 			zoomRef.value = value;
@@ -223,6 +223,54 @@ export default defineComponent({
 			let min = minZoomRef.value;
 			let max = maxZoomRef.value;
 			return (max - min) / 1000;
+		});
+		let translationHorizontallyRef = customRef((track, trigger) => {
+			let n = 0;
+			return {
+				get() {
+					track();
+					let min = -Infinity;
+					let max = +Infinity;
+					return clamp(n, min, max);
+				},
+				set(value) {
+					n = value;
+					trigger();
+				},
+			};
+		});
+		let translationVerticallyRef = customRef((track, trigger) => {
+			let n = 0;
+			return {
+				get() {
+					track();
+					let min = -Infinity;
+					let max = +Infinity;
+					return clamp(n, min, max);
+				},
+				set(value) {
+					n = value;
+					trigger();
+				},
+			};
+		});
+		let translate = ((x, y) => {
+			let fX = flippedHorizontallyRef.value;
+			let fY = flippedVerticallyRef.value;
+			let a = rotationRef.value;
+			let s = zoomRef.value;
+			if (fX) {
+				x *= -1;
+			}
+			if (fY) {
+				y *= -1;
+			}
+			x /= s;
+			y /= s;
+			let sinA = Math.sin(a);
+			let cosA = Math.cos(a);
+			translationHorizontallyRef.value += x * cosA + y * sinA;
+			translationVerticallyRef.value -= x * sinA - y * cosA;
 		});
 
 		let clear = (() => {
@@ -305,6 +353,8 @@ export default defineComponent({
 					let height = imageHeightRef.value;
 					let flippedHorizontally = flippedHorizontallyRef.value;
 					let flippedVertically = flippedVerticallyRef.value;
+					let translationHorizontally = translationHorizontallyRef.value;
+					let translationVertically = translationVerticallyRef.value;
 					let rotation = rotationRef.value;
 					let zoom = zoomRef.value;
 					let canvas = document.createElement('canvas');
@@ -318,6 +368,7 @@ export default defineComponent({
 						flippedVertically ? -1 : 1,
 					);
 					ctx.rotate(rotation);
+					ctx.translate(translationHorizontally, translationVertically);
 					ctx.drawImage(image, -imageWidth/2, -imageHeight/2);
 					return canvas.toDataURL(`image/${imageFormat}`, imageQuality);
 				}
@@ -328,48 +379,6 @@ export default defineComponent({
 			}
 		);
 
-		/*let viewEdit = {};
-		let viewLoad = {};
-		let viewRef = useDebounce(computed(() => {
-			let image = internalImageRef.value;
-			return image ? viewEdit : viewLoad;
-		}), 1000);*/
-
-		/*
-
-		function drawImage(img, x, y, width, height, deg, flip, flop, center) {
-
-		context.save();
-
-		if(typeof width === "undefined") width = img.width;
-		if(typeof height === "undefined") height = img.height;
-		if(typeof center === "undefined") center = false;
-
-		// Set rotation point to center of image, instead of top/left
-		if(center) {
-				x -= width/2;
-				y -= height/2;
-		}
-
-		// Set the origin to the center of the image
-		context.translate(x + width/2, y + height/2);
-
-		// Rotate the canvas around the origin
-		var rad = 2 * Math.PI - deg * Math.PI / 180;
-		context.rotate(rad);
-
-		// Flip/flop the canvas
-		if(flip) flipScale = -1; else flipScale = 1;
-		if(flop) flopScale = -1; else flopScale = 1;
-		context.scale(flipScale, flopScale);
-
-		// Draw the image
-		context.drawImage(img, -width/2, -height/2, width, height);
-
-		context.restore();
-		}
-
-*/
 
 		let onClickToLoad = (event => {
 			event.preventDefault();
@@ -394,9 +403,11 @@ export default defineComponent({
 				icon,
 				onClick,
 			) => {
+				let {disabled} = props;
 				return h(
 					VBtn,
 					{
+						disabled,
 						icon,
 						onClick,
 					},
@@ -465,6 +476,8 @@ export default defineComponent({
 			let imageDataURL = imageDataURLRef.value;
 			let flippedHorizontally = flippedHorizontallyRef.value;
 			let flippedVertically = flippedVerticallyRef.value;
+			let translationHorizontally = translationHorizontallyRef.value;
+			let translationVertically = translationVerticallyRef.value;
 			let rotation = rotationRef.value;
 			let zoom = zoomRef.value;
 			return h(
@@ -522,6 +535,7 @@ export default defineComponent({
 															flippedVertically ? -1 : 1,
 														].join(',')})`,
 														`rotate(${rotation}rad)`,
+														`translate(${translationHorizontally}px,${translationVertically}px)`,
 													].join(' '),
 													transition: 'all .3s cubic-bezier(.25,.8,.5,1)',
 												},
@@ -578,6 +592,42 @@ export default defineComponent({
 									genActionButtonRotateClockwise(),
 									genActionButtonRotateCounterClockwise(),
 								]
+							),
+							h(
+								'div',
+								{
+									onClick() {
+										translate(0, -10);
+									},
+								},
+								'UP'
+							),
+							h(
+								'div',
+								{
+									onClick() {
+										translate(0, +10);
+									},
+								},
+								'DOWN'
+							),
+							h(
+								'div',
+								{
+									onClick() {
+										translate(-10, 0);
+									},
+								},
+								'LEFT'
+							),
+							h(
+								'div',
+								{
+									onClick() {
+										translate(+10, 0);
+									},
+								},
+								'RIGHT'
 							),
 						],
 					),

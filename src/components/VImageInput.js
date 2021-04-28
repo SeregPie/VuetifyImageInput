@@ -1,4 +1,4 @@
-let {
+import {
 	computed,
 	defineComponent,
 	h,
@@ -8,7 +8,11 @@ let {
 	triggerRef,
 	resolveComponent,
 	customRef,
-} = Vue;
+} from 'vue';
+import {
+	useGesture,
+	useDrag,
+} from 'vue-use-gesture';
 
 import Cccc from '../styles/Cccc';
 import Transition from '../styles/Transition';
@@ -86,11 +90,11 @@ export default defineComponent({
 			type: Number,
 			default: 256,
 		},
-		maxZoom: {
+		imageMaxScaling: {
 			type: Number,
 			default: 1,
 		},
-		minZoom: {
+		imageMinScaling: {
 			type: String,
 			default: 'cover',
 		},
@@ -177,12 +181,36 @@ export default defineComponent({
 			let delta = rotationDelta;
 			rotate(-delta);
 		});
+		let aaaaWidthRef = computed(() => {
+			let x = internalImageWidthRef.value;
+			let y = internalImageHeightRef.value;
+			let a = rotationRef.value;
+			return x * Math.abs(Math.cos(a)) + y * Math.abs(Math.sin(a));
+		});
+		let aaaaHeightRef = computed(() => {
+			let x = internalImageWidthRef.value;
+			let y = internalImageHeightRef.value;
+			let a = rotationRef.value;
+			return x * Math.abs(Math.sin(a)) + y * Math.abs(Math.cos(a));
+		});
 		let minZoomRef = computed(() => {
-			return 1/10;
+			switch (props.imageMinScaling) {
+				case 'cover':
+					return Math.max(
+						props.imageWidth / aaaaWidthRef.value,
+						props.imageHeight / aaaaHeightRef.value,
+					);
+				case 'contain':
+					return Math.min(
+						props.imageWidth / aaaaWidthRef.value,
+						props.imageHeight / aaaaHeightRef.value,
+					);
+			}
+			return 0;
 		});
 		let maxZoomRef = computed(() => {
 			let min = minZoomRef.value;
-			let max = props.maxZoom;
+			let max = props.imageMaxScaling;
 			return Math.max(min, max);
 		});
 		let zoomRef = customRef((track, trigger) => {
@@ -409,6 +437,21 @@ export default defineComponent({
 			input.click();
 		});
 
+		let animatedRef = shallowRef(true);
+
+		let bind000 = useGesture({
+			onDrag({delta: [x, y]}) {
+				console.log('onDrag');
+				translate(x, y);
+			},
+			onDragStart() {
+				animatedRef.value = false;
+			},
+			onDragEnd() {
+				animatedRef.value = true;
+			},
+		});
+
 		return (() => {
 			let VBtn = resolveComponent('VBtn');
 			let genActionButton = ((
@@ -492,6 +535,7 @@ export default defineComponent({
 			let translationVertically = translationVerticallyRef.value;
 			let rotation = rotationRef.value;
 			let zoom = zoomRef.value;
+			let animated = animatedRef.value;
 			return h(
 				'div',
 				{
@@ -520,11 +564,12 @@ export default defineComponent({
 								'div',
 								{
 									style: {
-										...InteractivityNone,
+
 										...PositionCenter,
 										width: `${imageWidth}px`,
 										height: `${imageHeight}px`,
 									},
+									onPointerdown: bind000().onPointerDown,
 								},
 								[
 									h(
@@ -532,6 +577,7 @@ export default defineComponent({
 										{
 											style: {
 												...PositionCenter,
+												...InteractivityNone,
 											},
 										},
 										[h(
@@ -549,7 +595,10 @@ export default defineComponent({
 														`rotate(${rotation}rad)`,
 														`translate(${translationHorizontally}px,${translationVertically}px)`,
 													].join(' '),
-													transition: 'all .3s cubic-bezier(.25,.8,.5,1)',
+													...(animated
+														? {transition: 'all .3s cubic-bezier(.25,.8,.5,1)'}
+														: {}
+													),
 												},
 											},
 										)],
@@ -658,7 +707,22 @@ export default defineComponent({
 						},
 						(readonly
 							? []
-							: [genZoomSlider()]
+							: [
+								genZoomSlider(),
+								h(
+									'div',
+									{
+										style: {
+											whiteSpace: 'pre-wrap',
+										},
+									},
+									JSON.stringify({
+										translationHorizontally,
+										translationVertically,
+										zoom,
+									}, null, '  '),
+								),
+							]
 						),
 					),
 				],

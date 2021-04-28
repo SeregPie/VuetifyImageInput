@@ -71,13 +71,24 @@
 							/>
 							<span>clearable</span>
 						</label>
-						<label>
-							<input
-								v-model="hideActions"
-								type="checkbox"
-							/>
-							<span>hide actions</span>
-						</label>
+						<div style="display: grid">
+							<label>
+								<input
+									v-model="imageMinScaling"
+									type="radio"
+									value="cover"
+								/>
+								<span>cover</span>
+							</label>
+							<label>
+								<input
+									v-model="imageMinScaling"
+									type="radio"
+									value="contain"
+								/>
+								<span>contain</span>
+							</label>
+						</div>
 					</div>
 					<img
 						:src="image"
@@ -91,7 +102,7 @@
 						v-bind="{
 							clearable,
 							disabled,
-							hideActions,
+							imageMinScaling,
 							readonly,
 						}"
 					></v-image-input>

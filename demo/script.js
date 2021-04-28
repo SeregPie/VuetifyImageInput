@@ -16,6 +16,7 @@
 				disabled: shallowRef(false),
 				hideActions: shallowRef(false),
 				image: shallowRef(null),
+				imageMinScaling: shallowRef('cover'),
 				readonly: shallowRef(false),
 			};
 		},

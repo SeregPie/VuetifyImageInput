@@ -1,14 +1,13 @@
 import {
 	computed,
+	customRef,
 	defineComponent,
 	h,
+	resolveComponent,
 	shallowRef,
 	watch,
-	watchEffect,
-	triggerRef,
-	resolveComponent,
-	customRef,
 } from 'vue';
+import {useGesture} from 'vue-use-gesture';
 
 import Cccc from '../styles/Cccc';
 import Transition from '../styles/Transition';
@@ -190,17 +189,28 @@ export default defineComponent({
 			return x * Math.abs(Math.sin(a)) + y * Math.abs(Math.cos(a));
 		});
 		let minZoomRef = computed(() => {
+			let sx0 = props.imageWidth;
+			let sy0 = props.imageHeight;
+			let sx1 = internalImageWidthRef.value;
+			let sy1 = internalImageHeightRef.value;
+			let a = rotationRef.value;
+			let sinA = Math.abs(Math.sin(a));
+			let cosA = Math.abs(Math.cos(a));
 			switch (props.imageMinScaling) {
 				case 'cover':
 					return Math.max(
-						props.imageWidth / aaaaWidthRef.value,
-						props.imageHeight / aaaaHeightRef.value,
+						props.imageWidth / internalImageWidthRef.value,
+						props.imageHeight / internalImageHeightRef.value,
 					);
 				case 'contain':
-					return Math.min(
-						props.imageWidth / aaaaWidthRef.value,
+					return cosA + Math.min(sx0 / sy0, sx1 / sy2M
+
 						props.imageHeight / aaaaHeightRef.value,
 					);
+					/*return Math.min(
+						props.imageWidth / aaaaWidthRef.value,
+						props.imageHeight / aaaaHeightRef.value,
+					);*/
 			}
 			return 0;
 		});
@@ -435,6 +445,19 @@ export default defineComponent({
 
 		let animatedRef = shallowRef(true);
 
+		let bind000 = useGesture({
+			onDrag({delta: [x, y]}) {
+				console.log('onDrag');
+				translate(x, y);
+			},
+			onDragStart() {
+				animatedRef.value = false;
+			},
+			onDragEnd() {
+				animatedRef.value = true;
+			},
+		});
+
 		return (() => {
 			let VBtn = resolveComponent('VBtn');
 			let genActionButton = ((
@@ -552,6 +575,7 @@ export default defineComponent({
 										width: `${imageWidth}px`,
 										height: `${imageHeight}px`,
 									},
+									onPointerdown: bind000().onPointerDown,
 								},
 								[
 									h(

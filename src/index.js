@@ -1,5 +1,3 @@
-import Component from './VImageInput';
+import component from './components/VImageInput';
 
-globalThis.window?.Vue?.component(Component.name, Component);
-
-export default Component;
+export default component;

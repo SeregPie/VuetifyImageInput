@@ -23,8 +23,6 @@
 		"@rollup/plugin-node-resolve": "^13.0.4",
 		"@vue/test-utils": "^2.0.0-rc.11",
 		"babel-jest": "^27.0.6",
-		"eslint": "^7.32.0",
-		"eslint-config-seregpie": "^1.0.2",
 		"jest": "^27.0.6",
 		"rollup": "^2.55.1",
 		"rollup-plugin-terser": "^7.0.2",

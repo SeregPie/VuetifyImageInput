@@ -1,27 +1,41 @@
 import {
 	defineComponent,
-	watchEffect,
+	watch,
 	h,
 } from 'vue';
 
 export default defineComponent({
 	name: 'VImageInput',
 	props: {
-		modelValue: String,
+		modelValue: {
+			type: String,
+			default: null,
+		},
 	},
 	setup(props, {
 		emit,
 		expose,
-		slots,
 	}) {
-		let load = (() => {
+		let load = (() => { // should warn let
 
 		});
+		const v = (a // should warn unused
+			.c()
+			.d()
+		);
+		watch(
+			() => props.modelValue,
+			(value) => {
+				emit('update:modelValue', value);
+			},
+			{immediate: true},
+		);
 		expose({
-			load,
+			load // should warn
 		});
-		return (() => {
-			return h('div');
-		});
+		return (() => h('div'));
+	},
+	data() { // should warn spaces
+		return {lol: true};
 	},
 });

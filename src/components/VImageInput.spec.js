@@ -4,28 +4,101 @@ import {nextTick} from 'vue';
 import VImageInput from './VImageInput';
 
 describe('wyzpweob', () => {
-	// create with null
-	// create with nullish
-	// create with valid dataURL
-	// create with invalid dataURL
 
-	// change from nullish to null
-	// change from nullish to valid
-	// change from nullish to invalid
-	// change from valid to null
-	// change from valid to nullish
-	// change from valid to invalid
-	// change from invalid to null
-	// change from invalid to nullish
-	// change from invalid to valid
+
+
+	// change from dataURL to null: update:modelValue(null)
+  // change from dataURL to '': update:modelValue(null)
+	// change from dataURL to otherDataURL: update:modelValue(otherDataURL)
+	// change from dataURL to ` ${dataURL} `: nothing
+	// change from dataURL to invalidDataURL: error()
+	//   to dataURL: nothing
+
+	// change from null to dataURL to null: nothing
+	// change from dataURL to null to dataURL: nothing
+
+	// change from null to dataURL to invalidDataURL: error()
+	// change from null to dataURL to otherDataURL: update:modelValue(otherDataURL)
+
+	const dataURL = '123';
+	const emptyDataURL = 'data:,';
+	const otherDataURL = '321';
+	const invalidDataURL = 'data:image/png;base64';
+	test('create with null', async () => {
+		const wrapper = mount(VImageInput);
+		await nextTick(); // todo: await more
+		expect(wrapper.emitted('load')).toBeFalsy();
+		expect(wrapper.emitted('error')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+	});
+	test('create with ``', async () => {
+		const wrapper = mount(VImageInput, {
+			props: {modelValue: ''},
+		});
+		await nextTick(); // todo: await more
+		expect(wrapper.emitted('load')).toBeFalsy();
+		expect(wrapper.emitted('error')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toHaveLength(1);
+		expect(wrapper.emitted('update:modelValue')[0][0]).toBeNull();
+	});
+	test('create with dataURL', async () => {
+		const wrapper = mount(VImageInput, {
+			props: {modelValue: dataURL},
+		});
+		await nextTick(); // todo: await more
+		expect(wrapper.emitted('load')).toHaveLength(1);
+		expect(wrapper.emitted('error')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+	});
+	test('create with ` ${dataURL} `', async () => {
+		const wrapper = mount(VImageInput, {
+			props: {modelValue: ` ${dataURL} `},
+		});
+		await nextTick(); // todo: await more
+		expect(wrapper.emitted('error')).toBeFalsy();
+		expect(wrapper.emitted('load')).toHaveLength(1);
+		expect(wrapper.emitted('update:modelValue')).toHaveLength(1);
+		expect(wrapper.emitted('update:modelValue')[0][0]).toBe(dataURL);
+	});
+	test('create with invalidDataURL', async () => {
+		const wrapper = mount(VImageInput, {
+			props: {modelValue: invalidDataURL},
+		});
+		await nextTick(); // todo: await more
+		expect(wrapper.emitted('error')).toHaveLength(1);
+		expect(wrapper.emitted('load')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toHaveLength(1);
+		expect(wrapper.emitted('update:modelValue')[0][0]).toBeNull();
+	});
+
+		// : nothing
+	// change from null to dataURL: load() + update:modelValue(dataURL)
+	// change from null to ` ${dataURL} `: load() + update:modelValue(dataURL)
+	// change from null to invalidDataURL: error()
+	//   to null: nothing
+	test(`change from null to ''`, async () => {
+		const wrapper = mount(VImageInput);
+		await nextTick(); // todo: await more
+		await wrapper.setProps({modelValue: ''});
+		expect(wrapper.emitted('error')).toHaveLength(1);
+		expect(wrapper.emitted('load')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toHaveLength(1);
+		expect(wrapper.emitted('update:modelValue')[0][0]).toBeNull();
+	});
 	test('ysrqprjs', async () => {
-		let wrapper = mount(VImageInput);
+		const wrapper = mount(VImageInput);
 		await nextTick(); // todo: await more
 		console.log(wrapper.emitted());
-		console.log(wrapper.emitted('update:modelValue'));
+		await wrapper.setProps({modelValue: null});
+		console.log(wrapper.emitted());
+		await wrapper.setProps({modelValue: ''});
+		console.log(wrapper.emitted());
+		await wrapper.setProps({modelValue: undefined});
+		console.log(wrapper.emitted());
+		/*console.log(wrapper.emitted('update:modelValue'));
 		expect(wrapper.emitted('update:modelValue')).toBeUndefined();
 		expect(wrapper.emitted('update:modelValue')[0][0]).toBeNull();
-		/*await wrapper.setProps({
+		await wrapper.setProps({
 			modelValue: null,
 		});
 		await nextTick(); // todo: await more
@@ -37,7 +110,7 @@ describe('wyzpweob', () => {
 		expect(wrapper.emitted('update:modelValue')).toHaveLength(2);
 		expect(wrapper.emitted('update:modelValue')[1][0]).toBeNull();
 		{
-			let dataURL = 'abc';
+			const dataURL = 'abc';
 			await wrapper.setProps({
 				modelValue: dataURL,
 			});
@@ -56,8 +129,8 @@ describe('wyzpweob', () => {
 		*/
 	});
 	/*test('qjeuvnlo', async () => {
-		let dataURL;
-		let wrapper = mount(VImageInput, {
+		const dataURL;
+		const wrapper = mount(VImageInput, {
 			props: {}
 		});
 		await nextTick();
@@ -71,8 +144,8 @@ describe('wyzpweob', () => {
 		expect(wrapper.emitted()['error'][0]).toEqual([]);
 	});
 	test('jndtyziu', async () => {
-		let dataURL;
-		let wrapper = mount(VImageInput, {
+		const dataURL;
+		const wrapper = mount(VImageInput, {
 			props: {
 				modelValue: dataURL,
 			}

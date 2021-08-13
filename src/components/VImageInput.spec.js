@@ -4,23 +4,35 @@ import {nextTick} from 'vue';
 import VImageInput from './VImageInput';
 
 describe('wyzpweob', () => {
+	test('xjofaiqq', async () => {
+		const wrapper = mount(VImageInput);
+		console.log(wrapper.vm);
+	});
+	// create with null => n/a
+	// create with '' => update:modelValue(null)
+	// create with emptyDataURL => update:modelValue(null)
+	// create with imageDataURL => n/a
+	// create with ` ${imageDataURL} ` => update:modelValue(imageDataURL)
+	// create with invalidDataURL => error & update:modelValue(imageDataURL)
 
+	// change from null to '' => n/a
+	// change from null to imageDataURL => update:modelValue(imageDataURL)
+	// change from null to invalidDataURL => error
+	//   to null => n/a
 
+	// change from imageDataURL to null => update:modelValue(null)
+	// change from imageDataURL to otherImageDataURL => update:modelValue(otherImageDataURL)
+	// change from imageDataURL to ` ${imageDataURL} ` => nothing
+	// change from imageDataURL to invalidDataURL => error
+	//   to imageDataURL => n/a
 
-	// change from dataURL to null: update:modelValue(null)
-  // change from dataURL to '': update:modelValue(null)
-	// change from dataURL to otherDataURL: update:modelValue(otherDataURL)
-	// change from dataURL to ` ${dataURL} `: nothing
-	// change from dataURL to invalidDataURL: error()
-	//   to dataURL: nothing
+	// change from null to imageDataURL to null: nothing
+	// change from imageDataURL to null to imageDataURL: nothing
 
-	// change from null to dataURL to null: nothing
-	// change from dataURL to null to dataURL: nothing
+	// change from null to imageDataURL to invalidDataURL: error()
+	// change from null to invalidDataURL to imageDataURL: update:modelValue(imageDataURL)
 
-	// change from null to dataURL to invalidDataURL: error()
-	// change from null to dataURL to otherDataURL: update:modelValue(otherDataURL)
-
-	const dataURL = '123';
+	/*const dataURL = '123';
 	const emptyDataURL = 'data:,';
 	const otherDataURL = '321';
 	const invalidDataURL = 'data:image/png;base64';
@@ -126,9 +138,8 @@ describe('wyzpweob', () => {
 				expect(wrapper.emitted('error')).toHaveLength(2);
 			}
 		}
-		*/
 	});
-	/*test('qjeuvnlo', async () => {
+	test('qjeuvnlo', async () => {
 		const dataURL;
 		const wrapper = mount(VImageInput, {
 			props: {}

@@ -16,13 +16,9 @@ export default defineComponent({
 		emit,
 		expose,
 	}) {
-		let load = (() => { // should warn let
+		const load = (() => {
 
 		});
-		const v = (a // should warn unused
-			.c()
-			.d()
-		);
 		watch(
 			() => props.modelValue,
 			(value) => {
@@ -31,11 +27,8 @@ export default defineComponent({
 			{immediate: true},
 		);
 		expose({
-			load // should warn
+			load,
 		});
 		return (() => h('div'));
-	},
-	data() { // should warn spaces
-		return {lol: true};
 	},
 });

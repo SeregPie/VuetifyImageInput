@@ -1,50 +1,138 @@
-import {mount} from '@vue/test-utils';
+import {mount, flushPromises} from '@vue/test-utils';
 import {nextTick} from 'vue';
 
 import VImageInput from './VImageInput';
 
 describe('wyzpweob', () => {
-	test('xjofaiqq', async () => {
-		const wrapper = mount(VImageInput);
-		console.log(wrapper.vm);
-	});
+	let imageDataURL = 'image_1';
+	let emptyDataURL = 'data:,';
+	let invalidDataURL = 'data:image/png;base64';
 	// create with null => n/a
+	test('xjofaiqq', async () => {
+		let wrapper = mount(VImageInput);
+		await flushPromises();
+		expect(wrapper.emitted('error')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+	});
 	// create with '' => update:modelValue(null)
+	test('ouorphjl', async () => {
+		let wrapper = mount(VImageInput, {
+			props: {modelValue: ''}
+		});
+		await flushPromises();
+		expect(wrapper.emitted('error')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
+	});
 	// create with emptyDataURL => update:modelValue(null)
+	test('cpevayyw', async () => {
+		let wrapper = mount(VImageInput, {
+			props: {modelValue: emptyDataURL}
+		});
+		await flushPromises();
+		expect(wrapper.emitted('error')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
+	});
 	// create with imageDataURL => n/a
+	test('hhyqiqjx', async () => {
+		let wrapper = mount(VImageInput, {
+			props: {modelValue: imageDataURL}
+		});
+		await flushPromises();
+		expect(wrapper.emitted('error')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+	});
 	// create with ` ${imageDataURL} ` => update:modelValue(imageDataURL)
-	// create with invalidDataURL => error & update:modelValue(imageDataURL)
-
+	test('ttucbinz', async () => {
+		let wrapper = mount(VImageInput, {
+			props: {modelValue: ` ${imageDataURL} `}
+		});
+		await flushPromises();
+		expect(wrapper.emitted('error')).toBeFalsy();
+		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL]]);
+	});
+	// create with invalidDataURL => error & update:modelValue(null)
+	test('lgjkkfjc', async () => {
+		let wrapper = mount(VImageInput, {
+			props: {modelValue: invalidDataURL}
+		});
+		await flushPromises();
+		expect(wrapper.emitted('error')).toHaveLength(1);
+		expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
+	});
 	// change from null to '' => n/a
+	test('wqipnkbt', async () => {
+		let wrapper = mount(VImageInput);
+
+	});
 	// change from null to imageDataURL => update:modelValue(imageDataURL)
+	test('mvwywecl', async () => {
+		let wrapper = mount(VImageInput);
+
+	});
 	// change from null to invalidDataURL => error
 	//   to null => n/a
+	test('mmajazbi', async () => {
+		let wrapper = mount(VImageInput);
 
+	});
 	// change from imageDataURL to null => update:modelValue(null)
+	test('iarpugjo', async () => {
+		let wrapper = mount(VImageInput);
+
+	});
 	// change from imageDataURL to otherImageDataURL => update:modelValue(otherImageDataURL)
+	test('hljuxyqd', async () => {
+		let wrapper = mount(VImageInput);
+
+	});
 	// change from imageDataURL to ` ${imageDataURL} ` => nothing
+	test('fitmeuav', async () => {
+		let wrapper = mount(VImageInput);
+
+	});
 	// change from imageDataURL to invalidDataURL => error
 	//   to imageDataURL => n/a
+	test('vzziykzk', async () => {
+		let wrapper = mount(VImageInput);
 
+	});
 	// change from null to imageDataURL to null: nothing
+	test('iptzvtbn', async () => {
+		let wrapper = mount(VImageInput);
+
+	});
 	// change from imageDataURL to null to imageDataURL: nothing
+	test('zjhftwgm', async () => {
+		let wrapper = mount(VImageInput);
 
+	});
 	// change from null to imageDataURL to invalidDataURL: error()
-	// change from null to invalidDataURL to imageDataURL: update:modelValue(imageDataURL)
+	test('fksmtlbo', async () => {
+		let wrapper = mount(VImageInput);
 
-	/*const dataURL = '123';
-	const emptyDataURL = 'data:,';
-	const otherDataURL = '321';
-	const invalidDataURL = 'data:image/png;base64';
+	});
+	// change from null to invalidDataURL to imageDataURL: update:modelValue(imageDataURL)
+	test('nratnsqi', async () => {
+		let wrapper = mount(VImageInput);
+
+	});
+
+
+
+
+	/*let dataURL = '123';
+	let emptyDataURL = 'data:,';
+	let otherDataURL = '321';
+	let invalidDataURL = 'data:image/png;base64';
 	test('create with null', async () => {
-		const wrapper = mount(VImageInput);
+		let wrapper = mount(VImageInput);
 		await nextTick(); // todo: await more
 		expect(wrapper.emitted('load')).toBeFalsy();
 		expect(wrapper.emitted('error')).toBeFalsy();
 		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
 	});
 	test('create with ``', async () => {
-		const wrapper = mount(VImageInput, {
+		let wrapper = mount(VImageInput, {
 			props: {modelValue: ''},
 		});
 		await nextTick(); // todo: await more
@@ -54,7 +142,7 @@ describe('wyzpweob', () => {
 		expect(wrapper.emitted('update:modelValue')[0][0]).toBeNull();
 	});
 	test('create with dataURL', async () => {
-		const wrapper = mount(VImageInput, {
+		let wrapper = mount(VImageInput, {
 			props: {modelValue: dataURL},
 		});
 		await nextTick(); // todo: await more
@@ -63,7 +151,7 @@ describe('wyzpweob', () => {
 		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
 	});
 	test('create with ` ${dataURL} `', async () => {
-		const wrapper = mount(VImageInput, {
+		let wrapper = mount(VImageInput, {
 			props: {modelValue: ` ${dataURL} `},
 		});
 		await nextTick(); // todo: await more
@@ -73,7 +161,7 @@ describe('wyzpweob', () => {
 		expect(wrapper.emitted('update:modelValue')[0][0]).toBe(dataURL);
 	});
 	test('create with invalidDataURL', async () => {
-		const wrapper = mount(VImageInput, {
+		let wrapper = mount(VImageInput, {
 			props: {modelValue: invalidDataURL},
 		});
 		await nextTick(); // todo: await more
@@ -89,7 +177,7 @@ describe('wyzpweob', () => {
 	// change from null to invalidDataURL: error()
 	//   to null: nothing
 	test(`change from null to ''`, async () => {
-		const wrapper = mount(VImageInput);
+		let wrapper = mount(VImageInput);
 		await nextTick(); // todo: await more
 		await wrapper.setProps({modelValue: ''});
 		expect(wrapper.emitted('error')).toHaveLength(1);
@@ -98,7 +186,7 @@ describe('wyzpweob', () => {
 		expect(wrapper.emitted('update:modelValue')[0][0]).toBeNull();
 	});
 	test('ysrqprjs', async () => {
-		const wrapper = mount(VImageInput);
+		let wrapper = mount(VImageInput);
 		await nextTick(); // todo: await more
 		console.log(wrapper.emitted());
 		await wrapper.setProps({modelValue: null});
@@ -122,7 +210,7 @@ describe('wyzpweob', () => {
 		expect(wrapper.emitted('update:modelValue')).toHaveLength(2);
 		expect(wrapper.emitted('update:modelValue')[1][0]).toBeNull();
 		{
-			const dataURL = 'abc';
+			let dataURL = 'abc';
 			await wrapper.setProps({
 				modelValue: dataURL,
 			});
@@ -140,8 +228,8 @@ describe('wyzpweob', () => {
 		}
 	});
 	test('qjeuvnlo', async () => {
-		const dataURL;
-		const wrapper = mount(VImageInput, {
+		let dataURL;
+		let wrapper = mount(VImageInput, {
 			props: {}
 		});
 		await nextTick();
@@ -155,8 +243,8 @@ describe('wyzpweob', () => {
 		expect(wrapper.emitted()['error'][0]).toEqual([]);
 	});
 	test('jndtyziu', async () => {
-		const dataURL;
-		const wrapper = mount(VImageInput, {
+		let dataURL;
+		let wrapper = mount(VImageInput, {
 			props: {
 				modelValue: dataURL,
 			}

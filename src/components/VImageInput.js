@@ -4,6 +4,8 @@ import {
 	nextTick,
 	watch,
 	watchEffect,
+	shallowRef,
+	computed,
 } from 'vue';
 
 import loadImage from '../utils/loadImage';
@@ -20,25 +22,46 @@ export default defineComponent({
 		emit,
 		expose,
 	}) {
-		/*let internalImageRef = shallowRef(null);
-		let internalImageWidthRef = computed(() => {
-			let image = internalImageRef.value;
+		let hopxddhdImageRef = shallowRef(null);
+		let hopxddhdImageWidthRef = computed(() => {
+			let image = hopxddhdImageRef.value;
 			return image ? image.naturalWidth : 0;
 		});
-		let internalImageHeightRef = computed(() => {
-			let image = internalImageRef.value;
+		let hopxddhdImageHeightRef = computed(() => {
+			let image = hopxddhdImageRef.value;
 			return image ? image.naturalHeight : 0;
 		});
-		let internalImageDataURLRef = computed(() => {
-			let image = internalImageRef.value;
+		let hopxddhdImageDataURLRef = computed(() => {
+			let image = hopxddhdImageRef.value;
 			return image ? image.src : null;
 		});
+		let chooyxycImageDataURLRef = shallowRef(null);
 		watch(
-			internalImageDataURLRef,
+			chooyxycImageDataURLRef,
 			(value) => {
 				emit('update:modelValue', value);
 			},
-		);*/
+		);
+		watchEffect(async (onInvalidate) => {
+			let dataURL = hopxddhdImageDataURLRef.value;
+			let controller = new AbortController();
+			onInvalidate(() => {
+				controller.abort();
+			});
+			let {signal} = controller;
+			await nextTick();
+			await (new Promise(resolve => {
+				setTimeout(resolve, 111);
+			}));
+			if (signal.aborted) {
+				return;
+			}
+			if (dataURL == null) {
+				chooyxycImageDataURLRef.value = null;
+			} else {
+				chooyxycImageDataURLRef.value = dataURL;
+			}
+		});
 		watchEffect(async (onInvalidate) => {
 			let value = props.modelValue;
 			let controller = new AbortController();
@@ -47,12 +70,15 @@ export default defineComponent({
 			});
 			let {signal} = controller;
 			await nextTick();
+			await (new Promise(resolve => {
+				setTimeout(resolve, 111);
+			}));
 			try {
-				let amggjacm = await (async (value) => {
+				let image = await (async (value) => {
 					if (value) {
 						value = value.trim();
 						if (value.startsWith('image')) {
-							return value;
+							return {src: value};
 						}
 						if (value === 'data:,') {
 							return null;
@@ -65,15 +91,15 @@ export default defineComponent({
 					}
 					return null;
 				})(value);
-				if (!signal.aborted) {
-					if (amggjacm !== value) {
-						emit('update:modelValue', amggjacm);
-					}
+				if (signal.aborted) {
+					return;
 				}
+				hopxddhdImageRef.value = image;
 			} catch (error) {
-				if (!signal.aborted) {
-					emit('error', error);
+				if (signal.aborted) {
+					return;
 				}
+				emit('error', error);
 			}
 		});
 		let load = (() => {

@@ -18,7 +18,7 @@ describe('wyzpweob', () => {
 	let emptyDataURL = 'data:,';
 	let invalidDataURL = 'data:image/png;base64';
 	// create with null => n/a
-	test.skip('xjofaiqq', async () => {
+	test('xjofaiqq', async () => {
 		let wrapper = mount(VImageInput);
 		await kumaenad();
 		console.log('xjofaiqq', wrapper.emitted());
@@ -26,7 +26,7 @@ describe('wyzpweob', () => {
 		//expect(wrapper.emitted('update:modelValue')).toBeFalsy();
 	});
 	// create with '' => update:modelValue(null)
-	test.skip('ouorphjl', async () => {
+	test('ouorphjl', async () => {
 		let wrapper = mount(VImageInput, {
 			props: {modelValue: ''}
 		});
@@ -36,7 +36,7 @@ describe('wyzpweob', () => {
 		//expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
 	});
 	// create with emptyDataURL => update:modelValue(null)
-	test.skip('cpevayyw', async () => {
+	test('cpevayyw', async () => {
 		let wrapper = mount(VImageInput, {
 			props: {modelValue: emptyDataURL}
 		});
@@ -46,7 +46,7 @@ describe('wyzpweob', () => {
 		//expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
 	});
 	// create with imageDataURL => n/a
-	test.skip('hhyqiqjx', async () => {
+	test('hhyqiqjx', async () => {
 		let wrapper = mount(VImageInput, {
 			props: {modelValue: imageDataURL}
 		});
@@ -56,7 +56,7 @@ describe('wyzpweob', () => {
 		//expect(wrapper.emitted('update:modelValue')).toBeFalsy();
 	});
 	// create with ` ${imageDataURL} ` => update:modelValue(imageDataURL)
-	test.skip('ttucbinz', async () => {
+	test('ttucbinz', async () => {
 		let wrapper = mount(VImageInput, {
 			props: {modelValue: ` ${imageDataURL} `}
 		});
@@ -66,7 +66,7 @@ describe('wyzpweob', () => {
 		//expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL]]);
 	});
 	// create with invalidDataURL => error & update:modelValue(null)
-	test.skip('lgjkkfjc', async () => {
+	test('lgjkkfjc', async () => {
 		let wrapper = mount(VImageInput, {
 			props: {modelValue: invalidDataURL}
 		});
@@ -76,59 +76,59 @@ describe('wyzpweob', () => {
 		//expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
 	});
 	// change from null to '' => n/a
-	test('wqipnkbt', async () => {
+	test.skip('wqipnkbt', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from null to imageDataURL => update:modelValue(imageDataURL)
-	test('mvwywecl', async () => {
+	test.skip('mvwywecl', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from null to invalidDataURL => error
 	//   to null => n/a
-	test('mmajazbi', async () => {
+	test.skip('mmajazbi', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from imageDataURL to null => update:modelValue(null)
-	test('iarpugjo', async () => {
+	test.skip('iarpugjo', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from imageDataURL to otherImageDataURL => update:modelValue(otherImageDataURL)
-	test('hljuxyqd', async () => {
+	test.skip('hljuxyqd', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from imageDataURL to ` ${imageDataURL} ` => nothing
-	test('fitmeuav', async () => {
+	test.skip('fitmeuav', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from imageDataURL to invalidDataURL => error
 	//   to imageDataURL => n/a
-	test('vzziykzk', async () => {
+	test.skip('vzziykzk', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from null to imageDataURL to null: nothing
-	test('iptzvtbn', async () => {
+	test.skip('iptzvtbn', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from imageDataURL to null to imageDataURL: nothing
-	test('zjhftwgm', async () => {
+	test.skip('zjhftwgm', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from null to imageDataURL to invalidDataURL: error()
-	test('fksmtlbo', async () => {
+	test.skip('fksmtlbo', async () => {
 		let wrapper = mount(VImageInput);
 
 	});
 	// change from null to invalidDataURL to imageDataURL: update:modelValue(imageDataURL)
-	test('nratnsqi', async () => {
+	test.skip('nratnsqi', async () => {
 		let wrapper = mount(VImageInput);
 
 	});

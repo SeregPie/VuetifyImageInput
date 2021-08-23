@@ -9,6 +9,8 @@ import {
 } from 'vue';
 
 import loadImage from '../utils/loadImage';
+import transformImage from '../utils/transformImage';
+import sleep from '../utils/sleep';
 
 export default defineComponent({
 	name: 'VImageInput',
@@ -35,32 +37,27 @@ export default defineComponent({
 			let image = hopxddhdImageRef.value;
 			return image ? image.src : null;
 		});
-		let chooyxycImageDataURLRef = shallowRef(null);
-		watch(
-			chooyxycImageDataURLRef,
-			(value) => {
-				emit('update:modelValue', value);
-			},
-		);
-		watchEffect(async (onInvalidate) => {
-			let dataURL = hopxddhdImageDataURLRef.value;
-			let controller = new AbortController();
-			onInvalidate(() => {
-				controller.abort();
-			});
-			let {signal} = controller;
-			await nextTick();
-			await (new Promise(resolve => {
-				setTimeout(resolve, 111);
-			}));
-			if (signal.aborted) {
-				return;
+		let chooyxycImageRef = shallowRef(null);
+		let chooyxycImageDataURLRef = computed(() => {
+			let image = chooyxycImageRef.value;
+			return image ? image.src : null;
+		});
+
+		let load = ((file) => {
+			// set status loading
+
+			try {
+				// set status success
+				// wait 1s
+				// unset status
+			} catch (error) {
+				// set status error
+				// wait 1s
+				// unset status
 			}
-			if (dataURL == null) {
-				chooyxycImageDataURLRef.value = null;
-			} else {
-				chooyxycImageDataURLRef.value = dataURL;
-			}
+		});
+		expose({
+			load,
 		});
 		watchEffect(async (onInvalidate) => {
 			let value = props.modelValue;
@@ -70,27 +67,12 @@ export default defineComponent({
 			});
 			let {signal} = controller;
 			await nextTick();
-			await (new Promise(resolve => {
-				setTimeout(resolve, 111);
-			}));
+			await sleep(111);
+			if (signal.aborted) {
+				return;
+			}
 			try {
-				let image = await (async (value) => {
-					if (value) {
-						value = value.trim();
-						if (value.startsWith('image')) {
-							return {src: value};
-						}
-						if (value === 'data:,') {
-							return null;
-						}
-						throw value;
-						/*let image = await loadImage(value, signal);
-						if (image.naturalWidth && image.naturalHeight) {
-							return image.src;
-						}*/
-					}
-					return null;
-				})(value);
+				let image = await loadImage(value, signal);
 				if (signal.aborted) {
 					return;
 				}
@@ -102,12 +84,32 @@ export default defineComponent({
 				emit('error', error);
 			}
 		});
-		let load = (() => {
-
+		watchEffect(async (onInvalidate) => {
+			let image = hopxddhdImageRef.value;
+			let controller = new AbortController();
+			onInvalidate(() => {
+				controller.abort();
+			});
+			let {signal} = controller;
+			await nextTick();
+			await sleep(111);
+			if (signal.aborted) {
+				return;
+			}
+			if (image) {
+				image = await transformImage(image, null);
+				if (signal.aborted) {
+					return;
+				}
+			}
+			chooyxycImageRef.value = image;
 		});
-		expose({
-			load,
-		});
+		watch(
+			chooyxycImageDataURLRef,
+			(value) => {
+				emit('update:modelValue', value);
+			},
+		);
 		return (() => h('div'));
 	},
 });

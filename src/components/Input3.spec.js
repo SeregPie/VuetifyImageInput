@@ -49,13 +49,15 @@ describe('', () => {
 		expect(wrapper.emitted('update:modelValue')).toEqual([[otherImageDataURL]]);
 	});
 	test('', async () => {
-		let wrapper = mount(Input);
+		let wrapper = mount(Input, {
+			props: {modelValue: imageDataURL}
+		});
 		await nextTick();
 		await sleep(33);
-		wrapper.vm.setValue(imageDataURL);
+		wrapper.vm.transformImage('a');
 		await nextTick();
 		await sleep(33);
-		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL]]);
+		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL + 'a']]);
 	});
 	test('', async () => {
 		let wrapper = mount(Input, {
@@ -64,6 +66,9 @@ describe('', () => {
 		await nextTick();
 		await sleep(33);
 		wrapper.vm.transformImage('a');
+		await nextTick();
+		await sleep(33);
+		await wrapper.setProps({modelValue: imageDataURL + 'a'});
 		await sleep(33);
 		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL + 'a']]);
 	});
@@ -74,7 +79,8 @@ describe('', () => {
 		await nextTick();
 		await wrapper.setProps({modelValue: otherImageDataURL});
 		await wrapper.setProps({modelValue: imageDataURL});
+		await nextTick();
 		await sleep(33);
-		console.log(wrapper.emitted('update:modelValue'));
+		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
 	});
 });

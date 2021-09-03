@@ -46,4 +46,20 @@ describe('', () => {
 		await wrapper.setProps({max: 10});
 		expect(wrapper.emitted('update:modelValue')).toEqual([[10]]);
 	});
+	test('', async () => {
+		let wrapper = mount(Input);
+		await nextTick();
+		wrapper.vm.setValue(10);
+		await nextTick();
+		expect(wrapper.emitted('update:modelValue')).toEqual([[10]]);
+	});
+	test('', async () => {
+		let wrapper = mount(Input, {
+			props: {max: 10},
+		});
+		await nextTick();
+		wrapper.vm.setValue(100);
+		await nextTick();
+		expect(wrapper.emitted('update:modelValue')).toEqual([[10]]);
+	});
 });

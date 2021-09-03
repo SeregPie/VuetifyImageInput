@@ -23,7 +23,10 @@ export default defineComponent({
 			default: 0,
 		},
 	},
-	setup(props, {emit}) {
+	setup(props, {
+		emit,
+		expose,
+	}) {
 		let chxpqwgbRef = shallowRef(props.modelValue);
 		watch(
 			chxpqwgbRef,
@@ -31,8 +34,15 @@ export default defineComponent({
 				emit('update:modelValue', value);
 			},
 		);
+		let orwtlcwoRef = shallowRef(props.modelValue);
+		watch(
+			() => props.modelValue,
+			(value) => {
+				orwtlcwoRef.value = value;
+			},
+		);
 		let atgczxkfRef = computed(() => {
-			let n = props.modelValue;
+			let n = orwtlcwoRef.value;
 			let {
 				max,
 				min,
@@ -42,6 +52,10 @@ export default defineComponent({
 		watchEffect(() => {
 			chxpqwgbRef.value = atgczxkfRef.value;
 		});
+		let setValue = ((value) => {
+			orwtlcwoRef.value = value;
+		});
+		expose({setValue});
 		return (() => h('div'));
 	},
 });

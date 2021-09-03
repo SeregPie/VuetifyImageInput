@@ -13,7 +13,10 @@ export default defineComponent({
 			default: null,
 		},
 	},
-	setup(props, {emit}) {
+	setup(props, {
+		emit,
+		expose,
+	}) {
 		let chxpqwgbRef = shallowRef(props.modelValue);
 		watch(
 			chxpqwgbRef,
@@ -27,6 +30,10 @@ export default defineComponent({
 				chxpqwgbRef.value = value;
 			},
 		);
+		let setValue = ((value) => {
+			chxpqwgbRef.value = value;
+		});
+		expose({setValue});
 		return (() => h('div'));
 	},
 });

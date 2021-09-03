@@ -43,7 +43,7 @@ describe('', () => {
 			props: {modelValue: imageDataURL}
 		});
 		await nextTick();
-		//await sleep(33);
+		await sleep(33);
 		await wrapper.setProps({modelValue: otherImageDataURL});
 		await sleep(33);
 		expect(wrapper.emitted('update:modelValue')).toEqual([[otherImageDataURL]]);
@@ -51,7 +51,7 @@ describe('', () => {
 	test('', async () => {
 		let wrapper = mount(Input);
 		await nextTick();
-		//await sleep(33);
+		await sleep(33);
 		wrapper.vm.setValue(imageDataURL);
 		await nextTick();
 		await sleep(33);
@@ -62,9 +62,19 @@ describe('', () => {
 			props: {modelValue: imageDataURL}
 		});
 		await nextTick();
-		//await sleep(33);
+		await sleep(33);
 		wrapper.vm.transformImage('a');
 		await sleep(33);
 		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL + 'a']]);
+	});
+	test('', async () => {
+		let wrapper = mount(Input, {
+			props: {modelValue: imageDataURL}
+		});
+		await nextTick();
+		await wrapper.setProps({modelValue: otherImageDataURL});
+		await wrapper.setProps({modelValue: imageDataURL});
+		await sleep(33);
+		console.log(wrapper.emitted('update:modelValue'));
 	});
 });

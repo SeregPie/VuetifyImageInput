@@ -23,6 +23,11 @@ describe('', () => {
 				max: 10,
 				modelValue: 20,
 			},
+			attrs: {
+				['onUpdate:modelValue'](value) {
+					console.log('HEY', value);
+				},
+			},
 		});
 		await nextTick();
 		expect(wrapper.emitted('update:modelValue')).toEqual([[10]]);

@@ -1,9 +1,17 @@
 import {mount} from '@vue/test-utils';
 import {nextTick} from 'vue';
 
-import Input from './Input2';
+import Input from './Input3';
+
+let sleep = (async (ms) => {
+	await (new Promise(resolve => {
+		setTimeout(resolve, ms);
+	}));
+});
 
 describe('', () => {
+	let imageDataURL = 'a';
+	let otherImageDataURL = 'b';
 	test('', async () => {
 		let wrapper = mount(Input);
 		await nextTick();
@@ -12,55 +20,31 @@ describe('', () => {
 	});
 	test('', async () => {
 		let wrapper = mount(Input, {
-			props: {modelValue: 10}
+			props: {modelValue: imageDataURL}
 		});
 		await nextTick();
-		await wrapper.setProps({modelValue: 20});
-		expect(wrapper.emitted('update:modelValue')).toEqual([[20]]);
-	});
-	test('', async () => {
-		let wrapper = mount(Input, {
-			props: {
-				max: 10,
-				modelValue: 20,
-			},
-		});
-		await nextTick();
-		expect(wrapper.emitted('update:modelValue')).toEqual([[10]]);
-	});
-	test('', async () => {
-		let wrapper = mount(Input, {
-			props: {
-				max: 10,
-				modelValue: 10,
-			},
-		});
-		await nextTick();
-		await wrapper.setProps({modelValue: 20});
-		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
-	});
-	test('', async () => {
-		let wrapper = mount(Input, {
-			props: {modelValue: 20},
-		});
-		await nextTick();
-		await wrapper.setProps({max: 10});
-		expect(wrapper.emitted('update:modelValue')).toEqual([[10]]);
+		await sleep(11);
+		await wrapper.setProps({modelValue: otherImageDataURL});
+		await sleep(11);
+		expect(wrapper.emitted('update:modelValue')).toEqual([[otherImageDataURL]]);
 	});
 	test('', async () => {
 		let wrapper = mount(Input);
 		await nextTick();
-		wrapper.vm.setValue(10);
+		await sleep(11);
+		wrapper.vm.setValue(imageDataURL);
 		await nextTick();
-		expect(wrapper.emitted('update:modelValue')).toEqual([[10]]);
+		await sleep(11);
+		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL]]);
 	});
 	test('', async () => {
 		let wrapper = mount(Input, {
-			props: {max: 10},
+			props: {modelValue: imageDataURL}
 		});
 		await nextTick();
-		wrapper.vm.setValue(100);
-		await nextTick();
-		expect(wrapper.emitted('update:modelValue')).toEqual([[10]]);
+		await sleep(11);
+		wrapper.vm.transformImage('a');
+		await sleep(11);
+		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL + 'a']]);
 	});
 });

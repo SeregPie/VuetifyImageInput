@@ -1,17 +1,26 @@
 import {mount} from '@vue/test-utils';
-import {nextTick} from 'vue';
+import {
+	nextTick,
+	ref,
+} from 'vue';
 
 import Input from './Input1';
 
-describe('', () => {
+describe.skip('', () => {
 	test('', async () => {
 		let wrapper = mount(Input);
 		await nextTick();
 		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
 	});
 	test('', async () => {
+		let valueRef = ref('a');
 		let wrapper = mount(Input, {
-			props: {modelValue: 'a'}
+			props: {modelValue: valueRef},
+			attrs: {
+				['onUpdate:modelValue'](value) {
+					valueRef.value = value;
+				},
+			},
 		});
 		await nextTick();
 		await wrapper.setProps({modelValue: 'b'});

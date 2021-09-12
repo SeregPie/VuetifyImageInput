@@ -3,84 +3,202 @@ import {nextTick} from 'vue';
 
 import Input from './Input3';
 
-let sleep = (async (ms) => {
-	await (new Promise(resolve => {
+let sleep = (async(ms) => {
+	await(new Promise(resolve => {
 		setTimeout(resolve, ms);
 	}));
 });
 
-describe('', () => {
-	let imageDataURL = 'a';
-	let otherImageDataURL = 'b';
-	test('', async () => {
-		let wrapper = mount(Input);
-		await nextTick();
-		await sleep(33);
-		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
-	});
-	test.each([
-		'',
-		' ',
-		// emptyDataURL,
-	])(' ', async (value) => {
-		let wrapper = mount(Input, {
-			props: {modelValue: value}
+describe('VImageInput', () => {
+	let catImageDataURL = 'a';
+	let dogImageDataURL = 'b';
+	describe('', () => {
+		test('', async () => {
+			let wrapper = mount(Input, {
+				props: {modelValue: null},
+			});
+			await nextTick();
+			await sleep(100);
+			expect(wrapper.emitted('update:modelValue')).toBeFalsy();
 		});
-		await nextTick();
-		await sleep(33);
-		expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
-	});
-	test('', async () => {
-		let wrapper = mount(Input, {
-			props: {modelValue: ` ${imageDataURL} `}
+		test.only('', async () => {
+			let wrapper = mount(Input, {
+				props: {modelValue: catImageDataURL},
+			});
+			await nextTick();
+			await sleep(100);
+			expect(wrapper.emitted('update:modelValue')).toBeFalsy();
 		});
-		await nextTick();
-		await sleep(33);
-		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL]]);
-	});
-	test('', async () => {
-		let wrapper = mount(Input, {
-			props: {modelValue: imageDataURL}
+		test.each([
+			'',
+			' ',
+			// emptyDataURL,
+		])(' ', async (value) => {
+			let wrapper = mount(Input, {
+				props: {modelValue: value},
+			});
+			await nextTick();
+			await sleep(100);
+			expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
 		});
-		await nextTick();
-		await sleep(33);
-		await wrapper.setProps({modelValue: otherImageDataURL});
-		await sleep(33);
-		expect(wrapper.emitted('update:modelValue')).toEqual([[otherImageDataURL]]);
-	});
-	test('', async () => {
-		let wrapper = mount(Input, {
-			props: {modelValue: imageDataURL}
+		test.each([
+			` ${catImageDataURL} `,
+		])(' ', async (value) => {
+			let wrapper = mount(Input, {
+				props: {modelValue: value},
+			});
+			await nextTick();
+			await sleep(100);
+			expect(wrapper.emitted('update:modelValue')).toEqual([[catImageDataURL]]);
 		});
-		await nextTick();
-		await sleep(33);
-		wrapper.vm.transformImage('a');
-		await nextTick();
-		await sleep(33);
-		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL + 'a']]);
 	});
-	test('', async () => {
-		let wrapper = mount(Input, {
-			props: {modelValue: imageDataURL}
+	describe('', () => {
+		test('', async () => {
+			let wrapper = mount(Input);
+			await nextTick();
+			await sleep(100);
+			await wrapper.setProps({modelValue: catImageDataURL});
+			await sleep(100);
+			expect(wrapper.emitted('update:modelValue')).toEqual([[catImageDataURL]]);
 		});
-		await nextTick();
-		await sleep(33);
-		wrapper.vm.transformImage('a');
-		await nextTick();
-		await sleep(33);
-		await wrapper.setProps({modelValue: imageDataURL + 'a'});
-		await sleep(33);
-		expect(wrapper.emitted('update:modelValue')).toEqual([[imageDataURL + 'a']]);
-	});
-	test('', async () => {
-		let wrapper = mount(Input, {
-			props: {modelValue: imageDataURL}
+		test('', async () => {
+			let wrapper = mount(Input);
+			await nextTick();
+			await sleep(100);
+			await wrapper.setProps({modelValue: catImageDataURL});
+			await sleep(100);
+			await wrapper.setProps({modelValue: dogImageDataURL});
+			await sleep(100);
+			expect(wrapper.emitted('update:modelValue')).toEqual([
+				[catImageDataURL],
+				[dogImageDataURL],
+			]);
 		});
-		await nextTick();
-		await wrapper.setProps({modelValue: otherImageDataURL});
-		await wrapper.setProps({modelValue: imageDataURL});
-		await nextTick();
-		await sleep(33);
-		expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+		test('', async () => {
+			let wrapper = mount(Input);
+			await nextTick();
+			await sleep(100);
+			await wrapper.setProps({modelValue: catImageDataURL});
+			await wrapper.setProps({modelValue: dogImageDataURL});
+			await sleep(100);
+			expect(wrapper.emitted('update:modelValue')).toEqual([[dogImageDataURL]]);
+		});
 	});
 });
+
+// wrapper.vm.rotateClockwise();
+
+//
+
+/*
+
+---
+
+---
+
+init(a)
+await
+transform()
+await
+=> value: [a1]
+
+init(a)
+await
+transform()
+await
+transform()
+await
+=> value: [a1, a2]
+
+init(a)
+await
+transform()
+transform()
+await
+=> value: [a2]
+
+init(a)
+await
+transform()
+await
+setValue(a1)
+await
+=> value: [a1]
+
+init(a)
+await
+transform()
+setValue(b)
+await
+=> value: [b]
+
+---
+
+init(a)
+await
+transform()
+await
+reset()
+await
+=> value: [a1, a]
+
+init(a)
+await
+transform()
+reset()
+await
+=> value: []
+
+test('', async () => {
+	let wrapper = mount(Input, {
+		props: {modelValue: ` ${catImageDataURL} `},
+	});
+	await nextTick();
+	await sleep(100);
+	expect(wrapper.emitted('update:modelValue')).toEqual([[catImageDataURL]]);
+});
+test('', async () => {
+	let wrapper = mount(Input, {
+		props: {modelValue: catImageDataURL},
+	});
+	await nextTick();
+	await sleep(100);
+	await wrapper.setProps({modelValue: dogImageDataURL});
+	await sleep(100);
+	expect(wrapper.emitted('update:modelValue')).toEqual([[dogImageDataURL]]);
+});
+test('', async () => {
+	let wrapper = mount(Input, {
+		props: {modelValue: catImageDataURL},
+	});
+	await nextTick();
+	await sleep(100);
+	wrapper.vm.transformImage('a');
+	await nextTick();
+	await sleep(100);
+	expect(wrapper.emitted('update:modelValue')).toEqual([[catImageDataURL + 'a']]);
+});
+test('', async () => {
+	let wrapper = mount(Input, {
+		props: {modelValue: catImageDataURL},
+	});
+	await nextTick();
+	await sleep(100);
+	wrapper.vm.transformImage('a');
+	await nextTick();
+	await sleep(100);
+	await wrapper.setProps({modelValue: catImageDataURL + 'a'});
+	await sleep(100);
+	expect(wrapper.emitted('update:modelValue')).toEqual([[catImageDataURL + 'a']]);
+});
+test('', async () => {
+	let wrapper = mount(Input, {
+		props: {modelValue: catImageDataURL},
+	});
+	await nextTick();
+	await wrapper.setProps({modelValue: dogImageDataURL});
+	await wrapper.setProps({modelValue: catImageDataURL});
+	await sleep(100);
+	expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+});
+*/

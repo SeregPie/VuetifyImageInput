@@ -25,14 +25,27 @@ export default defineComponent({
 		emit,
 		expose,
 	}) {
+		let cancel = (() => {});
 		let chxpqwgbRef = shallowRef(props.modelValue); // output:transformedValue
 		watch(
 			chxpqwgbRef,
-			(value) => {
+			(value, oldValue) => {
+				console.log(value, oldValue);
 				emit('update:modelValue', value);
 			},
 		);
+		let efzfyfkmmwoh = (async (value) => {
+			await sleep(1);
+			if (typeof value === 'string') {
+				value = value.trim();
+				if (!value) {
+					value = null;
+				}
+			}
+			return value;
+		});
 		let orwtlcwoRef = shallowRef(null); // originalValue
+		let pzonrsswRef = shallowRef(0); // transformation
 		watchEffect(async (onInvalidate) => {
 			let value = props.modelValue;
 			let controller = new AbortController();
@@ -41,19 +54,16 @@ export default defineComponent({
 			});
 			let {signal} = controller;
 			await nextTick();
-			await sleep(4);
+			value = await efzfyfkmmwoh(value);
 			if (signal.aborted) {
 				return;
 			}
-			if (typeof value === 'string') {
-				value = value.trim();
-				if (!value) {
-					value = null;
-				}
+			console.log('LOADED', value, chxpqwgbRef.value);
+			if (chxpqwgbRef.value !== value) {
+				orwtlcwoRef.value = value;
+				pzonrsswRef.value = 0;
 			}
-			orwtlcwoRef.value = value;
 		});
-		let pzonrsswRef = shallowRef(''); // transformation
 		watchEffect(async (onInvalidate) => {
 			let orwtlcwo = orwtlcwoRef.value;
 			let pzonrssw = pzonrsswRef.value;
@@ -67,15 +77,15 @@ export default defineComponent({
 			if (signal.aborted) {
 				return;
 			}
-			if (orwtlcwo) {
+			if (orwtlcwo && pzonrssw) {
 				orwtlcwo += pzonrssw;
 			}
 			chxpqwgbRef.value = orwtlcwo;
 		});
-		let transformImage = ((value) => {
-			pzonrsswRef.value = value;
+		let rotateClockwise = (() => {
+			pzonrsswRef.value++;
 		});
-		expose({transformImage});
+		expose({rotateClockwise});
 		return (() => h('div'));
 	},
 });

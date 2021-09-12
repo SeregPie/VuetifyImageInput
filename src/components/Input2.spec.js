@@ -3,7 +3,7 @@ import {nextTick} from 'vue';
 
 import Input from './Input2';
 
-describe('', () => {
+describe.skip('', () => {
 	test('', async () => {
 		let wrapper = mount(Input);
 		await nextTick();

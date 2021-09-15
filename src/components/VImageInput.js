@@ -1,16 +1,14 @@
 import {
 	defineComponent,
 	h,
-	nextTick,
+	shallowRef,
 	watch,
 	watchEffect,
-	shallowRef,
+	nextTick,
 	computed,
 } from 'vue';
 
 import loadImage from '../utils/loadImage';
-import transformImage from '../utils/transformImage';
-import sleep from '../utils/sleep';
 
 export default defineComponent({
 	name: 'VImageInput',
@@ -24,41 +22,19 @@ export default defineComponent({
 		emit,
 		expose,
 	}) {
-		let hopxddhdImageRef = shallowRef(null);
-		let hopxddhdImageWidthRef = computed(() => {
-			let image = hopxddhdImageRef.value;
-			return image ? image.naturalWidth : 0;
-		});
-		let hopxddhdImageHeightRef = computed(() => {
-			let image = hopxddhdImageRef.value;
-			return image ? image.naturalHeight : 0;
-		});
-		let hopxddhdImageDataURLRef = computed(() => {
-			let image = hopxddhdImageRef.value;
+		let externalImageDataURLRef = shallowRef(props.modelValue);
+		watch(
+			externalImageDataURLRef,
+			(value) => {
+				emit('update:modelValue', value);
+			},
+		);
+		let internalImageRef = shallowRef(null);
+		let internalImageDataURLRef = computed(() => {
+			let image = internalImageRef.value;
 			return image ? image.src : null;
 		});
-		let chooyxycImageRef = shallowRef(null);
-		let chooyxycImageDataURLRef = computed(() => {
-			let image = chooyxycImageRef.value;
-			return image ? image.src : null;
-		});
-
-		let load = ((file) => {
-			// set status loading
-
-			try {
-				// set status success
-				// wait 1s
-				// unset status
-			} catch (error) {
-				// set status error
-				// wait 1s
-				// unset status
-			}
-		});
-		expose({
-			load,
-		});
+		let transformationRef = shallowRef(0); //
 		watchEffect(async (onInvalidate) => {
 			let value = props.modelValue;
 			let controller = new AbortController();
@@ -67,49 +43,16 @@ export default defineComponent({
 			});
 			let {signal} = controller;
 			await nextTick();
-			await sleep(111);
+			let image = await loadImage(value);
 			if (signal.aborted) {
 				return;
 			}
-			try {
-				let image = await loadImage(value, signal);
-				if (signal.aborted) {
-					return;
-				}
-				hopxddhdImageRef.value = image;
-			} catch (error) {
-				if (signal.aborted) {
-					return;
-				}
-				emit('error', error);
-			}
+			externalImageDataURLRef.value = image ? image.src : null;
 		});
-		watchEffect(async (onInvalidate) => {
-			let image = hopxddhdImageRef.value;
-			let controller = new AbortController();
-			onInvalidate(() => {
-				controller.abort();
-			});
-			let {signal} = controller;
-			await nextTick();
-			await sleep(111);
-			if (signal.aborted) {
-				return;
-			}
-			if (image) {
-				image = await transformImage(image, null);
-				if (signal.aborted) {
-					return;
-				}
-			}
-			chooyxycImageRef.value = image;
+		let rotateClockwise = (() => {
+			transformationRef.value++;
 		});
-		watch(
-			chooyxycImageDataURLRef,
-			(value) => {
-				emit('update:modelValue', value);
-			},
-		);
+		expose({rotateClockwise});
 		return (() => h('div'));
 	},
 });

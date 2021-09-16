@@ -34,7 +34,7 @@ export default defineComponent({
 			let image = internalImageRef.value;
 			return image ? image.src : null;
 		});
-		let transformationRef = shallowRef(0); //
+		let transformationRef = shallowRef(0);
 		watchEffect(async (onInvalidate) => {
 			let value = props.modelValue;
 			let controller = new AbortController();
@@ -47,7 +47,10 @@ export default defineComponent({
 			if (signal.aborted) {
 				return;
 			}
-			externalImageDataURLRef.value = image ? image.src : null;
+			let imageDataURL = image ? image.src : null;
+			if (imageDataURL !== value) {
+				emit('update:modelValue', imageDataURL);
+			}
 		});
 		let rotateClockwise = (() => {
 			transformationRef.value++;

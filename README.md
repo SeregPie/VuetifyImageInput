@@ -34,3 +34,4 @@
 - [ ] template: image editor
 - [ ] template: image loader
 - [ ] template: layout
+- [ ] typescript declarations

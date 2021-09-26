@@ -4,7 +4,7 @@ import {nextTick} from 'vue';
 import sleep from '../utils/sleep';
 import VImageInput from './VImageInput';
 
-describe('VImageInput', () => {
+describe.skip('VImageInput', () => {
 	let catImageDataURL = 'a';
 	let dogImageDataURL = 'b';
 	let emptyDataURL = 'data:,';

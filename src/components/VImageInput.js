@@ -1,11 +1,12 @@
 import {
+	computed,
+	customRef,
 	defineComponent,
 	h,
+	nextTick,
 	shallowRef,
 	watch,
 	watchEffect,
-	nextTick,
-	computed,
 } from 'vue';
 
 import loadImage from '../utils/loadImage';
@@ -22,19 +23,18 @@ export default defineComponent({
 		emit,
 		expose,
 	}) {
-		let externalImageDataURLRef = shallowRef(props.modelValue);
-		watch(
-			externalImageDataURLRef,
-			(value) => {
+		let imageDataURLRef = shallowRef(props.modelValue);
+		watch(imageDataURLRef, value => {
+			if (props.modelValue !== value) {
+				console.log('EMIT');
 				emit('update:modelValue', value);
-			},
-		);
-		let internalImageRef = shallowRef(null);
-		let internalImageDataURLRef = computed(() => {
-			let image = internalImageRef.value;
+			}
+		});
+		let gkdarrqrImageRef = shallowRef(null);
+		let gkdarrqrImageDataURLRef = computed(() => {
+			let image = gkdarrqrImageRef.value;
 			return image ? image.src : null;
 		});
-		let transformationRef = shallowRef(0);
 		watchEffect(async (onInvalidate) => {
 			let value = props.modelValue;
 			let controller = new AbortController();
@@ -47,10 +47,39 @@ export default defineComponent({
 			if (signal.aborted) {
 				return;
 			}
-			let imageDataURL = image ? image.src : null;
-			if (imageDataURL !== value) {
-				emit('update:modelValue', imageDataURL);
+			console.log('SET gkdarrqrImage', image);
+			gkdarrqrImageRef.value = image;
+		});
+		let originalImageRef = shallowRef(null);
+		let originalImageDataURLRef = computed(() => {
+			let image = originalImageRef.value;
+			return image ? image.src : null;
+		});
+		watch(
+			gkdarrqrImageDataURLRef,
+			() => {
+				console.log('SET originalImage', gkdarrqrImageRef.value);
+				originalImageRef.value = gkdarrqrImageRef.value;
+			},
+		);
+		let transformationRef = shallowRef(0);
+		watchEffect(async (onInvalidate) => {
+			let imageDataURL = originalImageDataURLRef.value;
+			let transformation = transformationRef.value;
+			let controller = new AbortController();
+			onInvalidate(() => {
+				controller.abort();
+			});
+			let {signal} = controller;
+			await nextTick();
+			if (signal.aborted) {
+				return;
 			}
+			if (imageDataURL && transformation) {
+				imageDataURL += transformation;
+			}
+			imageDataURLRef.value = imageDataURL;
+			console.log('SET imageDataURL', imageDataURL);
 		});
 		let rotateClockwise = (() => {
 			transformationRef.value++;

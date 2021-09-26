@@ -7,8 +7,9 @@ import VImageInput from './VImageInput';
 describe('VImageInput', () => {
 	let catImageDataURL = 'a';
 	let dogImageDataURL = 'b';
-	describe('', () => {
-		test('', async () => {
+	let emptyDataURL = 'data:,';
+	describe('v-model', () => {
+		test('1', async () => {
 			let wrapper = mount(VImageInput, {
 				props: {modelValue: catImageDataURL},
 			});
@@ -23,8 +24,8 @@ describe('VImageInput', () => {
 		test.each([
 			'',
 			' ',
-			// emptyDataURL,
-		])(' ', async (value) => {
+			emptyDataURL,
+		])('2', async (value) => {
 			let wrapper = mount(VImageInput, {
 				props: {modelValue: value},
 			});
@@ -34,7 +35,7 @@ describe('VImageInput', () => {
 		});
 		test.each([
 			` ${catImageDataURL} `,
-		])(' ', async (value) => {
+		])('3', async (value) => {
 			let wrapper = mount(VImageInput, {
 				props: {modelValue: value},
 			});
@@ -43,33 +44,36 @@ describe('VImageInput', () => {
 			expect(wrapper.emitted('update:modelValue')).toEqual([[catImageDataURL]]);
 		});
 	});
-	describe.skip('', () => {
-		test('', async () => {
+	describe('2', () => {
+		test('1', async () => {
 			let wrapper = mount(VImageInput, {
 				props: {modelValue: catImageDataURL},
 			});
 			await nextTick();
 			await sleep(100);
 			wrapper.vm.rotateClockwise();
+			await nextTick();
 			await sleep(100);
 			expect(wrapper.emitted('update:modelValue')).toEqual([[`${catImageDataURL}1`]]);
 		});
-		test('', async () => {
+		test('2', async () => {
 			let wrapper = mount(VImageInput, {
 				props: {modelValue: catImageDataURL},
 			});
 			await nextTick();
 			await sleep(100);
 			wrapper.vm.rotateClockwise();
+			await nextTick();
 			await sleep(100);
 			wrapper.vm.rotateClockwise();
+			await nextTick();
 			await sleep(100);
 			expect(wrapper.emitted('update:modelValue')).toEqual([
 				[`${catImageDataURL}1`],
 				[`${catImageDataURL}2`],
 			]);
 		});
-		test('', async () => {
+		test('Multiple immediate transformations should emit updated value only once.', async () => {
 			let wrapper = mount(VImageInput, {
 				props: {modelValue: catImageDataURL},
 			});
@@ -80,7 +84,7 @@ describe('VImageInput', () => {
 			await sleep(100);
 			expect(wrapper.emitted('update:modelValue')).toEqual([[`${catImageDataURL}2`]]);
 		});
-		test('', async () => {
+		test('4', async () => {
 			let wrapper = mount(VImageInput, {
 				props: {modelValue: catImageDataURL},
 			});
@@ -92,7 +96,18 @@ describe('VImageInput', () => {
 			await sleep(100);
 			expect(wrapper.emitted('update:modelValue')).toEqual([[`${catImageDataURL}1`]]);
 		});
-		test('', async () => {
+		test('5', async () => {
+			let wrapper = mount(VImageInput, {
+				props: {modelValue: catImageDataURL},
+			});
+			await nextTick();
+			await sleep(100);
+			wrapper.vm.rotateClockwise();
+			await wrapper.setProps({modelValue: catImageDataURL});
+			await sleep(100);
+			expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+		});
+		test('6', async () => {
 			let wrapper = mount(VImageInput, {
 				props: {modelValue: catImageDataURL},
 			});
@@ -108,10 +123,6 @@ describe('VImageInput', () => {
 
 
 /*
-
-
-
----
 
 init(a)
 await

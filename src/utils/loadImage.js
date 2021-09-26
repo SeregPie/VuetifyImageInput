@@ -6,7 +6,9 @@ export default async function(value) {
 	if (isString(value)) {
 		value = value.trim();
 		if (value) {
-			return {src: value};
+			if (value !== 'data:,') {
+				return {src: value};
+			}
 		}
 	}
 	return null;

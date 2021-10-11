@@ -14,7 +14,7 @@ describe('VCountInput', () => {
 		let wrapper = mount(VCountInput, {
 			props: {modelValue: 42},
 		});
-		await nextTick();
+		await nextTick();1
 		wrapper.vm.increase();
 		wrapper.vm.decrease();
 		wrapper.vm.increase();

@@ -21,6 +21,7 @@
 - [ ] interact: `move`
 - [ ] interact: `resize`
 - [ ] interact: `rotate` (maybe)
+- [ ] jasmine test
 - [ ] migrate to Vue2
 - [ ] playground
 - [ ] prop: `disabled`
@@ -35,3 +36,4 @@
 - [ ] template: image loader
 - [ ] template: layout
 - [ ] typescript declarations
+- [x] eslint config

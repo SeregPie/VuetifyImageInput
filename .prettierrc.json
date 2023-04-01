@@ -9,7 +9,7 @@
 			}
 		}
 	],
-	"printWidth": 120,
+	"printWidth": 80,
 	"singleAttributePerLine": true,
 	"singleQuote": true,
 	"trailingComma": "all",

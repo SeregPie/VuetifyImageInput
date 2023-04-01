@@ -1,98 +1,113 @@
 <script setup lang="ts">
-import {stored} from '@/packages/@seregpie/vue-storage';
-import {ref} from 'vue';
+import VImageInput from '@/packages/vuetify-image-input';
+import {computed, ref} from 'vue';
 import {useI18n} from 'vue-i18n';
+import {useTheme} from 'vuetify';
 import {VAlert} from 'vuetify/components/VAlert';
 import {VApp} from 'vuetify/components/VApp';
-import {VAppBar} from 'vuetify/components/VAppBar';
+import {VAppBar, VAppBarNavIcon} from 'vuetify/components/VAppBar';
 import {VBtn} from 'vuetify/components/VBtn';
 import {VCard} from 'vuetify/components/VCard';
-import {VIcon} from 'vuetify/components/VIcon';
+import {VNavigationDrawer} from 'vuetify/components/VNavigationDrawer';
 import {VMain} from 'vuetify/components/VMain';
 import {VSlideGroup, VSlideGroupItem} from 'vuetify/components/VSlideGroup';
 import {VTextField} from 'vuetify/components/VTextField';
+import {VCheckbox} from 'vuetify/components/VCheckbox';
 
 const {t} = useI18n();
 
-const hdalpzqc = ref<string>('sgpyzsuc');
+const drawer = ref<boolean>(true);
+const toggleDrawer = (): void => {
+	drawer.value = !drawer.value;
+};
 
-const hcduehqz = ['🐭', '🐮', '🐯', '🐰', '🐱', '🐴', '🐵', '🐶', '🐷', '🐸', '🐹', '🐺', '🐻', '🐼', '🦁', '🦊'];
-const sgpyzsuc = stored<Array<string>>(() => `@seregpie/vue-storage:${hdalpzqc.value}`, {
-	default: [],
+const theme = useTheme();
+const toggleTheme = (): void => {
+	theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
+};
+
+const showLabel = ref<boolean>(true);
+const label = computed<undefined | string>(() => {
+	if (showLabel.value) {
+		return 'Some label';
+	}
 });
-const a = stored('');
+const showMessages = ref<boolean>(true);
+const messages = computed<undefined | string>(() => {
+	if (showMessages.value) {
+		return 'Some messages';
+	}
+});
+const hideDetails = ref<boolean>(false);
+const disabled = ref<boolean>(false);
+const readonly = ref<boolean>(false);
 </script>
 <template>
 	<VApp>
 		<VAppBar
 			color="primary"
-			dark
-			title="VueStorage"
+			title="VuetifyImageInput"
 		>
+			<template v-slot:prepend>
+				<VAppBarNavIcon @click="toggleDrawer()" />
+			</template>
 			<template v-slot:append>
 				<VBtn
-					href="https://github.com/SeregPie/VueStorage"
-					icon
+					icon="mdi-invert-colors"
+					@click="toggleTheme()"
+				/>
+				<VBtn
+					href="https://github.com/SeregPie/VuetifyImageInput"
+					icon="mdi-github"
 					target="_blank"
-				>
-					<VIcon>mdi-github</VIcon>
-				</VBtn>
+				/>
 			</template>
 		</VAppBar>
-		<VMain class="zaurqxta">
-			<div class="nqzthkvt">
-				<VAlert type="info">{{ t('tczvgeuh') }}</VAlert>
-				<VSlideGroup
-					v-model="sgpyzsuc"
-					multiple
-					show-arrows
-				>
-					<VSlideGroupItem
-						v-for="nurebuou of hcduehqz"
-						:key="nurebuou"
-						v-slot="{isSelected, toggle}"
-					>
-						<VCard
-							style="margin: 0.25rem"
-							:color="isSelected ? 'primary' : 'grey-lighten-1'"
-							@click="toggle"
-						>
-							<div class="vkzsrmkh">{{ nurebuou }}</div>
-						</VCard>
-					</VSlideGroupItem>
-				</VSlideGroup>
-				<VTextField
-					v-model="hdalpzqc"
-					:hint="t('tqgfdiuz')"
-					:label="t('lekljpgz')"
-					persistent-hint
-				/>
-			</div>
+		<VNavigationDrawer v-model="drawer">
+			<VTextField label="Label" />
+			<VCheckbox
+				v-model="showLabel"
+				hide-details="auto"
+				label="Show label"
+			/>
+			<VCheckbox
+				v-model="showMessages"
+				hide-details="auto"
+				label="Show messages"
+			/>
+			<VCheckbox
+				v-model="hideDetails"
+				hide-details="auto"
+				label="Hide details"
+			/>
+			<VCheckbox
+				v-model="disabled"
+				hide-details="auto"
+				label="Disabled"
+			/>
+			<VCheckbox
+				v-model="readonly"
+				hide-details="auto"
+				label="Readonly"
+			/>
+		</VNavigationDrawer>
+		<VMain :class="$style.zaurqxta">
+			<VImageInput
+				:disabled="disabled"
+				:hide-details="hideDetails"
+				:label="label"
+				:messages="messages"
+				:readonly="readonly"
+			/>
 		</VMain>
 	</VApp>
 </template>
 
-<style>
+<style module>
+/* todo: rename */
 .zaurqxta {
 	align-items: center;
-	display: grid;
-	grid-template-columns: minmax(auto, 32rem);
-	justify-content: center;
-}
-
-.nqzthkvt {
-	display: grid;
-	gap: 2rem;
-}
-
-.vkzsrmkh {
-	align-items: center;
 	display: flex;
-	font-size: 2rem;
-	height: 4rem;
 	justify-content: center;
-	pointer-events: none;
-	user-select: none;
-	width: 4rem;
 }
 </style>

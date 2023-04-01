@@ -19,6 +19,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
+		"@fontsource/roboto": "^4.5.8",
 		"@mdi/font": "^7.2.96",
 		"@vitejs/plugin-vue": "^4.1.0",
 		"@vue/shared": "^3.2.47",

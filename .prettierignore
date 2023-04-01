@@ -1,4 +1,4 @@
 src/app.ts
 src/main.ts
 src/plugins/i18n.ts
-src/plugins/vuetify.ts
+src/plugins/vuetify2.ts

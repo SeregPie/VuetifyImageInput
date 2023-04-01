@@ -64,32 +64,37 @@ const readonly = ref<boolean>(false);
 			</template>
 		</VAppBar>
 		<VNavigationDrawer v-model="drawer">
-			<VTextField label="Label" />
-			<VCheckbox
-				v-model="showLabel"
-				hide-details="auto"
-				label="Show label"
-			/>
-			<VCheckbox
-				v-model="showMessages"
-				hide-details="auto"
-				label="Show messages"
-			/>
-			<VCheckbox
-				v-model="hideDetails"
-				hide-details="auto"
-				label="Hide details"
-			/>
-			<VCheckbox
-				v-model="disabled"
-				hide-details="auto"
-				label="Disabled"
-			/>
-			<VCheckbox
-				v-model="readonly"
-				hide-details="auto"
-				label="Readonly"
-			/>
+			<div :class="$style.labhvouu">
+				<VTextField
+					hide-details="auto"
+					label="Label"
+				/>
+				<VCheckbox
+					v-model="showLabel"
+					hide-details="auto"
+					label="Show label"
+				/>
+				<VCheckbox
+					v-model="showMessages"
+					hide-details="auto"
+					label="Show messages"
+				/>
+				<VCheckbox
+					v-model="hideDetails"
+					hide-details="auto"
+					label="Hide details"
+				/>
+				<VCheckbox
+					v-model="disabled"
+					hide-details="auto"
+					label="Disabled"
+				/>
+				<VCheckbox
+					v-model="readonly"
+					hide-details="auto"
+					label="Readonly"
+				/>
+			</div>
 		</VNavigationDrawer>
 		<VMain :class="$style.zaurqxta">
 			<VImageInput
@@ -109,5 +114,12 @@ const readonly = ref<boolean>(false);
 	align-items: center;
 	display: flex;
 	justify-content: center;
+}
+
+/* todo: rename */
+.labhvouu {
+	display: grid;
+	gap: 1rem;
+	padding: 1rem;
 }
 </style>

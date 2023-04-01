@@ -1,0 +1,17 @@
+{
+	"bracketSpacing": false,
+	"htmlWhitespaceSensitivity": "strict",
+	"overrides": [
+		{
+			"files": "*.md",
+			"options": {
+				"useTabs": false
+			}
+		}
+	],
+	"printWidth": 120,
+	"singleAttributePerLine": true,
+	"singleQuote": true,
+	"trailingComma": "all",
+	"useTabs": true
+}

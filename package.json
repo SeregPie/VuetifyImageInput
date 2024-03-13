@@ -1,0 +1,26 @@
+{
+  "name": "vuetify-image-input",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@fontsource/roboto": "^5.0.12",
+    "@mdi/font": "^7.4.47",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "sass": "^1.71.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4",
+    "vite-tsconfig-paths": "^4.3.1",
+    "vue-tsc": "^2.0.4",
+    "vuetify": "^3.5.7"
+  }
+}

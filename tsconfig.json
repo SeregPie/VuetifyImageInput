@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"baseUrl": ".",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"strict": true,
+		"target": "ES2022",
+		"outDir": "./dist"
+	}
+}

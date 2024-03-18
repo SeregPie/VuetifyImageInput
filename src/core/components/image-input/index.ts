@@ -1,9 +1,14 @@
-import {computed, defineComponent, h, watch, watchEffect} from 'vue';
+import {
+	computed,
+	defineComponent,
+	h,
+	shallowRef,
+	watch,
+	watchEffect,
+} from 'vue';
 import {VBtn, VSlider} from 'vuetify/components';
 
-import ibaxrrrq from 'cybele/ibaxrrrq';
-import pmyivsgp from 'cybele/pmyivsgp';
-import {sindmyaj} from 'vuse';
+let {AbortController, Blob, FileReader, URL, document} = globalThis;
 
 export default defineComponent({
 	name: 'VImageInput',
@@ -26,19 +31,61 @@ export default defineComponent({
 	},
 
 	setup(props, {slots, emit, expose}) {
-		let {
-			result: imageRef,
-			pending: imageLoadingRef,
-			ghghgh,
-			clear,
-		} = sindmyaj<HTMLImageElement>();
-		let mnxgfqpx = async (src: unknown) => {
-			try {
-				await ghghgh((signal) => pmyivsgp(src, {signal}));
-			} catch (error) {
-				emit('error', error);
-			}
+		let gyctthkvRef = shallowRef<unknown>(null);
+
+		let clear = () => {
+			gyctthkvRef.value = null;
 		};
+
+		let imageRef = shallowRef<null | HTMLImageElement>(null);
+		let imageLoadingRef = shallowRef(false);
+		let abortImageLoading = () => {};
+		watchEffect(async (onCleanup) => {
+			let controller = new AbortController();
+			onCleanup(
+				(abortImageLoading = () => {
+					controller.abort();
+				}),
+			);
+			let {signal} = controller;
+			try {
+				imageLoadingRef.value = true;
+				let image = await (async () => {
+					let src = gyctthkvRef.value;
+					if (src == null) {
+						return null;
+					}
+					let fromString = async (src: string) => {
+						let image = document.createElement('img');
+						image.src = src;
+						await image.decode();
+						return image;
+					};
+					let fromBlob = async (src: Blob) => {
+						let reader = new FileReader();
+						let promise = new Promise<string>((resolve, reject) => {
+							reader.onload = () => resolve(reader.result as string);
+							reader.onerror = () => reject(reader.error);
+						});
+						reader.readAsDataURL(src);
+						return fromString(await promise);
+					};
+					if (src instanceof Blob) {
+						return fromBlob(src);
+					}
+					return fromString(src as any);
+				})();
+				if (!signal.aborted) {
+					imageRef.value = image;
+				}
+			} catch (error) {
+				if (!signal.aborted) {
+					emit('error', error);
+				}
+			} finally {
+				imageLoadingRef.value = false;
+			}
+		});
 
 		let rotate = (n: number) => {
 			// todo
@@ -80,11 +127,7 @@ export default defineComponent({
 			// todo?
 			if (value !== v) {
 				value = v;
-				if (value == null) {
-					clear();
-				} else {
-					mnxgfqpx(value);
-				}
+				gyctthkvRef.value = value;
 			}
 		});
 		watchEffect((onCleanup) => {
@@ -100,23 +143,29 @@ export default defineComponent({
 			});
 		});
 
-		// todo: rename?
-		let openFile = () => {
-			ibaxrrrq(
-				(files) => {
+		// todo: rename
+		let pyjlbndg = (file: File) => {
+			emit('file', file);
+			gyctthkvRef.value = file;
+		};
+
+		// todo: rename
+		let ibaxrrrq = () => {
+			let input = document.createElement('input');
+			input.type = 'file';
+			input.accept = 'image/*';
+			input.addEventListener('change', () => {
+				((files) => {
 					for (let file of files) {
-						emit('file', file);
-						mnxgfqpx(file);
+						pyjlbndg(file);
 					}
-				},
-				{
-					accept: 'image/*',
-				},
-			);
+				})(input.files!);
+			});
+			input.click();
 		};
 
 		expose({
-			openFile,
+			ibaxrrrq,
 			move,
 			rotate,
 			flip,
@@ -176,7 +225,7 @@ export default defineComponent({
 								VBtn,
 								{
 									onClick() {
-										openFile();
+										ibaxrrrq();
 									},
 								},
 								() => 'Load',

@@ -8,6 +8,9 @@ import {
 } from 'vue';
 import {VBtn, VSlider} from 'vuetify/components';
 
+import {ibaxrrrq} from '../../packages/pony';
+import {computedAsync} from '../../packages/vue';
+
 let {AbortController, Blob, FileReader, URL, document} = globalThis;
 
 export default defineComponent({
@@ -37,55 +40,26 @@ export default defineComponent({
 			gyctthkvRef.value = null;
 		};
 
-		let imageRef = shallowRef<null | HTMLImageElement>(null);
-		let imageLoadingRef = shallowRef(false);
-		let abortImageLoading = () => {};
-		watchEffect(async (onCleanup) => {
-			let controller = new AbortController();
-			onCleanup(
-				(abortImageLoading = () => {
+		let imageRef = computedAsync(
+			async (onAbort) => {
+				let src = gyctthkvRef.value;
+				if (src == null) {
+					return null;
+				}
+				let controller = new AbortController();
+				onAbort(() => {
 					controller.abort();
-				}),
-			);
-			let {signal} = controller;
-			try {
-				imageLoadingRef.value = true;
-				let image = await (async () => {
-					let src = gyctthkvRef.value;
-					if (src == null) {
-						return null;
-					}
-					let fromString = async (src: string) => {
-						let image = document.createElement('img');
-						image.src = src;
-						await image.decode();
-						return image;
-					};
-					let fromBlob = async (src: Blob) => {
-						let reader = new FileReader();
-						let promise = new Promise<string>((resolve, reject) => {
-							reader.onload = () => resolve(reader.result as string);
-							reader.onerror = () => reject(reader.error);
-						});
-						reader.readAsDataURL(src);
-						return fromString(await promise);
-					};
-					if (src instanceof Blob) {
-						return fromBlob(src);
-					}
-					return fromString(src as any);
-				})();
-				if (!signal.aborted) {
-					imageRef.value = image;
-				}
-			} catch (error) {
-				if (!signal.aborted) {
+				});
+				let {signal} = controller;
+				return await pmyivsgp(src, {signal});
+			},
+			{
+				initial: null,
+				onError(error) {
 					emit('error', error);
-				}
-			} finally {
-				imageLoadingRef.value = false;
-			}
-		});
+				},
+			},
+		);
 
 		let rotate = (n: number) => {
 			// todo
@@ -112,6 +86,11 @@ export default defineComponent({
 			reset();
 		});
 
+		let kyshwniaRef = computed(() => {
+			let image = imageRef.value;
+			return image != null ? gangayjy(image) : null;
+		});
+
 		let gangayjy = (image: HTMLImageElement) => {
 			let canvas = document.createElement('canvas');
 			canvas.width = 256;
@@ -134,13 +113,8 @@ export default defineComponent({
 			// todo?
 			// todo: transform
 			let image = imageRef.value;
-			let timerId = setTimeout(() => {
-				value = image != null ? gangayjy(image) : null;
-				emit('update:modelValue', value);
-			}, 2000);
-			onCleanup(() => {
-				clearTimeout(timerId);
-			});
+			value = image != null ? gangayjy(image) : null;
+			emit('update:modelValue', value);
 		});
 
 		// todo: rename
@@ -150,22 +124,21 @@ export default defineComponent({
 		};
 
 		// todo: rename
-		let ibaxrrrq = () => {
-			let input = document.createElement('input');
-			input.type = 'file';
-			input.accept = 'image/*';
-			input.addEventListener('change', () => {
-				((files) => {
+		let kpjtcqrk = () => {
+			ibaxrrrq(
+				(files) => {
 					for (let file of files) {
 						pyjlbndg(file);
 					}
-				})(input.files!);
-			});
-			input.click();
+				},
+				{
+					accept: 'image/*',
+				},
+			);
 		};
 
 		expose({
-			ibaxrrrq,
+			ibaxrrrq: kpjtcqrk,
 			move,
 			rotate,
 			flip,
@@ -198,16 +171,29 @@ export default defineComponent({
 							},
 						},
 						[
-							h(
-								//
-								'img',
-								{
-									style: {
-										position: 'absolute',
+							(() => {
+								let image = imageRef.value;
+								if (image == null) {
+									let loading = imageLoadingRef.value;
+									if (loading) {
+										console.log('return loading');
+										return h('span', 'loading');
+									}
+									console.log('return empty');
+									return h('span', 'empty');
+								}
+								console.log('return image');
+								return h(
+									//
+									'img',
+									{
+										style: {
+											position: 'absolute',
+										},
+										src: image.src,
 									},
-									src: imageRef.value?.src ?? null,
-								},
-							),
+								);
+							})(),
 						],
 					),
 					h(
@@ -225,7 +211,7 @@ export default defineComponent({
 								VBtn,
 								{
 									onClick() {
-										ibaxrrrq();
+										kpjtcqrk();
 									},
 								},
 								() => 'Load',

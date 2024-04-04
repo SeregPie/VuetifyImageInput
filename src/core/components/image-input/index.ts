@@ -90,6 +90,9 @@ export default defineComponent({
 			let image = imageRef.value;
 			return image != null ? gangayjy(image) : null;
 		});
+		watch(kyshwniaRef, (v) => {
+			emit('update:modelValue', v);
+		});
 
 		let gangayjy = (image: HTMLImageElement) => {
 			let canvas = document.createElement('canvas');

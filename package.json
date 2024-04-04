@@ -17,11 +17,11 @@
     "@vueuse/core": "^10.9.0",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "sass": "^1.71.1",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.6",
-    "vite-tsconfig-paths": "^4.3.1",
-    "vue-tsc": "^2.0.6",
-    "vuetify": "^3.5.9"
+    "sass": "^1.74.1",
+    "typescript": "^5.4.4",
+    "vite": "^5.2.8",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vue-tsc": "^2.0.10",
+    "vuetify": "^3.5.14"
   }
 }

@@ -3,6 +3,7 @@
 
 	"bracketSpacing": false,
 	"htmlWhitespaceSensitivity": "strict",
+	"printWidth": 240,
 	"singleAttributePerLine": true,
 	"singleQuote": true,
 	"useTabs": true,

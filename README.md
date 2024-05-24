@@ -34,6 +34,7 @@
 - shape
 
 - readme
+- vite plugins
 - structure
 - build
 - setting

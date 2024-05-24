@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {shallowRef} from 'vue';
+import {ref} from 'vue';
 import VImageInput from 'vuetify-image-input';
 
-let image = shallowRef<string>();
+let image = ref<string>();
 </script>
 
 <template>

@@ -9,9 +9,8 @@ import {
 import {VBtn, VSlider} from 'vuetify/components';
 
 import {ibaxrrrq} from '../../packages/pony';
+import pmyivsgp from '../../packages/pony/pmyivsgp';
 import {computedAsync} from '../../packages/vue';
-
-let {AbortController, Blob, FileReader, URL, document} = globalThis;
 
 export default defineComponent({
 	name: 'VImageInput',
@@ -39,6 +38,35 @@ export default defineComponent({
 		let clear = () => {
 			gyctthkvRef.value = null;
 		};
+
+		let pendingRef = shallowRef<boolean>(false);
+
+		watchEffect(async (onCleanup) => {
+			let controller = new AbortController();
+			onCleanup(() => {
+				controller.abort();
+			});
+			let {signal} = controller;
+			try {
+				{
+					pendingRef.value = true;
+				}
+				let value = await fn((onAbort) => {
+					signal.addEventListener('abort', onAbort);
+				});
+				if (!signal.aborted) {
+					valueRef.value = value;
+				}
+			} catch (error) {
+				if (!signal.aborted) {
+					emit('error', error);
+				}
+			} finally {
+				if (!signal.aborted) {
+					pendingRef.value = false;
+				}
+			}
+		});
 
 		let imageRef = computedAsync(
 			async (onAbort) => {

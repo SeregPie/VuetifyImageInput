@@ -1,0 +1,19 @@
+{
+	"bracketSpacing": false,
+	"htmlWhitespaceSensitivity": "strict",
+	"printWidth": 240,
+	"singleAttributePerLine": true,
+	"singleQuote": true,
+	"useTabs": true,
+
+	"plugins": ["prettier-plugin-organize-imports"],
+
+	"overrides": [
+		{
+			"files": "*.md",
+			"options": {
+				"useTabs": false
+			}
+		}
+	]
+}

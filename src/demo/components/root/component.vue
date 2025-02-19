@@ -31,7 +31,7 @@ const menu = (() => {
 const form = (() => {
 	// todo
 	const imageWidth = (() => {
-		const value$ = ref<number>(256);
+		const value$ = ref<number>(1024);
 		const min = 64;
 		const max = 1024;
 		return reactive({
@@ -43,7 +43,7 @@ const form = (() => {
 	})();
 	// todo
 	const imageHeight = (() => {
-		const value$ = ref<number>(imageWidth.value);
+		const value$ = ref<number>(512);
 		const min = imageWidth.min;
 		const max = imageWidth.max;
 		return reactive({

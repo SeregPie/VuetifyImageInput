@@ -1,7 +1,9 @@
 {
 	"compilerOptions": {
+		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./*"],
+			"vuetify-image-input": ["./packages/vuetify-image-input"]
 		}
 	},
 	"extends": "../tsconfig.json"

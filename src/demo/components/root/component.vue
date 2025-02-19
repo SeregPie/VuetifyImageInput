@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {LocalScope} from '@allindevelopers/vue-local-scope';
-import {reactive, ref} from 'vue';
+import {computed, reactive, ref} from 'vue';
 import {VApp} from 'vuetify/components/VApp';
 import {VAppBar, VAppBarNavIcon} from 'vuetify/components/VAppBar';
 import {VBtn} from 'vuetify/components/VBtn';
@@ -9,6 +9,8 @@ import {VCol, VContainer, VRow} from 'vuetify/components/VGrid';
 import {VMain} from 'vuetify/components/VMain';
 import {VNavigationDrawer} from 'vuetify/components/VNavigationDrawer';
 import {VNumberInput} from 'vuetify/labs/VNumberInput';
+
+import {VImageInput} from '../../packages/vuetify-image-input';
 
 // todo
 function t(key: string): string {
@@ -70,6 +72,23 @@ const form = (() => {
 		imageHeight,
 		disabled,
 		readonly,
+	});
+})();
+
+const test = (() => {
+	return reactive({
+		props: (() => {
+			const imageWidth = computed(() => form.imageWidth.value);
+			const imageHeight = computed(() => form.imageHeight.value);
+			const disabled = computed(() => form.disabled.value);
+			const readonly = computed(() => form.readonly.value);
+			return reactive({
+				imageWidth,
+				imageHeight,
+				disabled,
+				readonly,
+			});
+		})(),
 	});
 })();
 </script>
@@ -159,7 +178,7 @@ const form = (() => {
 			</VContainer>
 		</VNavigationDrawer>
 		<VMain>
-			<div></div>
+			<VImageInput v-bind="test.props" />
 		</VMain>
 	</VApp>
 </template>

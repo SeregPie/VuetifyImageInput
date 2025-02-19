@@ -1,6 +1,3 @@
 {
-	"extends": "@vue/tsconfig/tsconfig.dom.json",
-	"compilerOptions": {
-		"strict": true
-	}
+	"extends": "@vue/tsconfig/tsconfig.dom.json"
 }

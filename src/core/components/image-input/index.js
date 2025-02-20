@@ -1,6 +1,6 @@
 import {computed, defineComponent, h} from 'vue';
 
-import {VResponsive} from '../responsive';
+import {VDynamic} from '../dynamic';
 
 export const VImageInput = defineComponent(
 	(props, {expose}) => {
@@ -47,9 +47,20 @@ export const VImageInput = defineComponent(
 					},
 				},
 				[
-					h(VResponsive, {
-						width: `${imageWidth}px`,
-						height: `${imageHeight}px`,
+					h(VDynamic, null, {
+						default: () =>
+							h('div', {
+								style: {
+									backgroundColor: 'Pink',
+								},
+							}),
+						eulqivhy: () =>
+							h('div', {
+								style: {
+									width: `${imageWidth}px`,
+									height: `${imageHeight}px`,
+								},
+							}),
 					}),
 				],
 			);

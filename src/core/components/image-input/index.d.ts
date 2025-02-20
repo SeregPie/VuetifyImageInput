@@ -17,7 +17,7 @@ export namespace VImageInput {
 	export type Emits = {
 		// todo: EmitFunction?
 		// todo: use Props?
-		['update:modelValue']: {(e: Props['modelValue']): void};
+		['update:modelValue'](e: Props['modelValue']): void;
 	};
 
 	export type Slots = {};

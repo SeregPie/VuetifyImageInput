@@ -1,41 +1,5 @@
-# VuetifyImageInput
+# Vue 3 + TypeScript + Vite
 
-## To-Do List
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-- design
-- auto scale on component size
-- auto normalize
-- resize
-  - via mouse
-  - via touch
-- rotate
-  - via buttons
-  - via touch
-  - via control
-- flip
-  - via buttons
-- move
-  - via mouse
-  - via touch
-- zoom/scale
-  - via buttons
-  - via touch
-  - via control
-- reset
-- clear
-- input
-- output
-- animate
-- upload
-- field wrapper
-- disabled/readonly
-- cover/contain
-- size
-- shape
-
-- readme
-- vite plugins
-- structure
-- build
-- setting
-- gihub cli
+Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).

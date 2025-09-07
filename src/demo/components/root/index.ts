@@ -1,1 +1,1 @@
-export {default} from './component.vue';
+export { default as MyRoot } from "./component.vue";

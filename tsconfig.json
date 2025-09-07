@@ -1,10 +1,8 @@
 {
-	"compilerOptions": {
-		"allowJs": true,
-		"module": "ESNext",
-		"moduleResolution": "Node",
-		"strict": true,
-		"target": "ES2022",
-		"outDir": "./dist"
-	}
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true
+  }
 }

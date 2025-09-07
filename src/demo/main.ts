@@ -1,10 +1,8 @@
-import '@/styles.scss';
+import "./style.css";
+import {createApp} from "vue";
+import {MyRoot} from "./components/root";
+import {MyVuetifyPlugin} from "./plugins/vuetify";
 
-import app from '@/app';
-import vuetify from '@/plugins/vuetify';
-
-// prettier-ignore
-(app
-  .use(vuetify)
-  .mount('body')
-);
+createApp(MyRoot)
+  .use(MyVuetifyPlugin)
+  .mount("body");

@@ -1,17 +1,47 @@
 // @ts-nocheck
 
 import {defineComponent, h, shallowRef, watchEffect} from "vue";
-import {VBtn, VProgressCircular} from "vuetify/components";
+import {VBtn, VFadeTransition, VProgressCircular} from "vuetify/components";
 
-const {AbortController, Blob, Promise, URL, document, Image} = globalThis;
+const {AbortController, Blob, document, Image, Promise, URL} = globalThis;
 
-function sleep(ms) {
+function ibaxrrrq(
+  handle: {(files: FileList): void},
+  options?: Partial<{
+    accept: string;
+    multiple: boolean;
+  }>,
+): void;
+
+function ibaxrrrq(handle, {
+  accept = "",
+  multiple = false,
+} = {}) {
+  let input = document.createElement("input");
+  input.type = "file";
+  input.accept = accept;
+  input.multiple = multiple;
+  input.addEventListener("change", () => {
+    handle(input.files);
+  });
+  input.click();
+}
+
+function delay(
+  ms: number,
+): Promise<void>;
+
+function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function kutjuuto(fn) {
+function toAbortSignal(
+  onCleanup: OnCleanup,
+): AbortSignal;
+
+function toAbortSignal(onCleanup) {
   let controller = new AbortController();
-  fn(() => controller.abort());
+  onCleanup(() => controller.abort());
   return controller.signal;
 }
 
@@ -32,7 +62,7 @@ async function loadImage(source) {
     }
   };
   let fromUrl = async (url) => {
-    let image = new Image();
+    let image = document.createElement("img");
     image.src = url;
     await image.decode();
     return fromImage(image);
@@ -80,17 +110,17 @@ export const VImageInput = defineComponent({
       if (nojjmbiz == null) {
         tqnrivmcRef.value = null;
       } else {
-        let signal = kutjuuto(onCleanup);
+        let signal = toAbortSignal(onCleanup);
         try {
           {
             loadingRef.value = true;
           }
           tqnrivmcRef.value = await (async () => {
-            let delay = sleep(1000);
+            let ggg = delay(400);
             try {
               return await loadImage(nojjmbiz);
             } finally {
-              await delay;
+              await ggg;
               signal.throwIfAborted();
             }
           })();
@@ -110,74 +140,64 @@ export const VImageInput = defineComponent({
       nojjmbizRef.value = null;
     };
 
-    let hxqolmbnRef = shallowRef();
-    let ocdvwvzg = () => {
-      let element = hxqolmbnRef.value;
-      if (element != null) {
-        element.click();
-      }
-    };
     let pyjlbndg = (file) => {
       console.log("uploaded", file);
       nojjmbizRef.value = file;
     };
 
     return () => {
-      let loading = loadingRef.value;
-      if (loading) {
-        return h(VProgressCircular, {
-          indeterminate: true,
-        });
-      }
-      let tqnrivmc = tqnrivmcRef.value;
-      if (tqnrivmc == null) {
-        return h("div", {
-          style: {
-            backgroundColor: "CadetBlue",
-            blockSize: "128px",
-            cursor: "pointer",
-            display: "relative",
-            inlineSize: "128px",
-          },
-          onClick: ocdvwvzg,
-        }, [
-          h("input", {
-            ref: hxqolmbnRef,
-            type: "file",
-            accept: "image/*",
+      return h(VFadeTransition, {
+        mode: "out-in",
+      }, () => {
+        let loading = loadingRef.value;
+        if (loading) {
+          return h(VProgressCircular, {
+            key: 0,
+            indeterminate: true,
+          });
+        }
+        let tqnrivmc = tqnrivmcRef.value;
+        if (tqnrivmc == null) {
+          return h("div", {
+            key: 1,
             style: {
-              inset: 0,
-              opacity: 0,
-              pointerEvents: "none",
-              position: "absolute",
+              backgroundColor: "CadetBlue",
+              blockSize: "128px",
+              cursor: "pointer",
+              display: "relative",
+              inlineSize: "128px",
             },
-            onChange: (event) => {
-              let {files} = event.target;
-              for (let file of files) {
-                pyjlbndg(file);
-              }
+            onClick: () => {
+              ibaxrrrq((files) => {
+                for (let file of files) {
+                  pyjlbndg(file);
+                }
+              }, {
+                accept: "image/*",
+              });
+            },
+          });
+        }
+        return h("div", {
+          key: 2,
+          style: {
+            display: "grid",
+            blockSize: "256px",
+            inlineSize: "256px",
+          },
+        }, [
+          h(VBtn, {
+            onClick: clear,
+          }, () => "Clear"),
+          h("img", {
+            src: tqnrivmc.url,
+            style: {
+              inlineSize: "100%",
+              blockSize: "auto",
             },
           }),
         ]);
-      }
-      return h("div", {
-        style: {
-          display: "grid",
-          blockSize: "256px",
-          inlineSize: "256px",
-        },
-      }, [
-        h(VBtn, {
-          onClick: clear,
-        }, () => "Clear"),
-        h("img", {
-          src: tqnrivmc.url,
-          style: {
-            inlineSize: "100%",
-            blockSize: "auto",
-          },
-        }),
-      ]);
+      });
     };
   },
 

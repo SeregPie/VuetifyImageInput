@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import {defineComponent, h, shallowRef, watchEffect} from "vue";
+import {computed, customRef, defineComponent, h, shallowRef, watchEffect} from "vue";
 import {VBtn, VFadeTransition, VProgressCircular} from "vuetify/components";
 
 const {AbortController, Blob, document, Image, Promise, URL} = globalThis;
@@ -45,21 +45,17 @@ function toAbortSignal(onCleanup) {
   return controller.signal;
 }
 
+async function loadImage(
+  source: unknown,
+): HTMLCanvasElement;
+
 async function loadImage(source) {
   let fromImage = async (image) => {
     const canvas = document.createElement("canvas");
-    try {
-      canvas.width = image.naturalWidth;
-      canvas.height = image.naturalHeight;
-      canvas.getContext("2d").drawImage(image, 0, 0);
-      return {
-        width: canvas.width,
-        height: canvas.height,
-        url: canvas.toDataURL(),
-      };
-    } finally {
-      canvas.remove();
-    }
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    canvas.getContext("2d").drawImage(image, 0, 0);
+    return canvas;
   };
   let fromUrl = async (url) => {
     let image = document.createElement("img");
@@ -83,42 +79,45 @@ async function loadImage(source) {
 
 export const VImageInput = defineComponent({
   setup: (props, {emit}) => {
-    let nojjmbizRef = shallowRef(null); // input
-    let qzqlcmwy = nojjmbizRef.value; // output
-    let tqnrivmcRef = shallowRef(null); // image
+    let originalImageSourceRef = shallowRef(null);
+    let originalImageCanvasRef = shallowRef(null);
+
+    let imageDataUrlRef = computed(() => {
+      let canvas = originalImageCanvasRef.value;
+      if (canvas != null) {
+        return canvas.toDataURL();
+      }
+      return null;
+    });
+
+    {
+      watchEffect(() => {
+        let input = props.modelValue;
+        if (input !== untracked(imageDataUrlRef.value)) {
+          originalImageSourceRef.value = input;
+        }
+      });
+      watchEffect(() => {
+        qmenzgkfRef.value = imageDataUrlRef.value;
+      });
+    }
+
     let loadingRef = shallowRef(false);
 
-    watchEffect(() => {
-      let qiomvhbg = props.modelValue ?? null;
-      if (qiomvhbg !== qzqlcmwy) {
-        console.log("AAA");
-        nojjmbizRef.value = qiomvhbg;
-      }
-    });
-
-    watchEffect(() => {
-      let tqnrivmc = tqnrivmcRef.value;
-      if (tqnrivmc != null) {
-        console.log("BBB");
-        qzqlcmwy = tqnrivmc.url;
-        emit("update:modelValue", qzqlcmwy);
-      }
-    });
-
     watchEffect(async (onCleanup) => {
-      let nojjmbiz = nojjmbizRef.value;
-      if (nojjmbiz == null) {
-        tqnrivmcRef.value = null;
+      let source = originalImageSourceRef.value;
+      if (source == null) {
+        originalImageCanvasRef.value = null;
       } else {
         let signal = toAbortSignal(onCleanup);
         try {
           {
             loadingRef.value = true;
           }
-          tqnrivmcRef.value = await (async () => {
+          originalImageCanvasRef.value = await (async () => {
             let ggg = delay(400);
             try {
-              return await loadImage(nojjmbiz);
+              return await loadImage(source);
             } finally {
               await ggg;
               signal.throwIfAborted();
@@ -137,12 +136,12 @@ export const VImageInput = defineComponent({
     });
 
     let clear = () => {
-      nojjmbizRef.value = null;
+      originalImageSourceRef.value = null;
     };
 
     let pyjlbndg = (file) => {
-      console.log("uploaded", file);
-      nojjmbizRef.value = file;
+      originalImageSourceRef.value = file;
+      emit("todo", file);
     };
 
     return () => {
@@ -156,7 +155,7 @@ export const VImageInput = defineComponent({
             indeterminate: true,
           });
         }
-        let tqnrivmc = tqnrivmcRef.value;
+        let tqnrivmc = originalImageCanvasRef.value;
         if (tqnrivmc == null) {
           return h("div", {
             key: 1,
@@ -204,16 +203,26 @@ export const VImageInput = defineComponent({
   name: "VImageInput",
 
   props: {
-    modelValue: [null, String],
-    imageWidth: Number,
-    imageHeight: Number,
+    modelValue: {
+      type: [null, String],
+      default: null,
+    },
+    imageWidth: {
+      type: Number,
+      default: 256,
+    },
+    imageHeight: {
+      type: Number,
+      default: 256,
+    },
     readonly: Boolean,
     disabled: Boolean,
   },
 
   emits: {
     ["update:modelValue"]: (v: null | string) => true,
-    ["error"]: (v: unknown) => true, // todo: rename?
-    ["file"]: (v: File) => true, // todo: rename?
+
+    ["loadImageFromFile"]: (v: File) => true, // todo: rename?
+    ["loadImageError"]: (v: unknown) => true, // todo: rename?
   },
 });

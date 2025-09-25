@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import {computed, customRef, defineComponent, h, shallowRef, watchEffect} from "vue";
+import {computed, customRef, defineComponent, h, shallowRef, useModel, watchEffect} from "vue";
 import {VBtn, VFadeTransition, VProgressCircular} from "vuetify/components";
 
 const {AbortController, Blob, document, Image, Promise, URL} = globalThis;
@@ -79,6 +79,8 @@ async function loadImage(source) {
 
 export const VImageInput = defineComponent({
   setup: (props, {emit}) => {
+    let valueRef = useModel(props, "modelValue");
+
     let originalImageSourceRef = shallowRef(null);
     let originalImageCanvasRef = shallowRef(null);
 

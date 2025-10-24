@@ -1,3 +1,3 @@
-import {createVuetify} from "vuetify";
+import {createVuetify} from 'vuetify';
 
 export const myVuetifyPlugin = createVuetify();

@@ -1,6 +1,7 @@
 {
   "typescript": {
     "importDeclaration.spaceSurroundingNamedImports": false,
+    "quoteStyle": "preferSingle",
     "spaceSurroundingProperties": false
   },
   "json": {},

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import {computed, customRef, defineComponent, h, shallowRef, useModel, watchEffect} from "vue";
-import {VBtn, VFadeTransition, VProgressCircular} from "vuetify/components";
+import {computed, customRef, defineComponent, h, shallowRef, useModel, watchEffect} from 'vue';
+import {VBtn, VFadeTransition, VProgressCircular} from 'vuetify/components';
 
 const {AbortController, Blob, document, Image, Promise, URL} = globalThis;
 
@@ -14,14 +14,14 @@ function ibaxrrrq(
 ): void;
 
 function ibaxrrrq(handle, {
-  accept = "",
+  accept = '',
   multiple = false,
 } = {}) {
-  let input = document.createElement("input");
-  input.type = "file";
+  let input = document.createElement('input');
+  input.type = 'file';
   input.accept = accept;
   input.multiple = multiple;
-  input.addEventListener("change", () => {
+  input.addEventListener('change', () => {
     handle(input.files);
   });
   input.click();
@@ -51,14 +51,14 @@ async function loadImage(
 
 async function loadImage(source) {
   let fromImage = async (image) => {
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     canvas.width = image.naturalWidth;
     canvas.height = image.naturalHeight;
-    canvas.getContext("2d").drawImage(image, 0, 0);
+    canvas.getContext('2d').drawImage(image, 0, 0);
     return canvas;
   };
   let fromUrl = async (url) => {
-    let image = document.createElement("img");
+    let image = document.createElement('img');
     image.src = url;
     await image.decode();
     return fromImage(image);
@@ -78,8 +78,9 @@ async function loadImage(source) {
 }
 
 export const VImageInput = defineComponent({
+  name: 'VImageInput',
   setup: (props, {emit}) => {
-    let valueRef = useModel(props, "modelValue");
+    let valueRef = useModel(props, 'modelValue');
 
     let originalImageSourceRef = shallowRef(null);
     let originalImageCanvasRef = shallowRef(null);
@@ -143,12 +144,12 @@ export const VImageInput = defineComponent({
 
     let pyjlbndg = (file) => {
       originalImageSourceRef.value = file;
-      emit("todo", file);
+      emit('todo', file);
     };
 
     return () => {
       return h(VFadeTransition, {
-        mode: "out-in",
+        mode: 'out-in',
       }, () => {
         let loading = loadingRef.value;
         if (loading) {
@@ -159,14 +160,14 @@ export const VImageInput = defineComponent({
         }
         let tqnrivmc = originalImageCanvasRef.value;
         if (tqnrivmc == null) {
-          return h("div", {
+          return h('div', {
             key: 1,
             style: {
-              backgroundColor: "CadetBlue",
-              blockSize: "128px",
-              cursor: "pointer",
-              display: "relative",
-              inlineSize: "128px",
+              backgroundColor: 'CadetBlue',
+              blockSize: '128px',
+              cursor: 'pointer',
+              display: 'relative',
+              inlineSize: '128px',
             },
             onClick: () => {
               ibaxrrrq((files) => {
@@ -174,27 +175,27 @@ export const VImageInput = defineComponent({
                   pyjlbndg(file);
                 }
               }, {
-                accept: "image/*",
+                accept: 'image/*',
               });
             },
           });
         }
-        return h("div", {
+        return h('div', {
           key: 2,
           style: {
-            display: "grid",
-            blockSize: "256px",
-            inlineSize: "256px",
+            display: 'grid',
+            blockSize: '256px',
+            inlineSize: '256px',
           },
         }, [
           h(VBtn, {
             onClick: clear,
-          }, () => "Clear"),
-          h("img", {
+          }, () => 'Clear'),
+          h('img', {
             src: tqnrivmc.url,
             style: {
-              inlineSize: "100%",
-              blockSize: "auto",
+              inlineSize: '100%',
+              blockSize: 'auto',
             },
           }),
         ]);
@@ -202,7 +203,7 @@ export const VImageInput = defineComponent({
     };
   },
 
-  name: "VImageInput",
+  name: 'VImageInput',
 
   props: {
     modelValue: {
@@ -222,9 +223,9 @@ export const VImageInput = defineComponent({
   },
 
   emits: {
-    ["update:modelValue"]: (v: null | string) => true,
+    ['update:modelValue']: (v: null | string) => true,
 
-    ["loadImageFromFile"]: (v: File) => true, // todo: rename?
-    ["loadImageError"]: (v: unknown) => true, // todo: rename?
+    ['loadImageFromFile']: (v: File) => true, // todo: rename?
+    ['loadImageError']: (v: unknown) => true, // todo: rename?
   },
 });

@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import {LocalScope} from "@allindevelopers/vue-local-scope";
-import {computed, reactive, ref} from "vue";
-import {VApp} from "vuetify/components/VApp";
-import {VAppBar, VAppBarNavIcon} from "vuetify/components/VAppBar";
-import {VBtn} from "vuetify/components/VBtn";
-import {VCheckbox} from "vuetify/components/VCheckbox";
-import {VCol, VContainer, VRow} from "vuetify/components/VGrid";
-import {VMain} from "vuetify/components/VMain";
-import {VNavigationDrawer} from "vuetify/components/VNavigationDrawer";
-import {VNumberInput} from "vuetify/components/VNumberInput";
-import {VFileUpload} from "vuetify/labs/VFileUpload";
-import {VImageInput} from "../../../core";
+import {LocalScope} from '@allindevelopers/vue-local-scope';
+import {computed, reactive, ref} from 'vue';
+import {VApp} from 'vuetify/components/VApp';
+import {VAppBar, VAppBarNavIcon} from 'vuetify/components/VAppBar';
+import {VBtn} from 'vuetify/components/VBtn';
+import {VCheckbox} from 'vuetify/components/VCheckbox';
+import {VCol, VContainer, VRow} from 'vuetify/components/VGrid';
+import {VMain} from 'vuetify/components/VMain';
+import {VNavigationDrawer} from 'vuetify/components/VNavigationDrawer';
+import {VNumberInput} from 'vuetify/components/VNumberInput';
+import {VFileUpload} from 'vuetify/labs/VFileUpload';
+import {VImageInput} from '../../../core';
 
 // todo
 function t(key: string): string {
@@ -35,7 +35,7 @@ const form = (() => {
     const min = 64;
     const max = 1024;
     return reactive({
-      label: t("Image width"),
+      label: t('Image width'),
       value: valueRef,
       min,
       max,
@@ -47,7 +47,7 @@ const form = (() => {
     const min = imageWidth.min;
     const max = imageWidth.max;
     return reactive({
-      label: t("Image height"),
+      label: t('Image height'),
       value: value$,
       min,
       max,
@@ -56,14 +56,14 @@ const form = (() => {
   const disabled = (() => {
     const valueRef = ref<boolean>(false);
     return reactive({
-      label: t("Disabled"),
+      label: t('Disabled'),
       value: valueRef,
     });
   })();
   const readonly = (() => {
     const valueRef = ref<boolean>(false);
     return reactive({
-      label: t("Readonly"),
+      label: t('Readonly'),
       value: valueRef,
     });
   })();

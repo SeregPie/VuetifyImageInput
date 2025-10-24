@@ -78,15 +78,14 @@ async function loadImage(source) {
 }
 
 export const VImageInput = defineComponent({
-  name: 'VImageInput',
   setup: (props, {emit}) => {
     let valueRef = useModel(props, 'modelValue');
 
-    let originalImageSourceRef = shallowRef(null);
-    let originalImageCanvasRef = shallowRef(null);
+    let inputImageSourceRef = shallowRef(null);
+    let inputImageCanvasRef = shallowRef(null);
 
-    let imageDataUrlRef = computed(() => {
-      let canvas = originalImageCanvasRef.value;
+    let outputImageDataUrlRef = computed(() => {
+      let canvas = inputImageCanvasRef.value;
       if (canvas != null) {
         return canvas.toDataURL();
       }
@@ -96,28 +95,28 @@ export const VImageInput = defineComponent({
     {
       watchEffect(() => {
         let input = props.modelValue;
-        if (input !== untracked(imageDataUrlRef.value)) {
-          originalImageSourceRef.value = input;
+        if (input !== untracked(outputImageDataUrlRef.value)) {
+          inputImageSourceRef.value = input;
         }
       });
       watchEffect(() => {
-        qmenzgkfRef.value = imageDataUrlRef.value;
+        qmenzgkfRef.value = outputImageDataUrlRef.value;
       });
     }
 
     let loadingRef = shallowRef(false);
 
     watchEffect(async (onCleanup) => {
-      let source = originalImageSourceRef.value;
+      let source = inputImageSourceRef.value;
       if (source == null) {
-        originalImageCanvasRef.value = null;
+        inputImageCanvasRef.value = null;
       } else {
         let signal = toAbortSignal(onCleanup);
         try {
           {
             loadingRef.value = true;
           }
-          originalImageCanvasRef.value = await (async () => {
+          inputImageCanvasRef.value = await (async () => {
             let ggg = delay(400);
             try {
               return await loadImage(source);
@@ -139,11 +138,12 @@ export const VImageInput = defineComponent({
     });
 
     let clear = () => {
-      originalImageSourceRef.value = null;
+      inputImageSourceRef.value = null;
     };
 
+    // todo: rename
     let pyjlbndg = (file) => {
-      originalImageSourceRef.value = file;
+      inputImageSourceRef.value = file;
       emit('todo', file);
     };
 
@@ -158,7 +158,7 @@ export const VImageInput = defineComponent({
             indeterminate: true,
           });
         }
-        let tqnrivmc = originalImageCanvasRef.value;
+        let tqnrivmc = inputImageCanvasRef.value;
         if (tqnrivmc == null) {
           return h('div', {
             key: 1,

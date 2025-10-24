@@ -1,8 +1,8 @@
 import "./style.css";
 import {createApp} from "vue";
-import {MyRoot} from "./components/root";
-import {MyVuetifyPlugin} from "./plugins/vuetify";
+import {MyApp} from "./components/app";
+import {myVuetifyPlugin} from "./plugins/vuetify";
 
-createApp(MyRoot)
-  .use(MyVuetifyPlugin)
+createApp(MyApp)
+  .use(myVuetifyPlugin)
   .mount("body");

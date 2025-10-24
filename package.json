@@ -15,13 +15,13 @@
   },
   "devDependencies": {
     "@allindevelopers/vue-local-scope": "^0.2.2",
-    "@fontsource/roboto": "^5.2.6",
+    "@fontsource/roboto": "^5.2.8",
     "@mdi/font": "^7.4.47",
-    "@types/node": "^24.3.1",
+    "@types/node": "^24.9.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
-    "dprint": "^0.50.1",
-    "typescript": "^5.9.2",
-    "vite": "^7.1.4"
+    "dprint": "^0.50.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
   }
 }

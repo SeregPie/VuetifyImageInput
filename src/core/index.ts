@@ -3,17 +3,15 @@
 import {computed, customRef, defineComponent, h, shallowRef, useModel, watchEffect} from 'vue';
 import {VBtn, VFadeTransition, VProgressCircular} from 'vuetify/components';
 
-const {AbortController, Blob, document, Image, Promise, URL} = globalThis;
-
 function ibaxrrrq(
-  handle: {(files: FileList): void},
+  fn: {(files: FileList): void},
   options?: Partial<{
     accept: string;
     multiple: boolean;
   }>,
 ): void;
 
-function ibaxrrrq(handle, {
+function ibaxrrrq(fn, {
   accept = '',
   multiple = false,
 } = {}) {
@@ -22,7 +20,7 @@ function ibaxrrrq(handle, {
   input.accept = accept;
   input.multiple = multiple;
   input.addEventListener('change', () => {
-    handle(input.files);
+    fn(input.files);
   });
   input.click();
 }
@@ -32,7 +30,9 @@ function delay(
 ): Promise<void>;
 
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 function toAbortSignal(
@@ -81,42 +81,43 @@ export const VImageInput = defineComponent({
   setup: (props, {emit}) => {
     let valueRef = useModel(props, 'modelValue');
 
-    let inputImageSourceRef = shallowRef(null);
-    let inputImageCanvasRef = shallowRef(null);
+    let imageSourceRef = shallowRef(null);
+    let imageCanvasRef = shallowRef(null);
 
     let outputImageDataUrlRef = computed(() => {
-      let canvas = inputImageCanvasRef.value;
+      let canvas = imageCanvasRef.value;
       if (canvas != null) {
         return canvas.toDataURL();
       }
       return null;
     });
 
-    {
-      watchEffect(() => {
-        let input = props.modelValue;
-        if (input !== untracked(outputImageDataUrlRef.value)) {
-          inputImageSourceRef.value = input;
-        }
-      });
-      watchEffect(() => {
-        qmenzgkfRef.value = outputImageDataUrlRef.value;
-      });
-    }
+    let xhzdywjzRef = shallowRef();
+    watchEffect(() => {
+      let value = valueRef.value ?? null;
+      if (value !== xhzdywjzRef.value) {
+        imageSourceRef.value = value;
+      }
+    });
+    watchEffect(() => {
+      let value = xhzdywjzRef.value;
+      if (value !== undefined) {
+        valueRef.value = value;
+      }
+    });
 
     let loadingRef = shallowRef(false);
-
     watchEffect(async (onCleanup) => {
-      let source = inputImageSourceRef.value;
+      let source = imageSourceRef.value;
       if (source == null) {
-        inputImageCanvasRef.value = null;
+        imageCanvasRef.value = null;
       } else {
         let signal = toAbortSignal(onCleanup);
         try {
           {
             loadingRef.value = true;
           }
-          inputImageCanvasRef.value = await (async () => {
+          imageCanvasRef.value = await (async () => {
             let ggg = delay(400);
             try {
               return await loadImage(source);
@@ -138,12 +139,12 @@ export const VImageInput = defineComponent({
     });
 
     let clear = () => {
-      inputImageSourceRef.value = null;
+      imageSourceRef.value = null;
     };
 
     // todo: rename
     let pyjlbndg = (file) => {
-      inputImageSourceRef.value = file;
+      imageSourceRef.value = file;
       emit('todo', file);
     };
 
@@ -158,7 +159,7 @@ export const VImageInput = defineComponent({
             indeterminate: true,
           });
         }
-        let tqnrivmc = inputImageCanvasRef.value;
+        let tqnrivmc = imageCanvasRef.value;
         if (tqnrivmc == null) {
           return h('div', {
             key: 1,
@@ -227,5 +228,146 @@ export const VImageInput = defineComponent({
 
     ['loadImageFromFile']: (v: File) => true, // todo: rename?
     ['loadImageError']: (v: unknown) => true, // todo: rename?
+  },
+});
+
+export const VImageInput2 = defineComponent({
+  setup: (props, {emit}) => {
+    let imageCanvasRef = useModel(props, 'modelValue');
+
+    let imageSourceRef = shallowRef(null);
+    let imageCanvasRef = shallowRef(null);
+
+    let outputImageDataUrlRef = computed(() => {
+      let canvas = imageCanvasRef.value;
+      if (canvas != null) {
+        return canvas.toDataURL();
+      }
+      return null;
+    });
+
+    let xhzdywjzRef = shallowRef();
+    watchEffect(() => {
+      let value = valueRef.value ?? null;
+      if (value !== xhzdywjzRef.value) {
+        imageSourceRef.value = value;
+      }
+    });
+    watchEffect(() => {
+      let value = xhzdywjzRef.value;
+      if (value !== undefined) {
+        valueRef.value = value;
+      }
+    });
+
+    let loadingRef = shallowRef(false);
+    watchEffect(async (onCleanup) => {
+      let source = imageSourceRef.value;
+      if (source == null) {
+        imageCanvasRef.value = null;
+      } else {
+        let signal = toAbortSignal(onCleanup);
+        try {
+          {
+            loadingRef.value = true;
+          }
+          imageCanvasRef.value = await (async () => {
+            let ggg = delay(400);
+            try {
+              return await loadImage(source);
+            } finally {
+              await ggg;
+              signal.throwIfAborted();
+            }
+          })();
+        } catch (error) {
+          if (!signal.aborted) {
+            // throw error
+          }
+        } finally {
+          if (!signal.aborted) {
+            loadingRef.value = false;
+          }
+        }
+      }
+    });
+
+    let clear = () => {
+      imageSourceRef.value = null;
+    };
+
+    // todo: rename
+    let pyjlbndg = (file) => {
+      imageSourceRef.value = file;
+      emit('todo', file);
+    };
+
+    return () => {
+      return h(VFadeTransition, {
+        mode: 'out-in',
+      }, () => {
+        let loading = loadingRef.value;
+        if (loading) {
+          return h(VProgressCircular, {
+            key: 0,
+            indeterminate: true,
+          });
+        }
+        let tqnrivmc = imageCanvasRef.value;
+        if (tqnrivmc == null) {
+          return h('div', {
+            key: 1,
+            style: {
+              backgroundColor: 'CadetBlue',
+              blockSize: '128px',
+              cursor: 'pointer',
+              display: 'relative',
+              inlineSize: '128px',
+            },
+            onClick: () => {
+              ibaxrrrq((files) => {
+                for (let file of files) {
+                  pyjlbndg(file);
+                }
+              }, {
+                accept: 'image/*',
+              });
+            },
+          });
+        }
+        return h('div', {
+          key: 2,
+          style: {
+            display: 'grid',
+            blockSize: '256px',
+            inlineSize: '256px',
+          },
+        }, [
+          h(VBtn, {
+            onClick: clear,
+          }, () => 'Clear'),
+          h('img', {
+            src: tqnrivmc.url,
+            style: {
+              inlineSize: '100%',
+              blockSize: 'auto',
+            },
+          }),
+        ]);
+      });
+    };
+  },
+
+  name: 'VImageInput',
+
+  props: {
+    modelValue: {
+      type: [null, String],
+      required: true,
+    },
+  },
+
+  emits: {
+    ['update:modelValue']: (v: null | string) => true,
   },
 });
